@@ -57,7 +57,7 @@ jobs:
 
     strategy:
       matrix:
-        typescript-version: [4.0.0, 4.1.0, latest]
+        typescript-version: ['~4.0.0', '~4.1.0', latest]
 
     steps:
       - uses: actions/checkout@v2
