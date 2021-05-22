@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: '/ts-fundamentals-v4',
+  pathPrefix: '/ts-fundamentals-v3',
   siteMetadata: {
     title: `Example Blog`,
     author: {
