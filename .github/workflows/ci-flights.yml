@@ -1,28 +1,28 @@
-name: Website
+name: Flights App
 
 on:
-  # pull_request:
-  #   branches: [main]
-  #   paths:
-  #     - 'website/**'
-  #     - '.github/**'
-  #     - 'package.json'
-  #     - 'yarn.lock'
-  # push:
-  #   branches: [main]
-  #   paths:
-  #     - 'website/**'
-  #     - '.github/**'
-  #     - 'package.json'
-  #     - 'yarn.lock'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'flights/**'
+      - '.github/**'
+      - 'package.json'
+      - 'yarn.lock'
+  push:
+    branches: [main]
+    paths:
+      - 'flights/**'
+      - '.github/**'
+      - 'package.json'
+      - 'yarn.lock'
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
         node-version: [14.x]
-        typescript-version: [4.0.0]
 
     steps:
       - uses: actions/checkout@v2
@@ -102,14 +102,3 @@ jobs:
         run: |
           cd website
           yarn test
-  publish:
-    needs: [build, node-compatibility, ts-compatibility]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: enriikke/gatsby-gh-pages-action@v2
-        with:
-          access-token: ${{ secrets.ACCESS_TOKEN }}
-          deploy-branch: gh-pages
-          gatsby-args: --prefix-paths
-          working-dir: website
