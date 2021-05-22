@@ -26,19 +26,13 @@ jobs:
           yarn
           yarn lerna bootstrap
       - name: Build
-        run: |
-          cd flights
-          pwd
-          ls ./node_modules/.bin
-          yarn build
+        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-flights
       - name: Lint
         run: |
-          cd flights
-          yarn lint
+          yarn lerna run lint --scope @mike-north/ts-fundamentals-v3-flights
       - name: Test
         run: |
-          cd flights
-          yarn test
+          yarn lerna run test --scope @mike-north/ts-fundamentals-v3-flights
 
   os-compatibility:
     needs: build

@@ -1,6 +1,6 @@
 {
   "packages": [
-    "flights", "website"
+    "packages/*"
   ],
   "useWorkspaces": true,
   "npmClient": "yarn",
