@@ -2,14 +2,14 @@ name: Website
 
 on:
   pull_request:
-    branches: [mainn]
+    branches: [main]
     paths:
       - 'website/**'
       - '.github/**'
       - 'package.json'
       - 'yarn.lock'
   push:
-    branches: [mainn]
+    branches: [main]
     paths:
       - 'website/**'
       - '.github/**'
@@ -23,17 +23,11 @@ jobs:
       - uses: volta-cli/action@v1
       - run: yarn
       - name: Build
-        run: |
-          cd website
-          yarn build
+        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-website
       - name: Lint
-        run: |
-          cd website
-          yarn lint
+        run: yarn lerna run lint --scope @mike-north/ts-fundamentals-v3-website
       - name: Test
-        run: |
-          cd website
-          yarn test
+        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-website
 
   os-compatibility:
     needs: build
@@ -46,13 +40,9 @@ jobs:
       - uses: volta-cli/action@v1
       - run: yarn
       - name: Build
-        run: |
-          cd website
-          yarn build
+        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-website
       - name: Test
-        run: |
-          cd website
-          yarn test
+        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-website
 
   node-compatibility:
     needs: build
@@ -68,13 +58,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn
       - name: Build
-        run: |
-          cd website
-          yarn build
+        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-website
       - name: Test
-        run: |
-          cd website
-          yarn test
+        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-website
+
 
   ts-compatibility:
     needs: build
@@ -113,25 +100,16 @@ jobs:
       - run: yarn
       - name: Installing TypeScript ${{ matrix.typescript-version }}
         run: |
-          cd website
-          yarn add typescript@${{ matrix.typescript-version}}
+          yarn lerna add -D typescript@${{ matrix.typescript-version}}
       - name: Build
-        run: |
-          cd website
-          yarn build
+        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-website
       - name: TypeScript compile
         run: |
           yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
-          cd website
-          yarn tsc
-      - name: Lint
-        run: |
-          cd website
-          yarn lint
+          yarn lerna run typecheck --scope @mike-north/ts-fundamentals-v3-website
       - name: Test
-        run: |
-          cd website
-          yarn test
+        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-website
+
   publish:
     needs: [build, os-compatibility, node-compatibility, ts-compatibility]
     runs-on: ubuntu-latest
