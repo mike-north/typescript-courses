@@ -2,14 +2,14 @@ name: Website
 
 on:
   pull_request:
-    branches: [main]
+    branches: [mainn]
     paths:
       - 'website/**'
       - '.github/**'
       - 'package.json'
       - 'yarn.lock'
   push:
-    branches: [main]
+    branches: [mainn]
     paths:
       - 'website/**'
       - '.github/**'
@@ -135,6 +135,7 @@ jobs:
   publish:
     needs: [build, os-compatibility, node-compatibility, ts-compatibility]
     runs-on: ubuntu-latest
+    if: success() && github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v1
       - uses: enriikke/gatsby-gh-pages-action@v2
