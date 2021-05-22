@@ -18,9 +18,9 @@ jobs:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
       - run: yarn
-      - run: yarn build
-      - run: yarn lint
-      - run: yarn test
+      - run: cd website; yarn build
+      - run: cd website; yarn lint
+      - run: cd website; yarn test
 
   node-compatibility:
     needs: build
