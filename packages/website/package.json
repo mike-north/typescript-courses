@@ -73,7 +73,8 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "lint": "eslint . --ext ts,js,tsx,jsx",
-    "test": "jest"
+    "test": "jest",
+    "typecheck": "tsc -P . --no-emit"
   },
   "volta": {
     "node": "14.16.0",
