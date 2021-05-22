@@ -6,7 +6,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitAny": true,
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
   },
   "include": ["global.d.ts", "src"]
 }
