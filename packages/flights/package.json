@@ -6,7 +6,6 @@
   "devDependencies": {
     "@types/react": "^17.0.6",
     "@types/react-dom": "^17.0.5",
-    "json-graphql-server": "^2.2.3",
     "json-server": "^0.16.3",
     "snowpack": "^3.5.1"
   },
