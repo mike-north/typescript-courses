@@ -54,8 +54,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
-    "react-test-renderer": "^17.0.2",
-    "replace-in-file": "^6.2.0"
+    "react-test-renderer": "^17.0.2"
   },
   "homepage": "https://github.com/mike-north/typescript-fundamentals-v3#readme",
   "keywords": [
@@ -67,7 +66,6 @@
     "url": "git+https://github.com/mike-north/typescript-fundamentals-v3.git"
   },
   "scripts": {
-    "postinstall": "replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{ts,js,tsx,jsx,json,md}\"",

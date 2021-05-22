@@ -14,5 +14,11 @@
   "volta": {
     "node": "14.17.0",
     "yarn": "1.22.10"
+  },
+  "devDependencies": {
+    "replace-in-file": "^6.2.0"
+  },
+  "scripts": {
+    "postinstall": "replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts"
   }
 }
