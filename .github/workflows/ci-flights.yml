@@ -25,6 +25,8 @@ jobs:
       - name: Build
         run: |
           cd flights
+          pwd
+          ls ./node_modules/.bin
           yarn build
       - name: Lint
         run: |
@@ -48,7 +50,6 @@ jobs:
       - name: Build
         run: |
           cd flights
-          ls ./node_modules/.bin
           yarn build
       - name: Lint
         run: |
