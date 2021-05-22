@@ -11,7 +11,9 @@
   },
   "scripts": {
     "dev": "snowpack dev",
-    "build": "snowpack build"
+    "build": "snowpack build",
+    "test": "echo 'no tests yet'",
+    "lint": "echo 'no lints yet'"
   },
   "dependencies": {
     "react": "^17.0.2",

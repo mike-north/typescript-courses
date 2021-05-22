@@ -29,11 +29,17 @@ jobs:
       - uses: volta-cli/action@v1
       - run: yarn
       - name: Build
-        run: cd website; yarn build
+        run: |
+          cd flights
+          yarn build
       - name: Lint
-        run: cd website; yarn lint
+        run: |
+          cd flights
+          yarn lint
       - name: Test
-        run: cd website; yarn test
+        run: |
+          cd flights
+          yarn test
 
   node-compatibility:
     needs: build
@@ -49,11 +55,17 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn
       - name: Build
-        run: cd website; yarn build
+        run: |
+          cd flights
+          yarn build
       - name: Lint
-        run: cd website; yarn lint
+        run: |
+          cd flights
+          yarn lint
       - name: Test
-        run: cd website; yarn test
+        run: |
+          cd flights
+          yarn test
 
   ts-compatibility:
     needs: build
@@ -83,22 +95,22 @@ jobs:
       - run: yarn
       - name: Installing TypeScript ${{ matrix.typescript-version }}
         run: |
-          cd website
+          cd flights
           yarn add typescript@${{ matrix.typescript-version}}
       - name: Build
         run: |
-          cd website
+          cd flights
           yarn build
       - name: TypeScript compile
         run: |
           yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
-          cd website
+          cd flights
           yarn tsc
       - name: Lint
         run: |
-          cd website
+          cd flights
           yarn lint
       - name: Test
         run: |
-          cd website
+          cd flights
           yarn test

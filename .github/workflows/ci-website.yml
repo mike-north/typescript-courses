@@ -29,11 +29,17 @@ jobs:
       - uses: volta-cli/action@v1
       - run: yarn
       - name: Build
-        run: cd website; yarn build
+        run: |
+          cd website
+          yarn build
       - name: Lint
-        run: cd website; yarn lint
+        run: |
+          cd website
+          yarn lint
       - name: Test
-        run: cd website; yarn test
+        run: |
+          cd website
+          yarn test
 
   node-compatibility:
     needs: build
@@ -49,11 +55,17 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn
       - name: Build
-        run: cd website; yarn build
+        run: |
+          cd website
+          yarn build
       - name: Lint
-        run: cd website; yarn lint
+        run: |
+          cd website
+          yarn lint
       - name: Test
-        run: cd website; yarn test
+        run: |
+          cd website
+          yarn test
 
   ts-compatibility:
     needs: build
