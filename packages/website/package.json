@@ -74,7 +74,7 @@
     "clean": "gatsby clean",
     "lint": "eslint . --ext ts,js,tsx,jsx",
     "test": "jest",
-    "typecheck": "tsc -P . --no-emit"
+    "typecheck": "tsc -P . --noEmit"
   },
   "volta": {
     "node": "14.16.0",

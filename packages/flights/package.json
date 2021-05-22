@@ -15,7 +15,7 @@
     "build": "snowpack build",
     "test": "echo 'no tests yet'",
     "lint": "echo 'no lints yet'",
-    "typecheck": "tsc -P . --no-emit"
+    "typecheck": "tsc -P . --noEmit"
   },
   "dependencies": {
     "react": "^17.0.2",
