@@ -21,7 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
-      - run: yarn
+      - run: |
+          yarn
+          yarn lerna bootstrap
       - name: Build
         run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-website
       - name: Lint
@@ -38,7 +40,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
-      - run: yarn
+      - run: |
+          yarn
+          yarn lerna bootstrap
       - name: Build
         run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-website
       - name: Test
@@ -56,7 +60,9 @@ jobs:
       - uses: volta-cli/action@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn
+      - run: |
+          yarn
+          yarn lerna bootstrap
       - name: Build
         run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-website
       - name: Test
@@ -97,7 +103,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
-      - run: yarn
+      - run: |
+          yarn
+          yarn lerna bootstrap
       - name: Installing TypeScript ${{ matrix.typescript-version }}
         run: |
           yarn lerna add -D typescript@${{ matrix.typescript-version}}
