@@ -1,4 +1,4 @@
-name: Website CI + Publish
+name: Website CI
 
 on:
   pull_request:
@@ -7,8 +7,7 @@ on:
       - 'website/**'
       - '.github/**'
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
       - 'website/**'
       - '.github/**'
@@ -66,7 +65,7 @@ jobs:
       - run: yarn
       - name: Installing TypeScript ${{ matrix.typescript-version }}
         run: |
-          yarn add typescript@${{ matrix.typescript-version}}
+          cd website; yarn add typescript@${{ matrix.typescript-version}}
       - name: Build
         run: cd website; yarn build
       - name: TypeScript compile
@@ -85,3 +84,4 @@ jobs:
           access-token: ${{ secrets.ACCESS_TOKEN }}
           deploy-branch: gh-pages
           gatsby-args: --prefix-paths
+          working-dir: website
