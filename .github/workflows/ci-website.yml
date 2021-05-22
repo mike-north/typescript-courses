@@ -4,14 +4,14 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - 'website/*'
-      - '.github/*'
+      - 'website/**'
+      - '.github/**'
   push:
     branches:
       - main
     paths:
-      - 'website/*'
-      - '.github/*'
+      - 'website/**'
+      - '.github/**'
 jobs:
   build:
     runs-on: ubuntu-latest
