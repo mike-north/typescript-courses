@@ -17,11 +17,7 @@ on:
       - 'yarn.lock'
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        node-version: [14.x]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
@@ -34,6 +30,25 @@ jobs:
         run: |
           cd website
           yarn lint
+      - name: Test
+        run: |
+          cd website
+          yarn test
+
+  os-compatibility:
+    needs: build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+      - run: yarn
+      - name: Build
+        run: |
+          cd website
+          yarn build
       - name: Test
         run: |
           cd website
@@ -56,10 +71,6 @@ jobs:
         run: |
           cd website
           yarn build
-      - name: Lint
-        run: |
-          cd website
-          yarn lint
       - name: Test
         run: |
           cd website
@@ -75,16 +86,25 @@ jobs:
         include:
           - typescript-version: '~4.0.0'
             experimental: false
+            name: 'ts-4.0'
           - typescript-version: '~4.1.0'
             experimental: false
+            name: 'ts-4.1'
+          - typescript-version: '~4.2.0'
+            experimental: false
+            name: 'ts-4.2'
           - typescript-version: latest
             experimental: false
+            name: 'ts-stable'
           - typescript-version: beta
             experimental: false
+            name: 'ts-beta'
           - typescript-version: rc
             experimental: true
+            name: 'ts-rc'
           - typescript-version: next
             experimental: true
+            name: 'ts-canary'
 
 
     steps:
@@ -113,7 +133,7 @@ jobs:
           cd website
           yarn test
   publish:
-    needs: [build, node-compatibility, ts-compatibility]
+    needs: [build, os-compatibility, node-compatibility, ts-compatibility]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
