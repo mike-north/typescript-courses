@@ -45,17 +45,12 @@ jobs:
       - uses: volta-cli/action@v1
       - run: yarn
       - name: Build
-        run: |
-          cd flights
-          yarn build
+        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-flights
       - name: Lint
-        run: |
-          cd flights
-          yarn lint
+        run: yarn lerna run lint --scope @mike-north/ts-fundamentals-v3-flights
       - name: Test
-        run: |
-          cd flights
-          yarn test
+        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-flights
+
 
   node-compatibility:
     needs: build
@@ -71,17 +66,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn
       - name: Build
-        run: |
-          cd flights
-          yarn build
+        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-flights
       - name: Lint
-        run: |
-          cd flights
-          yarn lint
+        run: yarn lerna run lint --scope @mike-north/ts-fundamentals-v3-flights
       - name: Test
-        run: |
-          cd flights
-          yarn test
+        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-flights
 
   ts-compatibility:
     needs: build
@@ -111,22 +100,14 @@ jobs:
       - run: yarn
       - name: Installing TypeScript ${{ matrix.typescript-version }}
         run: |
-          cd flights
-          yarn add typescript@${{ matrix.typescript-version}}
+          yarn lerna add -D typescript@${{ matrix.typescript-version}}
       - name: Build
-        run: |
-          cd flights
-          yarn build
+        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-flights
       - name: TypeScript compile
         run: |
           yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
-          cd flights
-          yarn tsc
+          yarn lerna exec tsc --scope @mike-north/ts-fundamentals-v3-flights
       - name: Lint
-        run: |
-          cd flights
-          yarn lint
+        run: yarn lerna run lint --scope @mike-north/ts-fundamentals-v3-flights
       - name: Test
-        run: |
-          cd flights
-          yarn test
+        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-flights
