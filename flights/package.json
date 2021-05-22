@@ -11,8 +11,8 @@
     "snowpack": "^3.5.1"
   },
   "scripts": {
-    "dev": "snowpack dev",
-    "build": "snowpack build",
+    "dev": "./node_modules/.bin/snowpack dev",
+    "build": "./node_modules/.bin/snowpack build",
     "test": "echo 'no tests yet'",
     "lint": "echo 'no lints yet'"
   },
