@@ -16,7 +16,8 @@
     "yarn": "1.22.10"
   },
   "devDependencies": {
-    "replace-in-file": "^6.2.0"
+    "replace-in-file": "^6.2.0",
+    "snowpack": "^3.5.1"
   },
   "scripts": {
     "postinstall": "replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts"
