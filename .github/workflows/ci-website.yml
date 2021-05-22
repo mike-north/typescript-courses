@@ -1,10 +1,15 @@
 name: Website CI + Publish
 
 on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'website/*'
   push:
     branches:
       - main
-
+    paths:
+      - 'website/*'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,9 +23,12 @@ jobs:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
       - run: yarn
-      - run: cd website; yarn build
-      - run: cd website; yarn lint
-      - run: cd website; yarn test
+      - name: Build
+        run: cd website; yarn build
+      - name: Lint
+        run: cd website; yarn lint
+      - name: Test
+        run: cd website; yarn test
 
   node-compatibility:
     needs: build
@@ -35,9 +43,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
-      - run: yarn build
-      - run: yarn lint
-      - run: yarn test
+      - name: Build
+        run: cd website; yarn build
+      - name: Lint
+        run: cd website; yarn lint
+      - name: Test
+        run: cd website; yarn test
 
   ts-compatibility:
     needs: build
@@ -54,10 +65,14 @@ jobs:
       - name: Installing TypeScript ${{ matrix.typescript-version }}
         run: |
           yarn add typescript@${{ matrix.typescript-version}}
-      - run: yarn build
-      - run: yarn tsc
-      - run: yarn lint
-      - run: yarn test
+      - name: Build
+        run: cd website; yarn build
+      - name: TypeScript compile
+        run: cd website; yarn tsc
+      - name: Lint
+        run: cd website; yarn lint
+      - name: Test
+        run: cd website; yarn test
   publish:
     needs: [build, node-compatibility, ts-compatibility]
     runs-on: ubuntu-latest
