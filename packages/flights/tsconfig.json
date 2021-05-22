@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "module": "ES2020",
+    "moduleResolution": "Node",
+    "noEmit": true,
+    "strict": true
+  },
+  "include": ["client", "server"]
+}
