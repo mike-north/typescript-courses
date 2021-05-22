@@ -1,29 +1,27 @@
 name: Website
 
 on:
-  # pull_request:
-  #   branches: [main]
-  #   paths:
-  #     - 'website/**'
-  #     - '.github/**'
-  #     - 'package.json'
-  #     - 'yarn.lock'
-  # push:
-  #   branches: [main]
-  #   paths:
-  #     - 'website/**'
-  #     - '.github/**'
-  #     - 'package.json'
-  #     - 'yarn.lock'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - '.github/**'
+      - 'package.json'
+      - 'yarn.lock'
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - '.github/**'
+      - 'package.json'
+      - 'yarn.lock'
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
         node-version: [14.x]
-        typescript-version: [4.0.0]
-
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
