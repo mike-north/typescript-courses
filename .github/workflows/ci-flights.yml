@@ -21,7 +21,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
-      - run: yarn
+      - name: Yarn & Lerna Setup
+        run: |
+          yarn
+          yarn lerna bootstrap
       - name: Build
         run: |
           cd flights
