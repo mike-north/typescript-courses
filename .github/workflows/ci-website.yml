@@ -69,13 +69,21 @@ jobs:
           yarn add typescript@${{ matrix.typescript-version}}
           yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
       - name: Build
-        run: cd website; yarn build
+        run: |
+          cd website
+          yarn build
       - name: TypeScript compile
-        run: cd website; yarn tsc
+        run: |
+          cd website
+          yarn tsc
       - name: Lint
-        run: cd website; yarn lint
+        run: |
+          cd website
+          yarn lint
       - name: Test
-        run: cd website; yarn test
+        run: |
+          cd website
+          yarn test
   publish:
     needs: [build, node-compatibility, ts-compatibility]
     runs-on: ubuntu-latest
