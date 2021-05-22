@@ -1,0 +1,58 @@
+{
+  "env": {
+    "es2021": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error"
+  },
+  "overrides": [
+    {
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        }
+      },
+      "files": ["src/**/*"],
+      "plugins": ["react"],
+      "rules": { "react/prop-types": "off" },
+      "globals": { "__PATH_PREFIX__": true }
+    },
+    {
+      "files": ["gatsby-*.js", "jest*.js"],
+      "env": { "node": true, "commonjs": true },
+      "rules": { "@typescript-eslint/no-var-requires": "off" }
+    },
+    {
+      "files": ["__mocks__/*"],
+      "env": { "node": true, "commonjs": true, "jest": true },
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/no-unused-vars": "off"
+      }
+    },
+    {
+      "files": ["src/**/__tests__/**/*.ts"],
+      "env": { "node": true, "commonjs": true, "jest": true },
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/no-unused-vars": "off"
+      }
+    },
+    {
+      "files": ["loadershim.js"],
+      "env": { "node": true, "jest": true }
+    }
+  ]
+}

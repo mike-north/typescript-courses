@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bio renders correctly 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "marginBottom": "4.375rem",
+    }
+  }
+>
+  <div
+    className=" gatsby-image-wrapper"
+    style={
+      Object {
+        "borderRadius": "100%",
+        "display": "inline-block",
+        "height": 40,
+        "marginBottom": 0,
+        "marginRight": "0.875rem",
+        "minWidth": 50,
+        "overflow": "hidden",
+        "position": "relative",
+        "width": 80,
+      }
+    }
+  >
+    <picture>
+      
+      <img
+        alt="Mike"
+        height={40}
+        loading="lazy"
+        onLoad={[Function]}
+        src="http://localhost:8080"
+        srcSet=""
+        style={
+          Object {
+            "borderRadius": "50%",
+            "height": "100%",
+            "left": 0,
+            "objectFit": "cover",
+            "objectPosition": "center",
+            "opacity": 0,
+            "position": "absolute",
+            "top": 0,
+            "transition": "opacity 500ms",
+            "width": "100%",
+          }
+        }
+        width={80}
+      />
+    </picture>
+    <noscript
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<picture><source srcset=\\"\\" /><img loading=\\"lazy\\" width=\\"80\\" height=\\"40\\" src=\\"http://localhost:8080\\" alt=\\"Mike\\" style=\\"position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center\\"/></picture>",
+        }
+      }
+    />
+  </div>
+  <p>
+    Written by 
+    <strong>
+      Mike
+    </strong>
+     
+    A teacher
+     
+    <a
+      href="https://twitter.com/MichaelLNorth"
+    >
+      You should follow him on Twitter
+    </a>
+  </p>
+</div>
+`;

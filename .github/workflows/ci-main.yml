@@ -1,0 +1,70 @@
+name: Website CI + Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+        typescript-version: [4.0.0]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+      - run: yarn
+      - run: yarn build
+      - run: yarn lint
+      - run: yarn test
+
+  node-compatibility:
+    needs: build
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 15.x]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn
+      - run: yarn build
+      - run: yarn lint
+      - run: yarn test
+
+  ts-compatibility:
+    needs: build
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        typescript-version: [4.0.0, 4.1.0, latest]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+      - run: yarn
+      - name: Installing TypeScript ${{ matrix.typescript-version }}
+        run: |
+          yarn add typescript@${{ matrix.typescript-version}}
+      - run: yarn build
+      - run: yarn tsc
+      - run: yarn lint
+      - run: yarn test
+  publish:
+    needs: [build, node-compatibility, ts-compatibility]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: enriikke/gatsby-gh-pages-action@v2
+        with:
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+          deploy-branch: gh-pages
+          gatsby-args: --prefix-paths

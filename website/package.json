@@ -1,0 +1,82 @@
+{
+  "name": "@mike-north/typescript-fundamentals-v3-website",
+  "private": true,
+  "description": "Mike North's TypeScript Fundamentals v3 course",
+  "version": "0.0.1",
+  "author": "Mike North <michael.l.north@gmail.com> (https://mike.works)",
+  "bugs": {
+    "url": "https://github.com/mike-north/typescript-fundamentals-v3"
+  },
+  "dependencies": {
+    "gatsby": "^3.1.2",
+    "gatsby-image": "^3.1.0",
+    "gatsby-plugin-feed": "^3.1.0",
+    "gatsby-plugin-google-analytics": "^3.1.0",
+    "gatsby-plugin-manifest": "^3.1.0",
+    "gatsby-plugin-offline": "^4.1.0",
+    "gatsby-plugin-react-helmet": "^4.1.0",
+    "gatsby-plugin-sass": "^4.1.0",
+    "gatsby-plugin-sharp": "^3.1.2",
+    "gatsby-plugin-typography": "^3.1.0",
+    "gatsby-remark-copy-linked-files": "^3.1.0",
+    "gatsby-remark-images": "^4.1.1",
+    "gatsby-remark-responsive-iframe": "^3.1.0",
+    "gatsby-remark-shiki-twoslash": "^1.0.1",
+    "gatsby-remark-smartypants": "^3.1.0",
+    "gatsby-source-filesystem": "^3.1.0",
+    "gatsby-transformer-remark": "^3.1.0",
+    "gatsby-transformer-sharp": "^3.1.0",
+    "prismjs": "^1.19.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-helmet": "^6.1.0",
+    "react-typography": "^0.16.19",
+    "sass": "^1.32.8",
+    "typeface-merriweather": "1.1.13",
+    "typeface-montserrat": "1.1.13",
+    "typography": "^0.16.19",
+    "typography-theme-wordpress-2016": "^0.16.19"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.22",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
+    "@types/react-helmet": "^6.1.0",
+    "@types/react-test-renderer": "^17.0.1",
+    "@types/sharp": "^0.27.2",
+    "@types/typography": "^0.16.3",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "babel-jest": "^26.6.3",
+    "babel-preset-gatsby": "^1.1.0",
+    "eslint": "^7.23.0",
+    "eslint-plugin-react": "^7.23.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "react-test-renderer": "^17.0.2"
+  },
+  "homepage": "https://github.com/mike-north/typescript-fundamentals-v3#readme",
+  "keywords": [
+    "gatsby"
+  ],
+  "main": "n/a",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mike-north/typescript-fundamentals-v3.git"
+  },
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{ts,js,tsx,jsx,json,md}\"",
+    "start": "yarn develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "lint": "eslint . --ext ts,js,tsx,jsx",
+    "test": "jest"
+  },
+  "volta": {
+    "node": "14.16.0",
+    "yarn": "1.22.10"
+  }
+}

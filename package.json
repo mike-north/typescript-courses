@@ -1,0 +1,18 @@
+{
+  "name": "@mike-north/typescript-fundamentals-v3",
+  "version": "0.0.1",
+  "description": "Mike's TypeScript Fundamentals Course (v3)",
+  "main": "index.js",
+  "repository": "git@github.com:mike-north/ts-fundamentals-v3.git",
+  "author": "Mike North <michael.l.north@gmail.com>",
+  "license": "NOLICENSE",
+  "private": true,
+  "workspaces": [
+    "website",
+    "course"
+  ],
+  "volta": {
+    "node": "14.17.0",
+    "yarn": "1.22.10"
+  }
+}
