@@ -73,8 +73,8 @@ jobs:
           yarn build
       - name: TypeScript compile
         run: |
-          cd website
           yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
+          cd website
           yarn tsc
       - name: Lint
         run: |
