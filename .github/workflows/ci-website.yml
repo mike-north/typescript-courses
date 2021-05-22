@@ -67,7 +67,6 @@ jobs:
         run: |
           cd website
           yarn add typescript@${{ matrix.typescript-version}}
-          yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
       - name: Build
         run: |
           cd website
@@ -75,6 +74,7 @@ jobs:
       - name: TypeScript compile
         run: |
           cd website
+          yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
           yarn tsc
       - name: Lint
         run: |
