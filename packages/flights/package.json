@@ -1,5 +1,5 @@
 {
-  "name": "@mike-north/ts-fundamentals-v3-flights",
+  "name": "flights",
   "version": "0.0.1",
   "main": "index.js",
   "license": "NOLICENSE",

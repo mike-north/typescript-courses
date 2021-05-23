@@ -25,11 +25,11 @@ jobs:
           yarn
           yarn lerna bootstrap
       - name: Build
-        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-website
+        run: yarn lerna run build --scope website
       - name: Lint
-        run: yarn lerna run lint --scope @mike-north/ts-fundamentals-v3-website
+        run: yarn lerna run lint --scope website
       - name: Test
-        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-website
+        run: yarn lerna run test --scope website
 
   os-compatibility:
     needs: build
@@ -44,9 +44,9 @@ jobs:
           yarn
           yarn lerna bootstrap
       - name: Build
-        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-website
+        run: yarn lerna run build --scope website
       - name: Test
-        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-website
+        run: yarn lerna run test --scope website
 
   node-compatibility:
     needs: build
@@ -64,9 +64,9 @@ jobs:
           yarn
           yarn lerna bootstrap
       - name: Build
-        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-website
+        run: yarn lerna run build --scope website
       - name: Test
-        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-website
+        run: yarn lerna run test --scope website
 
 
   ts-compatibility:
@@ -110,13 +110,13 @@ jobs:
         run: |
           yarn lerna add -D typescript@${{ matrix.typescript-version}}
       - name: Build
-        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-website
+        run: yarn lerna run build --scope website
       - name: TypeScript compile
         run: |
           yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
-          yarn lerna run typecheck --scope @mike-north/ts-fundamentals-v3-website
+          yarn lerna run typecheck --scope website
       - name: Test
-        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-website
+        run: yarn lerna run test --scope website
 
   publish:
     needs: [build, os-compatibility, node-compatibility, ts-compatibility]
@@ -129,7 +129,7 @@ jobs:
           yarn
           yarn lerna bootstrap
       - name: Build
-        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-website
+        run: yarn lerna run build --scope website
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.ACCESS_TOKEN }}

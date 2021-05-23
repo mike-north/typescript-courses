@@ -16,10 +16,11 @@
   },
   "devDependencies": {
     "lerna": "^4.0.0",
-    "replace-in-file": "^6.2.0",
-    "snowpack": "^3.5.1"
+    "replace-in-file": "^6.2.0"
   },
   "scripts": {
-    "postinstall": "replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts"
+    "postinstall": "replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts",
+    "dev-website": "lerna run dev --scope website --stream",
+    "dev-flights": "lerna run dev --scope flights --stream"
   }
 }

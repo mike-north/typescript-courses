@@ -26,13 +26,13 @@ jobs:
           yarn
           yarn lerna bootstrap
       - name: Build
-        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-flights
+        run: yarn lerna run build --scope flights
       - name: Lint
         run: |
-          yarn lerna run lint --scope @mike-north/ts-fundamentals-v3-flights
+          yarn lerna run lint --scope flights
       - name: Test
         run: |
-          yarn lerna run test --scope @mike-north/ts-fundamentals-v3-flights
+          yarn lerna run test --scope flights
 
   os-compatibility:
     needs: build
@@ -45,11 +45,11 @@ jobs:
       - uses: volta-cli/action@v1
       - run: yarn
       - name: Build
-        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-flights
+        run: yarn lerna run build --scope flights
       - name: Lint
-        run: yarn lerna run lint --scope @mike-north/ts-fundamentals-v3-flights
+        run: yarn lerna run lint --scope flights
       - name: Test
-        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-flights
+        run: yarn lerna run test --scope flights
 
 
   node-compatibility:
@@ -66,11 +66,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn
       - name: Build
-        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-flights
+        run: yarn lerna run build --scope flights
       - name: Lint
-        run: yarn lerna run lint --scope @mike-north/ts-fundamentals-v3-flights
+        run: yarn lerna run lint --scope flights
       - name: Test
-        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-flights
+        run: yarn lerna run test --scope flights
 
   ts-compatibility:
     needs: build
@@ -102,12 +102,12 @@ jobs:
         run: |
           yarn lerna add -D typescript@${{ matrix.typescript-version}}
       - name: Build
-        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-flights
+        run: yarn lerna run build --scope flights
       - name: TypeScript compile
         run: |
           yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
-          yarn lerna run typecheck --scope @mike-north/ts-fundamentals-v3-flights
+          yarn lerna run typecheck --scope flights
       - name: Lint
-        run: yarn lerna run lint --scope @mike-north/ts-fundamentals-v3-flights
+        run: yarn lerna run lint --scope flights
       - name: Test
-        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-flights
+        run: yarn lerna run test --scope flights
