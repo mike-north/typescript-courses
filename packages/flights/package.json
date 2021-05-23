@@ -2,16 +2,19 @@
   "name": "@mike-north/ts-fundamentals-v3-flights",
   "version": "0.0.1",
   "main": "index.js",
+  "license": "NOLICENSE",
   "devDependencies": {
     "@types/react": "^17.0.6",
     "@types/react-dom": "^17.0.5",
-    "json-graphql-server": "^2.2.3",
     "json-server": "^0.16.3",
     "snowpack": "^3.5.1"
   },
   "scripts": {
     "dev": "snowpack dev",
-    "build": "snowpack build"
+    "build": "snowpack build",
+    "test": "echo 'no tests yet'",
+    "lint": "echo 'no lints yet'",
+    "typecheck": "tsc -P . --noEmit"
   },
   "dependencies": {
     "react": "^17.0.2",

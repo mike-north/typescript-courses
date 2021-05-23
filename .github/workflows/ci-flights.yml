@@ -1,17 +1,17 @@
-name: Website
+name: Flights App
 
 on:
   pull_request:
     branches: [main]
     paths:
-      - 'website/**'
+      - 'flights/**'
       - '.github/**'
       - 'package.json'
       - 'yarn.lock'
   push:
     branches: [main]
     paths:
-      - 'website/**'
+      - 'flights/**'
       - '.github/**'
       - 'package.json'
       - 'yarn.lock'
@@ -21,15 +21,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
-      - run: |
+      - name: Yarn & Lerna Setup
+        run: |
           yarn
           yarn lerna bootstrap
       - name: Build
-        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-website
+        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-flights
       - name: Lint
-        run: yarn lerna run lint --scope @mike-north/ts-fundamentals-v3-website
+        run: |
+          yarn lerna run lint --scope @mike-north/ts-fundamentals-v3-flights
       - name: Test
-        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-website
+        run: |
+          yarn lerna run test --scope @mike-north/ts-fundamentals-v3-flights
 
   os-compatibility:
     needs: build
@@ -40,13 +43,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
-      - run: |
-          yarn
-          yarn lerna bootstrap
+      - run: yarn
       - name: Build
-        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-website
+        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-flights
+      - name: Lint
+        run: yarn lerna run lint --scope @mike-north/ts-fundamentals-v3-flights
       - name: Test
-        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-website
+        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-flights
+
 
   node-compatibility:
     needs: build
@@ -60,14 +64,13 @@ jobs:
       - uses: volta-cli/action@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: |
-          yarn
-          yarn lerna bootstrap
+      - run: yarn
       - name: Build
-        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-website
+        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-flights
+      - name: Lint
+        run: yarn lerna run lint --scope @mike-north/ts-fundamentals-v3-flights
       - name: Test
-        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-website
-
+        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-flights
 
   ts-compatibility:
     needs: build
@@ -79,54 +82,32 @@ jobs:
         include:
           - typescript-version: '~4.0.0'
             experimental: false
-            name: 'ts-4.0'
           - typescript-version: '~4.1.0'
             experimental: false
-            name: 'ts-4.1'
-          - typescript-version: '~4.2.0'
-            experimental: false
-            name: 'ts-4.2'
           - typescript-version: latest
             experimental: false
-            name: 'ts-stable'
           - typescript-version: beta
             experimental: false
-            name: 'ts-beta'
           - typescript-version: rc
             experimental: true
-            name: 'ts-rc'
           - typescript-version: next
             experimental: true
-            name: 'ts-canary'
 
 
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
-      - run: |
-          yarn
-          yarn lerna bootstrap
+      - run: yarn
       - name: Installing TypeScript ${{ matrix.typescript-version }}
         run: |
           yarn lerna add -D typescript@${{ matrix.typescript-version}}
       - name: Build
-        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-website
+        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-flights
       - name: TypeScript compile
         run: |
           yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
-          yarn lerna run typecheck --scope @mike-north/ts-fundamentals-v3-website
+          yarn lerna run typecheck --scope @mike-north/ts-fundamentals-v3-flights
+      - name: Lint
+        run: yarn lerna run lint --scope @mike-north/ts-fundamentals-v3-flights
       - name: Test
-        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-website
-
-  publish:
-    needs: [build, os-compatibility, node-compatibility, ts-compatibility]
-    runs-on: ubuntu-latest
-    if: success() && github.ref == 'refs/heads/main'
-    steps:
-      - uses: actions/checkout@v1
-      - uses: enriikke/gatsby-gh-pages-action@v2
-        with:
-          access-token: ${{ secrets.ACCESS_TOKEN }}
-          deploy-branch: gh-pages
-          gatsby-args: --prefix-paths
-          working-dir: website
+        run: yarn lerna run test --scope @mike-north/ts-fundamentals-v3-flights

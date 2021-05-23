@@ -1,5 +1,5 @@
 {
-  "name": "@mike-north/typescript-fundamentals-v3-website",
+  "name": "@mike-north/ts-fundamentals-v3-website",
   "private": true,
   "description": "Mike North's TypeScript Fundamentals v3 course",
   "version": "0.0.1",
@@ -73,7 +73,8 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "lint": "eslint . --ext ts,js,tsx,jsx",
-    "test": "jest"
+    "test": "jest",
+    "typecheck": "tsc -P . --noEmit"
   },
   "volta": {
     "node": "14.16.0",
