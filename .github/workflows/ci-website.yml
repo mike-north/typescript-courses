@@ -124,9 +124,14 @@ jobs:
     if: success() && github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v1
-      - uses: enriikke/gatsby-gh-pages-action@v2
+      - uses: volta-cli/action@v1
+      - run: |
+          yarn
+          yarn lerna bootstrap
+      - name: Build
+        run: yarn lerna run build --scope @mike-north/ts-fundamentals-v3-website
+      - uses: peaceiris/actions-gh-pages@v3
         with:
-          access-token: ${{ secrets.ACCESS_TOKEN }}
-          deploy-branch: gh-pages
-          gatsby-args: --prefix-paths
-          working-dir: website
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          publish_dir: ./website/public
+          destination_dir: website
