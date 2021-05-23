@@ -4,19 +4,22 @@
   "main": "index.js",
   "license": "NOLICENSE",
   "devDependencies": {
+    "@snowpack/plugin-typescript": "^1.2.1",
     "@types/react": "^17.0.6",
     "@types/react-dom": "^17.0.5",
+    "concurrently": "^6.1.0",
     "json-server": "^0.16.3",
     "snowpack": "^3.5.1"
   },
   "scripts": {
-    "dev": "snowpack dev",
+    "dev": "concurrently 'json-server db.json -p 9199' 'snowpack dev'",
     "build": "snowpack build",
     "test": "echo 'no tests yet'",
     "lint": "echo 'no lints yet'",
     "typecheck": "tsc -P . --noEmit"
   },
   "dependencies": {
+    "http2-proxy": "^5.0.53",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }

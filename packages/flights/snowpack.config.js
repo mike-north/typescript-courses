@@ -1,11 +1,11 @@
+const proxy = require('http2-proxy');
+
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
   mount: {
     /* ... */
   },
-  plugins: [
-    /* ... */
-  ],
+  plugins: ['@snowpack/plugin-typescript'],
   routes: [
     /* Enable an SPA Fallback in development: */
     {
@@ -16,11 +16,11 @@ module.exports = {
 
         return proxy.web(req, res, {
           hostname: 'localhost',
-          port: 3001,
+          port: 9199,
         });
       },
     },
-    {"match": "routes", "src": ".*", "dest": "/index.html"},
+    { match: 'routes', src: '.*', dest: '/index.html' },
   ],
   optimize: {
     /* Example: Bundle your final build: */
