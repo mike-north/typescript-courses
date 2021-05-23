@@ -1,11 +1,11 @@
 {
-  "name": "@mike-north/ts-fundamentals-v3-website",
+  "name": "website",
   "private": true,
   "description": "Mike North's TypeScript Fundamentals v3 course",
   "version": "0.0.1",
   "author": "Mike North <michael.l.north@gmail.com> (https://mike.works)",
   "bugs": {
-    "url": "https://github.com/mike-north/typescript-fundamentals-v3"
+    "url": "https://github.com/mike-north/ts-fundamentals-v3"
   },
   "dependencies": {
     "gatsby": "^3.1.2",
@@ -67,9 +67,8 @@
   },
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "dev": "gatsby develop",
     "format": "prettier --write \"**/*.{ts,js,tsx,jsx,json,md}\"",
-    "start": "yarn develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "lint": "eslint . --ext ts,js,tsx,jsx",
