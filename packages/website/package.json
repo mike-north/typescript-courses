@@ -19,7 +19,7 @@
     "gatsby-plugin-sharp": "^3.1.2",
     "gatsby-plugin-typography": "^3.1.0",
     "gatsby-remark-copy-linked-files": "^3.1.0",
-    "gatsby-remark-images": "^4.1.1",
+    "gatsby-remark-images": "^5.2.1",
     "gatsby-remark-responsive-iframe": "^3.1.0",
     "gatsby-remark-shiki-twoslash": "^1.0.1",
     "gatsby-remark-smartypants": "^3.1.0",
