@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
+import { ICourse } from '../templates/course-page';
 
 import { rhythm } from '../utils/typography';
 
 interface ICourseLayoutProps {
-  courses: { title: string; id: string }[];
+  courses: ICourse[];
 }
 
 const CourseLayout: React.FunctionComponent<ICourseLayoutProps> = ({
@@ -14,7 +15,7 @@ const CourseLayout: React.FunctionComponent<ICourseLayoutProps> = ({
   const header = (
     <ul className="course-tabs">
       {courses.map((c) => (
-        <li className="course-tab">
+        <li key={c.id} className="course-tab">
           <Link
             activeClassName="active"
             style={{

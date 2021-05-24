@@ -5,9 +5,9 @@ import CourseLayout from '../components/course-layout';
 import SEO from '../components/seo';
 import { rhythm } from '../utils/typography';
 
-interface ICourse {
+export interface ICourse {
   id: string;
-  name: string;
+  title: string;
   summary: string;
 }
 
@@ -17,11 +17,7 @@ interface ICourseTemplateProps {
     site: {
       siteMetadata: {
         title: string;
-        courses: {
-          id: string;
-          title: string;
-          summary: string;
-        }[];
+        courses: ICourse[];
       };
     };
     allMarkdownRemark: {
@@ -32,6 +28,7 @@ interface ICourseTemplateProps {
             title: string;
             course: string;
             date: string;
+            order: number;
             description: string;
           };
           fields: { slug: string };
@@ -47,10 +44,11 @@ const CoursePageTemplate: React.FunctionComponent<ICourseTemplateProps> = ({
 }): JSX.Element => {
   if (!course) throw new Error('no course');
   const courses = data.site.siteMetadata.courses;
+  console.log({ courses });
   const posts = data.allMarkdownRemark.edges;
   return (
     <CourseLayout courses={courses}>
-      <SEO title={course.name} description={course.summary} />
+      <SEO title={course.title} description={course.summary} />
       <article>
         <header>
           <h1
@@ -59,12 +57,13 @@ const CoursePageTemplate: React.FunctionComponent<ICourseTemplateProps> = ({
               marginBottom: 0,
             }}
           >
-            {course.name}
+            {course.title}
           </h1>
         </header>
         <section style={{ marginTop: '10px' }}>{course.summary}</section>
         {posts
           .filter((p) => p.node.frontmatter.course === course.id)
+          .sort((a, b) => a.node.frontmatter.order - b.node.frontmatter.order)
           .map(({ node }) => {
             const title = node.frontmatter.title || node.fields.slug;
             return (
@@ -114,7 +113,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: ASC }) {
       edges {
         node {
           excerpt
@@ -124,6 +123,7 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
+            order
             course
             description
           }
