@@ -4,14 +4,14 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - 'website/**'
+      - 'packages/website/**'
       - '.github/**'
       - 'package.json'
       - 'yarn.lock'
   push:
     branches: [main]
     paths:
-      - 'website/**'
+      - 'packages/website/**'
       - '.github/**'
       - 'package.json'
       - 'yarn.lock'

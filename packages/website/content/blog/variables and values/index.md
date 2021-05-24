@@ -1,9 +1,9 @@
 ---
-title: Hello World
+title: Variables and Values
 date: '2015-05-01T22:12:03.284Z'
-description: 'Hello World'
+description: 'In this first part, we jump in '
 course: 'typescript-fundamentals-v3'
-order: 6
+order: 1
 ---
 
 The relationship between TypeScript and JavaScript is rather unique among modern programming languages.
@@ -22,7 +22,7 @@ For example in creating a variable and assigning it to a particular value, TypeS
 
 ```ts twoslash
 let helloWorld = 'Hello World';
-//        ^?
+//  ^?
 ```
 
 By understanding how JavaScript works, TypeScript can build a type-system which accepts JavaScript code but has types. This offers a type-system without needing to add extra characters to make types explicit in your code. Which is how TypeScript knows that `helloWorld` is a `string` in the above example.

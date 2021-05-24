@@ -6,6 +6,18 @@ const PACKAGE_JSON_PATH = require('pkg-up').sync();
 
 const PROJECT_ROOT_PATH = path.join(PACKAGE_JSON_PATH, '..');
 
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+    type SiteSiteMetadataCourses implements Node {
+      id: String
+      title: String
+      summary: String
+    }
+  `;
+  createTypes(typeDefs);
+};
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
@@ -21,7 +33,7 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `/course/${element.id}`,
       component: require.resolve('./src/templates/course-page.tsx'),
       context: {
-        name: element.name,
+        title: element.title,
         id: element.id,
         summary: element.summary,
       },
@@ -33,7 +45,7 @@ exports.createPages = async ({ graphql, actions }) => {
     `
       {
         allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC }
+          sort: { fields: [frontmatter___order], order: ASC }
           limit: 1000
         ) {
           edges {

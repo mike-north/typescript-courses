@@ -1,4 +1,4 @@
-- name: 'TypeScript Fundamentals v3'
+- title: 'TypeScript Fundamentals v3'
   id: typescript-fundamentals-v3
   summary:
     By adding static types to the JavaScript programming language, TypeScript
@@ -6,7 +6,7 @@
     catching entire categories of bugs at compile time instead of runtime.
     In this workshop, you'll learn everything you need to know in order to
     confidently and successfully use TypeScript to build a modern JavaScript app.
-- name: 'Intermediate TypeScript'
+- title: 'Intermediate TypeScript'
   id: intermediate-typescript
   summary: |
     It's relatively easy to get started with TypeScript, but the learning curve
