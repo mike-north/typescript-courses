@@ -20,6 +20,11 @@ interface IBlogIndexProps {
     site: {
       siteMetadata: {
         title: string;
+        courses: {
+          id: string;
+          title: string;
+          summary: string;
+        }[];
       };
     };
   };
@@ -33,34 +38,29 @@ const BlogIndex: React.FunctionComponent<IBlogIndexProps> = ({
   location,
 }) => {
   const siteTitle = data.site.siteMetadata.title;
-  const posts = data.allMarkdownRemark.edges;
+  const courses = data.site.siteMetadata.courses;
+  // const posts = data.allMarkdownRemark.edges;
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="All posts" />
+      <SEO title="Courses" />
       <Bio />
-      {posts.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug;
+      {courses.map(({ title, id, summary }) => {
         return (
-          <article key={node.fields.slug}>
+          <article key={id}>
             <header>
               <h3
                 style={{
                   marginBottom: rhythm(1 / 4),
                 }}
               >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+                <Link style={{ boxShadow: `none` }} to={`course/${id}`}>
                   {title}
                 </Link>
               </h3>
-              <small>{node.frontmatter.date}</small>
             </header>
             <section>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
-                }}
-              />
+              <p>{summary}</p>
             </section>
           </article>
         );
@@ -76,6 +76,11 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        courses {
+          id
+          title
+          summary
+        }
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {

@@ -42,7 +42,6 @@ const Layout: React.FunctionComponent<ILayoutProps> = ({
     header = (
       <h3
         style={{
-          fontFamily: `Montserrat, sans-serif`,
           marginTop: 0,
         }}
       >
@@ -69,11 +68,7 @@ const Layout: React.FunctionComponent<ILayoutProps> = ({
     >
       <header>{header}</header>
       <main>{children}</main>
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
-      </footer>
+      <footer>© {new Date().getFullYear()}</footer>
     </div>
   );
 };

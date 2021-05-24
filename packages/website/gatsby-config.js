@@ -1,7 +1,7 @@
 module.exports = {
   pathPrefix: '/ts-fundamentals-v3',
   siteMetadata: {
-    title: `Example Blog`,
+    title: `TypeScript Fundamentals v3`,
     author: {
       name: `Mike North`,
       summary: `Senior Staff Engineer @ LinkedIn`,
@@ -11,6 +11,18 @@ module.exports = {
     social: {
       twitter: `MichaelLNorth`,
     },
+    courses: [
+      {
+        id: 'typescript-fundamentals-v3',
+        title: 'TypeScript Fundamentals v3',
+        summary: `By adding static types to the JavaScript programming language, TypeScript delivers a rich and productive code authoring and review experience, while catching entire categories of bugs at compile time instead of runtime. In this workshop, you'll learn everything you need to know in order to confidently and successfully use TypeScript to build a modern JavaScript app.`,
+      },
+      {
+        id: 'intermediate-typescript',
+        title: 'Intermediate TypeScript',
+        summary: ` It's relatively easy to get started with TypeScript, but the learning curve becomes much steeper once things become more complex and abstract. This workshop teaches you how to leverage TypeScript's strengths to provide clarity in the face of complexity, while protecting your codebase and team from it's weaknesses.`,
+      },
+    ],
   },
   plugins: [
     {

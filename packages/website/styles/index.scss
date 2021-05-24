@@ -1,11 +1,11 @@
-/* Code blocks look like: 
+/* Code blocks look like:
 
   <pre class='shiki twoslash'>
   <div class='language-id>[lang-id]</div>
   <div class='code-container'>
       <code>[the code as a series of spans]</code>
   </div>
-  </pre> 
+  </pre>
 */
 $ts_blue: #235a97;
 $body_background: #ddd;
@@ -203,4 +203,18 @@ pre:hover data-lsp {
     monospace;
   font-size: 14px;
   white-space: pre-wrap;
+}
+
+.course-tabs {
+  list-style: none;
+  .course-tab {
+    display: inline-block;
+    margin-left: 10px;
+    a {
+      color: grey !important;
+    }
+    a.active {
+      color: blue !important;
+    }
+  }
 }
