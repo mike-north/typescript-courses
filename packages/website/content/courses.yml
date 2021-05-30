@@ -1,5 +1,5 @@
 - title: 'TypeScript Fundamentals v3'
-  id: typescript-fundamentals-v3
+  id: fundamentals-v3
   summary:
     By adding static types to the JavaScript programming language, TypeScript
     delivers a rich and productive code authoring and review experience, while
@@ -7,7 +7,7 @@
     In this workshop, you'll learn everything you need to know in order to
     confidently and successfully use TypeScript to build a modern JavaScript app.
 - title: 'Intermediate TypeScript'
-  id: intermediate-typescript
+  id: intermediate-v1
   summary: |
     It's relatively easy to get started with TypeScript, but the learning curve
     becomes much steeper once things become more complex and abstract. This workshop

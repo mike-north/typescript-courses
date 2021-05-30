@@ -70,7 +70,7 @@
   },
   "scripts": {
     "build": "gatsby build",
-    "dev": "gatsby develop",
+    "dev": "gatsby develop --verbose",
     "format": "prettier --write \"**/*.{ts,js,tsx,jsx,json,md}\"",
     "serve": "gatsby serve",
     "clean": "gatsby clean",

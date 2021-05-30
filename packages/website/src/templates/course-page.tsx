@@ -31,7 +31,7 @@ interface ICourseTemplateProps {
             order: number;
             description: string;
           };
-          fields: { slug: string };
+          fields: { slug: string; course: string; };
         };
       }[];
     };
@@ -44,7 +44,6 @@ const CoursePageTemplate: React.FunctionComponent<ICourseTemplateProps> = ({
 }): JSX.Element => {
   if (!course) throw new Error('no course');
   const courses = data.site.siteMetadata.courses;
-  console.log({ courses });
   const posts = data.allMarkdownRemark.edges;
   return (
     <CourseLayout courses={courses}>
