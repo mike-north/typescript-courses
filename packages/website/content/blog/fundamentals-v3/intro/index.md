@@ -1,9 +1,10 @@
 ---
-title: Variables and Values
+title: Intro
 date: '2015-05-01T22:12:03.284Z'
-description: 'In this first part, we jump in '
-course: 'typescript-fundamentals-v3'
-order: 1
+description: |
+  We'll 
+course: fundamentals-v3
+order: 01
 ---
 
 The relationship between TypeScript and JavaScript is rather unique among modern programming languages.

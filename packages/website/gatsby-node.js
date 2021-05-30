@@ -79,6 +79,8 @@ exports.createPages = async ({ graphql, actions }) => {
       component: blogPost,
       context: {
         slug: post.node.fields.slug,
+        course: post.node.fields.course,
+        contentPath: post.node.fields.contentPath,
         previous,
         next,
       },
@@ -86,13 +88,18 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 };
 
+/**
+ * 
+ * @type {import('gatsby').GatsbyNode<any, any>['onCreateNode']}
+ */
 exports.onCreateNode = ({ node, actions, getNode }) => {
   console.log(`Node created of type "${node.internal.type}"`);
 
   const { createNodeField } = actions;
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode });
+    const contentPath = createFilePath({ node, getNode }).substr(1)
+    const value = `/course/${contentPath}`;
     createNodeField({
       name: `slug`,
       node,
