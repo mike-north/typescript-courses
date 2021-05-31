@@ -219,7 +219,8 @@ pre:hover data-lsp {
   }
 }
 
-code, pre.code-ish {
+code,
+pre.code-ish {
   border-radius: 2px;
   background-color: #666;
   color: #eee;
@@ -255,10 +256,29 @@ section.post-toc {
         font-weight: 300;
       }
     }
-  } 
+  }
 }
 section.post-body {
   a.anchor.before {
     box-shadow: none;
+  }
+}
+.popover {
+  margin-bottom: 10px;
+  background-color: #eeeeee;
+  display: inline-block;
+  padding: 0 0.5rem 0.3rem;
+  margin-top: 10px;
+  border-radius: 3px;
+  .arrow {
+    background-color: #eee;
+    position: relative;
+    top: -7px;
+    margin-left: 0.1rem;
+    border-left: 1px solid #eee;
+    border-top: 1px solid #eee;
+    transform: translateY(25%) rotate(45deg);
+    height: 8px;
+    width: 8px;
   }
 }
