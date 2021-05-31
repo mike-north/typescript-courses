@@ -46,7 +46,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest]
+        os: 
+        # - macos-latest
+        - windows-latest
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
@@ -72,7 +74,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 15.x]
+        node-version: [14.x, 15.x]
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
