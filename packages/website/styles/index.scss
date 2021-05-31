@@ -8,7 +8,7 @@
   </pre>
 */
 $ts_blue: #235a97;
-$body_background: #ddd;
+$body_background: #eee;
 $code_background: #fff;
 
 $try_button_background: $ts_blue;
@@ -57,7 +57,7 @@ pre {
   }
   .code-container {
     /* Give it some space to breathe */
-    margin: 14px;
+    margin: 10px;
     overflow: auto;
     /* Handle scrolling, and showing code correctly */
 
@@ -149,7 +149,7 @@ pre {
   }
   .error,
   .error-behind {
-    margin-left: -20px;
+    margin-left: -42px;
     margin-top: 8px;
     margin-bottom: 4px;
     padding: 6px;
@@ -161,13 +161,14 @@ pre {
   .error {
     position: absolute;
     background-color: #ffeeee;
-    border-left: 2px solid #bf1818;
-    width: calc(100% - 14px);
+    border-left: 4px solid #bf1818;
+    width: calc(100% + 20px);
     /* Give the space to the error code  */
     display: flex;
     align-items: center;
     color: black;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+    margin-right: -20px;
     box-shadow: $code_thing_shadow;
     .code {
       display: none;
@@ -228,6 +229,8 @@ pre:hover data-lsp {
 
 code,
 pre.code-ish {
+  background: #ddd;
+  border: 1px solid #ccc;
   border-radius: 2px;
   margin-top: 0;
   margin-bottom: 2px;
@@ -241,6 +244,7 @@ pre.shiki {
   border-radius: 5px;
   .code-container {
     code {
+      border: 0;
       background-color: #fff;
     }
   }
