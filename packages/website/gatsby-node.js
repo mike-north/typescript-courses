@@ -90,7 +90,7 @@ exports.createPages = async ({ graphql, actions }) => {
   )
 
   Object.keys(sorted_posts).forEach(courseName => {
-    courseArticles = sorted_posts[courseName];
+    const courseArticles = sorted_posts[courseName];
     courseArticles.forEach((postData, index) => {
       const next = index === courseArticles.length - 1 ? null : courseArticles[index + 1].node;
       const previous = index === 0 ? null : courseArticles[index - 1].node;
