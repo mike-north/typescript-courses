@@ -8,11 +8,17 @@ import SEO from '../components/seo';
 import { rhythm, scale } from '../utils/typography';
 
 import { setupTwoslashHovers } from 'shiki-twoslash/dist/dom';
+import { ICourse } from './course-page';
 
 interface IPost {
   tableOfContents: string;
   excerpt: string;
-  frontmatter: { title: string; date: string; description: string };
+  frontmatter: {
+    title: string;
+    date: string;
+    description: string;
+    course: string;
+  };
   fields: { slug: string };
   html: string;
 }
@@ -23,6 +29,7 @@ interface IBlogPostTemplateProps {
     site: {
       siteMetadata: {
         title: string;
+        courses: ICourse[];
       };
     };
   };
@@ -58,7 +65,10 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
 
   const postHtml = makeHTMLAdjustments(post.html);
   console.log(post);
-
+  const course = data.site.siteMetadata.courses.find(
+    (c) => c.id === post.frontmatter.course,
+  );
+  if (!course) throw new Error(`Undefined course: ${post.frontmatter.course}`);
   return (
     <Layout location={location} title={siteTitle}>
       <SEO
@@ -66,16 +76,20 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
         description={post.frontmatter.description || post.excerpt}
       />
 
-      <article>
+      <article className="blog-post">
         <header>
-          <h1
+          <Link
             style={{
               marginTop: rhythm(1),
               marginBottom: 0,
             }}
+            to={`/course/${course.id}`}
+            rel="next"
+            className="course-title-link"
           >
-            {post.frontmatter.title}
-          </h1>
+            <span className="course-title">{course.title}</span>
+          </Link>
+          <h1 className="post-title">{post.frontmatter.title}</h1>
           <p
             style={{
               ...scale(-1 / 5),
@@ -167,6 +181,11 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        courses {
+          id
+          title
+          summary
+        }
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
@@ -176,6 +195,7 @@ export const pageQuery = graphql`
       tableOfContents(maxDepth: 4)
       frontmatter {
         title
+        course
         date(formatString: "MMMM DD, YYYY")
         description
       }
