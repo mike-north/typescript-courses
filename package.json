@@ -21,6 +21,7 @@
   "scripts": {
     "postinstall": "replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts",
     "dev-website": "lerna run dev --scope website --stream",
-    "dev-flights": "lerna run dev --scope flights --stream"
+    "dev-flights": "lerna run dev --scope flights --stream",
+    "dev-hello-ts": "lerna run dev --scope hello-ts --stream"
   }
 }
