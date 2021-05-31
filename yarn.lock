@@ -3134,9 +3134,9 @@
   integrity sha512-EaCxbanVeyxDRTQBkdLb3Bvl/HK7PBK6UJjsSixB0iHKoWxE5uu2Q/DgtpOhPIojN0Zl1whvOd7PoHs2P0s5eA==
 
 "@types/sharp@^0.28.1":
-  version "0.28.2"
-  resolved "https://registry.yarnpkg.com/@types/sharp/-/sharp-0.28.2.tgz#75bb9f60714ed752dc88c477ef55310f17c2f08f"
-  integrity sha512-xXanJalZA3EVSZ49667lBctyao75JiH5tD5/hKYu9u5C3d9rxEqOHvMOtx/oenJUqKKgIwIZEsL0hjmKo2rjJg==
+  version "0.28.3"
+  resolved "https://registry.yarnpkg.com/@types/sharp/-/sharp-0.28.3.tgz#0e57ede34d3e334632ab7a68a6af070aa0f51ceb"
+  integrity sha512-y3mxUj3jukIWgdu9CrSTSCo5HruTzDxdjn5SqdIEALdTszkcot9r8HX/7q9FMx3YjuXifTD0OI+d4wA6Pogqmw==
   dependencies:
     "@types/node" "*"
 
