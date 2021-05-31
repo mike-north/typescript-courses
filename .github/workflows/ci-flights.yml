@@ -21,6 +21,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
+      - name: restore lerna
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - name: Yarn & Lerna Setup
         run: |
           yarn
@@ -43,6 +50,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
+      - name: restore lerna
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - name: Build
         run: yarn lerna run build --scope flights
@@ -64,6 +78,13 @@ jobs:
       - uses: volta-cli/action@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: restore lerna
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - name: Build
         run: yarn lerna run build --scope flights
@@ -97,6 +118,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
+      - name: restore lerna
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-${{ matrix.typescript-version}}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - name: Installing TypeScript ${{ matrix.typescript-version }}
         run: |
