@@ -8082,14 +8082,14 @@ gatsby-remark-copy-linked-files@^4.2.1:
     unist-util-visit "^2.0.3"
 
 gatsby-remark-images@^5.2.1:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-images/-/gatsby-remark-images-5.2.1.tgz#6ab97ef336cc26b00f6f125f5c193651787a7682"
-  integrity sha512-vTIVYOPw9qMBzX09HnmAHXFA/3pZo1RkCjSfb3rQliT+rrsBa1RmVZFlhymWn+VH7rN+DYHsIG3dQOonPl+J2w==
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-images/-/gatsby-remark-images-5.3.0.tgz#06736580accb8b53bcca89d631840b568fac9737"
+  integrity sha512-AeTZrkbynn65+ZMzqKrSml/17VeRBe6bChHzwciVi8YIJMyLDLekpslYo4VrXR1YsR9WwcdWIlLEf3Lhb2UXyg==
   dependencies:
     "@babel/runtime" "^7.12.5"
     chalk "^4.1.0"
     cheerio "^1.0.0-rc.9"
-    gatsby-core-utils "^2.5.0"
+    gatsby-core-utils "^2.6.0"
     is-relative-url "^3.0.0"
     lodash "^4.17.21"
     mdast-util-definitions "^4.0.0"
