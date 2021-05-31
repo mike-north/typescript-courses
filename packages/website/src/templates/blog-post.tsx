@@ -102,14 +102,18 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
           }}
         >
           <li>
-            {previous && (
+          {console.log({previous})}
+
+            {previous && previous.fields && (
               <Link to={previous.fields.slug} rel="prev">
                 ← {previous.frontmatter.title}
               </Link>
             )}
           </li>
           <li>
-            {next && (
+            {console.log(next)}
+            {
+              next && next.fields && (
               <Link to={next.fields.slug} rel="next">
                 {next.frontmatter.title} →
               </Link>

@@ -1,5 +1,6 @@
 const fs = require(`fs`);
 const path = require(`path`);
+const { groupBy, sortBy } = require(`lodash`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const yaml = require('js-yaml');
 const PACKAGE_JSON_PATH = require('pkg-up').sync();
@@ -55,6 +56,8 @@ exports.createPages = async ({ graphql, actions }) => {
               }
               frontmatter {
                 title
+                order
+                course
               }
             }
           }
@@ -70,26 +73,42 @@ exports.createPages = async ({ graphql, actions }) => {
   // Create blog posts pages.
   const posts = result.data.allMarkdownRemark.edges;
 
-  posts.forEach((post, index) => {
-    const previous = index === posts.length - 1 ? null : posts[index + 1].node;
-    const next = index === 0 ? null : posts[index - 1].node;
-
-    createPage({
+  const sorted_posts = groupBy(
+    sortBy(posts.map((post) => ({
       path: post.node.fields.slug,
       component: blogPost,
+      node: post.node,
       context: {
         slug: post.node.fields.slug,
-        course: post.node.fields.course,
-        contentPath: post.node.fields.contentPath,
-        previous,
-        next,
+        title: post.node.frontmatter.title,
+        course: post.node.frontmatter.course,
+        order: post.node.frontmatter.order,
       },
+    })
+  ), ['context.course', 'context.order']),
+    'context.course',
+  )
+
+  Object.keys(sorted_posts).forEach(courseName => {
+    const courseArticles = sorted_posts[courseName];
+    courseArticles.forEach((postData, index) => {
+      const next = index === courseArticles.length - 1 ? null : courseArticles[index + 1].node;
+      const previous = index === 0 ? null : courseArticles[index - 1].node;
+      const pageArg = {
+        ...postData,
+        context: {
+          ...postData.context,
+          previous: previous,
+          next: next,
+        },
+      }
+      createPage(pageArg);
     });
-  });
+  })
 };
 
 /**
- * 
+ *
  * @type {import('gatsby').GatsbyNode<any, any>['onCreateNode']}
  */
 exports.onCreateNode = ({ node, actions, getNode }) => {
@@ -98,7 +117,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `MarkdownRemark`) {
-    const contentPath = createFilePath({ node, getNode }).substr(1)
+    const contentPath = createFilePath({ node, getNode }).substr(1);
     const value = `/course/${contentPath}`;
     createNodeField({
       name: `slug`,

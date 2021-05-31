@@ -4,7 +4,7 @@ date: '2015-05-01T22:12:03.284Z'
 description: |
   We'll 
 course: fundamentals-v3
-order: 99
+order: 199
 ---
 
 The relationship between TypeScript and JavaScript is rather unique among modern programming languages.
