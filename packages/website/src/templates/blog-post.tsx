@@ -10,6 +10,7 @@ import { rhythm, scale } from '../utils/typography';
 import { setupTwoslashHovers } from 'shiki-twoslash/dist/dom';
 
 interface IPost {
+  tableOfContents: string;
   excerpt: string;
   frontmatter: { title: string; date: string; description: string };
   fields: { slug: string };
@@ -35,9 +36,12 @@ interface IBlogPostTemplateProps {
 }
 
 function makeHTMLAdjustments(raw: string): string {
-  return raw && raw.replace(
-    /<a href='https:\/\/www.typescriptlang/g,
-    `<a class='try-code-link' target="_blank" href='https://www.typescriptlang`,
+  return (
+    raw &&
+    raw.replace(
+      /<a href='https:\/\/www.typescriptlang/g,
+      `<a class='try-code-link' target="_blank" href='https://www.typescriptlang`,
+    )
   );
 }
 
@@ -53,6 +57,7 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
   useEffect(setupTwoslashHovers, []);
 
   const postHtml = makeHTMLAdjustments(post.html);
+  console.log(post);
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -60,6 +65,7 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
       />
+
       <article>
         <header>
           <h1
@@ -80,7 +86,40 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
             {post.frontmatter.date}
           </p>
         </header>
-        <section dangerouslySetInnerHTML={{ __html: postHtml }} />
+        <nav>
+          <ul
+            style={{
+              display: `flex`,
+              flexWrap: `wrap`,
+              justifyContent: `space-between`,
+              listStyle: `none`,
+              padding: 0,
+            }}
+          >
+            <li>
+              {previous && previous.fields && (
+                <Link to={previous.fields.slug} rel="prev">
+                  ← {previous.frontmatter.title}
+                </Link>
+              )}
+            </li>
+            <li>
+              {next && next.fields && (
+                <Link to={next.fields.slug} rel="next">
+                  {next.frontmatter.title} →
+                </Link>
+              )}
+            </li>
+          </ul>
+        </nav>
+        <section
+          className="post-toc"
+          dangerouslySetInnerHTML={{ __html: post.tableOfContents }}
+        />
+        <section
+          className="post-body"
+          dangerouslySetInnerHTML={{ __html: postHtml }}
+        />
         <hr
           style={{
             marginBottom: rhythm(1),
@@ -102,8 +141,6 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
           }}
         >
           <li>
-          {console.log({previous})}
-
             {previous && previous.fields && (
               <Link to={previous.fields.slug} rel="prev">
                 ← {previous.frontmatter.title}
@@ -111,9 +148,7 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
             )}
           </li>
           <li>
-            {console.log(next)}
-            {
-              next && next.fields && (
+            {next && next.fields && (
               <Link to={next.fields.slug} rel="next">
                 {next.frontmatter.title} →
               </Link>
@@ -138,6 +173,7 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      tableOfContents(maxDepth: 4)
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")

@@ -218,3 +218,47 @@ pre:hover data-lsp {
     }
   }
 }
+
+code, pre.code-ish {
+  border-radius: 2px;
+  background-color: #666;
+  color: #eee;
+  margin-top: 0;
+  margin-bottom: 2px;
+  font-size: 1rem;
+  line-height: 1rem;
+  padding: 2px 8px;
+}
+
+pre.code-ish {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+code {
+  display: inline-block;
+}
+
+section.post-toc {
+  ul {
+    list-style: none;
+    li {
+      line-height: 1rem;
+    }
+    & > li {
+      & > p a {
+        color: rgb(46, 27, 134);
+        font-weight: 600;
+      }
+      & > ul li a {
+        color: rgb(72, 59, 133);
+        font-weight: 300;
+      }
+    }
+  } 
+}
+section.post-body {
+  a.anchor.before {
+    box-shadow: none;
+  }
+}
