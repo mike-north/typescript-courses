@@ -22,6 +22,8 @@ $try_button_hover_border: 1px solid navy;
 $tooltip_background_color: #3f3f3f;
 $tooltip_text_color: #fff;
 
+$code_thing_shadow: 2px 2px 1px 0 rgba(0, 0, 0, 0.2);
+
 body {
   background: $body_background;
 }
@@ -51,7 +53,7 @@ pre {
     border-bottom: 1px solid #999;
     border-right: 1px solid #ccc;
     border-top: 1px solid #ccc;
-    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: $code_thing_shadow;
   }
   .code-container {
     /* Give it some space to breathe */
@@ -109,7 +111,7 @@ pre {
       bottom: -22px;
       border-bottom-right-radius: 5px;
       border-bottom-left-radius: 5px;
-      box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.2);
+      box-shadow: $code_thing_shadow;
       &:hover {
         border: $try_button_hover_border;
         background: $try_button_hover_background;
@@ -161,7 +163,7 @@ pre {
     display: flex;
     align-items: center;
     color: black;
-    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: $code_thing_shadow;
     .code {
       display: none;
     }
@@ -195,7 +197,7 @@ pre:hover data-lsp {
 #twoslash-mouse-hover-info {
   background-color: $tooltip_background_color;
   color: $tooltip_text_color;
-  box-shadow: 2px 2px 2px rgba(9, 0, 61, 0.2);
+  box-shadow: $code_thing_shadow;
   text-align: left;
   padding: 5px 8px;
   border-radius: 2px;
@@ -222,8 +224,6 @@ pre:hover data-lsp {
 code,
 pre.code-ish {
   border-radius: 2px;
-  background-color: #666;
-  color: #eee;
   margin-top: 0;
   margin-bottom: 2px;
   font-size: 1rem;
@@ -270,6 +270,7 @@ section.post-body {
   padding: 0 0.5rem 0.3rem;
   margin-top: 10px;
   border-radius: 3px;
+  box-shadow: $code_thing_shadow;
   .arrow {
     background-color: #eee;
     position: relative;
