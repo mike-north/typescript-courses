@@ -1,3 +1,4 @@
+.env*
 # Build
 **/build
 # Logs

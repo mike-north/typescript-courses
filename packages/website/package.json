@@ -74,6 +74,7 @@
   },
   "scripts": {
     "build": "gatsby build",
+    "build-prod": "yarn build --prefix-paths",
     "dev": "gatsby develop --verbose",
     "format": "prettier --write \"**/*.{ts,js,tsx,jsx,json,md}\"",
     "serve": "gatsby serve",

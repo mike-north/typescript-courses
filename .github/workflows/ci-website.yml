@@ -159,7 +159,7 @@ jobs:
           yarn
           yarn lerna bootstrap
       - name: Build
-        run: yarn lerna run build --scope website
+        run: yarn lerna run build-prod --scope website
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.ACCESS_TOKEN }}
