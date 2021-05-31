@@ -34,11 +34,11 @@ We can write the same example again, this time using an interface to describe th
 ```ts twoslash
 // @errors: 2254
 const p = new Promise<number>((resolve, reject) => {
-  //    ^?
+  //  ^?
   resolve(44);
 });
 p.then((data) => {
-  //        ^?
+  //      ^?
 });
 ```
 

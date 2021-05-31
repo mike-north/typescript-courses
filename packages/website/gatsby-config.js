@@ -55,6 +55,21 @@ module.exports = {
             },
           },
           {
+            resolve: 'gatsby-remark-custom-blocks',
+            options: {
+              blocks: {
+                danger: {
+                  classes: 'danger',
+                  title: 'required',
+                },
+                info: {
+                  classes: 'info',
+                  title: 'optional',
+                },
+              },
+            },
+          },
+          {
             resolve: `gatsby-remark-responsive-iframe`,
             options: {
               wrapperStyle: `margin-bottom: 1.0725rem`,
@@ -63,7 +78,7 @@ module.exports = {
           {
             resolve: 'gatsby-remark-shiki-twoslash',
             options: {
-              theme: 'min-light',
+              theme: 'light-plus',
             },
           },
           `gatsby-remark-copy-linked-files`,
