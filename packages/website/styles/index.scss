@@ -267,9 +267,12 @@ code {
   padding: 10px;
   margin-bottom: 1rem;
   &__content {
+    margin-left: -1.5rem;
+    ul {
+      padding-left: 1.5rem;
+    }
     ul {
       list-style: none;
-
       & > li {
         & > p a {
           color: rgb(46, 27, 134);
@@ -391,6 +394,16 @@ ol {
     &::marker {
       display: inline-block;
     }
+  }
+}
+
+.inline-completions {
+  ul, ol {
+    margin-left: 0;
+    li {
+      padding-left: 0;
+    }
+    margin-bottom: 0.5rem;
   }
 }
 
