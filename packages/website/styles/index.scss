@@ -26,6 +26,7 @@ $code_thing_shadow: 2px 2px 1px 0 rgba(0, 0, 0, 0.2);
 
 body {
   background: $body_background;
+  font-feature-settings: 'kern', 'clig', 'calt' !important;
 }
 
 pre {
@@ -46,14 +47,12 @@ pre {
     overflow: initial;
     position: relative;
     /* So that folks know you can highlight */
-  }
-  &.twoslash {
+    box-shadow: $code_thing_shadow;
     background: $code_background !important;
-    border-left: 1px solid #999;
+    border-left: 1px solid #ccc;
     border-bottom: 1px solid #999;
     border-right: 1px solid #ccc;
     border-top: 1px solid #ccc;
-    box-shadow: $code_thing_shadow;
   }
   .code-container {
     /* Give it some space to breathe */
@@ -149,7 +148,7 @@ pre {
   }
   .error,
   .error-behind {
-    margin-left: -42px;
+    margin-left: -40px;
     margin-top: 8px;
     margin-bottom: 4px;
     padding: 6px;
@@ -162,13 +161,13 @@ pre {
     position: absolute;
     background-color: #ffeeee;
     border-left: 4px solid #bf1818;
-    width: calc(100% + 20px);
+    width: calc(100% + 25px);
     /* Give the space to the error code  */
     display: flex;
     align-items: center;
     color: black;
     padding-bottom: 5px;
-    margin-right: -20px;
+    margin-right: -30px;
     box-shadow: $code_thing_shadow;
     .code {
       display: none;
@@ -259,27 +258,42 @@ code {
   display: inline-block;
 }
 
-section.post-toc {
-  ul {
-    list-style: none;
-    li {
-      line-height: 1rem;
-    }
-    & > li {
-      & > p a {
-        color: rgb(46, 27, 134);
-        font-weight: 600;
+.post-toc {
+  float: right;
+  width: 350px;
+  margin-left: 10px;
+  background-color: #ddd;
+  border: 1px solid #aaa;
+  padding: 10px;
+  margin-bottom: 1rem;
+  &__content {
+    ul {
+      list-style: none;
+
+      & > li {
+        & > p a {
+          color: rgb(46, 27, 134);
+          font-weight: 600;
+        }
+        & > ul li a {
+          color: rgb(72, 59, 133);
+          font-weight: 300;
+        }
       }
-      & > ul li a {
-        color: rgb(72, 59, 133);
-        font-weight: 300;
-      }
+      margin-bottom: 0;
     }
+  }
+  &__title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
   }
 }
 section.post-body {
   a.anchor.before {
     box-shadow: none;
+  }
+  h2:first-child {
+    margin-top: 0;
   }
 }
 .popover {
@@ -332,6 +346,7 @@ section.post-body {
     padding: 2px 10px;
     margin: -2px -10px;
     margin-bottom: 5px;
+    font-weight: 600;
   }
   padding: 2px 10px;
   border-radius: 5px;
@@ -353,5 +368,56 @@ section.post-body {
       background-color: $ts_blue;
     }
     background-color: lighten($ts_blue, 50);
+  }
+  &.question {
+    .custom-block-heading {
+      background-color: darken(desaturate(darkgreen, 10), 5);
+    }
+    background-color: lighten(desaturate(darkgreen, 40), 70);
+  }
+}
+.custom-block ul,
+.custom-block ol {
+  margin-top: 1rem;
+}
+
+ul,
+ol {
+  margin-top: 0; //1rem;
+  margin-left: 2rem;
+  li {
+    margin-bottom: 0;
+    padding-left: 1rem;
+    &::marker {
+      display: inline-block;
+    }
+  }
+}
+
+p + ul {
+  margin-top: -1rem;
+}
+
+nav,
+.post-toc {
+  ul {
+    margin-left: 0;
+    li {
+      padding-left: 0;
+    }
+  }
+}
+
+.footnotes {
+  &:before {
+    content: 'Footnotes';
+    font-family: 'Merriweather','Georgia',serif;
+    font-weight: 900;
+    font-size: 1.4427rem;
+  }
+  font-size: 0.8rem;
+  code {
+    font-size: 0.8rem;
+    line-height: 0.8rem;
   }
 }
