@@ -126,14 +126,50 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
             </li>
           </ul>
         </nav>
-        <section
-          className="post-toc"
-          dangerouslySetInnerHTML={{ __html: post.tableOfContents }}
-        />
+        <div className="post-toc">
+          <div className="post-toc__title">Table of Contents</div>
+          <section
+            className="post-toc__content"
+            dangerouslySetInnerHTML={{ __html: post.tableOfContents }}
+          />
+        </div>
         <section
           className="post-body"
           dangerouslySetInnerHTML={{ __html: postHtml }}
         />
+
+        <hr
+          style={{
+            marginBottom: rhythm(1),
+          }}
+        />
+        <nav>
+          <ul
+            style={{
+              display: `flex`,
+              flexWrap: `wrap`,
+              justifyContent: `space-between`,
+              listStyle: `none`,
+              padding: 0,
+            }}
+          >
+            <li>
+              {previous && previous.fields && (
+                <Link to={previous.fields.slug} rel="prev">
+                  ← {previous.frontmatter.title}
+                </Link>
+              )}
+            </li>
+            <li>
+              {next && next.fields && (
+                <Link to={next.fields.slug} rel="next">
+                  {next.frontmatter.title} →
+                </Link>
+              )}
+            </li>
+          </ul>
+        </nav>
+
         <hr
           style={{
             marginBottom: rhythm(1),
@@ -143,33 +179,6 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
           <Bio />
         </footer>
       </article>
-
-      <nav>
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && previous.fields && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && next.fields && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </nav>
     </Layout>
   );
 };
