@@ -31,11 +31,16 @@ interface ICourseTemplateProps {
             order: number;
             description: string;
           };
-          fields: { slug: string; course: string; };
+          fields: { slug: string; course: string };
         };
       }[];
     };
   };
+}
+
+function formatOrder(n: number): string {
+  if (n < 10) return `0${n}`;
+  return `${n}`;
 }
 
 const CoursePageTemplate: React.FunctionComponent<ICourseTemplateProps> = ({
@@ -48,52 +53,53 @@ const CoursePageTemplate: React.FunctionComponent<ICourseTemplateProps> = ({
   return (
     <CourseLayout courses={courses}>
       <SEO title={course.title} description={course.summary} />
-      <article>
-        <header>
-          <h1
-            style={{
-              marginTop: rhythm(1),
-              marginBottom: 0,
-            }}
-          >
-            {course.title}
-          </h1>
-        </header>
-        <section style={{ marginTop: '10px' }}>{course.summary}</section>
-        {posts
-          .filter((p) => p.node.frontmatter.course === course.id)
-          .sort((a, b) => a.node.frontmatter.order - b.node.frontmatter.order)
-          .map(({ node }) => {
-            const title = node.frontmatter.title || node.fields.slug;
-            return (
-              <article key={node.fields.slug}>
-                <header>
-                  <h3
-                    style={{
-                      marginBottom: rhythm(1 / 4),
-                    }}
-                  >
-                    <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                      {title}
-                    </Link>
-                  </h3>
-                  <small>{node.frontmatter.date}</small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: node.frontmatter.description || node.excerpt,
-                    }}
-                  />
-                </section>
-              </article>
-            );
-          })}
+      <header>
+        <h1
+          style={{
+            marginTop: rhythm(1),
+            marginBottom: 0,
+          }}
+        >
+          {course.title}
+        </h1>
+      </header>
+      <section style={{ marginTop: '10px' }}>{course.summary}</section>
+      {posts
+        .filter((p) => p.node.frontmatter.course === course.id)
+        .sort((a, b) => a.node.frontmatter.order - b.node.frontmatter.order)
+        .map(({ node }, idx) => {
+          const title = node.frontmatter.title || node.fields.slug;
+          return (
+            <article className="course-article" key={node.fields.slug}>
+              <header>
+                <h3
+                  style={{
+                    marginBottom: rhythm(1 / 4),
+                  }}
+                >
+                  <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+                    <span className="course-article__order">
+                      {formatOrder(idx + 1)}
+                    </span>
+                    <span className="course-article__title">{title}</span>
+                  </Link>
+                </h3>
+                <small className="course-article__date">{node.frontmatter.date}</small>
+              </header>
+              <section>
+                <p className="course-article__description"
+                  dangerouslySetInnerHTML={{
+                    __html: node.frontmatter.description || node.excerpt,
+                  }}
+                />
+              </section>
+            </article>
+          );
+        })}
 
-        <footer>
-          <Bio />
-        </footer>
-      </article>
+      <footer>
+        <Bio />
+      </footer>
     </CourseLayout>
   );
 };

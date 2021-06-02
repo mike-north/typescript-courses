@@ -33,6 +33,7 @@ const CourseLayout: React.FunctionComponent<ICourseLayoutProps> = ({
 
   return (
     <div
+      className='course-page'
       style={{
         marginLeft: `auto`,
         marginRight: `auto`,

@@ -22,7 +22,7 @@ $try_button_hover_border: 1px solid navy;
 $tooltip_background_color: #3f3f3f;
 $tooltip_text_color: #fff;
 
-$code_thing_shadow: 2px 2px 1px 0 rgba(0, 0, 0, 0.2);
+$code_thing_shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
 
 body {
   background: $body_background;
@@ -299,22 +299,37 @@ section.post-body {
     margin-top: 0;
   }
 }
+$popover_bg_color: lighten(grey, 40);
+$popover_fg_color: darken(steelblue, 10);
+$popover_border_color: lighten(grey, 20);
+$popover_border_style: solid;
+$popover_border_width: 1px;
 .popover {
   margin-bottom: 10px;
-  background-color: #eeeeee;
+  background-color: l;
+  background-color: $popover_bg_color;
+  color: $popover_fg_color;
+  border-color: $popover_border_color;
+  border-width: $popover_border_width;
+  border-style: $popover_border_style;
   display: inline-block;
   padding: 0 0.5rem 0.3rem;
   margin-top: 10px;
   border-radius: 3px;
   box-shadow: $code_thing_shadow;
   .arrow {
-    background-color: #eee;
+    color: $popover_fg_color;
+    border-left-width: 0;
+    border-right-width: $popover_border_width;
+    border-top-width: 0;
+    border-bottom-width: $popover_border_width;
+    border-style: $popover_border_style;
+    background-color: $popover_bg_color;
+    border-color: $popover_border_color;
     position: relative;
     top: -7px;
     margin-left: 0.1rem;
-    border-left: 1px solid #eee;
-    border-top: 1px solid #eee;
-    transform: translateY(25%) rotate(45deg);
+    transform: translateY(25%) rotate(-135deg);
     height: 8px;
     width: 8px;
   }
@@ -432,5 +447,49 @@ nav,
   code {
     font-size: 0.8rem;
     line-height: 0.8rem;
+  }
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}
+
+.edit-on-github-link {
+  float: right;
+  img {
+    float: left;
+    margin-right: 10px;
+    height: 24px;
+  }
+}
+
+.course-page {
+  .course-article {
+    &__order {
+      color: grey;
+      margin-right: 1rem;
+      font-size: 3rem;
+    }
+    &__title {
+      font-size: 2rem;
+    }
+    &__description {
+      font-size: 1rem;
+    }
+    header {
+      h3 {
+        margin-top: 1rem;
+      }
+    }
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+  footer {
+    margin-top: 2rem;
   }
 }
