@@ -164,4 +164,5 @@ jobs:
         with:
           github_token: ${{ secrets.ACCESS_TOKEN }}
           publish_dir: ./packages/website/public
-          # destination_dir: website
+          cname: typescript-training.com
+
