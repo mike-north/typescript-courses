@@ -159,18 +159,16 @@ const myFrame = document.getElementsByTagName("iframe")[0]
 //     ^?
 const myForm = document.getElementsByTagName("form")[0]
 //     ^?
-handleMainEvent(
-  myFrame, (val) => {
+handleMainEvent(myFrame, (val) => {
   //        ^?
 })
-handleMainEvent(
-  myForm, (val) => {
+handleMainEvent(myForm, (val) => {
   //        ^?
 })
 ```
 
 Look at that! We've effectively created a linkage between
-the first and second arguments, which allows our callback's 
+the first and second arguments, which allows our callback's
 argument type to change, based on the type of `handleMainEvent`'s first argument
 
 Let's take a closer look at the function declaration
@@ -197,17 +195,98 @@ function handleMainEvent(
 handleMainEvent
 // ^?
 ```
+
 This looks like three function declarations, but it's really
 two "heads" that define an [argument list](https://262.ecma-international.org/#prod-ArgumentList) and a return type,
 followed by our original implementation.
 
-If you take a close look at tooltips and autocomplete feedback you get from the TypeScript language server, 
+If you take a close look at tooltips and autocomplete feedback you get from the TypeScript language server,
 it's clear that you're only able to call into the two "heads", leaving the underlying "third head + implementation" inaccessable from the outside world
 
-One last thing that's important to note: that "implementation" function signature must be _general enough to include everything that's possible through the exposed first and second function heads_
+One last thing that's important to note: that "implementation" function signature must be _general enough to include everything that's possible through the exposed first and second function heads_. For example, this wouldn't work
 
-## `.bind` and partial application
+```ts twoslash
+// @errors: 2394
+// @noImplicitAny: false
+type FormSubmitHandler = (data: FormData) => void
+type MessageHandler = (evt: MessageEvent) => void
 
-## `this` type
+/// ---cut---
+function handleMainEvent(
+  elem: HTMLFormElement,
+  handler: FormSubmitHandler
+)
+function handleMainEvent(
+  elem: HTMLIFrameElement,
+  handler: MessageHandler
+)
+function handleMainEvent(elem: HTMLFormElement) {}
+
+handleMainEvent
+// ^?
+```
+
+## `this` types
+
+Sometimes we have a free-standing function that has a strong opinion around
+what `this` will end up being, at the time it's invoked.
+
+For example, if we had a DOM event listener for a button
+
+```html
+<button onClick="myClickHandler">Click Me!</button>
+```
+
+We could define `myClickHandler` as follows
+
+```ts twoslash
+// @errors: 2683
+function myClickHandler(event: Event) {
+  this.disabled = true
+}
+
+myClickHandler(new Event("click")) // seems ok
+```
+
+Oops! TypeScript isn't happy with us. Despite the fact that [we know that `this` will be element that fired the event](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#the_value_of_this_within_the_handler), the compiler doesn't seem to be happy with us using it in this way.
+
+To address the problem, we need to give this function a **`this` type**
+
+```ts twoslash
+// @errors: 2684 2684
+function myClickHandler(
+  this: HTMLButtonElement,
+  event: Event
+) {
+  this.disabled = true
+  //   ^?
+}
+
+myClickHandler(new Event("click")) // seems no longer ok
+```
+
+Now when we try to directly invoke `myClickHandler` on the last line of the code snippet above
+we get a new compiler error. Effectively, we have failed to provide the `this` that this function
+states it wants.
+
+```ts twoslash
+// @errors: 2684
+function myClickHandler(
+  this: HTMLButtonElement,
+  event: Event
+) {
+  this.disabled = true
+  //   ^?
+}
+myClickHandler
+// ^?
+const myButton = document.getElementsByTagName("button")[0]
+const boundHandler
+//    ^?
+  = myClickHandler.bind(myButton)
+boundHandler(new Event("click")) // bound version: ok
+myClickHandler.call(myButton, new Event("click")) // also ok
+```
+Note TypeScript understands that [`.bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind), [`.call`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call) or [`.apply`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply) will result in the proper `this` being passed to the function as part of its invocation
 
 [^1]: There's a native javascript concept of a native `void` keyword, but it's not related to the TypeScript concept of the same name
