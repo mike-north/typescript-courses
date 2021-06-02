@@ -14,7 +14,6 @@ const courses = yaml.load(
 );
 
 module.exports = {
-  pathPrefix: '/ts-fundamentals-v3',
   siteMetadata: {
     title: `Learn TypeScript w/ Mike North`,
     author: {
