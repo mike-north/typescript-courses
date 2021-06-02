@@ -1,6 +1,6 @@
 ---
 title: Structural vs. Nominal Types
-date: '2015-05-01T22:12:03.284Z'
+date: "2015-05-01T22:12:03.284Z"
 description: |
   In this unit, we'll explore how TypeScript is fundamentally different from
   nominal type systems, such as the ones found in Java and C++
@@ -20,7 +20,7 @@ the question of _compatibility_ or _type equivalence_
 
 ```ts twoslash
 // @noImplicitAny: false
-const myValue: any = {} as any;
+const myValue: any = {} as any
 /// ---cut---
 function foo(x) {
   // ... mystery code ...
@@ -30,20 +30,20 @@ function foo(x) {
 // -------------
 // Is `myValue` type-equivalent to
 //     what `foo` whats to receive?
-foo(myValue);
+foo(myValue)
 ```
 
 This question can be asked at a function call (like `foo(myValue)` above), an assignment
 
 ```ts
 // is the value y holds type-equivalent to what `x` allows?
-x = y;
+x = y
 ```
 
 a return
 
 ```ts
-const myStrings = ['a'];
+const myStrings = ["a"]
 /// ---cut---
 function bar(): string[] {
   // ...mystery code that might return early...
@@ -53,7 +53,7 @@ function bar(): string[] {
   // -------------
   // Is `myStrings` type-equivalent to
   //     what `bar` states it will return?
-  return myStrings;
+  return myStrings
 }
 ```
 
@@ -106,28 +106,30 @@ all that matters is whether `myCar` is an instance of the class **named** `Car`
 ```ts twoslash
 // @strictPropertyInitialization: false
 class Car {
-  make: string;
-  model: string;
-  year: number;
-  isElectric: boolean;
+  make: string
+  model: string
+  year: number
+  isElectric: boolean
 }
 
 class Truck {
-  make: string;
-  model: string;
-  year: number;
-  towingCapacity: number;
+  make: string
+  model: string
+  year: number
+  towingCapacity: number
 }
 
 const vehicle = {
-  make: 'Honda',
-  model: 'Accord',
+  make: "Honda",
+  model: "Accord",
   year: 2017,
-};
+}
 
-function printCar(car: { make: string;
-                         model: string;
-                         year: number; }) {
+function printCar(car: {
+  make: string
+  model: string
+  year: number
+}) {
   console.log(`${car.make} ${car.model} (${car.year})`)
 }
 
@@ -138,24 +140,25 @@ printCar(vehicle) // Fine
 
 The function `printCar` doesn't care about which constructor its argument came
 from, it only cares about whether it has
-* A `make` property that's of type `string`
-* A `model` property that's of type `string`
-* A `year` property that's of type `number`
+
+- A `make` property that's of type `string`
+- A `model` property that's of type `string`
+- A `year` property that's of type `number`
 
 If the argument passed to it meets these requirements, `printCar` is happy.
 
 ### Duck typing
 
 "Duck typing" gets its name from the "duck test"
->  “If it looks like a duck, swims like a duck, and quack like a duck, then it probably is a duck”.
 
-In practice, this is very similar to structural typing, but "Duck typing" is usually 
+> “If it looks like a duck, swims like a duck, and quack like a duck, then it probably is a duck”.
+
+In practice, this is very similar to structural typing, but "Duck typing" is usually
 used to describe dynamic type systems
 
 ### "Strong" vs. "Weak" types
 
 These terms, while used frequently, have no agreed-upon technical definition. In the context of
 TypeScript it's common for those who say "strong" to really mean "static".
-
 
 [^1]: Among these are: generator function `yield`, accessor/mutator-based property conventions

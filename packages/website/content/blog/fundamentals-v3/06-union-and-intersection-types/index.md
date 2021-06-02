@@ -1,6 +1,6 @@
 ---
 title: Union and Intersection Types
-date: '2015-05-01T22:12:03.284Z'
+date: "2015-05-01T22:12:03.284Z"
 description: |
   We'll discuss and explore TypeScript's union and intersection types,
   which are effectively "AND" and "OR" boolean logic operators for types
@@ -33,18 +33,18 @@ For example, if we had a type that could be one of two strings, `"success"` or
 `"error"`, we could define it as
 
 ```ts
-'success' | 'error';
+"success" | "error"
 ```
 
 For example, this function returns `"heads"` if a random, number `(0, 1)` is >= 0.5, `"tails"` otherwise
 
 ```ts twoslash
-function flipCoin(): 'heads' | 'tails' {
-  if (Math.random() > 0.5) return 'heads';
-  return 'tails';
+function flipCoin(): "heads" | "tails" {
+  if (Math.random() > 0.5) return "heads"
+  return "tails"
 }
 
-const outcome = flipCoin();
+const outcome = flipCoin()
 //     ^?
 ```
 
@@ -58,22 +58,28 @@ Let's make this a bit more interesting by using tuples, that is structured as fo
 We'll still decide which of these things actually happens based on our 50/50 coin flip from above
 
 ```ts twoslash
-function flipCoin(): 'heads' | 'tails' {
-  if (Math.random() > 0.5) return 'heads';
-  return 'tails';
+function flipCoin(): "heads" | "tails" {
+  if (Math.random() > 0.5) return "heads"
+  return "tails"
 }
 
 function maybeGetUserInfo():
-  | ['error', Error]
-  | ['success', { name: string; email: string }] {
-  if (flipCoin() === 'heads') {
-    return ['success', { name: 'Mike North', email: 'mike@example.com' }];
+  | ["error", Error]
+  | ["success", { name: string; email: string }] {
+  if (flipCoin() === "heads") {
+    return [
+      "success",
+      { name: "Mike North", email: "mike@example.com" },
+    ]
   } else {
-    return ['error', new Error('The coin landed on TAILS :(')];
+    return [
+      "error",
+      new Error("The coin landed on TAILS :("),
+    ]
   }
 }
 
-const outcome = maybeGetUserInfo();
+const outcome = maybeGetUserInfo()
 //     ^?
 ```
 
@@ -88,21 +94,27 @@ First, let's destructure the tuple and see what TypeScript has to say about its 
 
 ```ts twoslash
 function maybeGetUserInfo():
-  | ['error', Error]
-  | ['success', { name: string; email: string }] {
+  | ["error", Error]
+  | ["success", { name: string; email: string }] {
   if (Math.random() > 0.5) {
-    return ['success', { name: 'Mike North', email: 'mike@example.com' }];
+    return [
+      "success",
+      { name: "Mike North", email: "mike@example.com" },
+    ]
   } else {
-    return ['error', new Error('The coin landed on TAILS :(')];
+    return [
+      "error",
+      new Error("The coin landed on TAILS :("),
+    ]
   }
 }
 /// ---cut---
-const outcome = maybeGetUserInfo();
+const outcome = maybeGetUserInfo()
 
-const [first, second] = outcome;
-first;
+const [first, second] = outcome
+first
 // ^?
-second;
+second
 // ^?
 ```
 
@@ -112,20 +124,26 @@ second;
 
 ```ts twoslash
 function maybeGetUserInfo():
-  | ['error', Error]
-  | ['success', { name: string; email: string }] {
+  | ["error", Error]
+  | ["success", { name: string; email: string }] {
   if (Math.random() > 0.5) {
-    return ['success', { name: 'Mike North', email: 'mike@example.com' }];
+    return [
+      "success",
+      { name: "Mike North", email: "mike@example.com" },
+    ]
   } else {
-    return ['error', new Error('The coin landed on TAILS :(')];
+    return [
+      "error",
+      new Error("The coin landed on TAILS :("),
+    ]
   }
 }
 /// ---cut---
-const outcome = maybeGetUserInfo();
-const [first, second] = outcome;
-first.split;
+const outcome = maybeGetUserInfo()
+const [first, second] = outcome
+first.split
 //     ^|
-second.name;
+second.name
 //      ^|
 ```
 
@@ -154,25 +172,31 @@ to start: `instanceof`.
 
 ```ts twoslash
 function maybeGetUserInfo():
-  | ['error', Error]
-  | ['success', { name: string; email: string }] {
+  | ["error", Error]
+  | ["success", { name: string; email: string }] {
   if (Math.random() > 0.5) {
-    return ['success', { name: 'Mike North', email: 'mike@example.com' }];
+    return [
+      "success",
+      { name: "Mike North", email: "mike@example.com" },
+    ]
   } else {
-    return ['error', new Error('The coin landed on TAILS :(')];
+    return [
+      "error",
+      new Error("The coin landed on TAILS :("),
+    ]
   }
 }
 /// ---cut---
-const outcome = maybeGetUserInfo();
-const [first, second] = outcome;
+const outcome = maybeGetUserInfo()
+const [first, second] = outcome
 //            ^?
 if (second instanceof Error) {
   // In this branch of your code, second is an Error
-  second;
+  second
   // ^?
 } else {
   // In this branch of your code, second is the user info
-  second;
+  second
   // ^?
 }
 ```
@@ -187,23 +211,29 @@ It gets even better...
 
 ```ts twoslash
 function maybeGetUserInfo():
-  | ['error', Error]
-  | ['success', { name: string; email: string }] {
+  | ["error", Error]
+  | ["success", { name: string; email: string }] {
   if (Math.random() > 0.5) {
-    return ['success', { name: 'Mike North', email: 'mike@example.com' }];
+    return [
+      "success",
+      { name: "Mike North", email: "mike@example.com" },
+    ]
   } else {
-    return ['error', new Error('The coin landed on TAILS :(')];
+    return [
+      "error",
+      new Error("The coin landed on TAILS :("),
+    ]
   }
 }
 /// ---cut---
-const outcome = maybeGetUserInfo();
-if (outcome[0] === 'error') {
+const outcome = maybeGetUserInfo()
+if (outcome[0] === "error") {
   // In this branch of your code, second is an Error
-  outcome;
+  outcome
   // ^?
 } else {
   // In this branch of your code, second is the user info
-  outcome;
+  outcome
   // ^?
 }
 ```
@@ -219,20 +249,21 @@ For example, what if we had a `Promise`, that had extra `startTime` and `endTime
 properties added to it
 
 ```ts twoslash
-const ONE_WEEK = 1000 * 60 * 60 * 24 * 7; // 1w in ms
+const ONE_WEEK = 1000 * 60 * 60 * 24 * 7 // 1w in ms
 /// ---cut---
-function makeWeek(): Date & { end: Date } {//⬅ return type
+function makeWeek(): Date & { end: Date } {
+  //⬅ return type
 
-  const start = new Date();
-  const end = new Date(start.valueOf() + ONE_WEEK);
+  const start = new Date()
+  const end = new Date(start.valueOf() + ONE_WEEK)
 
-  return { ...start, end }; // kind of Object.assign
+  return { ...start, end } // kind of Object.assign
 }
 
-const thisWeek = makeWeek();
-thisWeek.toISOString();
+const thisWeek = makeWeek()
+thisWeek.toISOString()
 //   ^?
-thisWeek.end.toISOString();
+thisWeek.end.toISOString()
 //        ^?
 ```
 

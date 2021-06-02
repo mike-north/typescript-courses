@@ -263,7 +263,9 @@ this `implements` keyword gives us the ability to validate, at complile time, th
 function consumeFood(arg) {}
 /// ---cut---
 class LivingOrganism {
-  isAlive() { return true }
+  isAlive() {
+    return true
+  }
 }
 interface AnimalLike {
   eat(food): void
@@ -276,8 +278,12 @@ class Dog
   extends LivingOrganism
   implements AnimalLike, CanBark
 {
-  bark() { return "woof" }
-  eat(food) { consumeFood(food) }
+  bark() {
+    return "woof"
+  }
+  eat(food) {
+    consumeFood(food)
+  }
 }
 ```
 
@@ -289,27 +295,34 @@ potential for problems to arise, if the type ever breaks the "object type" rules
 // @errors: 2422 2304
 function consumeFood(arg) {}
 /// ---cut---
-type CanBark = number | {
-  bark(): string
-}
+type CanBark =
+  | number
+  | {
+      bark(): string
+    }
 
-class Dog implements CanBark
-{
-  bark() { return "woof" }
-  eat(food) { consumeFood(food) }
+class Dog implements CanBark {
+  bark() {
+    return "woof"
+  }
+  eat(food) {
+    consumeFood(food)
+  }
 }
 ```
-For this reason, it's best to use interfaces for types that 
+
+For this reason, it's best to use interfaces for types that
 are used with the `implements` heritage clause
 
 ### Open Interfaces
 
 TypeScript interfaces are "open", meaning that unlike in type aliases, you can have
 multiple declarations in the same scope.
+
 ```ts twoslash
 // @noImplicitAny: false
 interface AnimalLike {
-    isAlive(): boolean
+  isAlive(): boolean
 }
 function feed(animal: AnimalLike) {
   animal.eat
@@ -340,17 +353,18 @@ window.exampleProperty = 42
 //      ^?
 // tells TS that `exampleProperty` exists
 interface Window {
-  exampleProperty: number;
+  exampleProperty: number
 }
 ```
+
 What we've done here is _augment_ an existing `Window` interface
 that TypeScript has set up for us behind the scenes.
-
 
 ## Choosing which to use
 
 In many situations, either a `type` alias or an `interface` would be
 perfectly fine, however...
+
 1. **If you need to define something other than an object type** (e.g., use of the `|` union type operator), you must use a type alias
-1. If you need to define a type **to use with the `implements` heritage term**, it's best to use an interface 
+1. If you need to define a type **to use with the `implements` heritage term**, it's best to use an interface
 1. If you need to **allow consumers of your types to _augment_ them**, you must use an interface.
