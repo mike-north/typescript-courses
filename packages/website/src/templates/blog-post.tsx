@@ -4,6 +4,7 @@ import { Link, graphql } from 'gatsby';
 
 import Bio from '../components/bio';
 import Layout from '../components/layout';
+import EditOnGitHubLink from '../components/EditOnGitHub';
 import SEO from '../components/seo';
 import { rhythm, scale } from '../utils/typography';
 
@@ -51,7 +52,6 @@ function makeHTMLAdjustments(raw: string): string {
     )
   );
 }
-
 const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
   data,
   pageContext,
@@ -89,6 +89,7 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
           >
             <span className="course-title">{course.title}</span>
           </Link>
+            <EditOnGitHubLink chapter={post.fields.slug} />
           <h1 className="post-title">{post.frontmatter.title}</h1>
           <p
             style={{
@@ -202,6 +203,9 @@ export const pageQuery = graphql`
       excerpt(pruneLength: 160)
       html
       tableOfContents(maxDepth: 4)
+      fields {
+        slug
+      }
       frontmatter {
         title
         course
