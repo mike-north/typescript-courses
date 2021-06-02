@@ -387,6 +387,13 @@ $popover_border_width: 1px;
     }
     background-color: lighten($ts_blue, 50);
   }
+  &.warning {
+    .custom-block-heading {
+      background-color: darken(goldenrod, 20);
+      color: lightyellow;
+    }
+    background-color: lightyellow;
+  }
   &.question {
     .custom-block-heading {
       background-color: darken(desaturate(darkgreen, 10), 5);
