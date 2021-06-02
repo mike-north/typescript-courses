@@ -73,6 +73,85 @@ function printCar(car: {
 At this point, you can start to see that we see "completions" when we start
 using `car` in the body of this function
 
+### Optional Properties
+
+What if we take our car example a bit further by adding a fourth property
+
+| Property Name   | Is present    | Type     | Note                               |
+| --------------- | ------------- | -------- | ---------------------------------- |
+| `make`          | _Always_      | `string` |                                    |
+| `model`         | _Always_      | `string` |                                    |
+| `year`          | _Always_      | `number` |                                    |
+| `chargeVoltage` | **Sometimes** | `number` | not present unless car is electric |
+
+We can state that this property is optional using the `?` operator
+
+```ts twoslash
+function printCar(car: {
+  make: string
+  model: string
+  year: number
+  chargeVoltage?: number
+}) {
+  let str = `${car.make} ${car.model} (${car.year})`
+  car.chargeVoltage
+  //    ^?
+  if (typeof car.chargeVoltage !== "undefined")
+    str += `// ${car.chargeVoltage}v`
+  //                 ^?
+  console.log(str)
+}
+// Works
+printCar({
+  make: "Honda",
+  model: "Accord",
+  year: 2017,
+})
+// Also works
+printCar({
+  make: "Tesla",
+  model: "Model 3",
+  year: 2020,
+  chargeVoltage: 220,
+})
+```
+
+### Excess property checking
+
+TypeScript helps us catch a particular type of error around object literals.
+Let's look at the situation where the error arises
+```ts twoslash
+// @errors: 2345
+function printCar(car: {
+  make: string
+  model: string
+  year: number
+  chargeVoltage?: number
+}) {
+   // implementation removed for simplicity  
+}
+
+printCar({
+  make: "Tesla",
+  model: "Model 3",
+  year: 2020,
+  chargeVoltage: 220,
+  color: 'RED'
+})
+```
+The important part of this error message is
+
+> Object literal may only specify known properties, and 'color' does not exist in type &lt;the type the function expects&gt;
+
+In this situation, within the body of the `printCar` function, we cannot access the `color` property since it's not part
+of the argument type. Thus, we're defining a property on this object, that we have no hope of safely accessing
+later on!
+
+[[info | Try fixing this three ways in the TypeScript playground ]]
+| 1. Remove the `color` property from the object
+| 1. Add a `color: string` to the function argument type
+| 1. Create a variable to hold this value, and then pass the variable into the `printCar` function
+
 ## Array Types
 
 Describing types for arrays is often as easy as adding `[]` to the end of the
