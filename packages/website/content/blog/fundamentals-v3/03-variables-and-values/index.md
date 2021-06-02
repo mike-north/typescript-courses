@@ -46,7 +46,7 @@ This is called a **literal type**. If our `let` declaration is a varable
 that can hold any `number`, the `const` declaration is one that can hold any `6` --
 a specific number.
 
-[[info | Theme: Inferring with safe specificity]]
+[[info | :bulb: Theme: Inferring with safe specificity]]
 | There's a common idea you'll see again and again when working with TypeScript.
 | Inferrence is made specificially, but not so specific as to get in the way
 | of common behavior.
