@@ -118,7 +118,7 @@ second
 // ^?
 ```
 
-[[info | A good time to poke around]]
+[[info | :bulb: A good time to poke around]]
 | Click the `Try` button and explore `first` and `second` in the TS playground.
 | Explore what's available in the autocomplete for each.
 
@@ -273,5 +273,5 @@ a `Date` and `{ end: Date}` mashed together, and we have access to everything im
 It's _far_ less common to use intersection types compared to union types. I expect
 it to be at least a 50-to-1 ratio for you in practice
 
-[[question | Ask yourself: why might you run into union types more often?]]
+[[question | :grey_question: Ask yourself: why might you run into union types more often?]]
 | - Consider control flow and function return types

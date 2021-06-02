@@ -147,7 +147,7 @@ In this situation, within the body of the `printCar` function, we cannot access 
 of the argument type. Thus, we're defining a property on this object, that we have no hope of safely accessing
 later on!
 
-[[info | Try fixing this three ways in the TypeScript playground ]]
+[[info | :bulb: Try fixing this three ways in the TypeScript playground ]]
 | 1. Remove the `color` property from the object
 | 1. Add a `color: string` to the function argument type
 | 1. Create a variable to hold this value, and then pass the variable into the `printCar` function
@@ -216,7 +216,7 @@ myCar = ["Honda", 2017, "Accord", "Sedan"] // not the same convention or length!
 In this case, TypeScript could infer myCar to be one of two things. Which
 do you think is more commonly used?
 
-[[question | 🙋 Which is the more useful assumption, most of the time?]]
+[[question | :grey_question: Which is the more useful assumption, most of the time?]]
 | 1. `[2002, "Toyota", "Corolla"]` should be assumed to be a mixed array of numbers and strings
 | 2. `[2002, "Toyota", "Corolla"]` should be assumed to be a tuple of fixed length (3)
 |

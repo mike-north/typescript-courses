@@ -8084,6 +8084,11 @@ gatsby-remark-custom-blocks@^3.6.0:
     "@babel/runtime" "^7.12.5"
     remark-custom-blocks "^2.5.0"
 
+gatsby-remark-emojis@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-emojis/-/gatsby-remark-emojis-0.4.3.tgz#44552fa6782442f23b3ee310d55612e77126f01b"
+  integrity sha512-bOeh3Bu8Oo4Lf8QhERAcVIunD+UBroXPfTkxNEL0yBySo5KZYwib3/gbUHeOUw3VYWGv79BFrVNLL7xuFoWFhw==
+
 gatsby-remark-images@^5.2.1:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/gatsby-remark-images/-/gatsby-remark-images-5.3.0.tgz#06736580accb8b53bcca89d631840b568fac9737"
