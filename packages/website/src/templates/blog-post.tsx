@@ -70,19 +70,19 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
   );
   if (!course) throw new Error(`Undefined course: ${post.frontmatter.course}`);
 
-  const toc =
-    post.tableOfContents.trim() !== '' ? (
-      <div className="post-toc">
-        <div className="post-toc__title">Table of Contents</div>
+  const hasToc = post.tableOfContents.trim() !== '';
+  const toc = hasToc ? (
+    <div className="post-toc">
+      <div className="post-toc__title">Table of Contents</div>
 
-        <section
-          className="post-toc__content"
-          dangerouslySetInnerHTML={{ __html: post.tableOfContents }}
-        />
-      </div>
-    ) : (
-      ''
-    );
+      <section
+        className="post-toc__content"
+        dangerouslySetInnerHTML={{ __html: post.tableOfContents }}
+      />
+    </div>
+  ) : (
+    ''
+  );
 
   return (
     <Layout location={location} title={siteTitle}>
