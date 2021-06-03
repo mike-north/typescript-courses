@@ -5,7 +5,7 @@ description: |
   Top types can be anything, bottom types can't be anything. We'll look
   at these three "extreme types" in TypeScript: any, unknown and never.
 course: fundamentals-v3
-order: 10
+order: 11
 ---
 
 ## Types describe sets of allowed values

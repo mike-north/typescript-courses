@@ -6,7 +6,7 @@ description: |
   of traditional JavaScript classes. In this unit, we'll take a close look
   class fields, access modifier keywords and more!
 course: fundamentals-v3
-order: 9
+order: 10
 ---
 
 TypeScript classes add some powerful and important features on top

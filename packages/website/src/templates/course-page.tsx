@@ -28,6 +28,7 @@ interface ICourseTemplateProps {
             title: string;
             course: string;
             date: string;
+            isExercise: boolean;
             order: number;
             description: string;
           };
@@ -69,8 +70,9 @@ const CoursePageTemplate: React.FunctionComponent<ICourseTemplateProps> = ({
         .sort((a, b) => a.node.frontmatter.order - b.node.frontmatter.order)
         .map(({ node }, idx) => {
           const title = node.frontmatter.title || node.fields.slug;
+          const { isExercise } = node.frontmatter;
           return (
-            <article className="course-article" key={node.fields.slug}>
+            <article className={"course-article" + (isExercise ? ' exercise' : '')} key={node.fields.slug}>
               <header>
                 <h3
                   style={{
@@ -129,6 +131,7 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             order
+            isExercise
             course
             description
           }

@@ -476,7 +476,8 @@ nav,
 }
 
 .course-page {
-  .course-article {
+  .course-article  {
+    padding: 1rem;
     &__order {
       color: grey;
       margin-right: 1rem;
@@ -495,6 +496,32 @@ nav,
     }
     p:last-child {
       margin-bottom: 0;
+    }
+  }
+  *.exercise {
+    $ex_bg_color: desaturate(navy, 40);
+    &:before {
+      content: 'EXERCISE';
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      text-align: center;
+      display: block;
+      background: $ex_bg_color;
+      margin: -1rem;
+      padding: 0.5rem;
+      color: white;
+      font-weight: 900;
+      margin-bottom: 1rem; 
+    }
+    border: 2px solid $ex_bg_color;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    background: lighten(lightblue, 10);
+    .course-article__order {
+      color: darken(darkgrey, 30);
+    }
+    .course-article__title {
+      color: $ex_bg_color;
     }
   }
   footer {
