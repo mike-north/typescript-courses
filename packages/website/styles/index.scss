@@ -420,7 +420,8 @@ ol {
 }
 
 .inline-completions {
-  ul, ol {
+  ul,
+  ol {
     margin-left: 0;
     li {
       padding-left: 0;
@@ -446,7 +447,7 @@ nav,
 .footnotes {
   &:before {
     content: 'Footnotes';
-    font-family: 'Merriweather','Georgia',serif;
+    font-family: 'Merriweather', 'Georgia', serif;
     font-weight: 900;
     font-size: 1.4427rem;
   }
@@ -498,5 +499,41 @@ nav,
   }
   footer {
     margin-top: 2rem;
+  }
+}
+
+details {
+  border: 2px solid #333;
+  border-radius: 5px;
+  background-color: #ccc;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1.5rem;
+  box-shadow: 0 0 2px 2px rgba(0,0,0,0.3) inset;
+  summary {
+    margin-left: 3rem;
+    font-size: 1rem;
+    line-height: 2.2rem;
+    background-color: #333;
+    color: #eee;
+    font-weight: 900;
+    margin-top: -1.5rem;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    &:before {
+      float: left;
+      margin-right: 0.5rem;
+      width: 1rem;
+      content: '▶';
+      transform: rotateZ(0);
+      transition: transform 0.1s ease-in-out;
+    }
+  }
+  &[open] summary {
+    &:before {
+      transform: rotateZ(90deg);
+    }
   }
 }
