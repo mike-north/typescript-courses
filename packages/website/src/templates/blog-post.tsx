@@ -73,7 +73,6 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
   const toc =
     post.tableOfContents.trim() !== '' ? (
       <div className="post-toc">
-        <pre>{post.tableOfContents}</pre>
         <div className="post-toc__title">Table of Contents</div>
 
         <section

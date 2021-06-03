@@ -274,6 +274,8 @@ code {
     ul {
       list-style: none;
       & > li {
+        text-indent: -1rem;
+        margin-left: 1rem;
         & > p a {
           color: rgb(46, 27, 134);
           font-weight: 600;
@@ -287,6 +289,13 @@ code {
     }
   }
   &__title {
+    background: #aaa;
+    color: #333;
+    font-weight: 900;
+    margin-top: -10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    padding: 4px 10px;
     font-weight: 600;
     margin-bottom: 0.25rem;
   }
