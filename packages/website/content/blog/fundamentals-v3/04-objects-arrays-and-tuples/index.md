@@ -120,6 +120,7 @@ printCar({
 
 TypeScript helps us catch a particular type of error around object literals.
 Let's look at the situation where the error arises
+
 ```ts twoslash
 // @errors: 2345
 function printCar(car: {
@@ -128,7 +129,7 @@ function printCar(car: {
   year: number
   chargeVoltage?: number
 }) {
-   // implementation removed for simplicity  
+  // implementation removed for simplicity
 }
 
 printCar({
@@ -136,9 +137,10 @@ printCar({
   model: "Model 3",
   year: 2020,
   chargeVoltage: 220,
-  color: 'RED'
+  color: "RED",
 })
 ```
+
 The important part of this error message is
 
 > Object literal may only specify known properties, and 'color' does not exist in type &lt;the type the function expects&gt;
@@ -147,10 +149,50 @@ In this situation, within the body of the `printCar` function, we cannot access 
 of the argument type. Thus, we're defining a property on this object, that we have no hope of safely accessing
 later on!
 
-[[info | :bulb: Try fixing this three ways in the TypeScript playground ]]
+[[info | :bulb: Try fixing this three ways in the TypeScript playground]]
 | 1. Remove the `color` property from the object
 | 1. Add a `color: string` to the function argument type
 | 1. Create a variable to hold this value, and then pass the variable into the `printCar` function
+
+### Index signatures
+
+Sometimes we need to represent a type for dictionaries, where
+values of a consistent type are retrievable by keys.
+
+Let's consider the following collection of phone numbers
+
+```ts twoslash
+const phones = {
+  // prettier-ignore
+  home: { country: "+1", area: "321", number: "555-5555" },
+  work: { country: "+1", area: "321", number: "555-5556" },
+  fax:  { country: "+1", area: "321", number: "555-5557" },
+}
+```
+
+Clearly it seems that we can store phone numbers under a "key" -- in this case
+`home`, `office`, `fax`, and possibly other words of our choosing -- and
+each phone number is comprised of three strings.
+
+We could describe this value using what's called an _index signature_
+
+```ts twoslash
+const phones: {
+  [k: string]: {
+    country: string
+    area: string
+    number: string
+  }
+} = { 
+
+}
+
+phones.fax
+//     ^?
+```
+
+Now, no matter what key we lookup, we get an object that represents 
+a phone number.
 
 ## Array Types
 
@@ -182,16 +224,16 @@ Sometimes we may want to work with a multi-element, ordered data structure, wher
 position of each item has some special meaning or convention. We call this kind of
 structure a [tuple](https://en.wikipedia.org/wiki/Tuple).
 
-Let's imagine we define a convention where we can represent the same "2002 Toyota Corrola"
+Let's imagine we define a convention where we can represent the same "2002 Toyota Corolla"
 as
 
 ```ts
 let myCar = [2002, "Toyota", "Corolla"]
-// destructured assignment is conveninent here!
+// destructured assignment is convenient here!
 const [year, make, model] = myCar
 ```
 
-Let's see how TypeScript handles inferrence in this case
+Let's see how TypeScript handles inference in this case
 
 ```ts twoslash
 let myCar = [2002, "Toyota", "Corolla"]
