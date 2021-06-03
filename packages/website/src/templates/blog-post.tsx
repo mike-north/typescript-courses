@@ -69,6 +69,22 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
     (c) => c.id === post.frontmatter.course,
   );
   if (!course) throw new Error(`Undefined course: ${post.frontmatter.course}`);
+
+  const toc =
+    post.tableOfContents.trim() !== '' ? (
+      <div className="post-toc">
+        <pre>{post.tableOfContents}</pre>
+        <div className="post-toc__title">Table of Contents</div>
+
+        <section
+          className="post-toc__content"
+          dangerouslySetInnerHTML={{ __html: post.tableOfContents }}
+        />
+      </div>
+    ) : (
+      ''
+    );
+
   return (
     <Layout location={location} title={siteTitle}>
       <SEO
@@ -89,7 +105,7 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
           >
             <span className="course-title">{course.title}</span>
           </Link>
-            <EditOnGitHubLink chapter={post.fields.slug} />
+          <EditOnGitHubLink chapter={post.fields.slug} />
           <h1 className="post-title">{post.frontmatter.title}</h1>
           <p
             style={{
@@ -127,13 +143,7 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
             </li>
           </ul>
         </nav>
-        <div className="post-toc">
-          <div className="post-toc__title">Table of Contents</div>
-          <section
-            className="post-toc__content"
-            dangerouslySetInnerHTML={{ __html: post.tableOfContents }}
-          />
-        </div>
+        {toc}
         <section
           className="post-body"
           dangerouslySetInnerHTML={{ __html: postHtml }}
