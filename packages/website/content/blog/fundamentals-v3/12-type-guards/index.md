@@ -6,7 +6,7 @@ description: |
   but there's a lot more power in type guards, including the ability
   to define your own!
 course: fundamentals-v3
-order: 11
+order: 12
 ---
 
 We've explored built-in type guards like typeof and instanceof,
