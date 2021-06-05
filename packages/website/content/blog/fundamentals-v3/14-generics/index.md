@@ -28,6 +28,9 @@ const phones: {
   }
 } = {}
 
+phones.home
+phones.work
+phones.fax
 phones.mobile
 //       ^?
 ```
@@ -43,11 +46,11 @@ So, let's treat something like this as our starting point
 
 ```ts twoslash
 const phoneList = [
-  { customerId: "0001", areaCode: "321", num: "555-5555" },
-  { customerId: "0002", areaCode: "321", num: "555-5556" },
-  { customerId: "0003", areaCode: "321", num: "555-5557" },
-  { customerId: "0004", areaCode: "321", num: "555-5558" },
-  { customerId: "0005", areaCode: "321", num: "555-5559" },
+  { customerId: "0001", areaCode: "321", num: "123-4566" },
+  { customerId: "0002", areaCode: "174", num: "142-3626" },
+  { customerId: "0003", areaCode: "192", num: "012-7190" },
+  { customerId: "0005", areaCode: "402", num: "652-5782" },
+  { customerId: "0004", areaCode: "301", num: "184-8501" },
 ]
 ```
 
@@ -58,12 +61,12 @@ const phoneDict = {
   "0001": {
     customerId: "0001",
     areaCode: "321",
-    num: "555-5555",
+    num: "123-4566",
   },
   "0002": {
     customerId: "0002",
-    areaCode: "321",
-    num: "555-5556",
+    areaCode: "174",
+    num: "142-3626",
   },
   /*... and so on */
 }
@@ -74,11 +77,9 @@ _any_ list we wish to transform into an equivalent dictionary --
 not just this one specific use case.
 
 We'll need one thing first -- a way to produce the "key" for each
-object we encounter in the `phoneList` array. To remain flexible,
-and to keep our
-
-Let's take a function as an argument so that we leave it to
-the caller of our function to _tell us_ how to calculate "dictionary keys"
+object we encounter in the `phoneList` array. To remain flexible, we'll
+design our function such that whoever is asking for the list-to-dictionary conversion
+should also provide a function that we can use to obtain a "key" from each item in the list.
 
 Maybe our function signature would look something like this
 
@@ -93,7 +94,6 @@ interface PhoneInfo {
 function listToDict(
   list: PhoneInfo[], // take the list as an argument
   idGen: (arg: PhoneInfo) => string // a callback to get Ids
-  // prettier-ignore
 ): { [k: string]: PhoneInfo } {
   // return a dictionary
 }
@@ -102,7 +102,7 @@ function listToDict(
 Of course, we will see an error message as things stand right now,
 because we haven't implemented the function yet.
 
-Ok, this shouldn't be too difficult to implement. Let's make
+This isn't too difficult to implement. Let's make
 a very specific solution right now, and then we can refactor
 and generalize as a next step.
 
@@ -114,18 +114,17 @@ interface PhoneInfo {
 }
 
 const phoneList = [
-  { customerId: "0001", areaCode: "321", num: "555-5555" },
-  { customerId: "0002", areaCode: "321", num: "555-5556" },
-  { customerId: "0003", areaCode: "321", num: "555-5557" },
-  { customerId: "0004", areaCode: "321", num: "555-5558" },
-  { customerId: "0005", areaCode: "321", num: "555-5559" },
+  { customerId: "0001", areaCode: "321", num: "123-4566" },
+  { customerId: "0002", areaCode: "174", num: "142-3626" },
+  { customerId: "0003", areaCode: "192", num: "012-7190" },
+  { customerId: "0005", areaCode: "402", num: "652-5782" },
+  { customerId: "0004", areaCode: "301", num: "184-8501" },
 ]
 
 /// ---cut---
 function listToDict(
   list: PhoneInfo[], // take the list as an argument
   idGen: (arg: PhoneInfo) => string // a callback to get Ids
-  // prettier-ignore
 ): { [k: string]: PhoneInfo } {
   // create an empty dictionary
   const dict: { [k: string]: PhoneInfo } = {}
@@ -151,23 +150,22 @@ for our specific use case.
 
 Now, let's attempt to generalize this, and make it so that
 it works for lists and dictionaries of our `PhoneInfo` type,
-but lots of other types as well.
+but lots of other types as well. How about if we replace every
+`PhoneInfo` type with `any`...
 
 ```ts twoslash
 function listToDict(
-  list: any[], // take the list as an argument
-  idGen: (arg: any) => string // a callback to get Ids
+  list: any[],
+  idGen: (arg: any) => string
 ): { [k: string]: any } {
-  // create an empty dictionary
-  const dict: { [k: string]: any } = {}
+  ///   ⬆️ focus here  ⬆️
 
-  // Loop through the array
+  // nothing changed in the code below
+  const dict: { [k: string]: any } = {}
   list.forEach((element) => {
     const dictKey = idGen(element)
-    dict[dictKey] = element // store element under key
+    dict[dictKey] = element
   })
-
-  // return the dictionary
   return dict
 }
 
@@ -176,7 +174,7 @@ const dict = listToDict(
   (item) => item.name
 )
 console.log(dict)
-dict.Mike
+dict.Mike.I.should.not.be.able.to.do.this.NOOOOOOO
 //    ^?
 ```
 
@@ -197,7 +195,96 @@ Functions may return different values, depending on the arguments you pass them.
 
 > Generics may change their type, depending on the type parameters you use with them.
 
-Before we get too abstract, let's bring this back to our practical example
+Our function signature is going to now include a type parameter `T`
+
+```ts
+function listToDict<T>(
+  list: T[],
+  idGen: (arg: T) => string
+): { [k: string]: T } {
+  const dict: { [k: string]: T } = {}
+  return dict
+}
+```
+
+Here's what this code means:
+
+### The TypeParam, and usage to provide an argument type
+
+- **\<T\> to the right of `listDict`** <br/> means that the type of this function is now parameterized in terms of a type parameter `T` (which may change on a per-usage basis)
+- **`list: T[]` as a first argument** <br /> means we accept a list of `T`'s.
+  - **TypeScript will infer what `T` is, on a per-usage basis, depending on what kind of array we pass in**. If we use a `string[]`, `T` will be `string`, if we use a `number[]`, `T` will be `number`.
+
+Try to convince yourself of these first two ideas with the following much simpler (and more pointless) example
+
+```ts twoslash
+function wrapInArray<T>(arg: T): [T] {
+  //       ^?
+  return [arg]
+}
+```
+
+Note how, in the three usages of `wrapInArray` below, the `<T>` we see in the tooltip above is replaced
+by "the type of the thing we pass as an argument"
+
+```ts twoslash
+function wrapInArray<T>(arg: T): [T] {
+  return [arg]
+}
+/// ---cut---
+wrapInArray(3)
+//   ^?
+wrapInArray(new Date())
+//   ^?
+wrapInArray(new RegExp("/s/"))
+//    ^?
+```
+
+Ok, back to the more meaningful code
+
+```ts twoslash
+function listToDict<T>(
+  list: T[],
+  idGen: (arg: T) => string
+  //^?
+): { [k: string]: T } {
+  const dict: { [k: string]: T } = {}
+  return dict
+}
+```
+
+- **`idGen: (arg: T) => string`** is a callback that _also_ uses `T` as an argument. This means that...
+  - we'll get the benefits of type-checking, within `idGen` function
+  - we'll get some type-checking alignment between the array and the `idGen` function
+
+```ts twoslash
+function listToDict<T>(
+  list: T[], // take the list as an argument
+  idGen: (arg: T) => string // a callback to get Ids
+): { [k: string]: T } {
+  const dict: { [k: string]: T } = {}
+  return dict
+}
+/// ---cut---
+listToDict(
+  [
+    new Date("10-01-2021"),
+    new Date("03-14-2021"),
+    new Date("06-03-2021"),
+    new Date("09-30-2021"),
+    new Date("02-17-2021"),
+    new Date("05-21-2021"),
+  ],
+  (arg) => arg.toISOString()
+  //                 ^?
+)
+```
+
+One last thing to examine: the `return` type. The way we've
+defined this, a `T[]` will be turned into a `{ [k: string]: T }`
+_for any `T` of our choosing_
+
+Now, let's put this all together with our real example
 
 ```ts twoslash
 interface PhoneInfo {
@@ -207,134 +294,43 @@ interface PhoneInfo {
 }
 
 const phoneList = [
-  { customerId: "0001", areaCode: "321", num: "555-5555" },
-  { customerId: "0002", areaCode: "321", num: "555-5556" },
-  { customerId: "0003", areaCode: "321", num: "555-5557" },
-  { customerId: "0004", areaCode: "321", num: "555-5558" },
-  { customerId: "0005", areaCode: "321", num: "555-5559" },
+  { customerId: "0001", areaCode: "321", num: "123-4566" },
+  { customerId: "0002", areaCode: "174", num: "142-3626" },
+  { customerId: "0003", areaCode: "192", num: "012-7190" },
+  { customerId: "0005", areaCode: "402", num: "652-5782" },
+  { customerId: "0004", areaCode: "301", num: "184-8501" },
 ]
 /// ---cut---
 function listToDict<T>(
-  list: T[], // take the list as an argument
-  idGen: (arg: T) => string // a callback to get Ids
+  list: T[],
+  idGen: (arg: T) => string
 ): { [k: string]: T } {
-  // create an empty dictionary
   const dict: { [k: string]: T } = {}
 
-  // Loop through the array
   list.forEach((element) => {
     const dictKey = idGen(element)
-    dict[dictKey] = element // store element under key
+    dict[dictKey] = element
   })
 
-  // return the dictionary
   return dict
 }
 
 const dict1 = listToDict(
+  //             ^?
   [{ name: "Mike" }, { name: "Mark" }],
   (item) => item.name
 )
 console.log(dict1)
 dict1.Mike
-//    ^?
 const dict2 = listToDict(phoneList, (p) => p.customerId)
+//                  ^?
 dict2.fax
-//     ^?
 console.log(dict2)
 ```
 
-First, let's take a close look at this and understand that it works
+Let's look at this closely and make sure that we understand what's going on
 
 - Run this in the TypeScript playground, and verify that you see the logging you should see
 - Take a close look at the types of the items in `dict1` and `dict2` above, to convince yourself that **we get a different kind of dictionary out of `listToDict`, depending on the type of the array we pass in**
 
 This is much better than our "dictionary of `any`s", in that we lose no type information as a side effect of going through the list-to-dictionary transformation.
-
-Now that we realize we've arrived at a good result, let's unpack the solution a bit and
-examine various parts and what they mean. To do this, let's strip out almost the entire
-algorithm, leaving only things that relate to this `T` thing that's been introduced to the code
-
-```ts
-function listToDict<T>(
-  list: T[], // take the list as an argument
-  idGen: (arg: T) => string // a callback to get Ids
-): { [k: string]: T } {
-  const dict: { [k: string]: T } = {}
-  return dict
-}
-```
-Here's what this code means:
-
-* **\<T\> to the right of `listDict`** means that the type of this function is now parameterized in terms of a type `T` (which may change on a per-usage basis)
-* The fact that our first argument is now **`list: T[]`** means we accept a list of `T`'s as an argument. TypeScript's inference will actually take this to mean **use the array we pass as the first argument in order to _determine_ `T`**. If we use a `string[]`, `T` will be `string`, if we use a `number[]`, `T` will be `number`. 
-
-Try to convince yourself of these first two ideas with the following much simpler (and more pointless) example
-
-```ts twoslash
-
-function wrapInArray<T>(arg: T): [T] {
-  return [arg];
-}
-
-wrapInArray(3);
-//   ^?
-wrapInArray(new Date());
-//   ^?
-wrapInArray(new RegExp('/\s/'));
-//       ^?
-```
-Ok, back to the more meaningful code
-
-
-```ts
-function listToDict<T>(
-  list: T[], // take the list as an argument
-  idGen: (arg: T) => string // a callback to get Ids
-): { [k: string]: T } {
-  const dict: { [k: string]: T } = {}
-  return dict
-}
-```
-* `idGen` is a callback that _also_ uses `T` as an argument. This means that 
-we'll get some type-checking alignment between the array and the `idGen` function
-
-Here's an example of a misalignment that TypeScript will now catch for us
-
-```ts twoslash
-// @errors: 2322 2322
-function listToDict<T>(
-  list: T[], // take the list as an argument
-  idGen: (arg: T) => string // a callback to get Ids
-): { [k: string]: T } {
-  const dict: { [k: string]: T } = {}
-  return dict
-}
-/// ---cut---
-listToDict(['a', 'b'], (arg) => arg)
-//                       ^?
-listToDict(
-  [4, 8, 15, 16, 23, 42],
-  (arg) => `${arg}`
-//  ^?
-)
-
-// this should break -- mismatch between string/number
-listToDict(['a', 'b'], (arg: number) => `${arg}`)
-```
-
-Let's look at the code in question one more time
-
-```ts
-function listToDict<T>(
-  list: T[], // take the list as an argument
-  idGen: (arg: T) => string // a callback to get Ids
-): { [k: string]: T } {
-  const dict: { [k: string]: T } = {}
-  return dict
-}
-```
-One last thing to examine: the `return` type. The way we've
-defined this, a `T[]` will be turned into a `{ [k: string]: T }` 
-_for any `T` of our choosing_
-
