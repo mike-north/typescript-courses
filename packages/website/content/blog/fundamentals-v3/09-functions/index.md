@@ -37,7 +37,7 @@ Let's pause for a minute to note:
 ### `void`[^1]
 
 Sometimes functions don't return anything, and we know from
-experience with Javscript, what actually happens in the situation below
+experience with JavaScript, what actually happens in the situation below
 is that `x` will be `undefined`:
 
 ```ts twoslash
@@ -51,7 +51,7 @@ const x = printFormattedJSON(["hello", "world"])
 
 So why is it showing up as `void`?
 
-[`void`](https://www.typescriptlang.org/docs/handbook/2/functions.html#void) is a special type, that's specifically used to describe 
+[`void`](https://www.typescriptlang.org/docs/handbook/2/functions.html#void) is a special type, that's specifically used to describe
 function return values. It has the following meaning:
 
 > The return value of a void function is intended to be _ignored_
@@ -91,7 +91,7 @@ const d = new MyDateConstructor()
 //    ^?
 ```
 
-These are rare, but if you ever happen to come across them -  you now know what they are.
+These are rare, but if you ever happen to come across them - you now know what they are.
 
 ## Function overloads
 
@@ -112,7 +112,7 @@ Imagine the following situation:
 What if we had to create a function that allowed us to register a "main event listener"?
 
 - If we are passed a `form` element, we should allow registration of a "submit callback"
-- If we are passed an `iframe` element, we should allow registration of a "postmessage callback"
+- If we are passed an `iframe` element, we should allow registration of a "`postMessage` callback"
 
 Let's give it a shot:
 
@@ -135,7 +135,7 @@ handleMainEvent(myFrame, (val) => {
 
 This is not good -- we are allowing too many possibilities here, including things we don't aim to support (e.g., using a `HTMLIFrameElement` with `FormSubmitHandler`, which doesn't make much sense).
 
-We can solve this using [_function overloads_](dict, ), where we define multiple function heads that serve as entry points to a single implementation:
+We can solve this using [_function overloads_](dict,), where we define multiple function heads that serve as entry points to a single implementation:
 
 ```ts twoslash
 // @noImplicitAny: false
@@ -201,7 +201,7 @@ two "heads" that define an [argument list](https://262.ecma-international.org/#p
 followed by our original implementation.
 
 If you take a close look at tooltips and autocomplete feedback you get from the TypeScript language server,
-it's clear that you are only able to call into the two "heads", leaving the underlying "third head + implementation" inaccessable from the outside world.
+it's clear that you are only able to call into the two "heads", leaving the underlying "third head + implementation" inaccessible from the outside world.
 
 One last thing that's important to note: "implementation" function signature must be _general enough to include everything that's possible through the exposed first and second function heads_. For example, this wouldn't work
 
@@ -281,12 +281,118 @@ function myClickHandler(
 myClickHandler
 // ^?
 const myButton = document.getElementsByTagName("button")[0]
-const boundHandler
-//    ^?
-  = myClickHandler.bind(myButton)
+const boundHandler =
+  //    ^?
+  myClickHandler.bind(myButton)
 boundHandler(new Event("click")) // bound version: ok
 myClickHandler.call(myButton, new Event("click")) // also ok
 ```
+
 Note TypeScript understands that [`.bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind), [`.call`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call) or [`.apply`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply) will result in the proper `this` being passed to the function as part of its invocation.
+
+## Function type best practices
+
+### Explicitly define return types
+
+TypeScript is capable of inferring function return types quite effectively,
+but this accommodating behavior can lead to unintentional ripple effects where
+types change throughout your codebase
+
+consider the following example
+
+```ts twoslash
+// @errors: 2531 2339
+type JSONPrimitive = string | number | boolean | null
+type JSONObject = { [k: string]: JSONValue }
+type JSONArray = JSONValue[]
+type JSONValue = JSONArray | JSONObject | JSONPrimitive
+/// ---cut---
+export async function getData(url: string) {
+  const resp = await fetch(url)
+  const data = (await resp.json()) as {
+    properties: string[]
+  }
+  return data
+}
+
+function loadData() {
+  getData("https://example.com").then((result) => {
+    console.log(result.properties.join(", "))
+    //           ^?
+  })
+}
+```
+
+and what if we made a seemingly innocent change
+
+```diff
+export async function getData(url: string) {
+  const resp = await fetch(url)
++  if (resp.ok) {
+    const data = await resp.json()
+    return data
++  }
+}
+
+```
+
+We'll see some type-checking errors pop up, but **at the invocation site, not the declaration site**.
+
+Imagine if we were passing this value through several other functions before reaching the point where
+type checking alerted us to a problem!
+
+```ts twoslash
+// @errors: 2531 2339 2532
+type JSONPrimitive = string | number | boolean | null
+type JSONObject = { [k: string]: JSONValue }
+type JSONArray = JSONValue[]
+type JSONValue = JSONArray | JSONObject | JSONPrimitive
+/// ---cut---
+async function getData(url: string) {
+  const resp = await fetch(url)
+  if (resp.ok) {
+    const data = (await resp.json()) as {
+      properties: string[]
+    }
+    return data
+  }
+}
+
+function loadData() {
+  getData("https://example.com").then((result) => {
+    console.log(result.properties.join(", "))
+    //           ^?
+  })
+}
+```
+
+If we use the same example, but define a return type explicitly, the error message
+is surfaced at the declaration site
+
+```ts twoslash
+// @errors: 2366
+type JSONPrimitive = string | number | boolean | null
+type JSONObject = { [k: string]: JSONValue }
+type JSONArray = JSONValue[]
+type JSONValue = JSONArray | JSONObject | JSONPrimitive
+/// ---cut---
+async function getData(
+  url: string
+): Promise<{ properties: string[] }> {
+  const resp = await fetch(url)
+  if (resp.ok) {
+    const data = (await resp.json()) as {
+      properties: string[]
+    }
+    return data
+  }
+}
+
+function loadData() {
+  getData("https://example.com").then((result) => {
+    console.log(result.properties.join(", "))
+  })
+}
+```
 
 [^1]: There is a native Javascript concept of a native `void` keyword, but it's not related to the TypeScript concept of the same name.

@@ -257,10 +257,12 @@ if (myVehicle instanceof Truck) {
   )
 }
 ```
+
 Now, one of three things will happen in that final `else` block
-* We'll have handled every case before reaching it, and thus we'll never enter it at all
-* We'll catch upstream code changes that need to be handled in this conditional at compile time (e.g., adding the `Boat` case)
-* If somehow an unexpected value "slip through" and is not caught until we actually run the code, we'll get a meaningful error message
+
+- We'll have handled every case before reaching it, and thus we'll never enter it at all
+- We'll catch upstream code changes that need to be handled in this conditional at compile time (e.g., adding the `Boat` case)
+- If somehow an unexpected value "slip through" and is not caught until we actually run the code, we'll get a meaningful error message
 
 Note that this same approach works nicely with a `switch` statement, when the `UnreachableError` is thrown from the `default` case clause
 

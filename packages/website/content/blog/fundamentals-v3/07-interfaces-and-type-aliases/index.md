@@ -159,10 +159,28 @@ export function maybeGetUserInfo(): UserInfoOutcome {
 }
 ```
 
+### Inheritance
+
+You can create type aliases that combine existing types with new behavior
+by using Intersection (`&`) types.
+
+```ts twoslash
+type SpecialDate = Date & { getReason(): string }
+
+const newYearsEve: SpecialDate = {
+  ...new Date(),
+  getReason: () => "Last day of the year",
+}
+newYearsEve.getReason
+//             ^|
+```
+
+While there's no true `extends` keyword that can be used when defining type aliases, this pattern has a very similar effect
+
 ## Interfaces
 
 An [interface](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces) is a way of defining an [_object type_](https://www.typescriptlang.org/docs/handbook/2/objects.html). An "object type"
-can be thought of as, "an instance of a class could concievably look like this".
+can be thought of as, "an instance of a class could conceivably look like this".
 
 For example, `string | number` is not an object type, because it
 makes use of the **union type operator**.
@@ -182,13 +200,14 @@ Like type aliases, interfaces can be imported/exported between
 modules just like values, and they serve to provide a "name"
 for a specific type.
 
-### Inheritance and `implements`
+### Inheritance:
 
-If you've ever seen a class that "inherits" a base class,
+#### `extends`
+
+If you've ever seen a JavaScript class that "inherits" behavior from a base class,
 you've seen an example of what TypeScript calls a **heritage clause**: [`extends`](course/fundamentals-v3)
 
-```ts twoslash
-// @noImplicitAny: false
+```js twoslash
 function consumeFood(arg) {}
 /// ---cut---
 class Animal {
@@ -208,6 +227,27 @@ d.eat
 d.bark
 //  ^?
 ```
+
+- Just as in in JavaScript, **a subclass `extends` from a base class**.
+- Additionally **a "sub-interface" `extends` from a base interface**, as shown in the example below
+
+```ts twoslash
+interface Animal {
+  isAlive(): boolean
+}
+interface Mammal extends Animal {
+  getFurOrHairColor(): string
+}
+interface Dog extends Mammal {
+  getBreed(): string
+}
+function careForDog(dog: Dog) {
+  dog.getBreed
+  //   ^|
+}
+```
+
+#### `implements`
 
 TypeScript adds a second heritage clause that can be used to
 state that **a given class should produce instances that confirm
@@ -382,13 +422,13 @@ this is now much easier, and works with either type aliases or interfaces.
 
 ```ts twoslash
 // @errors: 2345
-type NestedNums = number | NestedNums[]
+type NestedNumbers = number | NestedNumbers[]
 
-const val: NestedNums = [3, 4, [5, 6, [7], 59], 221]
+const val: NestedNumbers = [3, 4, [5, 6, [7], 59], 221]
 
 if (typeof val !== "number") {
   val.push(41)
   //  ^?
-  val.push('this will not work')
+  val.push("this will not work")
 }
 ```
