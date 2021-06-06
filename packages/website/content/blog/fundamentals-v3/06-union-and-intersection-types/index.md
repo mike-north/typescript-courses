@@ -10,10 +10,14 @@ order: 6
 
 ## Union and Intersection Types, Conceptually
 
-This concept has [a very specific technical definition](<https://en.wikipedia.org/wiki/Union_(set_theory)>)
-that comes from set theory, but it's completely fine to think of it as **OR, for types**.
+Union and intersection types can conceptually be thought of as logical boolean operators
+(`AND` and `OR`) as they pertain to types. Let's look at this group of two overlapping
+sets of items as an example:
 
 ![union](./venn.png)
+
+A union type has [a very specific technical definition](<https://en.wikipedia.org/wiki/Union_(set_theory)>)
+that comes from set theory, but it's completely fine to think of it as **OR, for types**.
 
 In the diagram above, if we had a type `Fruit OR Sour` it would include
 every one of the foods on the entire chart.
