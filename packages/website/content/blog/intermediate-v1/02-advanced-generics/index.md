@@ -119,5 +119,11 @@ is now represented in two places
 
 #### `T extends` vs `class extends`
 
-The `extends` keyword is used in object-oriented inheritance, 
-and while this has a similar logical meaning, 
+The `extends` keyword is used in object-oriented inheritance, and
+while not strictly equivalent to how it's used with type params,
+there's a conceptual connection:
+
+> When a class extends from a base class, it's guaranteed
+> to _at least_ align with the base class structure. In the same
+> way, `T extends HasId` guarantees that "T is at least a HasId".
+
