@@ -9,12 +9,12 @@ course: fundamentals-v3
 order: 9
 ---
 
-We've dealt with function argument and return types, but there
+We have dealt with function argument and return types, but there
 are a few more in-depth features we need to cover.
 
 ## Callable types
 
-Both type aliases and and interfaces offer the capability for describing call signatures
+Both type aliases and and interfaces offer the capability to describe [call signatures](https://www.typescriptlang.org/docs/handbook/2/functions.html#call-signatures):
 
 ```ts twoslash
 interface TwoNumberCalculation {
@@ -29,7 +29,7 @@ const subtract: TwoNumberCalc = (x, y) => x - y
 //                               ^?
 ```
 
-Let's stop to notice a few things
+Let's pause for a minute to note:
 
 - The return type for an interface is `:number`, and for the type alias it's `=> number`
 - Because we provide types for the functions `add` and `subtract`, we don't need to provide type annotations for each individual function's argument list or return type
@@ -37,8 +37,8 @@ Let's stop to notice a few things
 ### `void`[^1]
 
 Sometimes functions don't return anything, and we know from
-experience with JS, what actually happens in the situation below
-is that `x` will be `undefined`
+experience with Javscript, what actually happens in the situation below
+is that `x` will be `undefined`:
 
 ```ts twoslash
 function printFormattedJSON(obj: string[]) {
@@ -49,15 +49,15 @@ const x = printFormattedJSON(["hello", "world"])
 //    ^?
 ```
 
-so what is it showing up as `void`?
+So why is it showing up as `void`?
 
-`void` is a special type, that's specifically for use when describing
-function return values, and it has the following meaning:
+[`void`](https://www.typescriptlang.org/docs/handbook/2/functions.html#void) is a special type, that's specifically used to describe 
+function return values. It has the following meaning:
 
 > The return value of a void function is intended to be _ignored_
 
 We could type functions as returning `undefined`, but there are some interesting
-differences that highlight the reason for `void`'s existence
+differences that highlight the reason for `void`'s existence:
 
 ```ts twoslash
 // @errors: 2322
@@ -78,7 +78,7 @@ and our `invokeInFourSeconds` function above is unhappy about this being returne
 
 ### Construct signatures
 
-Construct signatures are similar to call signatures, except they describe what should happen with the `new` keyword.
+[Construct signatures](https://www.typescriptlang.org/docs/handbook/2/functions.html#construct-signatures) are similar to call signatures, except they describe what should happen with the `new` keyword.
 
 ```ts twoslash
 // @errors: 2454
@@ -91,11 +91,11 @@ const d = new MyDateConstructor()
 //    ^?
 ```
 
-These are rare, but now you know what they are, if you ever happen to come across them
+These are rare, but if you ever happen to come across them -  you now know what they are.
 
 ## Function overloads
 
-Imagine the following situation
+Imagine the following situation:
 
 ```html
 <iframe src="https://example.com" />
@@ -109,10 +109,10 @@ Imagine the following situation
 </form>
 ```
 
-What if we had to create a function that allowed us to register a "main event listener".
+What if we had to create a function that allowed us to register a "main event listener"?
 
-- If we're passed a `form` element, we should allow registration of a "submit callback"
-- If we're passed an `iframe` element, we should allow registration of a "postmessage callback"
+- If we are passed a `form` element, we should allow registration of a "submit callback"
+- If we are passed an `iframe` element, we should allow registration of a "postmessage callback"
 
 Let's give it a shot:
 
@@ -133,9 +133,9 @@ handleMainEvent(myFrame, (val) => {
 })
 ```
 
-This isn't good -- we allow too many possibilities here, including things we don't aim to support (e.g., using a `HTMLIFrameElement` in combination with the `FormSubmitHandler`, which doesn't make much sense)
+This is not good -- we are allowing too many possibilities here, including things we don't aim to support (e.g., using a `HTMLIFrameElement` with `FormSubmitHandler`, which doesn't make much sense).
 
-We can solve this using _function overloads_, where we define multiple function heads that serve as entry points to a single implementation
+We can solve this using [_function overloads_](dict, ), where we define multiple function heads that serve as entry points to a single implementation:
 
 ```ts twoslash
 // @noImplicitAny: false
@@ -167,11 +167,11 @@ handleMainEvent(myForm, (val) => {
 })
 ```
 
-Look at that! We've effectively created a linkage between
+Look at that! We have effectively created a linkage between
 the first and second arguments, which allows our callback's
-argument type to change, based on the type of `handleMainEvent`'s first argument
+argument type to change, based on the type of `handleMainEvent`'s first argument.
 
-Let's take a closer look at the function declaration
+Let's take a closer look at the function declaration:
 
 ```ts twoslash
 // @noImplicitAny: false
@@ -201,9 +201,9 @@ two "heads" that define an [argument list](https://262.ecma-international.org/#p
 followed by our original implementation.
 
 If you take a close look at tooltips and autocomplete feedback you get from the TypeScript language server,
-it's clear that you're only able to call into the two "heads", leaving the underlying "third head + implementation" inaccessable from the outside world
+it's clear that you are only able to call into the two "heads", leaving the underlying "third head + implementation" inaccessable from the outside world.
 
-One last thing that's important to note: that "implementation" function signature must be _general enough to include everything that's possible through the exposed first and second function heads_. For example, this wouldn't work
+One last thing that's important to note: "implementation" function signature must be _general enough to include everything that's possible through the exposed first and second function heads_. For example, this wouldn't work
 
 ```ts twoslash
 // @errors: 2394
@@ -229,9 +229,9 @@ handleMainEvent
 ## `this` types
 
 Sometimes we have a free-standing function that has a strong opinion around
-what `this` will end up being, at the time it's invoked.
+what `this` will end up being, at the time it is invoked.
 
-For example, if we had a DOM event listener for a button
+For example, if we had a DOM event listener for a button:
 
 ```html
 <button onClick="myClickHandler">Click Me!</button>
@@ -287,6 +287,6 @@ const boundHandler
 boundHandler(new Event("click")) // bound version: ok
 myClickHandler.call(myButton, new Event("click")) // also ok
 ```
-Note TypeScript understands that [`.bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind), [`.call`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call) or [`.apply`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply) will result in the proper `this` being passed to the function as part of its invocation
+Note TypeScript understands that [`.bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind), [`.call`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call) or [`.apply`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply) will result in the proper `this` being passed to the function as part of its invocation.
 
-[^1]: There's a native javascript concept of a native `void` keyword, but it's not related to the TypeScript concept of the same name
+[^1]: There is a native Javascript concept of a native `void` keyword, but it's not related to the TypeScript concept of the same name.
