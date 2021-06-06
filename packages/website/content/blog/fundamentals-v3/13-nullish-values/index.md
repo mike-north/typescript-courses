@@ -88,13 +88,13 @@ cart.fruits.push({ name: "kumkuat", qty: 1 })
 //   ^?
 cart.fruits!.push({ name: "kumkuat", qty: 1 })
 ```
-I recommend against using this in your app or library code, but 
+
+I recommend against using this in your app or library code, but
 if your test infrastructure represents a `throw` as a test failure (most should)
 this is a _great_ thing to use in your test suite.
 
 In the above situation, if `fruits` was expected to be present and it's not,
 that's a very reasonable test failure :tada:
-
 
 ## Definite assignment operator
 
@@ -103,7 +103,6 @@ objections about a class field being used, when it can't be proven[^1]
 that it was initialized.
 
 Let's look at the following example
-
 
 ```ts twoslash
 // @errors: 2564
@@ -114,7 +113,7 @@ class ThingWithAsyncSetup {
 
   constructor() {
     this.setupPromise = new Promise((resolve) => {
-      this.isSetup = false 
+      this.isSetup = false
       return this.doSetup()
     }).then(() => {
       this.isSetup = true
@@ -129,6 +128,7 @@ class ThingWithAsyncSetup {
 
 TypeScript is warning me that someone could create an instance of this class
 and immediately attempt to access `.isSetup` before it gets a boolean value
+
 ```ts twoslash
 // @errors: 2564
 // @noImplicitAny: false
@@ -138,7 +138,7 @@ class ThingWithAsyncSetup {
 
   constructor() {
     this.setupPromise = new Promise((resolve) => {
-      this.isSetup = false 
+      this.isSetup = false
       return this.doSetup()
     }).then(() => {
       this.isSetup = true
@@ -154,6 +154,7 @@ let myThing = new ThingWithAsyncSetup()
 myThing.isSetup // what if this isn't assigned yet?
 //       ^?
 ```
+
 What I know, that the compiler doesn't, is that the function passed into the
 `Promise` constructor is invoked _synchronously_, meaning by the time we
 receive our instance of `ThingWithAsyncSetup`, the `isSetup` property will

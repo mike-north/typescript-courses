@@ -21,7 +21,7 @@ order: 1
 This workshop project works best in a [POSIX-compliant][posix] dev environment
 like Linux, macOS, or Windows 10 (with [Windows Subsystem for Linux][wsl2]).
 
-### JavaScript Toolchain
+### JavaScript Tool chain
 
 - We'll be using `yarn` as our package manager, not `npm`
 - Please install [Volta][volta], to ensure you run this project with the correct `node` and `yarn` versions

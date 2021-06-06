@@ -23,6 +23,14 @@ let age = 6
 As we can see, TypeScript is able to [infer](https://www.typescriptlang.org/docs/handbook/type-inference.html) that `age` is a number, based on the
 fact that we're initializing it with a value _as we are declaring it_.
 
+If we try to give `age` a value that is _incompatible_ with `number`, we get an error
+
+```ts twoslash
+// @errors: 2322
+let age = 6
+age = "not a number"
+```
+
 **In TypeScript, variables are "born" with their types.** Although
 there are ways of making them more specific in certain branches of code,
 there's no (safe) way of changing `age`'s type from `number` to `string`.
@@ -50,13 +58,13 @@ a specific number.
 
 [[info | :bulb: Theme: Inferring with safe specificity]]
 | There's a common idea you'll see again and again when working with TypeScript.
-| Inferrence is made specificially, but not so specific as to get in the way
+| Inference is made specifically, but not so specific as to get in the way
 | of common behavior.
 | <br />
 | <br />
 | For example, the `let` variable declaration above could have assumed `age` to
 | be of type `6`, but this would have interfered with our ability to set this
-| reassignable variable to `7` or `8`.
+| re-assignable variable to `7` or `8`.
 
 ## Implicit `any` and type annotations
 
@@ -78,11 +86,11 @@ setTimeout(() => {
 }, RANDOM_WAIT_TIME)
 ```
 
-`endTime` is "born" without a type, so it's what we call an implicit `any`. 
-TypeScript doesn't have enough information around the declaration site to infer 
+`endTime` is "born" without a type, so it's what we call an implicit `any`.
+TypeScript doesn't have enough information around the declaration site to infer
 what `endTime` should be, so it gets the most flexible type: `any`.
 
-Think of `any` as "the normal way JS variables work", in that you could assign 
+Think of `any` as "the normal way JS variables work", in that you could assign
 `endTime` to a `number`, then later a `function`, then a `string`.
 
 If we wanted more safety here, we could add a **type annotation**:

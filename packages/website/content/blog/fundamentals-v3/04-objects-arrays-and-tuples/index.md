@@ -69,6 +69,7 @@ function printCar(car: {
   console.log(`${car.make} ${car.model} (${car.year})`)
 }
 ```
+
 Notice that we can use this exact same kind of type annotation for function arguments.
 
 At this point, you can start to see that we see "completions" when we start
@@ -160,7 +161,7 @@ printCar({
   model: "Model 3",
   year: 2020,
   chargeVoltage: 220,
-  color: "RED",  // <0------ EXTRA PROPERTY
+  color: "RED", // <0------ EXTRA PROPERTY
 })
 ```
 
@@ -189,7 +190,7 @@ const phones = {
   // prettier-ignore
   home: { country: "+1", area: "211", number: "652-4515" },
   work: { country: "+1", area: "670", number: "752-5856" },
-  fax:  { country: "+1", area: "322", number: "525-4357" },
+  fax: { country: "+1", area: "322", number: "525-4357" },
 }
 ```
 
@@ -206,15 +207,13 @@ const phones: {
     area: string
     number: string
   }
-} = { 
-
-}
+} = {}
 
 phones.fax
 //     ^?
 ```
 
-Now, no matter what key we lookup, we get an object that represents 
+Now, no matter what key we lookup, we get an object that represents
 a phone number.
 
 ## Array Types
@@ -265,9 +264,10 @@ let myCar = [2002, "Toyota", "Corolla"]
 const [year, make, model] = myCar
 //                    ^?
 ```
+
 `|` means "OR", so we can think of `string | number` means _either a string or a number_.
 
-TypeScript has chosen **the most specific type that describes the entire contents of the array**. 
+TypeScript has chosen **the most specific type that describes the entire contents of the array**.
 This is not quite what we wanted, in that:
 
 - it allows us to break our convention where the year _always_ comes first
@@ -316,6 +316,7 @@ make
 Now, we get errors in the places we expect, and all types work out as we hoped.
 
 ### Limitations
+
 As of [TypeScript 4.3](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-3.html#separate-write-types-on-properties), there's limited support for enforcing
 tuple length constraints.
 

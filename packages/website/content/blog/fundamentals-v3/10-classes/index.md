@@ -10,7 +10,7 @@ order: 10
 ---
 
 TypeScript classes add some powerful and important features on top
-of traditional JavaScript classes. In this unit, we will take a closer look at 
+of traditional JavaScript classes. In this unit, we will take a closer look at
 **class fields**, **access modifier keywords** and more!
 
 ## Class Fields
@@ -153,7 +153,7 @@ A couple of things to note in the example above:
   - `Sedan` can expose `protected` functionality through defining its own `public` functionality
 
 [[warning | :warning: Not for secret-keeping or security]]
-| It is important to understand that, just like any other aspect of type information, access modifier keywords 
+| It is important to understand that, just like any other aspect of type information, access modifier keywords
 | are only **validated at compile time, with no real privacy or security benefits at runtime**.
 | This means that even if we mark something as `private`, if a user decides to set a breakpoint and
 | inspect the code that's executing at runtime, they'll still be able to see everything.
@@ -207,7 +207,7 @@ class Car {
 
 ## Param properties
 
-Ok, let's pop a stack frame. Now that we know about access modifier keywords, let's 
+Ok, let's pop a stack frame. Now that we know about access modifier keywords, let's
 return to an earlier code snippet from our discussion around class fields:
 
 ```ts twoslash
@@ -254,25 +254,27 @@ class Car {
 
 > The first argument passed to the constructor should be a
 > `string`, and should be available within the scope of the constructor
-> as `make`. This also creates a `public` class field on `Car` called `make` and 
+> as `make`. This also creates a `public` class field on `Car` called `make` and
 > pass it the value that was given to the constructor
 
 It is important to understand the order in which "constructor-stuff" runs.
 
 Here's an example that will help us understand how this works:
+
 ```ts twoslash
 class Base {}
 
-class Car extends Base{
-  foo = console.log('class field initializer')
+class Car extends Base {
+  foo = console.log("class field initializer")
   constructor(public make: string) {
     super()
-    console.log('custom constructor stuff')
+    console.log("custom constructor stuff")
   }
 }
 
-const c = new Car('honda')
+const c = new Car("honda")
 ```
+
 and the equivalent compiled output:
 
 ```ts twoslash
@@ -280,37 +282,39 @@ and the equivalent compiled output:
 // @target: ES2015
 class Base {}
 
-class Car extends Base{
-  foo = console.log('class field initializer')
+class Car extends Base {
+  foo = console.log("class field initializer")
   constructor(public make: string) {
     super()
-    console.log('custom constructor stuff')
+    console.log("custom constructor stuff")
   }
 }
 
-const c = new Car('honda')
+const c = new Car("honda")
 ```
+
 Note the following order of what ends up in the class constructor:
+
 1. `super()`
 1. param property initialization
 1. other class field initialization
 1. anything else that was in your constructor after `super()`
 
-Also note that, while it is possible in JS to put stuff before `super()`, 
+Also note that, while it is possible in JS to put stuff before `super()`,
 the use of class field initializers or param properties disallows this:
 
 ```ts twoslash
 // @errors: 2376
 class Base {}
 
-class Car extends Base{
-  foo = console.log('class field initializer')
+class Car extends Base {
+  foo = console.log("class field initializer")
   constructor(public make: string) {
-    console.log('before super')
+    console.log("before super")
     super()
-    console.log('custom constructor stuff')
+    console.log("custom constructor stuff")
   }
 }
 
-const c = new Car('honda')
+const c = new Car("honda")
 ```
