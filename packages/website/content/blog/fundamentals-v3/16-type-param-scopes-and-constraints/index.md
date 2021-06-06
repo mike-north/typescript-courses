@@ -205,4 +205,7 @@ function ex2<T extends HasId>(list: T[]) {
 }
 ```
 
+Remember, this is not exactly an _independent decision_ to make, as 
+types belong to the same scope as values they describe.
+
 Finally, only use type parameters when you have a real need for them
