@@ -5,7 +5,7 @@ description: |
   In this chapter, we'll learn about scopes and constraints, as they pertain to
   type params, and what the language would look like if we didn't have these
   important tools
-course: intermediate-v1
+course: fundamentals-v3
 order: 02
 ---
 
