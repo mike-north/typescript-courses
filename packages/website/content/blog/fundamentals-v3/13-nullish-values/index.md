@@ -3,9 +3,9 @@ title: Nullish values
 date: "2015-05-01T22:12:03.284Z"
 description: |
   There are situations where we have to plan for, and deal with
-  the possibility that values are null or undefined. In this chapter
-  we'll dive deep into null, undefined, definite assignment,
-  and the non-null assertion operator
+  the possibility that values are null or undefined. In this chapter, 
+  we will dive deep into null, undefined, definite assignment,
+  and the non-null assertion operator.
 course: fundamentals-v3
 order: 13
 ---

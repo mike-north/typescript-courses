@@ -2,8 +2,8 @@
 title: Variables and Values
 date: "2015-05-01T22:12:03.284Z"
 description: |
-  We'll begin our study of the TypeScript language with simple variables
-  and functions
+  We will begin our study of the TypeScript language with simple variables
+  and functions.
 course: fundamentals-v3
 order: 3
 ---

@@ -2,8 +2,8 @@
 title: Union and Intersection Types
 date: "2015-05-01T22:12:03.284Z"
 description: |
-  We'll discuss and explore TypeScript's union and intersection types,
-  which are effectively "AND" and "OR" boolean logic operators for types
+  We will discuss and explore TypeScript's union and intersection types,
+  which are effectively "AND" and "OR" boolean logic operators for types.
 course: fundamentals-v3
 order: 6
 ---

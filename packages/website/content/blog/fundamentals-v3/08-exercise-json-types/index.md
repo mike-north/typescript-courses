@@ -3,7 +3,7 @@ title: JSON types
 date: "2015-05-01T22:12:03.284Z"
 isExercise: true
 description: |
-  We'll take on our first challenge together: defining types
+  We will take on our first challenge together: defining types
   that describe any valid JSON value
 course: fundamentals-v3
 order: 8

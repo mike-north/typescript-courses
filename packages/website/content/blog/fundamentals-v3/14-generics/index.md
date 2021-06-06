@@ -3,7 +3,7 @@ title: Generics
 date: "2015-05-01T22:12:03.284Z"
 description: |
   Generics allow us to parameterize types, which unlocks great opportunity
-  to reuse types broadly across a TypeScript project
+  to reuse types broadly across a TypeScript project.
 course: fundamentals-v3
 order: 14
 ---

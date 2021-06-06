@@ -2,7 +2,7 @@
 title: Hello TypeScript
 date: "2015-05-01T22:12:03.284Z"
 description: |
-  In this unit, we'll get hands on with our first TypeScript program and the
+  In this unit, we will get hands on with our first TypeScript program and the
   compiler CLI command.
 course: fundamentals-v3
 order: 2

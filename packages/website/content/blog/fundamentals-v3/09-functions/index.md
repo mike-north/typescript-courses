@@ -2,9 +2,9 @@
 title: Functions
 date: "2015-05-01T22:12:03.284Z"
 description: |
-  We've dealt with function argument and return types, but there
+  So far, we have dealt with function argument and return types. There
   are a few more in-depth features we need to cover, including
-  multiple function heads and callable types
+  multiple function heads and callable types.
 course: fundamentals-v3
 order: 9
 ---
