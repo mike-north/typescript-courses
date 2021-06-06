@@ -368,3 +368,29 @@ perfectly fine, however...
 1. **If you need to define something other than an object type** (e.g., use of the `|` union type operator), you must use a type alias
 1. If you need to define a type **to use with the `implements` heritage term**, it's best to use an interface
 1. If you need to **allow consumers of your types to _augment_ them**, you must use an interface.
+
+## Recursion
+
+Recursive types, are self-referential, and are often used to describe infinitely nestable types.
+For example, consider infinitely nestable arrays of numbers
+
+```ts
+;[3, 4, [5, 6, [7], 59], 221]
+```
+
+You may read or see things that indicate you must use a combination of `interface` and `type`
+for recursive types. [As of TypeScript 3.7](https://devblogs.microsoft.com/typescript/announcing-typescript-3-7-rc/#more-recursive-type-aliases)
+this is now much easier, and works either type aliases and interfaces
+
+```ts twoslash
+// @errors: 2345
+type NestedNums = number | NestedNums[]
+
+const val: NestedNums = [3, 4, [5, 6, [7], 59], 221]
+
+if (typeof val !== "number") {
+  val.push(41)
+  //  ^?
+  val.push('this will not work')
+}
+```

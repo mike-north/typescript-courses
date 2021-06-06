@@ -70,7 +70,7 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
   );
   if (!course) throw new Error(`Undefined course: ${post.frontmatter.course}`);
 
-  const hasToc = post.tableOfContents.trim() !== '';
+  const hasToc = !!post.tableOfContents && post.tableOfContents.trim() !== '';
   const toc = hasToc ? (
     <div className="post-toc">
       <div className="post-toc__title">Table of Contents</div>
