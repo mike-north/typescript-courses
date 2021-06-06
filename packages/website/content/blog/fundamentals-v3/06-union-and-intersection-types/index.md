@@ -11,7 +11,7 @@ order: 6
 ## Union and Intersection Types, Conceptually
 
 Union and intersection types can conceptually be thought of as logical boolean operators
-(`AND` and `OR`) as they pertain to types. Let's look at this group of two overlapping
+(`AND`, `OR`) as they pertain to types. Let's look at this group of two overlapping
 sets of items as an example:
 
 ![union](./venn.png)
@@ -20,14 +20,14 @@ A union type has [a very specific technical definition](<https://en.wikipedia.or
 that comes from set theory, but it's completely fine to think of it as **OR, for types**.
 
 In the diagram above, if we had a type `Fruit OR Sour` it would include
-every one of the foods on the entire chart.
+every one of the items on the entire chart.
 
 Intersection types also have [a name
 and definition that comes from set theory](<https://en.wikipedia.org/wiki/Intersection_(set_theory)>),
 but they can be thought of as **AND, for types**.
 
 In the same diagram above, if we wanted _fruits that are also sour_ (`Fruit AND Sour`) we'd end up
-only getting `{ Lemon, Lime, Grapefruit }`
+only getting `{ Lemon, Lime, Grapefruit }`.
 
 ## Union Types in TypeScript
 
@@ -40,7 +40,7 @@ For example, if we had a type that could be one of two strings, `"success"` or
 "success" | "error"
 ```
 
-For example, this function returns `"heads"` if a random, number `(0, 1)` is >= 0.5, `"tails"` otherwise
+For example, the `flipCoin()` function will return `"heads"` if a number selected from `(0, 1)` is >= 0.5, or `"tails"` if <=0.5.
 
 ```ts twoslash
 function flipCoin(): "heads" | "tails" {
@@ -159,19 +159,19 @@ The second value is a bit more complicated -- only the `name` property is availa
 This is because, both our "user info object, and instances of the `Error` class have a `name`
 property whose value is a string.
 
-> What we're seeing here is, when a value has a type that includes a union, we're only able
+> What we are seeing here is, when a value has a type that includes a union, we are only able
 > to use the "common behavior" that's guaranteed to be there.
 
 ### Narrowing with type guards
 
-Ultimately, we kind of need to "separate" the two potential possibilities for our value, or
-we won't be able to get very far. We can do this with type guards.
+Ultimately, we need to "separate" the two potential possibilities for our value, or
+we won't be able to get very far. We can do this with [type guards](https://www.typescriptlang.org/docs/handbook/2/narrowing.html).
 
 > Type guards are expressions, which when used with control flow statement, allow us to
 > have a more specific type for a particular value.
 
-I like to think of these as "glue" between the compile-time type-checking and runtime
-execution of your code. We'll work with one that you should already be familiar with
+I like to think of these as "glue" between the compile time type-checking and runtime
+execution of your code. We will work with one that you should already be familiar with
 to start: `instanceof`.
 
 ```ts twoslash
@@ -206,7 +206,7 @@ if (second instanceof Error) {
 ```
 
 TypeScript has a special understanding of _what it means_ when our `instanceof`
-check turns out `true` or `false`, and creates a branch of code that handles each
+check returns `true` or `false`, and creates a branch of code that handles each
 possibility.
 
 It gets even better...
@@ -243,14 +243,14 @@ if (outcome[0] === "error") {
 ```
 
 TypeScript understands that the first and second positions of our tuple are linked.
-What we're seeing here is sometimes referred to as a [discriminated or "tagged" union type](https://en.wikipedia.org/wiki/Tagged_union).
+What we are seeing here is sometimes referred to as a [discriminated or "tagged" union type](https://en.wikipedia.org/wiki/Tagged_union).
 
 ## Intersection Types in TypeScript
 
 Intersection types in TypeScript can be described using the `&` (ampersand) operator.
 
 For example, what if we had a `Promise`, that had extra `startTime` and `endTime`
-properties added to it
+properties added to it?
 
 ```ts twoslash
 const ONE_WEEK = 1000 * 60 * 60 * 24 * 7 // 1w in ms
@@ -274,8 +274,8 @@ thisWeek.end.toISOString()
 This is quite different than what we saw with union types -- this is quite literally
 a `Date` and `{ end: Date}` mashed together, and we have access to everything immediately.
 
-It's _far_ less common to use intersection types compared to union types. I expect
-it to be at least a 50-to-1 ratio for you in practice
+It is _far_ less common to use intersection types compared to union types. I expect
+it to be at least a 50-to-1 ratio for you in practice.
 
 [[question | :grey_question: Ask yourself: why might you run into union types more often?]]
 | - Consider control flow and function return types
