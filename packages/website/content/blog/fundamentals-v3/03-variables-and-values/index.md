@@ -2,18 +2,18 @@
 title: Variables and Values
 date: "2015-05-01T22:12:03.284Z"
 description: |
-  We'll begin our study of the TypeScript language with simple variables
-  and functions
+  We will begin our study of the TypeScript language with simple variables
+  and functions.
 course: fundamentals-v3
 order: 3
 ---
 
-Now that we've compiled a simple TypeScript program, let's look a bit at
-the basics of the programming language
+Now that we have compiled a simple TypeScript program, let's look at
+the basics of the programming language.
 
 ## Variable Declarations & Inference
 
-In JavaScript we declare variables all the time with `let` and `const` like this
+In JavaScript we declare variables all the time with `let` and `const` like this:
 
 ```ts twoslash
 let age = 6
@@ -23,11 +23,11 @@ let age = 6
 As we can see, TypeScript is able to [infer](https://www.typescriptlang.org/docs/handbook/type-inference.html) that `age` is a number, based on the
 fact that we're initializing it with a value _as we are declaring it_.
 
-**In TypeScript, variables are "born" with their types**, and although
+**In TypeScript, variables are "born" with their types.** Although
 there are ways of making them more specific in certain branches of code,
 there's no (safe) way of changing `age`'s type from `number` to `string`.
 
-Let's try the same thing with `const`
+Let's try the same thing with `const`:
 
 ```ts twoslash
 const age = 6
@@ -35,7 +35,7 @@ const age = 6
 ```
 
 Notice that the type of this variable is not `number`, it's `6`. TS is able to make
-a more specific assumption here, because
+a more specific assumption here, because:
 
 - `const` variable declarations cannot be reassigned
 - the initial value assigned to `age` is a number, which is an immutable value type
@@ -60,7 +60,7 @@ a specific number.
 
 ## Implicit `any` and type annotations
 
-Sometimes, we need to declare a variable before it gets initialized
+Sometimes, we need to declare a variable before it gets initialized:
 
 ```ts twoslash
 // @errors: 2554
@@ -85,7 +85,7 @@ what `endTime` should be, so it gets the most flexible type: `any`.
 Think of `any` as "the normal way JS variables work", in that you could assign 
 `endTime` to a `number`, then later a `function`, then a `string`.
 
-If we wanted more safety here, we could add a type annotation
+If we wanted more safety here, we could add a **type annotation**:
 
 ```ts twoslash
 // @errors: 2322
@@ -103,12 +103,12 @@ setTimeout(() => {
 }, RANDOM_WAIT_TIME)
 ```
 
-now TypeScript will correctly alert us when we try to flip flop between the number `0` and
+Now, TypeScript will correctly alert us when we try to flip flop between the number `0` and
 a `Date`.
 
 ## Function arguments and return values
 
-This `: foo` syntax can be used to describe function arguments and return values.
+The `: foo` syntax can be used to describe function arguments and return values.
 In this example, it's not clear, even from the implementation of the function,
 whether `add` should accept numbers or strings.
 
@@ -119,7 +119,7 @@ function add(a, b) {
 }
 ```
 
-Here's what your in-editor autocomplete would look like if you were using this function
+Here's what your in-editor autocomplete would look like if you were using this function:
 
 ```ts twoslash
 // @noImplicitAny: false
@@ -147,12 +147,12 @@ const p = new Promise(result)
 ```
 
 If you've ever created a `Promise` using the promise constructor, you may see
-that we're using a `string` where we _should_ use a two-argument function. This
+that we are using a `string` where we _should_ use a two-argument function. This
 is the kind of thing we'd hope that TypeScript could catch for us.
 
 Without type annotations, "anything goes" for the arguments passed into `add`. Why is this a problem?
 
-Let's add some type annotations to our function's arguments
+Let's add some type annotations to our function's arguments:
 
 ```ts twoslash
 // @errors: 2345
@@ -163,7 +163,7 @@ const result = add(3, "4")
 ```
 
 Great, now we can enforce that only values of type `number` are passed into the function,
-and TS can now determine the return type automatically.
+and TS can now determine the return type automatically:
 
 ```ts twoslash
 // @errors: 2345

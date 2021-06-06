@@ -2,8 +2,8 @@
 title: Top and bottom types
 date: "2015-05-01T22:12:03.284Z"
 description: |
-  Top types can be anything, bottom types can't be anything. We'll look
-  at these three "extreme types" in TypeScript: any, unknown and never.
+  Top types can be anything, bottom types can't be anything. We will also look
+  at three "extreme types" in TypeScript: any, unknown and never.
 course: fundamentals-v3
 order: 11
 ---

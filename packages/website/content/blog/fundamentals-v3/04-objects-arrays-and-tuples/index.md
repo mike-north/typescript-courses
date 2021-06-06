@@ -9,7 +9,7 @@ order: 4
 ---
 
 Now that we know how to type simple variables and functions, let's make things
-a bit more interesting with collections: in JavaScript this includes Objects and Arrays.
+a bit more interesting with collections - such as Objects and Arrays in JavaScript.
 
 ## Objects
 
@@ -18,13 +18,13 @@ In general, object types are defined by:
 - The **names** of the properties that are (or may be) present
 - The **types** of those properties
 
-For example, if we had the concept of a `Car` like "2002 Toyota Corolla" with properties
+For example, if we had the concept of a `Car` like "2002 Toyota Corolla" with properties:
 
 - `make`: the manufacturer (in this case, "Toyota")
 - `model`: the particular product (in this case, "Corolla")
 - `year`: the "model year" of the product (in this case, 2002)
 
-We could create a JavaScript object to represent this information
+We could create a JavaScript object to represent this information:
 
 ```js
 {
@@ -34,7 +34,7 @@ We could create a JavaScript object to represent this information
 }
 ```
 
-The type that would describes what this kind of object's structure is
+The type that would describes this object's structure:
 
 ```ts
 {
@@ -44,7 +44,7 @@ The type that would describes what this kind of object's structure is
 }
 ```
 
-We can use this type using the same `: foo` notation we've already discussed
+We can use this type using the same `: foo` notation we've already discussed!
 
 ```ts twoslash
 let car: {
@@ -54,7 +54,7 @@ let car: {
 }
 ```
 
-We could create a function to print values of this type to the console
+We could create a function to print values of this type to the console:
 
 ```ts twoslash
 /**
@@ -69,14 +69,14 @@ function printCar(car: {
   console.log(`${car.make} ${car.model} (${car.year})`)
 }
 ```
-Notice that we can use this exact same kind of type annotation for function arguments
+Notice that we can use this exact same kind of type annotation for function arguments.
 
 At this point, you can start to see that we see "completions" when we start
-using `car` in the body of this function
+using `car` in the body of this function.
 
 ### Optional Properties
 
-What if we take our car example a bit further by adding a fourth property
+What if we take our car example a bit further by adding a fourth property that's only present sometimes?
 
 | Property Name   | Is present    | Type     | Note                               |
 | --------------- | ------------- | -------- | ---------------------------------- |
@@ -85,7 +85,7 @@ What if we take our car example a bit further by adding a fourth property
 | `year`          | _Always_      | `number` |                                    |
 | `chargeVoltage` | **Sometimes** | `number` | not present unless car is electric |
 
-We can state that this property is optional using the `?` operator
+We can state that this property is optional using the `?` operator:
 
 ```ts twoslash
 function printCar(car: {
@@ -105,7 +105,7 @@ function printCar(car: {
 ```
 
 This will allow our `printCar` function to work, regardless of whether the `chargeVoltage`
-property is present or not
+property is present or not:
 
 ```ts twoslash
 function printCar(car: {
@@ -142,7 +142,7 @@ printCar({
 ### Excess property checking
 
 TypeScript helps us catch a particular type of problem around the use of object literals.
-Let's look at the situation where the error arises
+Let's look at the situation where the error arises:
 
 ```ts twoslash
 // @errors: 2345
@@ -164,7 +164,7 @@ printCar({
 })
 ```
 
-The important part of this error message is
+The important part of this error message is:
 
 > Object literal may only specify known properties, and 'color' does not exist in type &lt;the type the function expects&gt;
 
@@ -179,10 +179,10 @@ later on!
 
 ### Index signatures
 
-Sometimes we need to represent a type for dictionaries, where
+Sometimes we need to represent a type for **dictionaries**, where
 values of a consistent type are retrievable by keys.
 
-Let's consider the following collection of phone numbers
+Let's consider the following collection of phone numbers:
 
 ```ts twoslash
 const phones = {
@@ -197,7 +197,7 @@ Clearly it seems that we can store phone numbers under a "key" -- in this case
 `home`, `office`, `fax`, and possibly other words of our choosing -- and
 each phone number is comprised of three strings.
 
-We could describe this value using what's called an _index signature_
+We could describe this value using what's called an _index signature_:
 
 ```ts twoslash
 const phones: {
@@ -228,7 +228,7 @@ const fileExtensions = ["js", "ts"]
 ```
 
 You could use our more complicated car type too, following the type for our
-3-property object with `[]` as shown in the tooltip below
+3-property object with `[]` as shown in the tooltip below:
 
 ```ts twoslash
 const cars = [
@@ -257,7 +257,7 @@ let myCar = [2002, "Toyota", "Corolla"]
 const [year, make, model] = myCar
 ```
 
-Let's see how TypeScript handles inference in this case
+Let's see how TypeScript handles inference in this case:
 
 ```ts twoslash
 let myCar = [2002, "Toyota", "Corolla"]
@@ -265,10 +265,10 @@ let myCar = [2002, "Toyota", "Corolla"]
 const [year, make, model] = myCar
 //                    ^?
 ```
-`|` means "OR", so we can think of `string | number` means "either a string or a number".
+`|` means "OR", so we can think of `string | number` means _either a string or a number_.
 
 TypeScript has chosen **the most specific type that describes the entire contents of the array**. 
-This is not quite what we wanted, in that
+This is not quite what we wanted, in that:
 
 - it allows us to break our convention where the year _always_ comes first
 - it doesn't quite help us with the "finite length" aspect of tuples
@@ -291,7 +291,7 @@ do you think is more commonly used?
 |
 
 If TypeScript made a _more specific_ assumption as it inferred the type of `myCar`,
-it would get in our way much of the time
+it would get in our way much of the time...
 
 There's no major problem here, but it does mean that **we need to explicitly state the type of a tuple**
 whenever we declare one.
@@ -316,17 +316,17 @@ make
 Now, we get errors in the places we expect, and all types work out as we hoped.
 
 ### Limitations
-At least as of TypeScript 4.3, there's only limited support for enforcing
+As of [TypeScript 4.3](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-3.html#separate-write-types-on-properties), there's limited support for enforcing
 tuple length constraints.
 
-For example, you get the support you'd hope for on assignment
+For example, you get the support you'd hope for on assignment:
 
 ```ts twoslash
 // @errors: 2322
 const numPair: [number, number] = [4, 5, 6]
 ```
 
-but not around `push` and `pop`
+but not around `push` and `pop`:
 
 ```ts twoslash
 // @errors: 2322

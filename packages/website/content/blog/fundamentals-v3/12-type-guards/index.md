@@ -2,7 +2,7 @@
 title: Type guards and narrowing
 date: "2015-05-01T22:12:03.284Z"
 description: |
-  We've explored built-in type guards like typeof and instanceof,
+  We have explored built-in type guards like typeof and instanceof,
   but there's a lot more power in type guards, including the ability
   to define your own!
 course: fundamentals-v3
