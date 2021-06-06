@@ -9,10 +9,10 @@ course: fundamentals-v3
 order: 8
 ---
 
-Let's put our  knowledge to the test, by defining a type 
+Let's put our knowledge to the test, by defining a type 
 that describes any allowable JSON value.
 
-Here's the relevant section of the specification
+Here's the relevant section of the specification:
 
 ```
 A JSON value MUST be an
@@ -29,7 +29,7 @@ or one of the following three literal names:
 - null
 ```
 
-Here's your starting point code
+Here's your starting point code:
 
 ```ts twoslash
 // @errors: 2578
