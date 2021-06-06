@@ -16,6 +16,7 @@ As long as you can access the following websites, you should require no further 
 
 ## Course Overview
 
+
 ### TODO: Goals
 
 ### TODO: Agenda

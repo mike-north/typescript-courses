@@ -10,7 +10,7 @@ order: 2
 
 ## Anatomy of the project
 
-Open your [`packages/hello-ts`](https://github.com/mike-north/ts-fundamentals-v3/blob/main/packages/hello-ts/) folder to find
+Open your [`./packages/hello-ts`](https://github.com/mike-north/ts-fundamentals-v3/blob/main/packages/hello-ts/) folder to find
 our first tiny project. There are only three files
 
 ```sh
