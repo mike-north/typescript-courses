@@ -9,14 +9,14 @@ course: fundamentals-v3
 order: 12
 ---
 
-We've explored built-in type guards like typeof and instanceof,
+We've explored built-in type guards like [typeof](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#typeof-type-guards) and [instanceof](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#instanceof-narrowing),
 but there's a lot more power in type guards, including the ability
 to define your own!
 
 ## Built-in type guards
 
 There are a bunch of type guards that are included with TypeScript. Below is an
-illustrative example of a wide variety of them
+illustrative example of a wide variety of them:
 
 ```ts twoslash
 let value:
@@ -65,7 +65,7 @@ else if ("dateRange" in value) {
 ## User-defined type guards
 
 If we lived in a world where we only had the type guards we've seen so far,
-we'd quickly run into a problem as our use of built-in type guards became more complex.
+we'd quickly run into problems as our use of built-in type guards become more complex.
 
 For example, how would we validate objects that are type-equivalent with our `CarLike` interface below?
 
@@ -95,11 +95,11 @@ if (
 }
 ```
 
-Validating this type _may_ be possible, but it would almost certainly involve casting.
+Validating this type _might_ be possible, but it would almost certainly involve casting.
 
-Even if this did work, it's getting messy enough that we'd want to refactor it out into a function or something, so that it could be reused across our codebase
+Even if this did work, it is getting messy enough that we'd want to refactor it out into a function or something, so that it could be reused across our codebase.
 
-Let's see what happens when we try to do this
+Let's see what happens when we try to do this:
 
 ```ts twoslash
 // @noImplicitAny: false
@@ -132,14 +132,14 @@ if (isCarLike(maybeCar)) {
 }
 ```
 
-It looks like, even the broken/imperfect narrowing effect of this conditional has disappeared.
+As you can see, the broken/imperfect narrowing effect of this conditional has disappeared.
 
 > As things stand right now, TypeScript seems to have no idea that
 > the return value of `isCarLike` has anything to do with the type of `valueToTest`
 
 ### `value is Foo`
 
-The first kind of user-defined type guard we'll introduce is an `is` guard. It's perfectly suited for our example above
+The first kind of user-defined type guard we will review is an `is` type guard. It is perfectly suited for our example above
 because it's meant to work in cooperation with a control flow statement of some sort, to indicate that different branches
 of the "flow" will be taken based on an evaluation of `valueToTest`'s type. **Pay very close attention to `isCarLike`'s return type**
 
@@ -177,7 +177,7 @@ if (isCarLike(maybeCar)) {
 
 ### `asserts value is Foo`
 
-There's another approach we could take that eliminates the need for a conditional. **Pay very close attention to `assertsIsCarLike`'s return type**
+There is another approach we could take that eliminates the need for a conditional. **Pay very close attention to `assertsIsCarLike`'s return type**:
 
 ```ts twoslash
 interface CarLike {
@@ -218,11 +218,11 @@ maybeCar
 ```
 
 Conceptually, what's going on behind the scenes is very similar. By using this special
-syntax to describe the return type, we're informing TypeScript that **if `assertsIsCarLike` throws an error,
-it should be taken as an indication that the `valueToTest` is NOT type-equivalent to `CarLike`**
+syntax to describe the return type, we are informing TypeScript that **if `assertsIsCarLike` throws an error,
+it should be taken as an indication that the `valueToTest` is NOT type-equivalent to `CarLike`**.
 
 Therefore, if we get past the assertion and keep executing code on the next line,
-the type changes from `unknown` to `CarLike`
+the type changes from `unknown` to `CarLike`.
 
 ### Writing high-quality guards
 
@@ -231,7 +231,7 @@ type-checking with the execution of your program at runtime. It's of great
 importance that these are designed well, as TypeScript will take you at your word
 when you make a claim about what the return value (or throw/no-throw behavior) indicates.
 
-Let's look at this **bad example** of a type guard
+Let's look at a **bad example** of a type guard:
 
 ```ts twoslash
 function isNull(val: any): val is null {
@@ -254,7 +254,7 @@ Click `Try` on this snippet and run this in the TypeScript playground. We see bo
 
 Common mistakes like forgetting about the possibilities of strings and numbers being falsy
 can create false confidence in the correctness of your code. **"Untruths" in your type guards
-will propagate quickly through your codebase and cause problems that are quite difficult to solve**
+will propagate quickly through your codebase and cause problems that are quite difficult to solve**.
 
 In cases where the rest of your code relies on a particular value being of a certain type,
 make sure to `throw` an error so that unexpected behavior is **LOUD** instead of <small>quiet</small>.
