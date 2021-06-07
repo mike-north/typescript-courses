@@ -9,9 +9,9 @@ course: fundamentals-v3
 order: 16
 ---
 
-Now that we've covered the basic use of Generics, let's layer on
-two more concepts: does scoping work with type params, and how
-can describe type params that have a more specific minimum requirement than `any`.
+Now that we have covered the basic use of Generics, let's layer on
+two more concepts: how [scoping](https://www.typescriptlang.org/docs/handbook/variable-declarations.html#scoping-rules) work with type params, and how we 
+can describe type params that have more specific requirement than `any`.
 
 ## Generic Constraints
 
@@ -21,7 +21,7 @@ still being able to safely assume _some_ minimal structure and behavior.
 
 ### Motivating use case
 
-Let's recall the example we used in our generics chapter:
+Let's recall the example we used in our Generics chapter:
 
 ```ts twoslash
 function listToDict<T>(
@@ -40,7 +40,7 @@ function listToDict<T>(
 }
 ```
 
-Let's strip away some noise and **just study the function signature**
+Let's strip away some noise and **just study the function signature**:
 
 ```ts twoslash
 function listToDict<T>(
@@ -52,7 +52,7 @@ function listToDict<T>(
 ```
 
 In this situation, we ask the caller of `listToDict` to provide us with a means
-of obtaining an id, but let's imagine that **every type we wish to use this
+of obtaining an `id`, but let's imagine that **every type we wish to use this
 with has an `id: string` property**, and we should just use that as a key.
 
 How might we implement this without generics?
@@ -76,7 +76,7 @@ function listToDict(list: HasId[]): Dict<HasId> {
 }
 ```
 
-Great, now let's make it generic
+Great, now let's implement this with generics:
 
 ```ts twoslash
 // @errors: 2339
@@ -106,11 +106,11 @@ to it in a dictionary**.
 
 ### Describing the constraint
 
-The way we define constraints on generics is using the
-`extends` keyword.
+The way we define constraints on generics is by using the
+[`extends`](https://www.typescriptlang.org/docs/handbook/2/generics.html#generic-constraints) keyword.
 
 The correct way of making our function generic is shown
-in the 1-line change below
+in the 1-line change below:
 
 ```diff
 - function listToDict(list: HasId[]): Dict<HasId> {
@@ -118,7 +118,7 @@ in the 1-line change below
 ```
 
 Note that our "requirement" for our argument type (`HasId[]`)
-is now represented in two places
+is now represented in two places:
 
 - `extends HasId` as the constraint on `T`
 - `list: T[]` to ensure that we still receive an array
@@ -126,8 +126,8 @@ is now represented in two places
 #### `T extends` vs `class extends`
 
 The `extends` keyword is used in object-oriented inheritance, and
-while not strictly equivalent to how it's used with type params,
-there's a conceptual connection:
+while not strictly equivalent to how it is used with type params,
+there is a conceptual connection:
 
 > When a class extends from a base class, it's guaranteed
 > to _at least_ align with the base class structure. In the same
@@ -136,7 +136,7 @@ there's a conceptual connection:
 ## Scopes and TypeParams
 
 When working with function parameters, we know that "inner scopes"
-have the ability to access "outer scopes" but not vice versa
+have the ability to access "outer scopes" but not vice versa:
 
 ```js
 function receiveFruitBasket(bowl) {
@@ -148,7 +148,7 @@ function receiveFruitBasket(bowl) {
 }
 ```
 
-Type params work a similar way
+Type params work a similar way:
 
 ```ts twoslash
 // outer function
@@ -166,14 +166,14 @@ const t2 = finishTuple([4, 8, 15, 16, 23, 42])
 ```
 
 The same design principles that you use for deciding whether values belong as
-class fields vs. arguments passed to members should serve you well here.
+**class fields vs. arguments** passed to members should serve you well here.
 
 Remember, this is not exactly an _independent decision_ to make, as
 types belong to the same scope as values they describe.
 
 ## Best Practices
 
-**Use each type parameter _at least twice_**. Any less and you might be convenience casting
+- **Use each type parameter _at least twice_**. Any less and you might be casting with the `as` keyword. Let's take a look at this example:
 
 ```ts twoslash
 function returnAsString<T>(arg: any): T {
@@ -183,9 +183,14 @@ function returnAsString<T>(arg: any): T {
 // 🚨 DANGER! 🚨
 const first = returnAsString<number>(window)
 //     ^?
+const sameAs = window as any as number
+//     ^?
 ```
 
-Define type parameters as simply as possible. Consider the two options for `listToDict`
+In this example, we have told TypeScript a lie by saying `window` is a `number` (but it is not...). Now, TypeScript will fail to catch errors that it is suppose to be catching!
+
+
+- Define type parameters as simply as possible. Consider the two options for `listToDict`:
 
 ```ts twoslash
 interface HasId {
@@ -205,4 +210,5 @@ function ex2<T extends HasId>(list: T[]) {
 }
 ```
 
-Finally, only use type parameters when you have a real need for them
+Finally, only use type parameters when you have a real need for them.
+They introduce complexity, and you shouldn't be adding complexity to your code unless it is worth it!
