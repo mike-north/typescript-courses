@@ -1,7 +1,0 @@
-{
-    "compilerOptions": {
-        "outDir": "dist",
-        "target": "ES3"
-    },
-    "include": ["src"]
-}
