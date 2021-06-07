@@ -13,6 +13,7 @@ describe('Bio', () => {
           }}
           social={{
             twitter: 'MichaelLNorth',
+            linkedin: 'northm'
           }}
           avatar={{
             childImageSharp: {
