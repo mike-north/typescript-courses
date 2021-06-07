@@ -11,6 +11,7 @@ interface IPureBioProps {
   };
   social: {
     twitter: string;
+    linkedin: string;
   };
   avatar: {
     childImageSharp: {
@@ -47,9 +48,14 @@ const PureBio: React.FunctionComponent<IPureBioProps> = ({
       <p>
         Written by <strong>{author.name}</strong> {author.summary}
         {` `}
-        <a href={`https://twitter.com/${social.twitter}`}>
-          You should follow him on Twitter
+        <a href={`https://linkedin.com/in/${social.linkedin}`}>
+          You should connect with him on LinkedIn
         </a>
+        &nbsp;or&nbsp;
+        <a href={`https://twitter.com/${social.twitter}`}>
+          follow him on Twitter
+        </a>
+
       </p>
     </div>
   );
@@ -73,6 +79,7 @@ const Bio = (): JSX.Element => {
           }
           social {
             twitter
+            linkedin
           }
         }
       }

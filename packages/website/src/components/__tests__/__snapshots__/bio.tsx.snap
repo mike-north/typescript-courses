@@ -68,9 +68,15 @@ exports[`Bio renders correctly 1`] = `
     A teacher
      
     <a
+      href="https://linkedin.com/in/northm"
+    >
+      You should connect with him on LinkedIn
+    </a>
+     or 
+    <a
       href="https://twitter.com/MichaelLNorth"
     >
-      You should follow him on Twitter
+      follow him on Twitter
     </a>
   </p>
 </div>

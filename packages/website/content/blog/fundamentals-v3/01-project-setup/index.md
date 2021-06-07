@@ -38,7 +38,7 @@ As long as you can access the following websites, you should require no further 
 - [The course website you're reading right now](https://fun-v3.typescript-training.com)
 - [The official TypeScript website](https://www.typescriptlang.org)
 
-### Agenda
+## Agenda
 
 - Using `tsc` and **compiling** TS code into JavaScript
 - **Variables** and simple values
@@ -58,3 +58,20 @@ As long as you can access the following websites, you should require no further 
 - **Generics**
 - **Hack**: higher-order functions for dictionaries
 - Wrap up
+
+## Which of your TypeScript courses is right for me?
+
+I've made four TS courses so far
+
+### Core
+- [TypeScript Fundamentals (v3)](https://frontendmasters.com/workshops/typescript-v3/) <br />
+  By the end of this course, you'll have **a basic understanding of the TypeScript language**
+- [Intermediate TypeScript](https://frontendmasters.com/workshops/intermediate-typescript/) <br />
+  By the end of this course, you'll be **prepared to contribute to a wide range of non-trivial TypeScript projects**. You
+  could be well on your way to becoming the TypeScript expert on your team.
+
+### Electives
+- [Production-Grade TypeScript](https://frontendmasters.com/courses/production-typescript/) <br />
+  This course focuses on **build pipelines, tooling, and practical use of TypeScript _at scale_**.
+- [JS &amp; TS Monorepos](https://frontendmasters.com/courses/monorepos/)  <br />
+  This course focuses on _monorepos_ -- the concept of **multiple sub-projects existing in a single git repository**.
