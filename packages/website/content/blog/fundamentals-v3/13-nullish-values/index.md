@@ -11,18 +11,17 @@ order: 13
 ---
 
 There are situations where we have to plan for, and deal with
-the possibility that values are null or undefined. In this chapter
-we'll dive deep into null, undefined, definite assignment, non-nullish
-coalescing, optional chaining and the non-null assertion operator
+the possibility that values are `null` or `undefined`. In this chapter
+we'll dive deep into null, undefined, [definite assignment](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html#definite-assignment-assertions), [non-nullish
+coalescing](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#nullish-coalescing), [optional chaining](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#optional-chaining) and the [non-null assertion operator](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#non-null-assertion-operator).
 
 Allthough `null`, `void` and `undefined` are all used to describe "nothing" or "empty",
-they're independent types in TypeScript. Learning use them to your advantage
-is a powerful tool for clearly expressing your intent as a code author.
+they are independent types in TypeScript. Learning to use them to your advantage, and they can be powerful tools for clearly expressing your intent as a code author.
 
 ## `null`
 
-> `null` means: there is a value, and that value is _nothing_
-> While [some people believe that null is not an important part of the JS language](https://www.youtube.com/watch?v=PSGEjv3Tqo0&t=563s), I find that it's useful to express the concept of a "nothing" result (kind of like an empty array, but not an array).
+> `null` means: there is a value, and that value is _nothing_. 
+> While some people believe that [null is not an important part of the JS language](https://www.youtube.com/watch?v=PSGEjv3Tqo0&t=563s), I find that it's useful to express the concept of a "nothing" result (kind of like an empty array, but not an array).
 
 This _nothing_ is very much a defined value, and is certainly a presence -- not an absence -- of information.
 
@@ -40,7 +39,7 @@ const userInfo = {
 
 In the example below, `completedAt` will be set _at some point_
 but there's a period of time when we haven't yet set it. `undefined`
-is an unambiguious indication that there _may be something different there in the future_
+is an unambiguious indication that there _may be something different there in the future_:
 
 ```ts
 const formInProgress = {
@@ -56,7 +55,7 @@ function submitForm() {
 
 ## `void`
 
-We already covered this in [the functions chapter](/course/fundamentals-v3/08-functions/#void), but as a reminder
+We gave already covered this in [the functions chapter](/course/fundamentals-v3/08-functions/#void), but as a reminder:
 
 > `void` should exclusively be used to describe that a function's return value should be ignored
 
@@ -67,13 +66,13 @@ console.log(`console.log returns nothing.`)
 
 ## Non-null assertion operator
 
-The non-null assertion operator (`.!`) is used cast away the possibility
+The non-null assertion operator (`.!`) is used to cast away the possibility
 that a value might be `null` or `undefined`.
 
 Keep in mind that the value could still be `null` or `undefined`, this
 operator just tells TypeScript to ignore that possibility.
 
-If the value _does_ turn out to be missing, you'll get the familiar `cannot call foo on undefined` family of errors at runtime.
+If the value _does_ turn out to be missing, you willl get the familiar `cannot call foo on undefined` family of errors at runtime:
 
 ```ts twoslash
 // @errors: 2532
@@ -91,7 +90,7 @@ cart.fruits!.push({ name: "kumkuat", qty: 1 })
 
 I recommend against using this in your app or library code, but
 if your test infrastructure represents a `throw` as a test failure (most should)
-this is a _great_ thing to use in your test suite.
+this is a _great_ type guard  to use in your test suite.
 
 In the above situation, if `fruits` was expected to be present and it's not,
 that's a very reasonable test failure :tada:
@@ -102,7 +101,7 @@ The definite assignment `!:` operator is used to suppress TypeScript's
 objections about a class field being used, when it can't be proven[^1]
 that it was initialized.
 
-Let's look at the following example
+Let's look at the following example:
 
 ```ts twoslash
 // @errors: 2564
@@ -155,12 +154,12 @@ myThing.isSetup // what if this isn't assigned yet?
 //       ^?
 ```
 
-What I know, that the compiler doesn't, is that the function passed into the
+What I know (that the compiler doesn't) is that the function passed into the
 `Promise` constructor is invoked _synchronously_, meaning by the time we
 receive our instance of `ThingWithAsyncSetup`, the `isSetup` property will
 most certainly have a value of `false`.
 
-This is a good example of totally appropriate use of the definite assignment
+This is a good example of a totally appropriate use of the definite assignment
 operator, where **I as the code author have some extra context that the compiler does not**.
 
-[^1]: Where "proven" means, "the compiler can't convince itself"
+[^1]: Where "proven" means, "the compiler can't convince itself."
