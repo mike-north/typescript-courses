@@ -68,7 +68,7 @@ const Layout: React.FunctionComponent<ILayoutProps> = ({
     >
       <header>{header}</header>
       <main>{children}</main>
-      <footer>© {new Date().getFullYear()}</footer>
+      <footer>© {new Date().getFullYear()} All Rights Reserved</footer>
     </div>
   );
 };

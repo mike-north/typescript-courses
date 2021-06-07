@@ -18,12 +18,13 @@ module.exports = {
     title: `Learn TypeScript w/ Mike North`,
     author: {
       name: `Mike North`,
-      summary: `Senior Staff Engineer @ LinkedIn`,
+      summary: `, a Senior Staff Engineer @ LinkedIn, and Frontend Masters Instructor.`,
     },
     description: `A starter blog demonstrating gatsby-remark-shiki-twoslash.`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
     social: {
       twitter: `MichaelLNorth`,
+      linkedin: 'northm'
     },
     courses,
   },
