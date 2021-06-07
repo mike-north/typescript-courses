@@ -12,7 +12,10 @@ order: 02
 
 Many things can be _declared with a name and referenced later_
 in the TypeScript world, this includes variables and interfaces
-as we can see below
+as we can see below 
+<br/>
+<br/>
+<br/>
 
 ```ts twoslash
 interface Fruit {
@@ -197,5 +200,50 @@ namespace $ {
 Generally, writing code in this way is a bit outdated, left over from
 the days where we'd refer to libraries through a single global variable.
 With this in mind, let's not give `namespace` too much more thought for now.
+
+## A look back on `class`
+
+With our new knowledge of "things that can stack on an identifier", let's 
+take another close look at a `class` in TypeScript
+
+```ts twoslash
+class Fruit {
+  name?: string
+  mass?: number
+  color?: string
+  static createBanana(): Fruit {
+    return { name: "banana", color: "yellow", mass: 183 }
+  }
+}
+```
+
+and let's apply our `type` and `value` tests to this `Fruit` identifier
+
+```ts twoslash
+class Fruit {
+  name?: string
+  mass?: number
+  color?: string
+  static createBanana(): Fruit {
+    return { name: "banana", color: "yellow", mass: 183 }
+  }
+}
+/// ---cut---
+// how to test for a value
+const valueTest = Fruit // Fruit is a value!
+valueTest.createBanana
+//         ^|
+
+// how to test for a type
+let typeTest: Fruit = {} as any // Fruit is a type!
+typeTest.color
+//        ^|
+```
+So it seems that **classes are both a type and a value**.
+
+The word completions for the letter `c` above are a clue as to what's going on:
+* _When `Fruit` is used as a type_, it describes the type of an instance of Fruit
+* _When `Fruit` is used as a value_, it can both act as the constructor (e.g., `new Fruit()`) and holds the "static side" of the class (`createBanana()` in this case)
+
 
 [^1]: TypeScript internally calls this a `ts.Symbol`, not to be confused with the [JavaScript concept of the same name](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol).
