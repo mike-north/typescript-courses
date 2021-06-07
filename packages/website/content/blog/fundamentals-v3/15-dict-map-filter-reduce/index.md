@@ -9,8 +9,8 @@ course: fundamentals-v3
 order: 15
 ---
 
-Let's put our newfound knowledge around generics to the test by building out
-some higher-order functions that operate on dictionaries
+Let's put our newfound knowledge around **Generics** to the test by building out
+some higher-order functions that operate on dictionaries:
 
 ```ts twoslash
 /////////////////////////////////////////

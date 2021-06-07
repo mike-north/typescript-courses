@@ -12,13 +12,13 @@ order: 11
 
 Let's imagine that types describe a set of allowed values that a value might be.
 
-For example
+For example:
 
 ```ts
 const x: boolean
 ```
 
-x could either be any item from the following set `{true, false}`. Let's try another
+x could be either item from the following set `{true, false}`. Let's look at another example:
 
 ```ts
 const y: number
@@ -26,7 +26,7 @@ const y: number
 
 y could be **any number**. If we wanted to get technical and express this in terms of [set builder notation](https://en.wikipedia.org/wiki/Set-builder_notation), this would be `{y | y is a number}`[^1]
 
-Let's look at a few more, just for completeness
+Let's look at a few more, just for completeness:
 
 ```ts twoslash
 let a: 5 | 6 | 7 // anything in { 5, 6, 7 }
@@ -37,19 +37,19 @@ let c: {
 }
 ```
 
-Hopefully this makes sense. Now we're ready to continue...
+Hopefully this makes sense. Now we are ready to continue...
 
 ## Top types
 
 A [top type](https://en.wikipedia.org/wiki/Top_type) (symbol: `⊤`) is a type that describes **any possible value allowed by the system**.
 To use our set theory mental model, we could describe this as `{x| x could be anything }`
 
-TypeScript provides two of these types: `any` and `unknown`.
+TypeScript provides two of these types: [`any`](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#any) and [`unknown`](https://www.typescriptlang.org/docs/handbook/2/functions.html#unknown).
 
 ### `any`
 
 You can think of values with an `any` type as "playing by the usual JavaScript rules".
-Here's an illustrative example
+Here's an illustrative example:
 
 ```ts twoslash
 let flexible: any = 4
@@ -58,7 +58,7 @@ flexible = window.document
 flexible = setTimeout
 ```
 
-`any` typed values provide none of the safety we typically expect from TypeScript
+`any` typed values provide none of the safety we typically expect from TypeScript.
 
 ```ts twoslash
 let flexible: any = 14
@@ -69,7 +69,7 @@ flexible.it.is.possible.to.access.any.deep.property
 It's important to understand that `any` is not necessarily a problem -- sometimes
 it's exactly the right type to use for a particular situation.
 
-For example, `console.log`
+For example, `console.log`:
 
 ```ts twoslash
 console.log(window, Promise, setTimeout, "foo")
@@ -80,7 +80,7 @@ We can see here that `any` is not always a "bug" or a "problem" -- it just indic
 
 ### `unknown`
 
-Like `any`, unknown can _accept_ any value
+Like `any`, unknown can _accept_ any value:
 
 ```ts twoslash
 let flexible: unknown = 4
@@ -117,12 +117,12 @@ if (typeof myUnknown === "string") {
 
 ### Practical use of top types
 
-You'll run into places where top types come in handy _very often_. In particular,
+You will run into places where top types come in handy _very often_. In particular,
 if you ever convert a project from JavaScript to TypeScript, it's very convenient
 to be able to incrementally add increasingly strong types. A lot of things will
 be `any` until you get a chance to give them some attention.
 
-`unknown` is a great thing to use for values recevied at runtime (e.g., your data layer). By
+`unknown` is great for values recevied at runtime (e.g., your data layer). By
 obligating consumers of these values to perform some light validation before using them,
 errors are caught earlier, and can often be surfaced with more context.
 
@@ -131,14 +131,14 @@ errors are caught earlier, and can often be surfaced with more context.
 A [bottom type](https://en.wikipedia.org/wiki/Bottom_type) (symbol: `⊥`) is a type that describes **no possible value allowed by the system**.
 To use our set theory mental model, we could describe this as "any value from the following set: `{ }` (intentionally empty)"
 
-TypeScript provides one bottom type: `never`.
+TypeScript provides one bottom type: [`never`](https://www.typescriptlang.org/docs/handbook/2/functions.html#never).
 
-At first glance, this seems to be an _extremely abstract_ and _pointless_ concept, but there's
-one use case that should convince you otherwise
+At first glance, this may appear to be an _extremely abstract_ and _pointless_ concept, but there's
+one use case that should convince you otherwise. Let's take a look at this scenario below.
 
 ### Exhaustive conditionals
 
-Let's consider the following situation
+Let's consider the following scenario:
 
 ```ts twoslash
 function obtainRandomVehicle(): any {
@@ -170,7 +170,7 @@ if (myVehicle instanceof Truck) {
 }
 ```
 
-Now, leaving the conditional exactly as-is, let's add `Boat` as a vehicle type
+Now, leaving the conditional exactly as-is, let's add `Boat` as a vehicle type:
 
 ```ts twoslash
 // @errors: 2322
@@ -208,11 +208,11 @@ if (myVehicle instanceof Truck) {
 }
 ```
 
-Effectively, what has happened here is that we've been alerted to the fact that
-a new possibility for `Vehicle` has been introduced, and as a result, we don't
+Effectively, what has happened here is that we have been alerted to the fact that
+a new possibility for `Vehicle` has been introduced. As a result, we don't
 end up with the type for `myVehicle` as a `never` in that final `else` clause.
 
-I recommend handling this a little more graceuflly via an error subclass
+I recommend handling this a little more gracefully via an **error subclass**:
 
 ```ts twoslash
 // @errors: 2345
@@ -260,10 +260,10 @@ if (myVehicle instanceof Truck) {
 
 Now, one of three things will happen in that final `else` block
 
-- We'll have handled every case before reaching it, and thus we'll never enter it at all
-- We'll catch upstream code changes that need to be handled in this conditional at compile time (e.g., adding the `Boat` case)
-- If somehow an unexpected value "slip through" and is not caught until we actually run the code, we'll get a meaningful error message
+- We will have handled every case before reaching it, and thus we will never enter the final `else` block
+- We will catch upstream code changes that need to be handled in this conditional at compile time (e.g., adding the `Boat` case)
+- If somehow an unexpected value "slip through" and is not caught until we actually run the code, we will get a meaningful error message
 
-Note that this same approach works nicely with a `switch` statement, when the `UnreachableError` is thrown from the `default` case clause
+Note that this approach works nicely with a `switch` statement, when the `UnreachableError` is thrown from the `default` case clause.
 
-[^1]: Technically in JS or TS this would be `{ y| -Number.MAX_VALUE <= y <= Number.MAX_VALUE }`, but if you know enough to ask, you also probably don't need this clarified
+[^1]: Technically in JS or TS this would be `{ y| -Number.MAX_VALUE <= y <= Number.MAX_VALUE }`, but if you know enough to ask, you probably don't need this footnote...!

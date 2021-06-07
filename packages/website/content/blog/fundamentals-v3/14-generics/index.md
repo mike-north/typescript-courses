@@ -8,7 +8,7 @@ course: fundamentals-v3
 order: 14
 ---
 
-Generics allow us to parameterize types, which unlocks great opportunity
+[Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html) allow us to parameterize types, which unlocks great opportunity
 to reuse types broadly across a TypeScript project.
 
 This is a somewhat abstract concept, so let's start by grounding ourselves
@@ -17,7 +17,7 @@ in a practical example.
 ## A motivating use case
 
 In an earlier chapter, we discussed the concept of dictionary
-data structures that could be typed using index signatures
+data structures that could be typed using index signatures:
 
 ```ts twoslash
 const phones: {
@@ -35,14 +35,14 @@ phones.mobile
 //       ^?
 ```
 
-Let's take as a given that sometimes it's more convenient to
+Let's take as a given that sometimes it is more convenient to
 organize collections as key-value dictionaries, and other times
-it's more convenient to use arrays or lists.
+it is more convenient to use arrays or lists.
 
 It would be nice to have some kind of utility that would allow
-us to convert from a list of things to dictionary of things.
+us to convert a "list of things into" a "dictionary of things".
 
-So, let's treat something like this as our starting point
+So, let's treat this array of objects as our starting point:
 
 ```ts twoslash
 const phoneList = [
@@ -76,12 +76,12 @@ In the end, we hope to arrive at a solution that will work for
 _any_ list we wish to transform into an equivalent dictionary --
 not just this one specific use case.
 
-We'll need one thing first -- a way to produce the "key" for each
-object we encounter in the `phoneList` array. To remain flexible, we'll
+We will need one thing first -- a way to produce the "key" for each
+object we encounter in the `phoneList` array. To remain flexible, we will
 design our function such that whoever is asking for the list-to-dictionary conversion
 should also provide a function that we can use to obtain a "key" from each item in the list.
 
-Maybe our function signature would look something like this
+Maybe our function signature would look something like this:
 
 ```ts twoslash
 // @errors: 2355
@@ -103,7 +103,7 @@ Of course, we will see an error message as things stand right now,
 because we haven't implemented the function yet.
 
 This isn't too difficult to implement. Let's make
-a very specific solution right now, and then we can refactor
+a very specific solution right now with a `forEach` function - which we can refactor
 and generalize as a next step.
 
 ```ts twoslash
@@ -146,7 +146,7 @@ console.log(
 
 Click the `Try` button for the code snippet above, click "Run"
 in the TypeScript playground, and you should see that this solution works
-for our specific use case.
+for our specific example.
 
 Now, let's attempt to generalize this, and make it so that
 it works for lists and dictionaries of our `PhoneInfo` type,
@@ -195,7 +195,7 @@ Functions may return different values, depending on the arguments you pass them.
 
 > Generics may change their type, depending on the type parameters you use with them.
 
-Our function signature is going to now include a type parameter `T`
+Our function signature is going to now include a type parameter `T`:
 
 ```ts
 function listToDict<T>(
@@ -207,7 +207,7 @@ function listToDict<T>(
 }
 ```
 
-Here's what this code means:
+Let's look at what this code means.
 
 ### The TypeParam, and usage to provide an argument type
 
@@ -215,7 +215,7 @@ Here's what this code means:
 - **`list: T[]` as a first argument** <br /> means we accept a list of `T`'s.
   - **TypeScript will infer what `T` is, on a per-usage basis, depending on what kind of array we pass in**. If we use a `string[]`, `T` will be `string`, if we use a `number[]`, `T` will be `number`.
 
-Try to convince yourself of these first two ideas with the following much simpler (and more pointless) example
+Try to convince yourself of these first two ideas with the following much simpler (and more pointless) example:
 
 ```ts twoslash
 function wrapInArray<T>(arg: T): [T] {
@@ -224,8 +224,8 @@ function wrapInArray<T>(arg: T): [T] {
 }
 ```
 
-Note how, in the three usages of `wrapInArray` below, the `<T>` we see in the tooltip above is replaced
-by "the type of the thing we pass as an argument"
+Note how, in the three `wrapInArray` examples below, the `<T>` we see in the tooltip above is replaced
+by "the type of the thing we pass as an argument" - number, Date, and RegExp:
 
 ```ts twoslash
 function wrapInArray<T>(arg: T): [T] {
@@ -240,7 +240,7 @@ wrapInArray(new RegExp("/s/"))
 //    ^?
 ```
 
-Ok, back to the more meaningful code
+Ok, back to the more meaningful example of our `listToDict` function:
 
 ```ts twoslash
 function listToDict<T>(
@@ -254,8 +254,8 @@ function listToDict<T>(
 ```
 
 - **`idGen: (arg: T) => string`** is a callback that _also_ uses `T` as an argument. This means that...
-  - we'll get the benefits of type-checking, within `idGen` function
-  - we'll get some type-checking alignment between the array and the `idGen` function
+  - we will get the benefits of type-checking, within `idGen` function
+  - we will get some type-checking alignment between the array and the `idGen` function
 
 ```ts twoslash
 function listToDict<T>(
@@ -280,11 +280,11 @@ listToDict(
 )
 ```
 
-One last thing to examine: the `return` type. The way we've
-defined this, a `T[]` will be turned into a `{ [k: string]: T }`
-_for any `T` of our choosing_
+One last thing to examine: the `return` type. Based on the way we have
+defined this function, a `T[]` will be turned into a `{ [k: string]: T }`
+_for any `T` of our choosing_.
 
-Now, let's put this all together with our real example
+Now, let's put this all together with the original example we started with:
 
 ```ts twoslash
 interface PhoneInfo {
@@ -328,7 +328,7 @@ dict2.fax
 console.log(dict2)
 ```
 
-Let's look at this closely and make sure that we understand what's going on
+Let's look at this closely and make sure that we understand what's going on:
 
 - Run this in the TypeScript playground, and verify that you see the logging you should see
 - Take a close look at the types of the items in `dict1` and `dict2` above, to convince yourself that **we get a different kind of dictionary out of `listToDict`, depending on the type of the array we pass in**
