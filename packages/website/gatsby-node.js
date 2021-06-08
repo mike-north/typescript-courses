@@ -36,6 +36,7 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         title: element.title,
         id: element.id,
+        disabled: element.disabled,
         summary: element.summary,
       },
     });

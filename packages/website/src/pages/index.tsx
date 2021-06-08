@@ -24,6 +24,7 @@ interface IBlogIndexProps {
           id: string;
           title: string;
           summary: string;
+          disabled: boolean;
         }[];
       };
     };
@@ -45,7 +46,7 @@ const BlogIndex: React.FunctionComponent<IBlogIndexProps> = ({
     <Layout location={location} title={siteTitle}>
       <SEO title="Courses" />
       <Bio />
-      {courses.map(({ title, id, summary }) => {
+      {courses.filter(c => !c.disabled).map(({ title, id, summary }) => {
         return (
           <article key={id}>
             <header>
@@ -80,6 +81,7 @@ export const pageQuery = graphql`
           id
           title
           summary
+          disabled
         }
       }
     }
