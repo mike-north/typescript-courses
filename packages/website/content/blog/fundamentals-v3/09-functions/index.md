@@ -1,6 +1,6 @@
 ---
 title: Functions
-date: "2015-05-01T22:12:03.284Z"
+date: "2021-06-08T09:00:00.000Z"
 description: |
   So far, we have dealt with function argument and return types. There
   are a few more in-depth features we need to cover, including

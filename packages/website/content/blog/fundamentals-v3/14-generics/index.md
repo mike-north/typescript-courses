@@ -1,6 +1,6 @@
 ---
 title: Generics
-date: "2015-05-01T22:12:03.284Z"
+date: "2021-06-08T09:00:00.000Z"
 description: |
   Generics allow us to parameterize types, which unlocks great opportunity
   to reuse types broadly across a TypeScript project.

@@ -257,6 +257,12 @@ pre.code-ish {
 code {
   display: inline-block;
 }
+h2 {
+  code {
+    line-height: 2rem;
+    font-size: 2rem;
+  }
+}
 
 .post-toc {
   float: right;
@@ -267,6 +273,9 @@ code {
   padding: 10px;
   margin-bottom: 1rem;
   &__content {
+    code {
+      padding-left: 1.5rem; 
+    }
     margin-left: -1.5rem;
     ul {
       padding-left: 1.5rem;

@@ -1,6 +1,6 @@
 ---
 title: Objects, Arrays and Tuples
-date: "2015-05-01T22:12:03.284Z"
+date: "2021-06-08T09:00:00.000Z"
 description: |
   Now that we know how to type simple variables and functions, let's make things
   a bit more interesting with collections: in JavaScript this includes Objects and Arrays.
@@ -9,7 +9,7 @@ order: 4
 ---
 
 Now that we know how to type simple variables and functions, let's make things
-a bit more interesting with collections - such as Objects and Arrays in JavaScript.
+a bit more interesting with collections. In JavaScript, this means Objects and Arrays.
 
 ## Objects
 
@@ -44,7 +44,7 @@ The type that would describes this object's structure:
 }
 ```
 
-We can use this type using the same `: foo` notation we've already discussed!
+We can use this type with a variable using the same `: foo` notation we've already discussed!
 
 ```ts twoslash
 let car: {
