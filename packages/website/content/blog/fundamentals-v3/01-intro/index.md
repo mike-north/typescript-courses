@@ -1,6 +1,6 @@
 ---
 title: Intro
-date: "2015-05-01T22:12:03.284Z"
+date: "2021-06-08T09:00:00.000Z"
 description: |
   We'll discuss the goals and agenda of this course, and how to get up and
   running with the workshop project in 2 minutes or less.
@@ -14,6 +14,10 @@ order: 1
 - Works in the **Developer Productivity and Happiness** org
 - Main focus: **Infra UX**
 - **TypeScript Infra Lead**
+ 
+## #1 Goal for this course
+
+> By the end of this course, **I want you to have a rock solid mental model, that will serve you well for years**
 
 ## What is TypeScript?
 
@@ -26,7 +30,7 @@ order: 1
 **TypeScript is _increasingly popular_**
 ![downloads-graph](./graph.png)
 
-## Why devs want types
+## Why developers want types
 
 **It allows you, as a code author, to leave more of your intent "on the page"**
 
@@ -39,6 +43,15 @@ function add(a, b) {
 ```
 
 Is this meant to take numbers as args? strings? both?
+
+What if someone who interpreted `a` and `b` as numbers made this "backwards-compatible change?"
+
+```js
+function add(a, b, c = 0) {
+  return a + b + c
+}
+```
+We're headed for trouble if we decided to pass strings in for `a` and `b`!
 
 Types make the author's intent more clear
 
@@ -54,9 +67,9 @@ add(3, "4")
 
 Examples:
 
-- Something could be present, or could be absent (`null` or `undefined`)
+- Values that are potentially absent (`null` or `undefined`)
 - Incomplete refactoring
-- Breaking changes to _internal code_ (e.g., an argument _becomes_ required)
+- Breakage around _internal code contracts_ (e.g., an argument _becomes_ required)
 
 **It serves as the foundation for a _great_ code authoring experience**
 
@@ -67,10 +80,6 @@ window.setInterval
 //       ^|
 ```
 
-## #1 Goal for this course
-
-> By the end of this course, **I want you to have a rock solid mental model that will serve well for years**
-
 ## Workshop Setup
 
 As long as you can access the following websites, you should require no further setup :tada:
@@ -78,7 +87,7 @@ As long as you can access the following websites, you should require no further 
 - [The course website you're reading right now](https://fun-v3.typescript-training.com)
 - [The official TypeScript website](https://www.typescriptlang.org)
 
-## Which of your TypeScript courses is right for me?
+<!-- ## Which of your TypeScript courses is right for me?
 
 I've made four TS courses for Frontend Masters so far:
 
@@ -102,7 +111,7 @@ Most of the "class time" is spent _building apps together_.
 - [Production-Grade TypeScript](https://frontendmasters.com/courses/production-typescript/) <br />
   This course focuses on **build pipelines, tooling, and practical use of TypeScript _at scale_**.
 - [JS &amp; TS Monorepos](https://frontendmasters.com/courses/monorepos/) <br />
-  This course focuses on _monorepos_ -- the concept of **multiple sub-projects existing in a single git repository**.
+  This course focuses on _monorepos_ -- the concept of **multiple sub-projects existing in a single git repository**. -->
 
 ## Agenda
 

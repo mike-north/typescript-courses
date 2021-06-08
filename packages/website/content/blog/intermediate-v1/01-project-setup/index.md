@@ -1,6 +1,6 @@
 ---
 title: Intro
-date: "2015-05-01T22:12:03.284Z"
+date: "2021-06-08T09:00:00.000Z"
 description: |
   We'll discuss the goals and agenda of this course, and how to get up and
   running with the workshop project in 2 minutes or less.

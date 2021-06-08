@@ -1,17 +1,24 @@
 ---
 title: Hello TypeScript
-date: "2015-05-01T22:12:03.284Z"
+date: "2021-06-08T09:00:00.000Z"
 description: |
-  In this unit, we will get hands on with our first TypeScript program and the
-  compiler CLI command.
+  In this chapter, we'll get hands on with our first TypeScript program and the
+  compiler CLI command, and examine a simple program's compiled output
 course: fundamentals-v3
 order: 2
 ---
 
+In this chapter we will...
+
+- Get hands-on with our first TypeScript program and the
+  compiler CLI command
+- Learn how the compiler-emitted JS code changes depending on JS language level and module type
+- Examine a simple program's compiled output, including the _type declaration file_
+
 ## Anatomy of the project
 
-Open your [`./packages/hello-ts`](https://github.com/mike-north/ts-fundamentals-v3/blob/main/packages/hello-ts/) folder to find
-our first tiny project. There are only three files:
+Let's consider your [`a very simple TypeScript project`](https://github.com/mike-north/ts-fundamentals-v3/blob/main/packages/hello-ts/)
+that consists of only three files:
 
 ```sh
 package.json   # Package manifest
@@ -35,15 +42,16 @@ src/index.ts   # "the program"
 }
 ```
 
-Note that we just have one dependency in our package.json: `typescript`. We have a `dev` script (this is
-what runs when you invoke `yarn dev-hello-ts` from the project root) that runs the TypeScript compiler in "watch"
-mode (watches for source changes, and rebuilds automatically).
+Note that...
+
+- We just have one dependency in our package.json: `typescript`.
+- We have a `dev` script (this is what runs when you invoke `yarn dev-hello-ts` from the project root)
+  - It runs the TypeScript compiler in "watch" mode (watches for source changes, and rebuilds automatically).
+
+The following is just about the simplest possible [config file](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) for the TS compiler:
 
 `tsconfig.json`
 [(view source)](https://github.com/mike-north/ts-fundamentals-v3/blob/main/packages/hello-ts/tsconfig.json) <br />
-
-This is just about the simplest possible [config file](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) for the TS compiler:
-
 ```jsonc
 {
   "compilerOptions": {
@@ -57,16 +65,18 @@ This is just about the simplest possible [config file](https://www.typescriptlan
 All of these things could be specified on the command line (e.g., `tsc --outDir dist`), but particularly as
 things get increasingly complicated, we'll benefit a lot from having this config file:
 
-`src/index.ts`
-[(view source)](https://github.com/mike-north/ts-fundamentals-v3/blob/main/packages/hello-ts/src/index.ts) <br />
 
 Finally, we have a relatively simple and pointless TypeScript program. It does
-have a few interesting things in it that should make changes to the `"target"`
-property in our `tsconfig.json` more obvious:
+have **a few interesting things in it that should make changes to the `"target"`
+property in our `tsconfig.json` more obvious**:
 
-- Use of a built in `Promise` constructor that was introduced in ES2015 ("ES6")
-- Use of `async` and `await`, which were introduced in ES2017
+- Use of a built in `Promise` constructor (introduced in ES2015)
+- Use of `async` and `await` (introduced in ES2017)
 
+Here is the original (TypeScript) source code that we aim to compile:
+
+`src/index.ts`
+[(view source)](https://github.com/mike-north/ts-fundamentals-v3/blob/main/packages/hello-ts/src/index.ts) <br />
 ```ts twoslash
 /**
  * Create a promise that resolves after some time
@@ -100,20 +110,23 @@ tools for learning about how TypeScript understands our code!
 
 ## Running the compiler
 
-Optionally, you may run the following terminal command from the root of your project:
+Optionally, you may run the following terminal command from the `packages/hello-ts` folder of [the git repo](https://github.com/mike-north/ts-fundamentals-v3/):
 
 ```sh
-yarn dev-hello-ts
+yarn dev
 ```
 
 You should see something in your terminal like:
 
-```sh
-hello-ts: 12:01:57 PM - Starting compilation in watch mode...
+```
+12:01:57 PM - Starting compilation in watch mode...
 ```
 
-Note that within the "hello-ts" project, a `./dist` folder has appeared,
-and inside it is an `index.js` file. Open this file -- it will be a _mess_
+Note that within the "hello-ts" project
+- a `./dist` folder has appeared,
+- inside it is an `index.js` file. 
+
+Open this file -- **it will be a mess**
 
 <details>
   <summary>Click here to see what the compiled output looks like</summary>
@@ -385,7 +398,13 @@ Now let's bump the language level up even more, to 2017:
 }
 ```
 
-It's even cleaner! We start to see `async` and `await`, and lose the `_awaiter` helper. In fact, this looks a lot like some of the type information has just been stripped away from our original `.ts` source code.
+**It's even cleaner!** 
+
+Some changes to observe:
+- We start to see `async` and `await`
+- We no longer see the `_awaiter` helper
+
+In fact, this looks a lot like **the type information has just been stripped away from our original `.ts` source code**.
 
 <details>
   <summary>Click here to see what the compiled output looks like</summary>
@@ -419,7 +438,7 @@ export async function addNumbers(a: number, b: number) {
 
 </details>
 
-You may also notice that a `.d.ts` file is generated as part of the compile process. This is known as **a declaration file**.
+You may also notice that a `.d.ts` file is generated as part of the compile process. **This is known as a declaration file**.
 
 ```ts twoslash
 // @declaration: true
@@ -459,7 +478,10 @@ A good way to think of TS files:
 
 ### Types of modules
 
-Did you notice that the `export` keyword was still present in the build output for our program? We are generating [ES2015 modules][esm] from our TypeScript source. Let's try to run this file via node:
+Did you notice that the `export` keyword was still present in the build output for our program? We are generating [ES2015 modules][esm] from our TypeScript source. 
+
+
+If you tried to run this file with `node` like this:
 
 ```sh
 node packages/hello-ts/dist/index.js
@@ -474,7 +496,7 @@ SyntaxError: Unexpected token 'export'
 ```
 
 It seems that, at least with most recent versions of Node.js and the way
-our project is currently set up, it is not as easy to run this file can't be directly.
+our project is currently set up, we can't just run this program directly as-is.
 
 Node expects [CommonJS modules][cjs] [^1], so we'll have to tell TypeScript to output
 this kind of code.
@@ -499,19 +521,19 @@ async function addNumbers(a, b) {
 exports.addNumbers = addNumbers
 ```
 
-This is an indication that we're emitting CommonJS modules! Let's try running
-this program with `node` one more time.
+This is an indication that we're emitting CommonJS modules! We could try running
+this program with `node` one more time:
 
 ```sh
 node packages/hello-ts/dist/index.js
 ```
 
-If your program works correctly at this point, you should see it pause for a short
+If the program works correctly at this point, we should see it pause for a short
 time and then print `7` to the console, before ending successfully.
 
 [^1]: There are certainly ways of making modern versions of Node happy to run [ES2015 modules][esm], and they'll likely soon be the default type of JS module, but `.js` files passed directly into `node` with no flags or other arguments are still treated as CommonJS
 
-CONGRATS! You've just written your first TypeScript program!
+CONGRATS! You've just compiled your first TypeScript program!
 
 [esm]: (https://en.wikipedia.org/wiki/ECMAScript#6th_Edition_%E2%80%93_ECMAScript_2015)
 [cjs]: (https://en.wikipedia.org/wiki/CommonJS)
