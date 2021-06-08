@@ -8,6 +8,10 @@ course: fundamentals-v3
 order: 1
 ---
 
+## :wave: Hi
+
+
+
 ## What is TypeScript?
 
 > TypeScript is a **syntactic superset** of JavaScript
