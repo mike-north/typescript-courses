@@ -20,7 +20,7 @@ module.exports = {
       name: `Mike North`,
       summary: `, a Senior Staff Engineer @ LinkedIn, and Frontend Masters Instructor.`,
     },
-    description: `A starter blog demonstrating gatsby-remark-shiki-twoslash.`,
+    description: `Learn TypeScript with Mike North`,
     siteUrl: `https://www.typescript-training.com/`,
     social: {
       twitter: `MichaelLNorth`,
