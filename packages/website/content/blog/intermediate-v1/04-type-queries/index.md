@@ -1,6 +1,6 @@
 ---
 title: Type Queries
-date: "2015-05-28T22:40:32.169Z"
+date: "2021-06-10T09:00:00.000Z"
 description: |
   Type queries allow us to obtain type information from values.
   As we work toward building our own "standard library" of 
