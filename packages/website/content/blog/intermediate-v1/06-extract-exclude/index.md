@@ -75,8 +75,8 @@ type NonStringColors = Exclude<FavoriteColors, string>
 
 ## How do these work?
 
+Here's the complete source code for these types
 ```ts
-
 /**
  * Exclude from T those types that are assignable to U
  */
@@ -87,5 +87,8 @@ type Exclude<T, U> = T extends U ? never : T;
  */
 type Extract<T, U> = T extends U ? T : never;
 ```
+
+They're just conditional types, and the only difference
+between them is the reversal of the "if true" and "if false" expressions (`never : T` vs `T : never`).
 
 [^1]: Definition of ternary: three-part
