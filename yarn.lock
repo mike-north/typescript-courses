@@ -1014,7 +1014,7 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.3.4", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.0", "@babel/runtime@^7.3.4", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.14.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.0.tgz#46794bc20b612c5f75e62dd071e24dfd95f1cbe6"
   integrity sha512-JELkvo/DlpNdJ7dlyw/eY7E0suy5i5GQH+Vlxaq1nsNJ+H7f4Vtv3jMeCEgRhZZQFXTjldYfQgv2qmM6M1v5wA==
@@ -8077,11 +8077,11 @@ gatsby-remark-copy-linked-files@^4.2.1:
     unist-util-visit "^2.0.3"
 
 gatsby-remark-custom-blocks@^3.6.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-custom-blocks/-/gatsby-remark-custom-blocks-3.6.0.tgz#1d7f6b533e40c017d817cac1e987f2e049d6a1a6"
-  integrity sha512-raLVvUy0KI9a5rij9Sb9ohbEMvHZLyqDoyUNhDvcJEvha8FTPXala238ysDkKjjY2eYxfg9IlCJqf6WxjSKK+w==
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-custom-blocks/-/gatsby-remark-custom-blocks-3.7.0.tgz#000be8c7ea322d9ae5c8e241900174eb3df2829d"
+  integrity sha512-6T1/1VPSoVV96wklBcJZDc9naKm+F1h6UvNRSViEzi3ab98pz+Lk8r2HLuSe1b8tioM0gcHfx+VSKGCpzLERAw==
   dependencies:
-    "@babel/runtime" "^7.12.5"
+    "@babel/runtime" "^7.14.0"
     remark-custom-blocks "^2.5.0"
 
 gatsby-remark-emojis@^0.4.3:
