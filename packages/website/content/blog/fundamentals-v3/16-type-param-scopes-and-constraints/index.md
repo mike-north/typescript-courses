@@ -176,12 +176,13 @@ types belong to the same scope as values they describe.
 - **Use each type parameter _at least twice_**. Any less and you might be casting with the `as` keyword. Let's take a look at this example:
 
 ```ts twoslash
-function returnAsString<T>(arg: any): T {
-  return arg
+function returnAs<T>(arg: any): T {
+  return arg // 🚨 an `any` that will _seem_ like a `T`
+  //      ^?
 }
 
 // 🚨 DANGER! 🚨
-const first = returnAsString<number>(window)
+const first = returnAs<number>(window)
 //     ^?
 const sameAs = window as any as number
 //     ^?

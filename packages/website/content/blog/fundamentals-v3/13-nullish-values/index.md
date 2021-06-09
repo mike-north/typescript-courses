@@ -66,7 +66,7 @@ console.log(`console.log returns nothing.`)
 
 ## Non-null assertion operator
 
-The non-null assertion operator (`.!`) is used to cast away the possibility
+The non-null assertion operator (`!.`) is used to cast away the possibility
 that a value might be `null` or `undefined`.
 
 Keep in mind that the value could still be `null` or `undefined`, this
