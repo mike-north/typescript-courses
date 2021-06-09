@@ -7873,13 +7873,13 @@ gatsby-plugin-google-analytics@^3.1.0:
     minimatch "3.0.4"
 
 gatsby-plugin-manifest@^3.1.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-3.6.0.tgz#e7ca7d51daea1b9bfa358663b891a6a9673e0bf8"
-  integrity sha512-3+w4yitx47fEQ5kI9bvPxM1EcCGaRGVlCzugPcy1vYc9uaw0+KwiXFnX9Fx3WxGqTScMikparHAuM2xsIWOLhw==
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-3.7.0.tgz#68603f019782cbb0d0329a4399e36995f6dd6c97"
+  integrity sha512-UR/aQA0MRlHWYunAqltoAXQqncWBfnJRphnkox21raaNsLUaPVy5b5cJxOp1H2WGJZBXs7b43WG1FEVIO7K0bQ==
   dependencies:
-    "@babel/runtime" "^7.12.5"
-    gatsby-core-utils "^2.6.0"
-    gatsby-plugin-utils "^1.6.0"
+    "@babel/runtime" "^7.14.0"
+    gatsby-core-utils "^2.7.0"
+    gatsby-plugin-utils "^1.7.0"
     semver "^7.3.5"
     sharp "^0.28.1"
 
@@ -7973,10 +7973,10 @@ gatsby-plugin-typography@^3.1.0:
   dependencies:
     "@babel/runtime" "^7.14.0"
 
-gatsby-plugin-utils@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-utils/-/gatsby-plugin-utils-1.6.0.tgz#4cb050009caf0b0add15ecc81d473c438e7115e9"
-  integrity sha512-RDHaPBvVE8v9EQvPAUyXZzoDFKo0t0j7qJHDvFQc0PfcX0EmQWXNkFd7PN+DVz8nPfuhLIV6GKS3WQXYbiCLIA==
+gatsby-plugin-utils@^1.6.0, gatsby-plugin-utils@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-utils/-/gatsby-plugin-utils-1.7.0.tgz#e486e49505e0ea3295da8550f03c611436aaac70"
+  integrity sha512-lRTnXgH0zgZCybq4VpnjfoCaEwiEGE8VV7m6o5e7v1mXKYVvO/8YXhpIIUqdc6DJZoGJEGy8MpylltYFzBftGQ==
   dependencies:
     joi "^17.2.1"
 
