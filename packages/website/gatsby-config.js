@@ -21,7 +21,7 @@ module.exports = {
       summary: `, a Senior Staff Engineer @ LinkedIn, and Frontend Masters Instructor.`,
     },
     description: `A starter blog demonstrating gatsby-remark-shiki-twoslash.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `https://www.typescript-training.com/`,
     social: {
       twitter: `MichaelLNorth`,
       linkedin: 'northm'
