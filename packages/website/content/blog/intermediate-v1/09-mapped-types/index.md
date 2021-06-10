@@ -202,6 +202,14 @@ type Pick<T, K extends keyof T> = {
   [P in K]: T[P]
 }
 ```
+```ts twoslash
+type PickProperties<
+  ValueType,
+  Keys extends keyof ValueType
+> = {
+  [Key in Keys]: ValueType[Key]
+}
+```
 
 ## Mapping modifiers
 
@@ -356,14 +364,14 @@ type KeyFilteredDoc = {
 }
 ```
 
-Bit what if we needed to filter by _value_? To put this another way,
+But what if we needed to filter by _value_? To put this another way,
 what if we wanted things to be included or excluded from our mapped type
 based on `Document[K]`?
 
 Our solution has to do with `never` and conditional types.
 
 **Here we're using a flawed approach**, where we set the "type of the value" to `never` whenever
-we want to skip it. This is going to leave us with a type that still has 100% of the keys that `Document` has, with many many values `never`d out
+we want to skip it. This is going to leave us with a type that still has 100% of the keys that `Document` has, with many many values of type `never`
 
 ```ts twoslash
 ///////////////////////////////////////////////////////////
