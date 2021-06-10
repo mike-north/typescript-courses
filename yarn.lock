@@ -7865,11 +7865,11 @@ gatsby-plugin-feed@^3.1.0:
     rss "^1.2.2"
 
 gatsby-plugin-google-analytics@^3.1.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-3.6.0.tgz#5b4826044cc626eb56783ceec5e7eabe3ff8ee37"
-  integrity sha512-yd7MwPJNuGLFtZk+O1WZiHM8YKsIfAg7CLKW+nd5AikNQFO3aFI4h2irqQ9s3O2M1ZS0gQdB50jqwscpQLv6+g==
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-3.7.0.tgz#4f52ddf88ae0bb759147b56d607f878c4d3ab8ac"
+  integrity sha512-dvw3t9pcCDnsQ6UaIY6VIigjG56qv0TCeoST2tNtgKfvxXGOhKiO0R34Sey8322BL6HlAeoStx62324pswoa/A==
   dependencies:
-    "@babel/runtime" "^7.12.5"
+    "@babel/runtime" "^7.14.0"
     minimatch "3.0.4"
 
 gatsby-plugin-manifest@^3.1.0:
