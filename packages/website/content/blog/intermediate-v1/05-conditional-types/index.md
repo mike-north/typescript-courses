@@ -97,6 +97,7 @@ mechanism of expressing any kind of condition. You can think of it kind of like 
 | | 5 | `never extends any` |
 | | 6 | `any extends any` |
 | | 7 | `Date extends {new (...args: any[]): any }` |
+| | 8 | `(typeof Date) extends {new (...args: any[]): any }` |
 
 <details>
   <summary>Click to reveal answers // SPOILER WARNING </summary>
@@ -114,14 +115,18 @@ type answer_5 = never extends any ? true : false
 //     ^?
 type answer_6 = any extends any ? true : false
 //     ^?
+// prettier-ignore
 type answer_7 = Date extends { new (...args: any[]): any }
-  ? //     ^?
-    true
+//     ^?
+  ?  true
+  : false
+// prettier-ignore
+type answer_8 = typeof Date extends { new (...args: any[]): any }
+//     ^?
+  ?  true
   : false
 ```
 
 </details>
-
-
 
 [^1]: Definition of ternary: three-part

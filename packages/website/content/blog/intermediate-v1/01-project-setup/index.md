@@ -1,6 +1,6 @@
 ---
 title: Intro
-date: "2021-06-08T09:00:00.000Z"
+date: "2021-06-10T09:00:00.000Z"
 description: |
   We'll discuss the goals and agenda of this course, and how to get up and
   running with the workshop project in 2 minutes or less.
@@ -8,61 +8,102 @@ course: intermediate-v1
 order: 1
 ---
 
-## Course Overview
+## About the Instructor
 
-### TODO: Goals
+- Sr. Staff Engineer @ [LinkedIn](https://linkedin.com)
+- Works in the **Developer Productivity and Happiness** org
+- Main focus: **Infra UX**
+- **TypeScript Infra Lead**
 
-### TODO: Agenda
+## Top Goals for this course
 
-## Workshop Project Setup
+> Pass along key knowledge gained through _thousands_ of hours of TypeScript teaching, Q&A and pair programming
 
-### Operating System
+> By the end of this course, **you will be able to understand _challenging_ type information**.
 
-This workshop project works best in a [POSIX-compliant][posix] dev environment
-like Linux, macOS, or Windows 10 (with [Windows Subsystem for Linux][wsl2]).
+This likely is pretty scary right now, but you'll know what it
+means by the end of the course
+```ts twoslash
+// Get keys of type T whose values are assignable to type U
+type FilteredKeys<T, U> = {
+  [P in keyof T]: T[P] extends U ? P : never
+}[keyof T] &
+  keyof T
 
-### JavaScript Tool chain
+/**
+ * get a subset of Document, consisting only of methods
+ * returning an Element (e.g., querySelector) or an 
+ * Element[] (e.g., querySelectorAll)
+ */
+type ValueFilteredDoc = Pick<
+  Document,
+  FilteredKeys<
+    Document,
+    (...args: any[]) => Element | Element[]
+  >
+>
+```
 
-- We'll be using `yarn` as our package manager, not `npm`
-- Please install [Volta][volta], to ensure you run this project with the correct `node` and `yarn` versions
+## What do you assume I already know?
+- Modern javascript
+- The basics of function, object and array types
+- Basic generics (e.g., typescript fundamentals v3)
+- Index signatures
 
-### Browser
+Also... some practical experience is important
 
-We recommend using a Chromium-based browser like [Microsoft Edge][msedge], [Brave][brave], [Opera][opera] or [Chrome][googlechrome].
+## Workshop Setup
 
-### Editor
+As long as you can access the following websites, you should require no further setup :tada:
 
-Although TypeScript can theoretically work well in any authoring environment that
-supports the [Language Server Protocol][lsp], [Visual Studio Code][vscode] is
-the _officially_ supported editor for this course.
+- [The course website you're reading right now](https://fun-v3.typescript-training.com)
+- [The official TypeScript website](https://www.typescriptlang.org)
 
-### Checking out the code & preparing to run
+## Which of your TypeScript courses is right for me?
 
-- If you don't yet have a [GitHub](https://github.com) account, [create a new one](https://docs.github.com/en/github/getting-started-with-github/signing-up-for-github/signing-up-for-a-new-github-account) and [set up your SSH keys](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+I've made four TS courses for Frontend Masters so far:
 
-  - If you've done this correctly, you should be able to run `ssh git@github.com` in your terminal, and see something like `Hi mike-north! You've successfully authenticated, but GitHub does not provide shell access.`
+### Core
 
-- Clone this repo by running `git clone git@github.com:mike-north/ts-fundamentals-v3`
-- Enter the repo by running `cd ts-fundamentals-v3`
-- Install dependencies by running `yarn` ([volta][volta] may download the right version(s) automatically)
+These courses focus on deep understanding of the programming language
+and how the TS compiler models and checks your code. Most of the "class time" is
+spent in a _lab environment_.
 
-### Running the project(s)
+- [TypeScript Fundamentals (v3)](https://frontendmasters.com/workshops/typescript-v3/) <br />
+  By the end of this course, you'll have **a basic understanding of the TypeScript language**
+- [Intermediate TypeScript](https://frontendmasters.com/workshops/intermediate-typescript/) <br />
+  By the end of this course, you'll be **prepared to contribute to a wide range of non-trivial TypeScript projects**. You
+  could be well on your way to becoming the TypeScript expert on your team.
 
-Projects are found within the [packages](https://github.com/mike-north/ts-fundamentals-v3/tree/main/packages) folder, each can be started using the command
-`yarn dev-<project name>`.
+### Electives
 
-For example
+These courses focus on _application_ of TypeScript to _solving problems at scale_.
+Most of the "class time" is spent _building apps together_.
 
-- `yarn dev-website` starts the website project
-- `yarn dev-flights` starts the flight booking app
+- [Production-Grade TypeScript](https://frontendmasters.com/courses/production-typescript/) <br />
+  This course focuses on **build pipelines, tooling, and practical use of TypeScript _at scale_**.
+- [JS &amp; TS Monorepos](https://frontendmasters.com/courses/monorepos/) <br />
+  This course focuses on _monorepos_ -- the concept of **multiple sub-projects existing in a single git repository**.
 
-[posix]: https://en.wikipedia.org/wiki/POSIX
-[wsl2]: https://docs.microsoft.com/en-us/windows/wsl/
-[cygwin]: (https://www.cygwin.com/)
-[volta]: (https://volta.sh/)
-[lsp]: (https://microsoft.github.io/language-server-protocol/)
-[vscode]: (http://code.visualstudio.com/)
-[brave]: (https://brave.com/)
-[msedge]: (https://www.microsoft.com/en-us/edge)
-[opera]: (https://www.opera.com/)
-[googlechrome]: (https://www.google.com/chrome/)
+<!-- ## Agenda
+
+- Using `tsc` and **compiling** TS code into JavaScript
+- **Variables** and simple values
+- **Objects** and arrays
+  <br/>`--- BREAK ---`
+- Categorizing **type systems**
+- Set theory, **Union and Intersection types**
+- **Interfaces and Type Aliases**
+  <br/>`--- LUNCH ---`
+- **Hack**: Writing types for JSON values
+- **Functions**
+- **Classes** in TypeScript
+- **Top and bottom types**
+- User-defined **Type guards**
+  <br/>`--- BREAK ---`
+- Handling **nullish values**
+- **Generics**
+- **Hack**: higher-order functions for dictionaries
+- Wrap up
+
+[^1]: TypeScript by itself is not going to reduce the occurrence of errors in your projects. It does, however, provide several tools that _greatly_ improve visibility of some kinds of defects. -->
