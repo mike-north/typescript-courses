@@ -8202,11 +8202,11 @@ gatsby-transformer-remark@^3.0.0:
     unist-util-visit "^1.4.1"
 
 gatsby-transformer-sharp@^3.1.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-3.6.0.tgz#f62a80e9631ccdc248392482877cfa3dc29512e5"
-  integrity sha512-tEN04fbU4LJLZasPiLYronFAkWf2hCiKz6PrEbBNkPWeurjz3i9gp+pCXh0JJa7ccrq0geidtgPSaL7JztbXdQ==
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-3.7.0.tgz#e810c71580bdb670f2e1afc4124f20f79e6bdf4c"
+  integrity sha512-gKHQTzQF+tcEo9hIvNGu3PYA0BBUkVQBwUpuMmeg5AK2b/zuCIy9fdThnX64my44jzOj6ds1FBHgaQv12w07Pg==
   dependencies:
-    "@babel/runtime" "^7.12.5"
+    "@babel/runtime" "^7.14.0"
     bluebird "^3.7.2"
     common-tags "^1.8.0"
     fs-extra "^9.1.0"
