@@ -7,8 +7,16 @@ description: |
   Often when people grasp how TypeScript handles this, they never look
   at the language the same way again
 course: intermediate-v1
-order: 02
+order: 2
 ---
+
+We have different types of "named things" in TypeScript, including values and functions (and occasionally things that can be used as both). **By the end of this
+chapter, you'll have a solid understanding of how to examine and understand these entities in TypeScript.**
+
+In order to truly understand how types and values "stack" on
+each other, we'll first tackle the concept of declaration merging.
+Often when people grasp how TypeScript handles this, they never look
+at the language the same way again.
 
 Many things can be _declared with a name and referenced later_
 in the TypeScript world, this includes variables and interfaces
@@ -121,7 +129,7 @@ const x = is_a_value // the value position (RHS of =).
 // how to test for a type
 const y: is_a_type = {} // the type position (LHS of = ).
 
-// how to test for a namespace (hover over baz symbol)
+// how to test for a namespace (hover over is_a_namespace symbol)
 is_a_namespace
 ```
 
