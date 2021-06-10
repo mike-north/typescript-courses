@@ -9,7 +9,7 @@
     confidently and successfully use TypeScript to build a modern JavaScript app.
 - title: 'Intermediate TypeScript'
   id: intermediate-v1
-  disabled: true
+  disabled: false
   summary: |
     It's relatively easy to get started with TypeScript, but the learning curve
     becomes much steeper once things become more complex and abstract. This workshop
