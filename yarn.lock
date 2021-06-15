@@ -7986,13 +7986,13 @@ gatsby-plugin-google-tagmanager@^3.7.1:
     "@babel/runtime" "^7.14.0"
 
 gatsby-plugin-manifest@^3.1.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-3.7.0.tgz#68603f019782cbb0d0329a4399e36995f6dd6c97"
-  integrity sha512-UR/aQA0MRlHWYunAqltoAXQqncWBfnJRphnkox21raaNsLUaPVy5b5cJxOp1H2WGJZBXs7b43WG1FEVIO7K0bQ==
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-3.7.1.tgz#c3c721d951390800c58dff69e05eb4566e403140"
+  integrity sha512-STYtL7QZlKmGcXza+qxtIr8A5HS+0TzBy+qRDlOCFIYnxVTWKgg4m45/G7rQrUc1Ws4C5Km+J0zZFrGlpN5b7Q==
   dependencies:
     "@babel/runtime" "^7.14.0"
-    gatsby-core-utils "^2.7.0"
-    gatsby-plugin-utils "^1.7.0"
+    gatsby-core-utils "^2.7.1"
+    gatsby-plugin-utils "^1.7.1"
     semver "^7.3.5"
     sharp "^0.28.1"
 
@@ -8073,7 +8073,7 @@ gatsby-plugin-typography@^3.1.0:
   dependencies:
     "@babel/runtime" "^7.14.0"
 
-gatsby-plugin-utils@^1.6.0, gatsby-plugin-utils@^1.7.0, gatsby-plugin-utils@^1.7.1:
+gatsby-plugin-utils@^1.6.0, gatsby-plugin-utils@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-utils/-/gatsby-plugin-utils-1.7.1.tgz#c38cacc857a02e5c15976cd7893f2ecec3a17732"
   integrity sha512-mZ6qDwTBheCXeUa9KBdeHTtwWzX4AyzqXrl3EVj3bWQzNFSvUMC5QJfySo1UnWBjYLdCUpe45ZeDg/85q52Cgg==
