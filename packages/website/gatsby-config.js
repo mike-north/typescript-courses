@@ -125,6 +125,12 @@ module.exports = {
      
     },
     {
+      resolve: `gatsby-plugin-intercom`,
+      options: {
+        appId: 'cgksvncr',
+      },
+    },
+    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: `G-NPMJTDV8W2`,

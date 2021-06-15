@@ -54,6 +54,7 @@
     "eslint": "^7.23.0",
     "eslint-plugin-react": "^7.23.1",
     "gatsby-plugin-google-analytics": "^3.7.1",
+    "gatsby-plugin-intercom": "^0.1.4",
     "gatsby-remark-custom-blocks": "^3.6.0",
     "gatsby-remark-emojis": "^0.4.3",
     "identity-obj-proxy": "^3.0.0",
