@@ -7701,15 +7701,15 @@ gatsby-page-utils@^1.6.0:
     micromatch "^4.0.2"
 
 gatsby-plugin-feed@^3.1.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-feed/-/gatsby-plugin-feed-3.6.0.tgz#34a53ad8579b6f4886b974754573b42b56801ef7"
-  integrity sha512-3vCCBgcV6Ry+0zcQZw8tQg+cc1fFlqXNbSueruIk6w+QfS42o48fLT5u1zRau2HStatjFOnFN56LUCteC02rRA==
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-feed/-/gatsby-plugin-feed-3.7.1.tgz#5ec1348ed8221439584c4eb91fa590a35f27e2a6"
+  integrity sha512-MG4q/PWcA79xdKep+CKp32v8n4b1pVZLQ/bQJzLqZ/gx5mbMzzjlbUPzzmxa3nj5Zyghf40gBKgG+x84LumPzQ==
   dependencies:
-    "@babel/runtime" "^7.12.5"
+    "@babel/runtime" "^7.14.0"
     "@hapi/joi" "^15.1.1"
     common-tags "^1.8.0"
     fs-extra "^9.1.0"
-    gatsby-plugin-utils "^1.6.0"
+    gatsby-plugin-utils "^1.7.1"
     lodash.merge "^4.6.2"
     rss "^1.2.2"
 
@@ -7809,10 +7809,10 @@ gatsby-plugin-typography@^3.1.0:
   dependencies:
     "@babel/runtime" "^7.14.0"
 
-gatsby-plugin-utils@^1.6.0, gatsby-plugin-utils@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-utils/-/gatsby-plugin-utils-1.7.0.tgz#e486e49505e0ea3295da8550f03c611436aaac70"
-  integrity sha512-lRTnXgH0zgZCybq4VpnjfoCaEwiEGE8VV7m6o5e7v1mXKYVvO/8YXhpIIUqdc6DJZoGJEGy8MpylltYFzBftGQ==
+gatsby-plugin-utils@^1.6.0, gatsby-plugin-utils@^1.7.0, gatsby-plugin-utils@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-utils/-/gatsby-plugin-utils-1.7.1.tgz#c38cacc857a02e5c15976cd7893f2ecec3a17732"
+  integrity sha512-mZ6qDwTBheCXeUa9KBdeHTtwWzX4AyzqXrl3EVj3bWQzNFSvUMC5QJfySo1UnWBjYLdCUpe45ZeDg/85q52Cgg==
   dependencies:
     joi "^17.2.1"
 
