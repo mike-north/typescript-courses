@@ -126,12 +126,6 @@ module.exports = {
       resolve: `gatsby-plugin-sharp`,
     },
     {
-      resolve: `gatsby-plugin-intercom`,
-      options: {
-        appId: 'YOUR_INTERCOM_APP_ID',
-      },
-    },
-    {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
         trackingIds: ['G-NPMJTDV8W2', 'GTM-PW24ZG5'],
