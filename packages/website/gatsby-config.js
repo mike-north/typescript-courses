@@ -2,7 +2,10 @@ const fs = require(`fs`);
 const path = require(`path`);
 
 const PACKAGE_JSON_PATH = require('pkg-up').sync();
-const PROJECT_ROOT_PATH = path.join(PACKAGE_JSON_PATH, '..');
+const PROJECT_ROOT_PATH = path.join(
+  PACKAGE_JSON_PATH,
+  '..',
+);
 
 const yaml = require('js-yaml');
 
@@ -24,7 +27,7 @@ module.exports = {
     siteUrl: `https://www.typescript-training.com/`,
     social: {
       twitter: `MichaelLNorth`,
-      linkedin: 'northm'
+      linkedin: 'northm',
     },
     courses,
   },
@@ -47,7 +50,6 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          
           `gatsby-remark-autolink-headers`,
           {
             resolve: `gatsby-remark-images`,
@@ -122,18 +124,17 @@ module.exports = {
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-sharp`,
-     
     },
     {
-    resolve: `gatsby-plugin-intercom`,
-    options: {
-      appId: 'YOUR_INTERCOM_APP_ID',
+      resolve: `gatsby-plugin-intercom`,
+      options: {
+        appId: 'YOUR_INTERCOM_APP_ID',
+      },
     },
-  },
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingIds: [`G-NPMJTDV8W2`],
+        trackingIds: ['G-NPMJTDV8W2', 'GTM-PW24ZG5'],
       },
     },
     `gatsby-plugin-feed`,
