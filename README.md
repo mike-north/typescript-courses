@@ -39,7 +39,6 @@ Projects are found within the [packages](https://github.com/mike-north/ts-fundam
 For example
 
 - `yarn dev-website` starts the website project
-- `yarn dev-flights` starts the flight booking app
 
 [posix]: https://en.wikipedia.org/wiki/POSIX
 [wsl2]: https://docs.microsoft.com/en-us/windows/wsl/
