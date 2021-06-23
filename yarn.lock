@@ -7940,9 +7940,9 @@ gatsby-plugin-react-helmet@^4.1.0:
     "@babel/runtime" "^7.14.0"
 
 gatsby-plugin-sass@^4.1.0:
-  version "4.7.1"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-sass/-/gatsby-plugin-sass-4.7.1.tgz#53e53039218f8203c3f59a4be75215b59da17337"
-  integrity sha512-W3YIHAJzpkH94nSZu+MmL6UKxT3VoHCfxTfiOG+vF/c/VKhMwkyO+1cSMufRlxcTGWmP2pgFNA57a7ZoXQdCTw==
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-sass/-/gatsby-plugin-sass-4.8.0.tgz#64eef32d492bd0798be816e5cfd21cc409af8c7e"
+  integrity sha512-RxFks68zGy3OnAuQBzUcsW5k9B9DTRrZGJpl3Tkcbjq4fy87jmm/kovH0jFyBb/P/qafmwMfMHjV3tmYeks15Q==
   dependencies:
     "@babel/runtime" "^7.14.0"
     resolve-url-loader "^3.1.2"
