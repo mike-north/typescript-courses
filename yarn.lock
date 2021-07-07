@@ -7892,9 +7892,9 @@ gatsby-plugin-feed@^3.1.0:
     rss "^1.2.2"
 
 gatsby-plugin-google-gtag@^3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-gtag/-/gatsby-plugin-google-gtag-3.7.1.tgz#9e355d66b4ec636965a610b54955d79b647e2f2d"
-  integrity sha512-IiMQ/wRc1+k4aPzwNIKG7vLupr1dG1LzFmnWLoZ8VWGZuvHBmb/I//hDo36azDKezH3gsJQ0tLvshFO8r9asQg==
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-gtag/-/gatsby-plugin-google-gtag-3.9.0.tgz#52b10ede80a966a7a1573a7015b714e666c7feaa"
+  integrity sha512-k4NlT4rWnmsfz6xZ2RAqA3j7CwD/PvSahrf+fyi7c/E7TmUOLCRuWy3UyluOGBc8Od0vESU6eYIyHHeFZJco3w==
   dependencies:
     "@babel/runtime" "^7.14.0"
     minimatch "^3.0.4"
