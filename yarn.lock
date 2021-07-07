@@ -8098,9 +8098,9 @@ gatsby-remark-copy-linked-files@^4.2.1:
     unist-util-visit "^2.0.3"
 
 gatsby-remark-custom-blocks@^3.6.0:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-custom-blocks/-/gatsby-remark-custom-blocks-3.7.1.tgz#f663dfeefff7b352e974e65a88e3faee6459ca95"
-  integrity sha512-37OCWfAKHtvEReJIVf8/JvJ4bNldxyP+wvi6Lozij5MBNr2KDWudtmrx0eAV7y6oN5fKmidtrctbHEiYDm4WIQ==
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-custom-blocks/-/gatsby-remark-custom-blocks-3.9.0.tgz#53462eefdd4962fadff831039673e210d94f798b"
+  integrity sha512-qOgV7m+fET6RV1e7ScXpjRYfPZNgRVdlzyu5lyp/q6eBtGAl0+DbQHhEVGGaGzNDU/U5rYxUbGmURNWueBxHTA==
   dependencies:
     "@babel/runtime" "^7.14.0"
     remark-custom-blocks "^2.5.0"
