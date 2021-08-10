@@ -106,6 +106,8 @@ Note that when you hover over certain code points on this website, you get
 the equivalent of a "VScode tooltip". This is one of our most important
 tools for learning about how TypeScript understands our code!
 
+Here we use the `export` keyword to demonstrate using TypeScript modules – this code works locally, but since TypeScript playground doesn’t support exporting/importing modules across multiple files, the "Try" link to playground won't work. Here is an example of the [code running in TypeScript playground](https://www.typescriptlang.org/play?#code/PQKhCgAIUhhAnApgQwC6MsyAHeB7AWwEsBnDVACzUiRLwBsA3REzAM3XkjoPKN6gwAAtmTxkBSADtpAVwIAjRFzxtIxevVKIAxnikATVkrZ4kOfMTI0WDZiUHBwbWVJ2oi+yB955ZqAAopAC45RWUASkgAbygbVFl4GSlEAHdIAAVLbQCA2iiAXgA+bkRUABV+RD9A2gAaaQiIgG5wAF9wcFAIaEgAQQMDbwokDCl5JXgHXpExCUxINiIp1DDJwUhZ8UkFUr1DR3BkEgBPN0XXd08ZZEGAOQnlEgDkUPHw+AaFN8f4KNjIJhUsgiKsfNV-AEAKwABhhLTiSASSQWAGpIApWh0usACgVIAAlVzDDC4PAAc22kDxwCcL1O5wChRKAMg+zo9EQADp6BSXsDQZh7r9ngBmBoAFiaWIiTNaQA) that you can run.
+
 ![cursor hovering](/cursor-tooltip-ts.gif)
 
 ## Running the compiler
