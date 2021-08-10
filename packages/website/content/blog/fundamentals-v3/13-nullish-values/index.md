@@ -15,7 +15,7 @@ the possibility that values are `null` or `undefined`. In this chapter
 we'll dive deep into null, undefined, [definite assignment](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html#definite-assignment-assertions), [non-nullish
 coalescing](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#nullish-coalescing), [optional chaining](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#optional-chaining) and the [non-null assertion operator](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#non-null-assertion-operator).
 
-Allthough `null`, `void` and `undefined` are all used to describe "nothing" or "empty",
+Although `null`, `void` and `undefined` are all used to describe "nothing" or "empty",
 they are independent types in TypeScript. Learning to use them to your advantage, and they can be powerful tools for clearly expressing your intent as a code author.
 
 ## `null`
