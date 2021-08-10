@@ -72,7 +72,7 @@ that a value might be `null` or `undefined`.
 Keep in mind that the value could still be `null` or `undefined`, this
 operator just tells TypeScript to ignore that possibility.
 
-If the value _does_ turn out to be missing, you willl get the familiar `cannot call foo on undefined` family of errors at runtime:
+If the value _does_ turn out to be missing, you will get the familiar `cannot call foo on undefined` family of errors at runtime:
 
 ```ts twoslash
 // @errors: 2532
