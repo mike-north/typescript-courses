@@ -39,7 +39,7 @@ const userInfo = {
 
 In the example below, `completedAt` will be set _at some point_
 but there's a period of time when we haven't yet set it. `undefined`
-is an unambiguious indication that there _may be something different there in the future_:
+is an unambiguous indication that there _may be something different there in the future_:
 
 ```ts
 const formInProgress = {
