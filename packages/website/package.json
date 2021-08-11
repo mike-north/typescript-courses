@@ -57,7 +57,7 @@
     "gatsby-remark-custom-blocks": "^3.6.0",
     "gatsby-remark-emojis": "^0.4.3",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^26.6.3",
+    "jest": "^27.0.6",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
     "pkg-up": "^3.1.0",
