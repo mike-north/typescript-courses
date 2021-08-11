@@ -15014,9 +15014,9 @@ sass-loader@^10.1.1:
     semver "^7.3.2"
 
 sass@^1.32.8:
-  version "1.35.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.35.0.tgz#37c39e60eb3f82149488a9ca9ae48f888bf9324d"
-  integrity sha512-9joxNu7CoIEdZTDZFnH67NoWE/1VTofGPYiSIntWSE391SfmPu6Kd2Y0ZclDu9WQhVvvPwvo8LHeb/8wHIj95Q==
+  version "1.37.5"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.37.5.tgz#f6838351f7cc814c4fcfe1d9a20e0cabbd1e7b3c"
+  integrity sha512-Cx3ewxz9QB/ErnVIiWg2cH0kiYZ0FPvheDTVC6BsiEGBTZKKZJ1Gq5Kq6jy3PKtL6+EJ8NIoaBW/RSd2R6cZOA==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
 
