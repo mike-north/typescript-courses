@@ -8167,11 +8167,11 @@ gatsby-remark-autolink-headers@^4.3.0:
     unist-util-visit "^2.0.3"
 
 gatsby-remark-copy-linked-files@^4.2.1:
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-copy-linked-files/-/gatsby-remark-copy-linked-files-4.4.1.tgz#6339926b7746792c7b765096343951fd49875f0d"
-  integrity sha512-w8jUHvKmz0g6EPtMpy5jha2SyKKPzUb7PWm+PEr4K1uEpuSI2T/JRMdwP4W+DmIM7AuRjZRLPT/wqQVxKWYlvw==
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-copy-linked-files/-/gatsby-remark-copy-linked-files-4.8.0.tgz#0b9cc82e753ba12dac2eb1620b7d20ca7c108890"
+  integrity sha512-l+CzW8OA2eOABANH9/ErSzw48XOuGA4DyVxQDCR3XBiqZFKSr2gHOA/jBLUaM9CYrVUlXrZcw2e28N+3jFNdiQ==
   dependencies:
-    "@babel/runtime" "^7.14.0"
+    "@babel/runtime" "^7.14.6"
     cheerio "^1.0.0-rc.9"
     fs-extra "^8.1.0"
     is-relative-url "^3.0.0"
