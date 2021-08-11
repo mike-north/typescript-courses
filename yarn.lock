@@ -8231,11 +8231,11 @@ gatsby-remark-shiki-twoslash@^2.0.1:
     unist-util-visit "^2.0.0"
 
 gatsby-remark-smartypants@^4.2.0:
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-smartypants/-/gatsby-remark-smartypants-4.4.1.tgz#43a1b61e4c26092196bec33d464ed692fba0ab69"
-  integrity sha512-IH2piTgzXGLjekVGiZRvtcR+XnDvNiu7PACnmKaVzA4zd+MOAzxzp2WY8YWc4LHqxp+LPKgFpckU3KYIDrK4mQ==
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-smartypants/-/gatsby-remark-smartypants-4.8.0.tgz#ac1a10746009010274f0fda5a1299e2be270599b"
+  integrity sha512-g89tUpBM4iwXzk3ZSxaxIlsVQq7e7xeso0Rpfwv9ogIBwckJ3AAqPZ3Mis/AOR67lnfQ34mR7kMWzQNjLPSvXA==
   dependencies:
-    "@babel/runtime" "^7.14.0"
+    "@babel/runtime" "^7.14.6"
     retext "^7.0.1"
     retext-smartypants "^4.0.0"
     unist-util-visit "^2.0.3"
