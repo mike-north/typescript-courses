@@ -122,7 +122,7 @@ if you ever convert a project from JavaScript to TypeScript, it's very convenien
 to be able to incrementally add increasingly strong types. A lot of things will
 be `any` until you get a chance to give them some attention.
 
-`unknown` is great for values recevied at runtime (e.g., your data layer). By
+`unknown` is great for values received at runtime (e.g., your data layer). By
 obligating consumers of these values to perform some light validation before using them,
 errors are caught earlier, and can often be surfaced with more context.
 
