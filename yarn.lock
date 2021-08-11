@@ -8132,11 +8132,11 @@ gatsby-remark-copy-linked-files@^4.2.1:
     unist-util-visit "^2.0.3"
 
 gatsby-remark-custom-blocks@^3.6.0:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-custom-blocks/-/gatsby-remark-custom-blocks-3.7.1.tgz#f663dfeefff7b352e974e65a88e3faee6459ca95"
-  integrity sha512-37OCWfAKHtvEReJIVf8/JvJ4bNldxyP+wvi6Lozij5MBNr2KDWudtmrx0eAV7y6oN5fKmidtrctbHEiYDm4WIQ==
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-custom-blocks/-/gatsby-remark-custom-blocks-3.11.0.tgz#30be3ef44c9e6c4b5d9c55aaad3b24fae3a2373d"
+  integrity sha512-1hcEo9MjW3x+drsI29lwMASxShcciVsoqQL2j1wNQMASVy/DwsTDUjJzBr54eZAlujgJccZYhRD43+nKayLmwA==
   dependencies:
-    "@babel/runtime" "^7.14.0"
+    "@babel/runtime" "^7.14.6"
     remark-custom-blocks "^2.5.0"
 
 gatsby-remark-emojis@^0.4.3:
