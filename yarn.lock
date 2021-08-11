@@ -3193,10 +3193,10 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@^26.0.22":
-  version "26.0.23"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-26.0.23.tgz#a1b7eab3c503b80451d019efb588ec63522ee4e7"
-  integrity sha512-ZHLmWMJ9jJ9PTiT58juykZpL7KjwJywFN3Rr2pTSkyQfydf/rk22yS7W8p5DaVUMQ2BQC7oYiU3FjbTM/mYrOA==
+"@types/jest@^27.0.0":
+  version "27.0.0"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-27.0.0.tgz#f1c28f741371739c7cd0e8edb5ed8e67acfa6c35"
+  integrity sha512-IlpQZVpxufe+3qPaAqEoSPHVSxnJh1cf0BqqWHJeKiAUbwnHdmNzjP3ZCWSZSTbmAGXQPNk9QmM3Bif0pR54rg==
   dependencies:
     jest-diff "^26.0.0"
     pretty-format "^26.0.0"
@@ -3322,9 +3322,9 @@
     "@types/react" "*"
 
 "@types/react-helmet@^6.1.0":
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/@types/react-helmet/-/react-helmet-6.1.1.tgz#4fde22cbcaa1b461642e1d719cc6162d95acb110"
-  integrity sha512-VmSCMz6jp/06DABoY60vQa++h1YFt0PfAI23llxBJHbowqFgLUL0dhS1AQeVPNqYfRp9LAfokrfWACTNeobOrg==
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/@types/react-helmet/-/react-helmet-6.1.2.tgz#e9d7d16b29e4ec5716711c52c35c3cec45819eac"
+  integrity sha512-dcfAZNlWb5JYFbO9CGfrPWLJAyFcT6UeR3u35eBbv8liY2Rg4K7fM1G5+HnwVgot+C+kVwXAZ8pLEn2jsMfTDg==
   dependencies:
     "@types/react" "*"
 
@@ -8211,11 +8211,11 @@ gatsby-remark-images@^5.2.1:
     unist-util-visit-parents "^3.1.1"
 
 gatsby-remark-responsive-iframe@^4.3.0:
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-responsive-iframe/-/gatsby-remark-responsive-iframe-4.4.1.tgz#d36fc243f6fff821b269c408c8590eace28edfc0"
-  integrity sha512-quc3TkqsPuvo/UyEPKHxFrzHFOeZj8YOWyh2gBlYoMcIO908BI7p6ck1Cvl9BrVZq+BhbDiwh4cTRwRYOlJhqg==
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-responsive-iframe/-/gatsby-remark-responsive-iframe-4.8.0.tgz#cea898f6978aa6bb6800ad2c999448e88d433854"
+  integrity sha512-0TAnjZd3DDxvZINgo3eMclg8OpSwlllDoTMVC0zftjLN53HM3oyZGOhdvm2v4OXEIGdCzrxXQr60hDRBdvU6+w==
   dependencies:
-    "@babel/runtime" "^7.14.0"
+    "@babel/runtime" "^7.14.6"
     cheerio "^1.0.0-rc.9"
     common-tags "^1.8.0"
     lodash "^4.17.21"
