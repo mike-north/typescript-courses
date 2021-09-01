@@ -8010,11 +8010,11 @@ gatsby-plugin-react-helmet@^4.1.0:
     "@babel/runtime" "^7.14.6"
 
 gatsby-plugin-sass@^4.1.0:
-  version "4.11.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-sass/-/gatsby-plugin-sass-4.11.0.tgz#a17b952d29364727250e7ea7e97c03249c547121"
-  integrity sha512-MTO+f+rf31P3HssQcdYPiVkGx6MssV1uTq9GzMtbmlpGDiLie0skzAkP98P5EvvJ9lO7pdGMFHOLUrtUs8YIDg==
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-sass/-/gatsby-plugin-sass-4.13.0.tgz#aa1dbac8e8faf26eb579f003180903cad11524cc"
+  integrity sha512-mt7t99XyjLbkWUxVmz62t5vTU868UoDRKb/W1n4wfFTq/uCeY0aOjCD/GMkAoZeQbSc1kjgol7hEBoUv6gEqww==
   dependencies:
-    "@babel/runtime" "^7.14.6"
+    "@babel/runtime" "^7.14.8"
     resolve-url-loader "^3.1.2"
     sass-loader "^10.1.1"
 
