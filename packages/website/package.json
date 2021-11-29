@@ -20,7 +20,7 @@
     "gatsby-remark-copy-linked-files": "^4.2.1",
     "gatsby-remark-images": "^5.2.1",
     "gatsby-remark-responsive-iframe": "^4.3.0",
-    "gatsby-remark-shiki-twoslash": "^2.0.1",
+    "gatsby-remark-shiki-twoslash": "^3.0.31",
     "gatsby-remark-smartypants": "^4.2.0",
     "gatsby-source-filesystem": "^3.1.0",
     "gatsby-transformer-remark": "^3.0.0",
