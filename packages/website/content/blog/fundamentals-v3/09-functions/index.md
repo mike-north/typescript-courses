@@ -14,7 +14,7 @@ are a few more in-depth features we need to cover.
 
 ## Callable types
 
-Both type aliases and and interfaces offer the capability to describe [call signatures](https://www.typescriptlang.org/docs/handbook/2/functions.html#call-signatures):
+Both type aliases and interfaces offer the capability to describe [call signatures](https://www.typescriptlang.org/docs/handbook/2/functions.html#call-signatures):
 
 ```ts twoslash
 interface TwoNumberCalculation {
