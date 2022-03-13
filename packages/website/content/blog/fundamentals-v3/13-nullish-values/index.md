@@ -113,13 +113,13 @@ class ThingWithAsyncSetup {
   constructor() {
     this.setupPromise = new Promise((resolve) => {
       this.isSetup = false
-      return this.doSetup()
+      return this.doSetup(resolve)
     }).then(() => {
       this.isSetup = true
     })
   }
 
-  private async doSetup() {
+  private async doSetup(resolve: (value: unknown) => void) {
     // some async stuff
   }
 }
