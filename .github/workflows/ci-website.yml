@@ -70,7 +70,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 15.x]
+        node-version: [14.x, 16.x]
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
@@ -98,7 +98,7 @@ jobs:
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        typescript-version: ['~4.1.0', '~4.2.0', latest, next, beta, rc]
+        typescript-version: ['~4.1.0', '~4.2.0', '~4.3.0', '~4.4.0','~4.5.0', latest, next, beta, rc]
         include:
           - typescript-version: '~4.1.0'
             experimental: false
@@ -106,6 +106,15 @@ jobs:
           - typescript-version: '~4.2.0'
             experimental: false
             name: 'ts-4.2'
+          - typescript-version: '~4.3.0'
+            experimental: false
+            name: 'ts-4.3'
+          - typescript-version: '~4.4.0'
+            experimental: false
+            name: 'ts-4.4'
+          - typescript-version: '~4.5.0'
+            experimental: false
+            name: 'ts-4.5'
           - typescript-version: latest
             experimental: false
             name: 'ts-stable'
