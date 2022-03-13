@@ -1393,7 +1393,7 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.0", "@babel/runtime@^7.14.6", "@babel/runtime@^7.14.8", "@babel/runtime@^7.15.4", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.0", "@babel/runtime@^7.14.6", "@babel/runtime@^7.15.4", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.15.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
   integrity sha512-99catp6bHCaxr4sJ/DbTGgHS4+Rs2RVd2g7iOap6SLGPDknRK9ztKNsE/Fg6QhSeh1FGE5f6gHGQmvvn3I3xhw==
@@ -8578,11 +8578,11 @@ gatsby-remark-shiki-twoslash@^2.0.1:
     unist-util-visit "^2.0.0"
 
 gatsby-remark-smartypants@^4.2.0:
-  version "4.9.0"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-smartypants/-/gatsby-remark-smartypants-4.9.0.tgz#6454f96eaf9b0c4039993857117788aa6cf69944"
-  integrity sha512-N8HYG4d/qUuHs8fSDQ8nU4pKlJPqN33j3hVJdbGeRFf4bSrC4ScekHUSM6BTtyHxToxpSr8UtDRbbILrQuz0wg==
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-smartypants/-/gatsby-remark-smartypants-4.11.0.tgz#3eb59c2867c41696ba0d9574b1df0f11aa5db4cf"
+  integrity sha512-ImGPDP9Nm4DadBTCDmuHGg8zOY9D2B54ddWfLOqo9sA/zdXIlMnkmNGMuavddfJIqHZRo9WaqdBBaLvqlok6BA==
   dependencies:
-    "@babel/runtime" "^7.14.8"
+    "@babel/runtime" "^7.15.4"
     retext "^7.0.1"
     retext-smartypants "^4.0.0"
     unist-util-visit "^2.0.3"
