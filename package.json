@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.0-0",
+    "@babel/preset-typescript": "^7.16.7",
     "lerna": "^4.0.0",
     "replace-in-file": "^6.2.0"
   },
