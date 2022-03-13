@@ -8,6 +8,7 @@ import { rhythm } from '../utils/typography';
 export interface ICourse {
   id: string;
   title: string;
+  disabled: boolean;
   summary: string;
 }
 
@@ -117,6 +118,7 @@ export const pageQuery = graphql`
           id
           title
           summary
+          disabled
         }
       }
     }
