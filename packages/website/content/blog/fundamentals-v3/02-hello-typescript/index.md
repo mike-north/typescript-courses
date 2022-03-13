@@ -537,5 +537,5 @@ time and then print `7` to the console, before ending successfully.
 
 CONGRATS! You've just compiled your first TypeScript program!
 
-[esm]: (https://en.wikipedia.org/wiki/ECMAScript#6th_Edition_%E2%80%93_ECMAScript_2015)
-[cjs]: (https://en.wikipedia.org/wiki/CommonJS)
+[esm]: <https://en.wikipedia.org/wiki/ECMAScript#6th_Edition_%E2%80%93_ECMAScript_2015>
+[cjs]: <https://en.wikipedia.org/wiki/CommonJS>

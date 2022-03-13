@@ -1,6 +1,8 @@
 # TypeScript Training w/ Mike North
 This repo contains the code for `TypeScript Fundamentals v3` and `Intermediate TypeScript v1`
 
+The course website is at https://www.typescript-training.com
+
 ### Operating System
 
 This workshop project works best in a [POSIX-compliant][posix] dev environment
