@@ -55,7 +55,7 @@ function submitForm() {
 
 ## `void`
 
-We have already covered this in [the functions chapter](/course/fundamentals-v3/08-functions/#void), but as a reminder:
+We have already covered this in [the functions chapter](/course/fundamentals-v3/09-functions/#void), but as a reminder:
 
 > `void` should exclusively be used to describe that a function's return value should be ignored
 
