@@ -3,6 +3,8 @@ This repo contains the code for `TypeScript Fundamentals v3` and `Intermediate T
 
 The course website is at https://www.typescript-training.com
 
+[![Website](https://github.com/mike-north/ts-fundamentals-v3/actions/workflows/ci-website.yml/badge.svg)](https://github.com/mike-north/ts-fundamentals-v3/actions/workflows/ci-website.yml)
+
 ### Operating System
 
 This workshop project works best in a [POSIX-compliant][posix] dev environment
