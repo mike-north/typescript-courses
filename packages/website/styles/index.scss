@@ -214,6 +214,7 @@ pre:hover data-lsp {
 
 .course-tabs {
   list-style: none;
+  text-align: center;
   .course-tab {
     display: inline-block;
     margin-left: 10px;
@@ -274,7 +275,7 @@ h2 {
   margin-bottom: 1rem;
   &__content {
     code {
-      padding-left: 1.5rem; 
+      padding-left: 1.5rem;
     }
     margin-left: -1.5rem;
     ul {
@@ -529,7 +530,7 @@ nav,
       padding: 0.5rem;
       color: white;
       font-weight: 900;
-      margin-bottom: 1rem; 
+      margin-bottom: 1rem;
     }
     border: 2px solid $ex_bg_color;
     border-top-left-radius: 7px;
