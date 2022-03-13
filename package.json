@@ -15,8 +15,13 @@
     "yarn": "1.22.10"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-0",
+    "babel-eslint": "^10.0.0",
+    "core-js": "^3.0.0",
+    "eslint": "^8.11.0",
     "lerna": "^4.0.0",
-    "replace-in-file": "^6.2.0"
+    "replace-in-file": "^6.2.0",
+    "webpack": "^5"
   },
   "scripts": {
     "postinstall": "replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts",
