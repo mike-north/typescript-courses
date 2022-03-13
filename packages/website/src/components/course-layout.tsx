@@ -12,9 +12,10 @@ const CourseLayout: React.FunctionComponent<ICourseLayoutProps> = ({
   courses,
   children,
 }) => {
+  console.log({ courses })
   const header = (
     <ul className="course-tabs">
-      {courses.map((c) => (
+      {courses.filter(c => !c.disabled).map((c) => (
         <li key={c.id} className="course-tab">
           <Link
             activeClassName="active"
