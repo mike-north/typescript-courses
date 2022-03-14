@@ -248,6 +248,14 @@ pre.shiki {
       background-color: #fff;
     }
   }
+  .line {
+    &.highlight {
+      background-color: #ff9;
+    }
+    &.dim {
+      opacity: 0.5;
+    }
+  }
 }
 
 pre.code-ish {
