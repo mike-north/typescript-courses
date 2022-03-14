@@ -1,1 +1,5 @@
-{"componentChunkName":"component---src-pages-404-tsx","path":"/404.html","result":{"data":{"site":{"siteMetadata":{"title":"Learn TypeScript w/ Mike North"}}},"pageContext":{}},"staticQueryHashes":["2841359383"]}
+{
+    "componentChunkName": "component---src-pages-404-tsx",
+    "path": "/404.html",
+    "result": {"data":{"site":{"siteMetadata":{"title":"Learn TypeScript w/ Mike North"}}},"pageContext":{}},
+    "staticQueryHashes": ["2841359383"]}
