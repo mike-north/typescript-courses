@@ -281,6 +281,8 @@ h2 {
   border: 1px solid #aaa;
   padding: 10px;
   margin-bottom: 1rem;
+  position: relative;
+  z-index: 99999;
   &__content {
     code {
       padding-left: 1.5rem;

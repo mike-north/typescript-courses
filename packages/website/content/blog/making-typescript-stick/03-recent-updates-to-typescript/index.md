@@ -2,14 +2,14 @@
 title: Recent updates to TypeScript
 date: "2022-03-22T09:00:00.000Z"
 description: |
-  Foo
+  We'll discuss some important advancements in the TS language
+  and compiler, starting with the 4.0 release
 course: making-typescript-stick
 order: 3
 ---
 
-# TypeScript 4.0
 
-## Variadic Tuple Types
+# Variadic Tuple Types
 
 We know that a tuple type is an ordered collection (often of known length),
 with the type of each member known as well.
@@ -154,7 +154,7 @@ type NOcompile1 = [...number[], ...string[]]
 type YEScompile2 = [boolean, ...number[], string]
 ```
 
-## Class Property Inference from Constructors
+# Class Property Inference from Constructors
 
 This major convenience feature reduces the need for class
 field type annotations by inferring their types from
@@ -174,7 +174,7 @@ class Color {
 }
 ```
 
-## Thrown values as unknown
+# Thrown values as unknown
 
 Before TS 4.0, thrown values were always considered to be of type
 `any`. Now, we can choose to regard it as of type `unknown`.
@@ -197,9 +197,10 @@ try {
 
 ```
 
-# TypeScript 4.1
+There's also a `useUnknownInCatchVariables` `compilerOption` flag that
+will make thrown values unknown across your entire project
 
-## Template literal types
+# Template literal types
 You can think of these like **template strings, but for types**.
 
 ```ts twoslash
@@ -226,7 +227,7 @@ type T3 = `send${Lowercase<'Mouse'|'keyBoard'>}Event`
 //   ^?
 ```
 
-## Key remapping in mapped types
+# Key remapping in mapped types
 
 You may recall that mapped types are kind of like our "for loop"
 to build up an object type by key-value pairs. Before TS 4.1,
@@ -247,7 +248,7 @@ cs.selectRed()
 //     ^|
 ```
 
-## Checked index access
+# Checked index access
 
 If you've ever heard me rant about typing Dictionaries, you may recall that
 **my advice to describe them as having a possibility of holding `undefined` under some keys**
