@@ -47,8 +47,8 @@ function makeHTMLAdjustments(raw: string): string {
   return (
     raw &&
     raw.replace(
-      /<a href='https:\/\/www.typescriptlang/g,
-      `<a class='try-code-link' target="_blank" href='https://www.typescriptlang`,
+      /<a class='playground-link' href='https:\/\/www.typescriptlang/g,
+      `<a class='playground-link try-code-link' target="_blank" href='https://www.typescriptlang`,
     )
   );
 }

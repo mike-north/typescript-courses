@@ -77,6 +77,10 @@ module.exports = {
                   classes: 'question',
                   title: 'optional',
                 },
+                vspace: {
+                  classes: 'vspace',
+                  title: 'optional',
+                }
               },
             },
           },
@@ -89,7 +93,8 @@ module.exports = {
           {
             resolve: 'gatsby-remark-shiki-twoslash',
             options: {
-              theme: 'light-plus',
+              theme: 'github-light',
+              addTryButton: true
             },
           },
           `gatsby-remark-copy-linked-files`,
