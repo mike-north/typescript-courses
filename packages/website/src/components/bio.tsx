@@ -45,7 +45,9 @@ const PureBio: React.FunctionComponent<IPureBioProps> = ({
           borderRadius: `50%`,
         }}
       />
-      <p>
+      <p style={{
+        flex: 1
+      }}>
         Written by <strong>{author.name}</strong> {author.summary}
         {` `}
         <a href={`https://linkedin.com/in/${social.linkedin}`}>
@@ -55,7 +57,6 @@ const PureBio: React.FunctionComponent<IPureBioProps> = ({
         <a href={`https://twitter.com/${social.twitter}`}>
           follow him on Twitter
         </a>
-
       </p>
     </div>
   );
@@ -66,7 +67,7 @@ const Bio = (): JSX.Element => {
     query BioQuery {
       avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
         childImageSharp {
-          fixed(width: 50, height: 50) {
+          fixed(width: 125, height: 125) {
             ...GatsbyImageSharpFixed
           }
         }

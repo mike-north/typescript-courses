@@ -3,7 +3,7 @@ title: Modules & CJS interop
 date: "2021-06-10T09:00:00.000Z"
 description: |
   Although most of the code we write today is in the form of
-  ES modules, plenty of dependencies are packaged in the 
+  ES modules, plenty of dependencies are packaged in the
   CommonJS module format. In this chapter, we'll look at modules in depth
   so that you have all the tools you need in order to consume all
   the dependencies you care about, while keeping the TS compiler happy
@@ -95,7 +95,7 @@ Here's a small example of where the _namespace import_ fails:
 ////////////////////////////////////////////////////////
 // @filename: fruits.ts
 function createBanana() {
-    return { name: "banana", color: "yellow", mass: 183 }
+  return { name: "banana", color: "yellow", mass: 183 }
 }
 
 // equivalent to CJS `module.exports = createBanana`
@@ -103,27 +103,28 @@ export = createBanana
 ////////////////////////////////////////////////////////
 // @filename: smoothie.ts
 
-import * as createBanana from './fruits'
+import * as createBanana from "./fruits"
 ```
 
 While this error message is accurate, you may not want to follow the
-advice it provides in all situations. 
+advice it provides in all situations.
 
-> If you need to enable the  `esModuleInterop` and `allowSyntheticDefaultImports`
+> If you need to enable the `esModuleInterop` and `allowSyntheticDefaultImports`
 > compiler flags in order to allow your types to compile, anyone
 > who depends on your types will also have no choice but to enable them.
 
 I call these "viral options", and take extra steps to avoid using
-them in my libraries. 
+them in my libraries.
 
 Thankfully we have another option here -- the use of an older module loading API
 that imports the code properly, and matches up the type information as well
+
 ```ts twoslash
 // @module: CommonJS
 ////////////////////////////////////////////////////////
 // @filename: fruits.ts
 function createBanana() {
-    return { name: "banana", color: "yellow", mass: 183 }
+  return { name: "banana", color: "yellow", mass: 183 }
 }
 
 // equivalent to CJS `module.exports = createBanana`
@@ -131,12 +132,13 @@ export = createBanana
 ////////////////////////////////////////////////////////
 // @filename: smoothie.ts
 
-import createBanana = require('./fruits')
+import createBanana = require("./fruits")
 const banana = createBanana()
 //     ^?
 ```
 
-The error message said 
+The error message said
+
 > This module can only be referenced **with ECMAScript imports/exports** by turning on the 'esModuleInterop' flag
 
 and we have solved this by avoiding the use of an ECMAScript import/export. After all, the code we're referring
@@ -152,7 +154,7 @@ The compiled output of this file will still be what we're looking for in the CJS
 ////////////////////////////////////////////////////////
 // @filename: fruits.ts
 function createBanana() {
-    return { name: "banana", color: "yellow", mass: 183 }
+  return { name: "banana", color: "yellow", mass: 183 }
 }
 
 // equivalent to CJS `module.exports = createBanana`
@@ -160,10 +162,11 @@ export = createBanana
 ////////////////////////////////////////////////////////
 // @filename: smoothie.ts
 
-import createBanana = require('./fruits')
+import createBanana = require("./fruits")
 const banana = createBanana()
 //     ^?
 ```
+
 ```ts twoslash
 // @showEmit
 // @module: CommonJS
@@ -172,7 +175,7 @@ const banana = createBanana()
 ////////////////////////////////////////////////////////
 // @filename: fruits.ts
 function createBanana() {
-    return { name: "banana", color: "yellow", mass: 183 }
+  return { name: "banana", color: "yellow", mass: 183 }
 }
 
 // equivalent to CJS `module.exports = createBanana`
@@ -180,12 +183,12 @@ export = createBanana
 ////////////////////////////////////////////////////////
 // @filename: smoothie.ts
 
-import createBanana = require('./fruits')
+import createBanana = require("./fruits")
 const banana = createBanana()
 //     ^?
 ```
 
-[[info | :bulb: Reminder: Visual Studio Code downloads types automatically ]]
+[[info | :bulb: Reminder: Visual Studio Code downloads types automatically]]
 | The type information you publish could be downloaded into a user's
 | authoring environment, even if they don't directly consume your library
 | <br/>
@@ -202,10 +205,11 @@ For example, maybe you'll need to [import an image file with webpack](https://v4
 
 ```ts twoslash
 // @errors: 2307
-import img from './file.png'
+import img from "./file.png"
 ```
+
 `file.png` is obviously not a TypeScript file -- we just need
-to tell TypeScript that **whenever we import a `.png` file, 
+to tell TypeScript that **whenever we import a `.png` file,
 it should be treated as if it's a JS module with a string
 value as its default export**
 
@@ -214,11 +218,11 @@ This can be accomplished through a _module declaration_ as shown below
 ```ts twoslash
 // @filename: global.d.ts
 declare module "*.png" {
-    const imgUrl: string
-    export default imgUrl
+  const imgUrl: string
+  export default imgUrl
 }
 // @filename: component.ts
-import img from './file.png'
+import img from "./file.png"
 ```
 
 Like an interface, this is purely type information that will "compile away"

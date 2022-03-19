@@ -10,7 +10,7 @@ order: 16
 ---
 
 Now that we have covered the basic use of Generics, let's layer on
-two more concepts: how [scoping](https://www.typescriptlang.org/docs/handbook/variable-declarations.html#scoping-rules) work with type params, and how we 
+two more concepts: how [scoping](https://www.typescriptlang.org/docs/handbook/variable-declarations.html#scoping-rules) work with type params, and how we
 can describe type params that have more specific requirement than `any`.
 
 ## Generic Constraints
@@ -189,7 +189,6 @@ const sameAs = window as any as number
 ```
 
 In this example, we have told TypeScript a lie by saying `window` is a `number` (but it is not...). Now, TypeScript will fail to catch errors that it is suppose to be catching!
-
 
 - Define type parameters as simply as possible. Consider the two options for `listToDict`:
 

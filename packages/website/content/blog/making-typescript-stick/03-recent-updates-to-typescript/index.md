@@ -8,8 +8,7 @@ course: making-typescript-stick
 order: 3
 ---
 
-
-# Variadic Tuple Types
+## Variadic Tuple Types
 
 We know that a tuple type is an ordered collection (often of known length),
 with the type of each member known as well.
@@ -72,7 +71,7 @@ const result = tail(arr)
 This is not ideal. A `(1 | 2 | 3)[]` is not the same thing as a `[1, 2, 3]`.
 What we're seeing here is what happens when TS tries to infer the following
 
-```
+```ts
 T[]   <----->  [1, 2, 3]
 ```
 
@@ -154,27 +153,28 @@ type NOcompile1 = [...number[], ...string[]]
 type YEScompile2 = [boolean, ...number[], string]
 ```
 
-# Class Property Inference from Constructors
+## Class Property Inference from Constructors
 
 This major convenience feature reduces the need for class
 field type annotations by inferring their types from
 assignments in the `constructor`. It's important to remember
 that this only works when `noImplicitAny` is set to `true`.
+
 ```ts twoslash
 class Color {
   red
-// ^?
+  // ^?
   green
   blue
   constructor(c: [number, number, number]) {
-    this.red = c[0];
-    this.green = c[1];
-    this.blue = c[2];
+    this.red = c[0]
+    this.green = c[1]
+    this.blue = c[2]
   }
 }
 ```
 
-# Thrown values as unknown
+## Thrown values as unknown
 
 Before TS 4.0, thrown values were always considered to be of type
 `any`. Now, we can choose to regard it as of type `unknown`.
@@ -194,40 +194,43 @@ try {
   if (err instanceof Error) throw err
   else throw new Error(`${err}`)
 }
-
 ```
 
 There's also a `useUnknownInCatchVariables` `compilerOption` flag that
 will make thrown values unknown across your entire project
 
-# Template literal types
+## Template literal types
+
 You can think of these like **template strings, but for types**.
 
 ```ts twoslash
 type Statistics = {
-  [K in `${'median' | 'mean'}Value`]?: number
+  [K in `${"median" | "mean"}Value`]?: number
 }
 const stats: Statistics = {}
 stats.meanValue
 //     ^|
 ```
+
 You can do some pretty interesting things with these
+
 ```ts twoslash
-let winFns: Extract<keyof Window, `set${any}`> = '' as any
+let winFns: Extract<keyof Window, `set${any}`> = "" as any
 //      ^?
 ```
+
 We even get some special utility types to assist with changing case
 
 ```ts twoslash
-type T1 = `send${Capitalize<'mouse'|'keyboard'>}Event`
+type T1 = `send${Capitalize<"mouse" | "keyboard">}Event`
 //   ^?
-type T2 = `send${Uppercase<'mouse'|'keyboard'>}Event`
+type T2 = `send${Uppercase<"mouse" | "keyboard">}Event`
 //   ^?
-type T3 = `send${Lowercase<'Mouse'|'keyBoard'>}Event`
+type T3 = `send${Lowercase<"Mouse" | "keyBoard">}Event`
 //   ^?
 ```
 
-# Key remapping in mapped types
+## Key remapping in mapped types
 
 You may recall that mapped types are kind of like our "for loop"
 to build up an object type by key-value pairs. Before TS 4.1,
@@ -239,7 +242,7 @@ lets us transform keys in a more declarative way. This language
 feature works quite nicely with template literal types
 
 ```ts twoslash {3}
-type Colors = 'red' | 'green' | 'blue';
+type Colors = "red" | "green" | "blue"
 type ColorSelector = {
   [K in Colors as `select${Capitalize<K>}`]: () => void
 }
@@ -248,7 +251,7 @@ cs.selectRed()
 //     ^|
 ```
 
-# Checked index access
+## Checked index access
 
 If you've ever heard me rant about typing Dictionaries, you may recall that
 **my advice to describe them as having a possibility of holding `undefined` under some keys**
@@ -258,16 +261,18 @@ If you've ever heard me rant about typing Dictionaries, you may recall that
 type Dict<T> = { [K: string]: T }
 
 const d: Dict<string[]> = {}
-d.rhubarb.join(', '); // 💥
+d.rhubarb.join(", ") // 💥
 ```
 
 My advice was to explicitly type it as
+
 ```ts twoslash
 // @errors: 2532
 type Dict<T> = { [K: string]: T | undefined }
 const d: Dict<string[]> = {}
-d.rhubarb.join(', '); // 💥
+d.rhubarb.join(", ") // 💥
 ```
+
 Great, now we see an error alerting us to the ~possibility~ certainty that
 there is no `string[]` stored under the `rhubarb` key.
 

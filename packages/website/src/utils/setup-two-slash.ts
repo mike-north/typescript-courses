@@ -35,11 +35,13 @@ const findOrCreateTooltip = () => {
 const getRootRect = (element: HTMLElement): DOMRect => {
   if (element.nodeName.toLowerCase() === 'pre')
     return element.getBoundingClientRect();
-
-  return getRootRect(element.parentElement!);
+  const { parentElement } = element;
+  if (!parentElement)
+    throw new Error('No parentElement found for element');
+  return getRootRect(parentElement);
 };
 
-const setupTwoslashHovers = () => {
+const setupTwoslashHovers = (): void => {
   // prettier-ignore
   const twoslashes = document.querySelectorAll('.shiki.twoslash')
   console.log(twoslashes);
@@ -48,7 +50,10 @@ const setupTwoslashHovers = () => {
     const hovered = event.target as HTMLElement;
     if (hovered.nodeName !== 'DATA-LSP')
       return resetHover();
-    const message = hovered.getAttribute('lsp')!;
+    const message = hovered.getAttribute('lsp');
+    if (message === null) {
+      throw new Error('no lsp attribute found');
+    }
     const position = getAbsoluteElementPos(hovered);
 
     // Create or re-use the current hover div

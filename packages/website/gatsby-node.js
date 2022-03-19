@@ -114,7 +114,7 @@ exports.createPages = async ({ graphql, actions }) => {
  * @type {import('gatsby').GatsbyNode<any, any>['onCreateNode']}
  */
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  console.log(`Node created of type "${node.internal.type}"`);
+  // console.log(`Node created of type "${node.internal.type}"`);
 
   const { createNodeField } = actions;
 

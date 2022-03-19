@@ -8,7 +8,7 @@ course: making-typescript-stick
 order: 8
 ---
 
-# 1
+## 1
 
 ```ts {2,5}
 const values = [3, "14", [21]]
@@ -39,9 +39,7 @@ for (let b of values) {
 
 [[vspace]]
 
-
-
-# 2
+## 2
 
 ```ts {7, 9}
 class Person {
@@ -78,7 +76,7 @@ const otherLibrary = new Library()
 
 [[vspace]]
 
-# 3
+## 3
 
 ```ts {4}
 class AsyncManager {
@@ -113,7 +111,7 @@ class AsyncManager {
 
 [[vspace]]
 
-# 4
+## 4
 
 ```ts {17}
 enum CoinResult {
@@ -170,7 +168,7 @@ function main() {
 
 [[vspace]]
 
-# 5
+## 5
 
 ```ts {6}
 function getValue(): [number] | Promise<number> {
@@ -203,7 +201,7 @@ async function main() {
 
 [[vspace]]
 
-# 6
+## 6
 
 ```ts {1}
 let x: number | any = 41
@@ -224,7 +222,7 @@ const y = x
 
 [[vspace]]
 
-# 7
+## 7
 
 ```ts {2}
 const values = [4, 1, null, 21, 45, 32]
@@ -247,7 +245,7 @@ const filtered = values.filter((val) => val !== null)
 
 [[vspace]]
 
-# 8
+## 8
 
 ```ts {6,8}
 class Person {
@@ -282,7 +280,7 @@ let y: keyof typeof p
 
 [[vspace]]
 
-# 9
+## 9
 
 ```ts {5,7}
 enum Language {
@@ -322,7 +320,7 @@ Math.round(lang2)
 
 [[vspace]]
 
-# 10
+## 10
 
 ```ts {11}
 async function tryFetch(url: RequestInfo) {
@@ -366,7 +364,7 @@ async function main() {
 
 [[vspace]]
 
-# 11
+## 11
 
 ```ts {4}
 class Book {

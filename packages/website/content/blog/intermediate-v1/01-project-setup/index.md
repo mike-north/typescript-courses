@@ -18,11 +18,12 @@ order: 1
 ## Top Goals for this course
 
 > Pass along key knowledge gained through _thousands_ of hours of TypeScript teaching, Q&A and pair programming
-
+<!-- markdownlint-disable-next-line MD028 -->
 > By the end of this course, **you will be able to understand _challenging_ type information**.
 
 This likely is pretty scary right now, but you'll know what it
 means by the end of the course
+
 ```ts twoslash
 // Get keys of type T whose values are assignable to type U
 type FilteredKeys<T, U> = {
@@ -32,7 +33,7 @@ type FilteredKeys<T, U> = {
 
 /**
  * get a subset of Document, consisting only of methods
- * returning an Element (e.g., querySelector) or an 
+ * returning an Element (e.g., querySelector) or an
  * Element[] (e.g., querySelectorAll)
  */
 type ValueFilteredDoc = Pick<
@@ -45,6 +46,7 @@ type ValueFilteredDoc = Pick<
 ```
 
 ## What do you assume I already know?
+
 - Modern javascript
 - The basics of function, object and array types
 - Basic generics (e.g., typescript fundamentals v3)

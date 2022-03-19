@@ -9,7 +9,7 @@ order: 3
 ---
 
 Now that we have compiled a simple TypeScript program, let's look at
-the basics of the programming language. 
+the basics of the programming language.
 
 ## Variable Declarations & Inference
 
@@ -86,7 +86,6 @@ setTimeout(() => {
 ```
 
 `endTime` is "born" without a type, so it ends up being an implicit `any`.
-
 
 TypeScript doesn't have enough information around the declaration site to infer
 what `endTime` should be, so it gets **the most flexible type: `any`**.

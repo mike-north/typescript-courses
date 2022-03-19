@@ -2,7 +2,7 @@
 title: Conditional Types
 date: "2021-06-10T09:00:00.000Z"
 description: |
-  Conditional types can be thought of as "a ternary operator, for types". 
+  Conditional types can be thought of as "a ternary operator, for types".
   While there is no "control flow" in a world where we're describing constraints with types
   (instead of procedural steps to execute "in a flow"), this tool does provide
   an important foundation for switching logic based on type information
@@ -13,8 +13,8 @@ order: 05
 ## Ternary operator with _values_
 
 In a wide range of programming languages, we can find `if`/`then`/`else` logic.
-JavaScript provides a ternary[^1] operator that allows us to express this kind of logic concisely.
-For example.
+JavaScript provides a ternary[^1] operator that allows us to express this kind of
+logic concisely. For example.
 
 ```ts twoslash
 const x = 16
@@ -25,14 +25,14 @@ const isXNegative = x >= 0 ? "no" : "yes"
 The general format of this expression in the regular JS/TS
 world, when used with _values_ (as shown in the snippet above) is:
 
-```
+```ts
 condition ? exprIfTrue : exprIfFalse
 ```
 
 ## Conditional types
 
-Conditional types allow for types to be expressed using a very similar (basically, _the same_)
-syntax
+Conditional types allow for types to be expressed using a very similar
+(basically, _the same_) syntax
 
 ```ts twoslash
 class Grill {
@@ -70,7 +70,7 @@ type CookingDevice<T> = T extends "grill" ? Grill : Oven
 On the right side of the `=` operator, you can see the same three parts
 from our definition of a traditional value-based ternary operator
 
-```
+```ts
 condition ? exprIfTrue : exprIfFalse
 ```
 
@@ -80,13 +80,15 @@ condition ? exprIfTrue : exprIfFalse
 | exprIfTrue  | `Grill`             |
 | exprIfFalse | `Oven`              |
 
-You probably notice the `extends` keyword in the condition. As of TypeScript v4.3, is the _only_
-mechanism of expressing any kind of condition. You can think of it kind of like a `>=` comparison
+You probably notice the `extends` keyword in the condition. As of TypeScript v4.
+3, is the _only_ mechanism of expressing any kind of condition. You can think of
+it kind of like a `>=` comparison
 
 ### Quiz: Expressing conditions
 
 [[info | QUIZ: Conditional type - condition expressions]]
-| Let's study a few examples of `extends` scenarios and see if we can figure out whether it will evaluate to `true` or `false`
+| Let's study a few examples of `extends` scenarios and see if we can figure out
+| whether it will evaluate to `true` or `false`
 |
 | | | condition |
 | | --- | ------------------------------------------- |

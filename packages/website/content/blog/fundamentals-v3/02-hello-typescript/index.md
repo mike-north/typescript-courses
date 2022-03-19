@@ -52,6 +52,7 @@ The following is just about the simplest possible [config file](https://www.type
 
 `tsconfig.json`
 [(view source)](https://github.com/mike-north/ts-fundamentals-v3/blob/main/packages/hello-ts/tsconfig.json) <br />
+
 ```jsonc
 {
   "compilerOptions": {
@@ -65,7 +66,6 @@ The following is just about the simplest possible [config file](https://www.type
 All of these things could be specified on the command line (e.g., `tsc --outDir dist`), but particularly as
 things get increasingly complicated, we'll benefit a lot from having this config file:
 
-
 Finally, we have a relatively simple and pointless TypeScript program. It does
 have **a few interesting things in it that should make changes to the `"target"`
 property in our `tsconfig.json` more obvious**:
@@ -77,6 +77,7 @@ Here is the original (TypeScript) source code that we aim to compile:
 
 `src/index.ts`
 [(view source)](https://github.com/mike-north/ts-fundamentals-v3/blob/main/packages/hello-ts/src/index.ts) <br />
+
 ```ts twoslash
 /**
  * Create a promise that resolves after some time
@@ -120,13 +121,14 @@ yarn dev
 
 You should see something in your terminal like:
 
-```
+```log
 12:01:57 PM - Starting compilation in watch mode...
 ```
 
 Note that within the "hello-ts" project
+
 - a `./dist` folder has appeared,
-- inside it is an `index.js` file. 
+- inside it is an `index.js` file.
 
 Open this file -- **it will be a mess**
 
@@ -400,9 +402,10 @@ Now let's bump the language level up even more, to 2017:
 }
 ```
 
-**It's even cleaner!** 
+**It's even cleaner!**
 
 Some changes to observe:
+
 - We start to see `async` and `await`
 - We no longer see the `_awaiter` helper
 
@@ -480,8 +483,7 @@ A good way to think of TS files:
 
 ### Types of modules
 
-Did you notice that the `export` keyword was still present in the build output for our program? We are generating [ES2015 modules][esm] from our TypeScript source. 
-
+Did you notice that the `export` keyword was still present in the build output for our program? We are generating [ES2015 modules][esm] from our TypeScript source.
 
 If you tried to run this file with `node` like this:
 
@@ -537,5 +539,5 @@ time and then print `7` to the console, before ending successfully.
 
 CONGRATS! You've just compiled your first TypeScript program!
 
-[esm]: <https://en.wikipedia.org/wiki/ECMAScript#6th_Edition_%E2%80%93_ECMAScript_2015>
-[cjs]: <https://en.wikipedia.org/wiki/CommonJS>
+[esm]: https://en.wikipedia.org/wiki/ECMAScript#6th_Edition_%E2%80%93_ECMAScript_2015
+[cjs]: https://en.wikipedia.org/wiki/CommonJS
