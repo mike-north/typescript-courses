@@ -7,7 +7,7 @@ course: making-typescript-stick
 order: 2
 ---
 
-# Question 1
+## Question 1
 
 Consider the following situation. Is there a possibility
 of a function `foo` changing the value held by `val`
@@ -29,12 +29,13 @@ function main() {
 
 **Yes, but it depends both on the value type of `val` and the implementation of
 `foo`**. For example, if `val` is an array, `foo` could push things into the array.
-If `val` is a string, there's nothing that `foo` could do to make the `console.log` statements
+If `val` is a string, there's nothing that `foo` could do to make the
+`console.log` statements
 print something different
 
 </details>
 
-# Question 2
+## Question 2
 
 Which of the following variables (`a`, `b`, `c`, `d`, `e`) hold immutable values
 
@@ -60,7 +61,7 @@ prevents new properties from being added. This effectively is a "shallow immutab
 
 </details>
 
-# Question 3
+## Question 3
 
 Which of the following variables (`a`, `b`, `c`, `d`, `e`) hold immutable values
 
@@ -86,7 +87,7 @@ prevents new properties from being added. This effectively is a "shallow immutab
 
 </details>
 
-# Question 4
+## Question 4
 
 ```js twoslash
 function getData() {
@@ -113,16 +114,20 @@ main().then(() => {
 <details>
 <summary>Click here for the answer</summary>
 
-**dog, cat, elephant, giraffe, zebra, koala, lion, moose**
+Answer: **dog, cat, elephant, giraffe, zebra, koala, lion, moose**
 
-- Are you surprised that `giraffe` and `zebra` happen so early? Remember that `Promise` executors are invoked synchronously in the `Promise` constructor
-- Are you surprised that `lion` happens so late? Remember that a `resolve` is not a `return`. Just because a `Promise` has resolved, doesn't mean the corresponding `.then` (or `await` is called immediately)
+- Are you surprised that `giraffe` and `zebra` happen so early? Remember
+  that `Promise` executors are invoked synchronously in the `Promise` constructor
+- Are you surprised that `lion` happens so late? Remember that a `resolve` is
+  not a `return`. Just because a `Promise` has resolved, doesn't mean the
+  corresponding `.then` (or `await` is called immediately)
 
 </details>
 
-# Question 5
+## Question 5
 
-Look at the following code sample. What happens when we try to run the last three lines?
+Look at the following code sample. What happens when we try to run the last
+three lines?
 
 ```js twoslash
 const Animal = function (numLegs) {
@@ -136,7 +141,7 @@ const Animal = function (numLegs) {
 Animal.prototype.jump = function () {
   console.log(`Jumping with ${numLegs} legs!`)
 }
-const a = new Animal(4);
+const a = new Animal(4)
 a.walk() // ?
 a.run() // ?
 a.jump() // ?
@@ -145,9 +150,10 @@ a.jump() // ?
 <details>
 <summary>Click here for the answer</summary>
 
-**`a.walk()` will error, `a.run()` will print `"Running with 4 legs!"` and `a.jump()` will error**
+**`a.walk()` will error, `a.run()` will print `"Running with 4 legs!"`
+and `a.jump()` will error**
 
-* Remember that `walk()` is visible only from within the constructor function
-* Remember that `numLegs` is only visible from within the constructor function
+- Remember that `walk()` is visible only from within the constructor function
+- Remember that `numLegs` is only visible from within the constructor function
 
 </details>

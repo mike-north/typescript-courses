@@ -3,7 +3,7 @@ title: Nullish values
 date: "2021-06-08T09:00:00.000Z"
 description: |
   There are situations where we have to plan for, and deal with
-  the possibility that values are null or undefined. In this chapter, 
+  the possibility that values are null or undefined. In this chapter,
   we will dive deep into null, undefined, definite assignment,
   and the non-null assertion operator.
 course: fundamentals-v3
@@ -20,7 +20,7 @@ they are independent types in TypeScript. Learning to use them to your advantage
 
 ## `null`
 
-> `null` means: there is a value, and that value is _nothing_. 
+> `null` means: there is a value, and that value is _nothing_.
 > While some people believe that [null is not an important part of the JS language](https://www.youtube.com/watch?v=PSGEjv3Tqo0&t=563s), I find that it's useful to express the concept of a "nothing" result (kind of like an empty array, but not an array).
 
 This _nothing_ is very much a defined value, and is certainly a presence -- not an absence -- of information.
@@ -90,7 +90,7 @@ cart.fruits!.push({ name: "kumkuat", qty: 1 })
 
 I recommend against using this in your app or library code, but
 if your test infrastructure represents a `throw` as a test failure (most should)
-this is a _great_ type guard  to use in your test suite.
+this is a _great_ type guard to use in your test suite.
 
 In the above situation, if `fruits` was expected to be present and it's not,
 that's a very reasonable test failure :tada:

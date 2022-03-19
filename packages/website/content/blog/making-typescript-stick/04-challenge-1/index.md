@@ -7,17 +7,18 @@ course: making-typescript-stick
 order: 4
 ---
 
-# What's a jQuery?
+## What's a jQuery?
 
 Back in the age of inconsistent DOM APIs (I'm looking at you IE6)
 there arose a _dominant_ solution that allowed us to do things
 very similar to `document.querySelector` and many other things.
 
-# The Challenge
+## The Challenge
 
 We're going to write our own version of _part of_ this API surface, _with types!_.
 
 Here are some slightly modified code snippets from the jQuery [getting started page](https://jquery.com/)
+
 ```ts twoslash
 // @noImplicitAny: false
 const $: any = {}
@@ -54,7 +55,7 @@ $.ajax({
 
 You're going to define something that emulates this kind of behavior.
 
-# Setup
+## Setup
 
 First, if you haven't done so already, clone the workshop project
 for this course
@@ -66,30 +67,36 @@ cd making-typescript-stick
 
 Make sure you have [Volta](https://volta.sh/) installed. If you haven't
 done so already, just run the following to install it
+
 ```sh
 curl https://get.volta.sh | bash
 ```
+
 Next, let's install our dependencies
+
 ```sh
 yarn
 ```
+
 and finally, let's navigate to the folder containing this specific challenge
+
 ```sh
 cd challenges/jquery-clone
 ```
+
 You can now run the test suite to see if you've defined an "equivalent" API
 surface. Your job is to modify the code in `./src/index.ts` until all of the existing
 tests pass.
 
-# Hints
+## Hints
 
-* For the `$.ajax` function, make sure to take advantage of `node-fetch`
+- For the `$.ajax` function, make sure to take advantage of `node-fetch`
 
 ```ts
-import { default as fetch } from 'node-fetch';
+import { default as fetch } from "node-fetch"
 ```
 
-* Remember that we can stack a namespace on top of a function
+- Remember that we can stack a namespace on top of a function
 
 ```ts twoslash
 function $() {}

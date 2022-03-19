@@ -8,8 +8,7 @@ course: making-typescript-stick
 order: 5
 ---
 
-
-# Example 1
+## Example 1
 
 ```ts
 let age = 38
@@ -30,7 +29,7 @@ age = Number.NaN
 
 [[vspace]]
 
-# Example 2
+## Example 2
 
 ```ts
 const vector3: [number, number, number] = [3, 4, 5]
@@ -55,7 +54,7 @@ vector3.push(6)
 
 [[vspace]]
 
-# Example 3
+## Example 3
 
 ```ts
 type Color = {
@@ -91,7 +90,7 @@ interface Color {
 
 [[vspace]]
 
-# Example 4
+## Example 4
 
 ```ts
 class Person {
@@ -125,7 +124,7 @@ class Person {
 
 [[vspace]]
 
-# Example 5
+## Example 5
 
 ```ts
 abstract class Person {
@@ -157,7 +156,7 @@ class Student extends Person {
 
 [[vspace]]
 
-# Example 6
+## Example 6
 
 ```ts
 interface Color {
@@ -207,7 +206,7 @@ printColor({
 
 [[vspace]]
 
-# Example 7
+## Example 7
 
 ```ts
 type Color = {
@@ -250,7 +249,7 @@ class ColorValue implements Color {
 
 [[vspace]]
 
-# Example 8
+## Example 8
 
 ```ts
 export class Person {
@@ -265,7 +264,8 @@ interface Person {
 <details>
   <summary>Click here for the answer</summary>
 
-**No, this will NOT compile**. When one part of a merged declaration is exported, all other
+**No, this will NOT compile**. When one part of a merged declaration is
+exported, all other
 parts must be exported as well.
 
 ```ts twoslash
@@ -283,7 +283,7 @@ interface Person {
 
 [[vspace]]
 
-# Example 9
+## Example 9
 
 ```ts
 class Person {
@@ -324,7 +324,7 @@ class Person {
 
 [[vspace]]
 
-# Example 10
+## Example 10
 
 ```ts
 enum Language {
@@ -354,7 +354,7 @@ Once you provide a string initializer for an enum member, all following enum
 members need an explicit initializer of some sort, _unless_ you go back to numeric
 enum values, at which point inference takes over again.
 
-**Ok, this one wasn't really fair :)**
+Ok, **this one wasn't really fair :)**
 
 ```ts twoslash
 // @errors: 1061
@@ -380,7 +380,7 @@ enum Linter {
 
 [[vspace]]
 
-# Example 11
+## Example 11
 
 ```ts
 function handleClick(evt: Event) {
@@ -422,7 +422,7 @@ function handleClick(this: HTMLInputElement, evt: Event) {
 
 [[vspace]]
 
-# Example 12
+## Example 12
 
 ```ts
 class Person {
@@ -449,7 +449,8 @@ class Student extends Person {
 <details>
   <summary>Click here for the answer</summary>
 
-**No, this will NOT compile**. Because TS `private` fields are just "checked for access at build time"
+**No, this will NOT compile**. Because TS `private` fields are just "checked
+for access at build time"
 and are totally accessible outside the class at runtime, there's a collision
 between the two `age` members.
 
@@ -482,7 +483,7 @@ class Student extends Person {
 
 [[vspace]]
 
-# Example 13
+## Example 13
 
 ```ts
 class Person {

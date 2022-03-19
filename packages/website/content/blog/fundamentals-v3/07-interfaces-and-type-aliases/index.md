@@ -3,7 +3,7 @@ title: Interfaces and Type Aliases
 date: "2021-06-08T09:00:00.000Z"
 description: |
   TypeScript provides two mechanisms for centrally defining types and giving them
-  useful and meaningful names: interfaces and type aliases. We will study both 
+  useful and meaningful names: interfaces and type aliases. We will study both
   concepts in depth, and explain when it makes sense to use each.
 course: fundamentals-v3
 order: 7
@@ -159,7 +159,7 @@ export function maybeGetUserInfo(): UserInfoOutcome {
 }
 ```
 
-### Inheritance
+### Inheritance in type aliases
 
 You can create type aliases that combine existing types with new behavior
 by using Intersection (`&`) types.
@@ -200,7 +200,7 @@ Like type aliases, interfaces can be imported/exported between
 modules just like values, and they serve to provide a "name"
 for a specific type.
 
-### Inheritance:
+### Inheritance in interfaces
 
 #### `extends`
 

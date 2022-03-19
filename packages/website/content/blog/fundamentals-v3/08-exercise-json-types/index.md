@@ -14,7 +14,7 @@ that describes any allowable JSON value.
 
 Here's the relevant section of the specification:
 
-```
+```md
 A JSON value MUST be an
 
 - object

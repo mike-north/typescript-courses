@@ -59,7 +59,13 @@ exports[`Bio renders correctly 1`] = `
       }
     />
   </div>
-  <p>
+  <p
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
     Written by 
     <strong>
       Mike

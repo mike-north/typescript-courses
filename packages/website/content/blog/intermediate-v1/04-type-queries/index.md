@@ -3,7 +3,7 @@ title: Type Queries
 date: "2021-06-10T09:00:00.000Z"
 description: |
   Type queries allow us to obtain type information from values.
-  As we work toward building our own "standard library" of 
+  As we work toward building our own "standard library" of
   utility types, we'll need this important tool in our toolbox
 course: intermediate-v1
 order: 04
@@ -65,21 +65,23 @@ A common use of `typeof` is to obtain a type representing the "static site" of a
 
 ```ts twoslash
 class Fruit {
-    constructor(
-        public readonly name: string,
-        public readonly mass: number,
-        public readonly color: string) {}
+  constructor(
+    public readonly name: string,
+    public readonly mass: number,
+    public readonly color: string
+  ) {}
 
-    static createBanana() { return new Fruit('banana', 108, 'yellow')}
+  static createBanana() {
+    return new Fruit("banana", 108, "yellow")
+  }
 }
-
 
 const MyFruit = Fruit
 //     ^?
 const banana = Fruit.createBanana()
 //     ^?
 ```
-`MyFruit`, the class (constructor) is of type `typeof Fruit`, where instances are of type `Fruit`
 
+`MyFruit`, the class (constructor) is of type `typeof Fruit`, where instances are of type `Fruit`
 
 [^1]: If you're curious about this property, try running the following in your terminal `node -e "console.log(new Date()[Symbol.toPrimitive]('string'))"`

@@ -12,9 +12,9 @@ order: 06
 There are several types that are broadly useful enough that TypeScript
 includes them as part of the "core types" for the JS language.
 
- Now that we've learned about conditional types, let's study
-  the built-in utility types `Extract` and `Exclude`, which are
-  *implemented* with conditional types
+Now that we've learned about conditional types, let's study
+the built-in utility types `Extract` and `Exclude`, which are
+_implemented_ with conditional types
 
 ## Extract
 
@@ -76,16 +76,17 @@ type NonStringColors = Exclude<FavoriteColors, string>
 ## How do these work?
 
 Here's the complete source code for these types
+
 ```ts
 /**
  * Exclude from T those types that are assignable to U
  */
-type Exclude<T, U> = T extends U ? never : T;
+type Exclude<T, U> = T extends U ? never : T
 
 /**
  * Extract from T those types that are assignable to U
  */
-type Extract<T, U> = T extends U ? T : never;
+type Extract<T, U> = T extends U ? T : never
 ```
 
 They're just conditional types, and the only difference

@@ -14,7 +14,7 @@ order: 1
 - Works in the **Developer Productivity and Happiness** org
 - Main focus: **Infra UX**
 - **TypeScript Infra Lead**
- 
+
 ## #1 Goal for this course
 
 > By the end of this course, **I want you to have a rock solid mental model, that will serve you well for years**
@@ -32,7 +32,7 @@ order: 1
 
 ## Why developers want types
 
-**It allows you, as a code author, to leave more of your intent "on the page"**
+It allows you, as a code author, **to leave more of your intent "on the page"**
 
 This kind of _intent_ is often missing from JS code. For example:
 
@@ -51,6 +51,7 @@ function add(a, b, c = 0) {
   return a + b + c
 }
 ```
+
 We're headed for trouble if we decided to pass strings in for `a` and `b`!
 
 Types make the author's intent more clear

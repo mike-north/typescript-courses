@@ -7,4 +7,6 @@ course: making-typescript-stick
 order: 7
 ---
 
-Download the game [here](https://github.com/mike-north/making-typescript-stick/blob/master/games/Jeopardy-1.pptx) and open with [Microsoft Powerpoint](https://www.microsoft.com/en-us/microsoft-365/powerpoint)
+Download the game
+[here](https://github.com/mike-north/making-typescript-stick/blob/master/games/Jeopardy-1.pptx)
+and open with [Microsoft Powerpoint](https://www.microsoft.com/en-us/microsoft-365/powerpoint)

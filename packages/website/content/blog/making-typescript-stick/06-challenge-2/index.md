@@ -7,30 +7,32 @@ course: making-typescript-stick
 order: 6
 ---
 
-[Type challenges](https://github.com/type-challenges/type-challenges) are a great way to
+[Type challenges](https://github.com/type-challenges/type-challenges)
+are a great way to
 practice using the TS type system. These are often quite challenging, but they give
 you valuable practice thinking about how utility types work.
 
 Let's tackle a curated selection of these challenges ourselves!
 
-# Round 1
+## Round 1
 
 ```twoslash include expect
 // @errors: 2344
 type Expect<T extends true> = T
 type Equal<X, Y> =
-  (<T>() => T extends X ? 1 : 2) extends
-  (<T>() => T extends Y ? 1 : 2) ? true : false
+(<T>() => T extends X ? 1 : 2) extends
+(<T>() => T extends Y ? 1 : 2) ? true : false
 
 type NotEqual<X, Y> = true extends Equal<X, Y> ? false : true
 
 // ---cut---
+
 ```
 
+### `If<C, T, F>`
 
-## `If<C, T, F>`
-
-Implement a type that evaluates to `T` if the type `C` is `true` or `F` if `C` is `false`.
+Implement a type that evaluates to `T` if the type `C` is
+`true` or `F` if `C` is `false`.
 
 ```ts twoslash
 // @include: expect
@@ -47,7 +49,7 @@ type cases = [
 
 [[vspace]]
 
-## `LengthOfTuple<T>`
+### `LengthOfTuple<T>`
 
 Implement a type that evaluates to a numeric type literal, equivalent to the
 length of a specified tuple type `T`
@@ -70,7 +72,7 @@ type cases = [
 
 [[vspace]]
 
-## `EndsWith<A, B>`
+### `EndsWith<A, B>`
 
 Implement a type that evaluates to `true` if the type `A` ends with the type `B`,
 otherwise false.
@@ -106,7 +108,7 @@ let firstLetterOfDog: FirstLetter<"dog">
 
 [[vspace]]
 
-## `Concat<A, B>`
+### `Concat<A, B>`
 
 Implement a type that concatenates two tuple types `A`, and `B`
 
@@ -134,9 +136,9 @@ type cases = [
 
 [[vspace]]
 
-# Round 2
+## Round 2
 
-## `ReturnOf<F>`
+### `ReturnOf<F>`
 
 Implement a type that emits the return type of a function type `F`
 
@@ -193,7 +195,7 @@ type ComplexObject = {
 
 [[vspace]]
 
-## `Split<S, SEP>`
+### `Split<S, SEP>`
 
 Implement a type that splits a string literal type `S` by a delimiter `SEP`, emitting
 a tuple type containing the string literal types for all of the "tokens"
@@ -250,9 +252,10 @@ type cases = [
 
 [[vspace]]
 
-## `IsTuple<T>`
+### `IsTuple<T>`
 
-Implement a type `IsTuple`, which takes an input type `T` and returns whether `T` is tuple type.
+Implement a type `IsTuple`, which takes an input type `T` and returns whether
+`T` is tuple type.
 
 ```ts twoslash
 // @include: expect
@@ -284,11 +287,12 @@ let t1: TypeExtends<6, number>
 
 [[vspace]]
 
-# Round 3
+## Round 3
 
-## `TupleToNestedObject<P, V>`
+### `TupleToNestedObject<P, V>`
 
-Given a tuple type `T` that only contains string type, and a type `U`, build an object recursively.
+Given a tuple type `T` that only contains string type, and a type `U`,
+build an object recursively.
 
 ```ts twoslash
 // @include: expect
@@ -335,9 +339,10 @@ let x: PetsObj
 
 [[vspace]]
 
-## `IndexOf<T, U>`
+### `IndexOf<T, U>`
 
-Implement the type version of `Array.indexOf`, `IndexOf<T, U>` takes an Array `T`, any `U` and returns the index of the first `U` in Array `T`.
+Implement the type version of `Array.indexOf`, `IndexOf<T, U>`
+takes an Array `T`, any `U` and returns the index of the first `U` in Array `T`.
 
 ```ts twoslash
 // @include: expect

@@ -2,8 +2,8 @@
 title: Mapped Types
 date: "2021-06-10T09:00:00.000Z"
 description: |
-  Mapped allow types to be defined in other types through a 
-  much more flexible version of an index signature. We'll 
+  Mapped allow types to be defined in other types through a
+  much more flexible version of an index signature. We'll
   study this type in detail, and demonstrate how it makes
   language features like indexed access types and conditional
   types even more powerful!
@@ -79,7 +79,8 @@ Let's compare this to a true index signature so that we can see the differences
 Notice:
 
 - The `in` keyword in the mapped type
-- Index signatures can be on _all `string`s_ or _all `number`s_, but not some subset of strings or numbers
+- Index signatures can be on _all `string`s_ or _all `number`s_, but not some
+  subset of strings or numbers
 
 ```ts twoslash
 // @errors: 1337
@@ -129,7 +130,8 @@ type Record<K extends keyof any, T> = {
 }
 ```
 
-You may notice the `keyof any` difference. As you can see below, it's just `string | number | symbol`
+You may notice the `keyof any` difference. As you can see below, it's
+just `string | number | symbol`
 
 ```ts twoslash
 let anyKey: keyof any
@@ -153,11 +155,14 @@ type PartOfWindow = {
 
 We couldn't have written any equivalent of `Window[Key]` using regular
 index signatures. What we end up with, in a sense, is almost as if
-**the mapped type loops over all of the possible keys, and determines the appropriate value type
+**the mapped type loops over all of the possible keys, and determines
+the appropriate value type
 for each key**
 
-Let's make this a little more generalized through the use of type params. First, we should
-let the caller define which keys they'd like to use. We'll call this type `PickWindowProperties` because we get to specify which things from `Window` we'd like
+Let's make this a little more generalized through the use of type params.
+First, we should let the caller define which keys they'd like to use. We'll call
+this type `PickWindowProperties` because we get to specify which things from
+`Window` we'd like
 
 ```ts twoslash
 type PickWindowProperties<Keys extends keyof Window> = {
@@ -202,6 +207,7 @@ type Pick<T, K extends keyof T> = {
   [P in K]: T[P]
 }
 ```
+
 ```ts twoslash
 type PickProperties<
   ValueType,
@@ -215,7 +221,8 @@ type PickProperties<
 
 Following our analogy of mapped types feeling like "looping over all keys",
 there are a couple of final things we can do to the properties as we
-create each type: set whether the value placed there should be `readonly` and/or `optional`
+create each type: set whether the value placed there should be `readonly`
+and/or `optional`
 
 This is fairly straightforward, and you can see the use of the
 `?` and `readonly` in the three more built-in TypeScript utility
@@ -272,7 +279,8 @@ type Colors =
   | "prussianBlue"
 ```
 
-We can use the **exact same syntax that one would find in an ECMAScript template literal**,
+We can use the **exact same syntax that one would find in an ECMAScript
+template literal**,
 but in a _type expression_ instead of a _value expression_, to create a new
 type that represents every possible combination of these art features and colors
 
@@ -292,7 +300,8 @@ While something like `"paint_darkSienna_cabin"` could definitely be the
 name of a class method in JavaScript or TypeScript, it's more conventional
 to use `camelCase` instead of `snake_case`
 
-TypeScript provides a few special types you can use _within these template literal types_
+TypeScript provides a few special types you can use _within these
+template literal types_
 
 - `UpperCase`
 - `LowerCase`
@@ -333,7 +342,7 @@ interface DataState {
 type DataSDK = {
   // The mapped type
   // prettier-ignore
-  [K in keyof DataState as `set${Capitalize<K>}`]: 
+  [K in keyof DataState as `set${Capitalize<K>}`]:
     (arg: DataState[K]) => void
 }
 
@@ -370,8 +379,10 @@ based on `Document[K]`?
 
 Our solution has to do with `never` and conditional types.
 
-**Here we're using a flawed approach**, where we set the "type of the value" to `never` whenever
-we want to skip it. This is going to leave us with a type that still has 100% of the keys that `Document` has, with many many values of type `never`
+**Here we're using a flawed approach**, where we set the "type of the value"
+to `never` whenever
+we want to skip it. This is going to leave us with a type that still has 100%
+of the keys that `Document` has, with many many values of type `never`
 
 ```ts twoslash
 ///////////////////////////////////////////////////////////
@@ -393,24 +404,29 @@ function load(doc: ValueFilteredDoc) {
 ```
 
 Click Try and poke at this code in the TypeScript playground. While we're kind of
-"blocked" from using the things we tried to omit in our mapped type, this is quite messy.
+"blocked" from using the things we tried to omit in our mapped type, this
+is quite messy.
 
-> A better approach, which will get us a much cleaner result is to filter our keys first
-> and then use those keys to build a mapped type
+> A better approach, which will get us a much cleaner result is to filter
+> our keys first and then use those keys to build a mapped type
 
 ```ts twoslash
 // Get keys of type T whose values are assignable to type U
-type FilteredKeys<T, U> = { [P in keyof T]: T[P] extends U ? P : never }[keyof T] & keyof T;
+type FilteredKeys<T, U> = {
+  [P in keyof T]: T[P] extends U ? P : never
+}[keyof T] &
+  keyof T
 
-type RelevantDocumentKeys = FilteredKeys<Document, (...args: any[]) => (Element | Element[])>
-
+type RelevantDocumentKeys = FilteredKeys<
+  Document,
+  (...args: any[]) => Element | Element[]
+>
 
 type ValueFilteredDoc = Pick<Document, RelevantDocumentKeys>
 //    ^?
 
 function load(doc: ValueFilteredDoc) {
-  doc.querySelector('input')
+  doc.querySelector("input")
   //    ^?
 }
-
 ```
