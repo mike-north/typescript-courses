@@ -29,7 +29,7 @@
 
 - title: Full Stack TypeScript
   id: full-stack-typescript
-  disabled: true
+  disabled: false
   summary: |
     TypeScript offers a delightful authoring experience, but for many apps all
     bets are off once you make an API call and receive an `any` response back.
