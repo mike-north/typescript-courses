@@ -8,8 +8,8 @@ import EditOnGitHubLink from '../components/EditOnGitHub';
 import SEO from '../components/seo';
 import { rhythm, scale } from '../utils/typography';
 
-import { setupTwoslashHovers } from 'shiki-twoslash/dist/dom';
 import { ICourse } from './course-page';
+import setupTwoslashHovers from '../utils/setup-two-slash';
 
 interface IPost {
   tableOfContents: string;
@@ -47,11 +47,12 @@ function makeHTMLAdjustments(raw: string): string {
   return (
     raw &&
     raw.replace(
-      /<a href='https:\/\/www.typescriptlang/g,
-      `<a class='try-code-link' target="_blank" href='https://www.typescriptlang`,
+      /<a class='playground-link' href='https:\/\/www.typescriptlang/g,
+      `<a class='playground-link try-code-link' target="_blank" href='https://www.typescriptlang`,
     )
   );
 }
+
 const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
   data,
   pageContext,
