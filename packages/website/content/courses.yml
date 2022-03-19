@@ -18,7 +18,7 @@
     from it's weaknesses.
 - title: Making TypeScript Stick
   id: making-typescript-stick
-  disabled: false
+  disabled: true
   summary: |
     Completing an introductory TypeScript workshop is a great first step your TS
     learning journey, but being able to apply the language to solve challenging
