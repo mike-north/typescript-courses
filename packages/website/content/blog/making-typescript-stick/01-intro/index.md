@@ -10,7 +10,6 @@ order: 1
 
 ## What to expect
 
-This course is a modernized version of a [practicum](https://en.wikipedia.org/wiki/Practicum).
 Aside from a small update on the latest developments in the TS language,
 **we won't be covering much _new material_, but we'll get a lot of valuable
 practice** that will help you better retain knowledge and apply it to the
