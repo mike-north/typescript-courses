@@ -4,6 +4,8 @@
   squareImage: /ts-fundamentals-v3.png
   facebookImage: /fb-ts-fundamentals-v3.png
   twitterImage: /tw-ts-fundamentals-v3.png
+  femCourseUrl: https://frontendmasters.com/courses/typescript-v3/
+  femCoursePublished: true
   summary:
     Learn everything you need to know in order to confidently and successfully
     use TypeScript to build a modern JavaScript app.
@@ -13,6 +15,8 @@
   squareImage: /intermediate-ts.png
   facebookImage: /fb-intermediate-ts.png
   twitterImage: /tw-intermediate-ts.png
+  femCourseUrl: https://frontendmasters.com/courses/intermediate-typescript/
+  femCoursePublished: true
   summary: |
     Leverage TypeScript's strengths to provide clarity in the face of
     complexity, while protecting your codebase and team from it's weaknesses.
@@ -22,6 +26,8 @@
   squareImage: /making-typescript-stick.png
   facebookImage: /fb-making-typescript-stick.png
   twitterImage: /tw-making-typescript-stick.png
+  femCourseUrl: https://frontendmasters.com/workshops/typescript-practice/
+  femCoursePublished: false
   summary: |
     Tackle a series of challenges designed to reinforce your knowledge and make
     the important concepts truly "stick" in your mind.
@@ -32,6 +38,8 @@
   squareImage: /full-stack-ts.png
   facebookImage: /fb-full-stack-ts.png
   twitterImage: /tw-full-stack-ts.png
+  femCourseUrl: https://frontendmasters.com/workshops/fullstack-typescript/
+  femCoursePublished: false
   summary: |
     Combine TypeScript and GraphQL's type systems to create full-stack, fully
     type-checked code bases that are shockingly easy to refactor and maintain.

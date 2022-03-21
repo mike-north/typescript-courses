@@ -87,6 +87,8 @@ export const pageQuery = graphql`
           squareImage
           facebookImage
           twitterImage
+          femCourseUrl
+          femCoursePublished
           disabled
         }
       }

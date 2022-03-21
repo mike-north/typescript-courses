@@ -6,15 +6,17 @@ import { rhythm } from '../utils/typography';
 
 interface ICourseLayoutProps {
   courses: ICourse[];
+  padTop: boolean;
 }
 
 const CourseLayout: React.FunctionComponent<ICourseLayoutProps> = ({
   courses,
   children,
+  padTop
 }) => {
   console.log({ courses })
   const header = (
-    <ul className="course-tabs">
+    <ul className={padTop ? "course-tabs pad-top" : "course-tabs"}>
       {courses.filter(c => !c.disabled).map((c) => (
         <li key={c.id} className="course-tab">
           <Link

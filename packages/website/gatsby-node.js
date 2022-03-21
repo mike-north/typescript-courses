@@ -16,6 +16,8 @@ exports.createSchemaCustomization = ({ actions }) => {
       squareImage: String
       facebookImage: String
       twitterImage: String
+      femCourseUrl: String
+      femCoursePublished: String
       summary: String
     }
   `;
@@ -44,6 +46,8 @@ exports.createPages = async ({ graphql, actions }) => {
         squareImage: element.squareImage,
         facebookImage: element.facebookImage,
         twitterImage: element.twitterImage,
+        femCourseUrl: element.femCourseUrl,
+        femCoursePublished: element.femCoursePublished,
       },
     });
   });
