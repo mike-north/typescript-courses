@@ -50,14 +50,14 @@ const BlogIndex: React.FunctionComponent<IBlogIndexProps> = ({
       <Bio />
       {courses.filter(c => !c.disabled).map(({ title, id, squareImage, summary }) => {
         return (
-          <article key={id}>
+          <article className='course-summary' key={id}>
             <header>
               <h3
                 style={{
                   marginBottom: rhythm(1 / 4),
                 }}
               >
-                <img style={{float: 'right'}} width={200} src={squareImage} />
+                <img style={{float: 'right'}} width={150} src={squareImage} />
                 <Link style={{ boxShadow: `none` }} to={`course/${id}`}>
                   {title}
                 </Link>
