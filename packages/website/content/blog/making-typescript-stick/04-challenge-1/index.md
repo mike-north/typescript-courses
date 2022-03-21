@@ -2,7 +2,8 @@
 title: "Challenge 1: Typing jQuery"
 date: "2022-03-22T09:00:00.000Z"
 description: |
-  Challenge 1: Typing jQuery
+  Just for fun (and practice), we'll write our own version of jQuery, built on
+  top of the now standardized DOM APIs.
 course: making-typescript-stick
 order: 4
 ---

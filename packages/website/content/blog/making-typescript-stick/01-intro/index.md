@@ -2,14 +2,14 @@
 title: Intro
 date: "2022-03-22T09:00:00.000Z"
 description: |
-  We'll discuss the goals of this course, and how best to take it
+  We'll discuss the inspiration and goals of this course, and how
+  to best build your TypeScript understanding over time
 course: making-typescript-stick
 order: 1
 ---
 
 ## What to expect
 
-This course is a modernized version of a [practicum](https://en.wikipedia.org/wiki/Practicum).
 Aside from a small update on the latest developments in the TS language,
 **we won't be covering much _new material_, but we'll get a lot of valuable
 practice** that will help you better retain knowledge and apply it to the

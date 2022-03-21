@@ -2,7 +2,9 @@
 title: JS/TS Warm-up Quiz
 date: "2022-03-22T09:00:00.000Z"
 description: |
-  Foo
+  Before jumping in, let's get those neurons firing by taking a quick
+  quiz. Remember, wrong answers aren't anything more than an indication
+  of where you need a little more practice!
 course: making-typescript-stick
 order: 2
 ---
