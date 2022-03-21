@@ -248,6 +248,9 @@ pre:hover data-lsp {
 .course-tabs {
   list-style: none;
   text-align: center;
+  &.pad-top {
+    margin-top: 20px;
+  }
   .course-tab {
     display: inline-block;
     margin-left: 10px;
@@ -635,4 +638,31 @@ details {
       transform: rotateZ(90deg);
     }
   }
+}
+
+.fem-course-banner {
+  position: absolute;
+  top: 0;
+  background-color: #333;
+  color: #fff;
+  left: 0;
+  right: 0;
+  padding: 8px;
+  text-align: center;
+  a {
+    color: #fff;
+  }
+  .fem-logo {
+    border-radius: 2px;
+    display: inline-block;
+    height: 24px;
+    margin-bottom: 0;
+    margin-right: 8px;
+    position: relative;
+    top: 4px;
+  }
+}
+
+.course-summary {
+  min-height: 155px;
 }

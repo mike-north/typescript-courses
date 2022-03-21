@@ -12,6 +12,8 @@ export interface ICourse {
   squareImage: string;
   facebookImage: string;
   twitterImage: string;
+  femCourseUrl: string;
+  femCoursePublished: boolean;
   summary: string;
 }
 
@@ -48,18 +50,55 @@ function formatOrder(n: number): string {
   return `${n}`;
 }
 
-const CoursePageTemplate: React.FunctionComponent<ICourseTemplateProps> = ({
-  pageContext: course,
-  data,
-}): JSX.Element => {
+const CoursePageTemplate: React.FunctionComponent<
+  ICourseTemplateProps
+> = ({ pageContext: course, data }): JSX.Element => {
   if (!course) throw new Error('no course');
   const courses = data.site.siteMetadata.courses;
   const posts = data.allMarkdownRemark.edges;
+  let urlBanner: JSX.Element | null = null;
+  const { femCoursePublished, femCourseUrl } = course;
+  console.log({ femCourseUrl });
+  if (femCourseUrl) {
+    if (femCoursePublished) {
+      urlBanner = (
+        <p className="fem-course-banner">
+          <img className='fem-logo' src="/fem-logo.png" />
+          View the Frontend Masters video course for{' '}
+          {course.title}{' '}
+          <a href={femCourseUrl} target="_blank">
+            here
+          </a>
+        </p>
+      );
+    } else {
+      urlBanner = (
+        <p className="fem-course-banner">
+          <img className='fem-logo' src="/fem-logo.png" />
+          View the Frontend Masters workshop for{' '}
+          {course.title}{' '}
+          <a href={femCourseUrl} target="_blank">
+            here
+          </a>
+        </p>
+      );
+    }
+  }
   return (
-    <CourseLayout courses={courses}>
-      <SEO title={course.title} description={course.summary} twitterImage={course.twitterImage} facebookImage={course.facebookImage} />
+    <CourseLayout courses={courses} padTop={!!urlBanner}>
+      <SEO
+        title={course.title}
+        description={course.summary}
+        twitterImage={course.twitterImage}
+        facebookImage={course.facebookImage}
+      />
+      {urlBanner}
       <header>
-        <img style={{float: 'right'}} width={200} src={course.squareImage} />
+        <img
+          style={{ float: 'right', margin: 8 }}
+          width={175}
+          src={course.squareImage}
+        />
         <h1
           style={{
             marginTop: rhythm(1),
@@ -69,34 +108,59 @@ const CoursePageTemplate: React.FunctionComponent<ICourseTemplateProps> = ({
           {course.title}
         </h1>
       </header>
-      <section style={{ marginTop: '10px' }}>{course.summary}</section>
+      <section style={{ marginTop: '10px' }}>
+        {course.summary}
+      </section>
       {posts
-        .filter((p) => p.node.frontmatter.course === course.id)
-        .sort((a, b) => a.node.frontmatter.order - b.node.frontmatter.order)
+        .filter(
+          (p) => p.node.frontmatter.course === course.id,
+        )
+        .sort(
+          (a, b) =>
+            a.node.frontmatter.order -
+            b.node.frontmatter.order,
+        )
         .map(({ node }, idx) => {
-          const title = node.frontmatter.title || node.fields.slug;
+          const title =
+            node.frontmatter.title || node.fields.slug;
           const { isExercise } = node.frontmatter;
           return (
-            <article className={"course-article" + (isExercise ? ' exercise' : '')} key={node.fields.slug}>
+            <article
+              className={
+                'course-article' +
+                (isExercise ? ' exercise' : '')
+              }
+              key={node.fields.slug}
+            >
               <header>
                 <h3
                   style={{
                     marginBottom: rhythm(1 / 4),
                   }}
                 >
-                  <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+                  <Link
+                    style={{ boxShadow: `none` }}
+                    to={node.fields.slug}
+                  >
                     <span className="course-article__order">
                       {formatOrder(idx + 1)}
                     </span>
-                    <span className="course-article__title">{title}</span>
+                    <span className="course-article__title">
+                      {title}
+                    </span>
                   </Link>
                 </h3>
-                <small className="course-article__date">{node.frontmatter.date}</small>
+                <small className="course-article__date">
+                  {node.frontmatter.date}
+                </small>
               </header>
               <section>
-                <p className="course-article__description"
+                <p
+                  className="course-article__description"
                   dangerouslySetInnerHTML={{
-                    __html: node.frontmatter.description || node.excerpt,
+                    __html:
+                      node.frontmatter.description ||
+                      node.excerpt,
                   }}
                 />
               </section>
@@ -125,11 +189,15 @@ export const pageQuery = graphql`
           squareImage
           facebookImage
           twitterImage
+          femCourseUrl
+          femCoursePublished
           disabled
         }
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: ASC }) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: ASC }
+    ) {
       edges {
         node {
           excerpt
