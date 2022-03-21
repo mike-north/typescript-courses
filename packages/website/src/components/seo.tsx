@@ -14,6 +14,8 @@ interface ISEOProps {
   lang?: string;
   meta?: { name: string; content: string }[];
   title: string;
+  facebookImage?: string;
+  twitterImage?: string;
 }
 
 const SEO: React.FunctionComponent<ISEOProps> = ({
@@ -21,6 +23,8 @@ const SEO: React.FunctionComponent<ISEOProps> = ({
   lang = 'en',
   meta = [],
   title,
+  facebookImage,
+  twitterImage
 }) => {
   const { site } = useStaticQuery(
     graphql`
@@ -38,7 +42,21 @@ const SEO: React.FunctionComponent<ISEOProps> = ({
     `,
   );
 
-  const metaDescription = description || site.siteMetadata.description;
+  const metaDescription =
+    description || site.siteMetadata.description;
+
+  const imageTags: React.DetailedHTMLProps<
+    React.MetaHTMLAttributes<HTMLMetaElement>,
+    HTMLMetaElement
+  >[] = [];
+  if (facebookImage) imageTags.push({
+      property: `og:image`,
+      content: facebookImage,
+  })
+  if (twitterImage) imageTags.push({
+      property: `twitter:image`,
+      content: twitterImage,
+  })
 
   return (
     <Helmet
@@ -80,6 +98,7 @@ const SEO: React.FunctionComponent<ISEOProps> = ({
           name: `twitter:description`,
           content: metaDescription,
         },
+        ...imageTags,
       ].concat(meta)}
     />
   );

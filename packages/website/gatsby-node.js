@@ -13,6 +13,9 @@ exports.createSchemaCustomization = ({ actions }) => {
     type SiteSiteMetadataCourses implements Node {
       id: String
       title: String
+      squareImage: String
+      facebookImage: String
+      twitterImage: String
       summary: String
     }
   `;
@@ -38,6 +41,9 @@ exports.createPages = async ({ graphql, actions }) => {
         id: element.id,
         disabled: element.disabled,
         summary: element.summary,
+        squareImage: element.squareImage,
+        facebookImage: element.facebookImage,
+        twitterImage: element.twitterImage,
       },
     });
   });
