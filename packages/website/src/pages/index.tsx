@@ -6,6 +6,7 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { rhythm } from '../utils/typography';
 
+
 interface IBlogIndexProps {
   data: {
     allMarkdownRemark: {
@@ -24,6 +25,7 @@ interface IBlogIndexProps {
           id: string;
           title: string;
           summary: string;
+          squareImage: string;
           disabled: boolean;
         }[];
       };
@@ -46,7 +48,7 @@ const BlogIndex: React.FunctionComponent<IBlogIndexProps> = ({
     <Layout location={location} title={siteTitle}>
       <SEO title="Courses" />
       <Bio />
-      {courses.filter(c => !c.disabled).map(({ title, id, summary }) => {
+      {courses.filter(c => !c.disabled).map(({ title, id, squareImage, summary }) => {
         return (
           <article key={id}>
             <header>
@@ -55,6 +57,7 @@ const BlogIndex: React.FunctionComponent<IBlogIndexProps> = ({
                   marginBottom: rhythm(1 / 4),
                 }}
               >
+                <img style={{float: 'right'}} width={200} src={squareImage} />
                 <Link style={{ boxShadow: `none` }} to={`course/${id}`}>
                   {title}
                 </Link>
@@ -81,6 +84,9 @@ export const pageQuery = graphql`
           id
           title
           summary
+          squareImage
+          facebookImage
+          twitterImage
           disabled
         }
       }

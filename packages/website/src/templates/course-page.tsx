@@ -9,6 +9,9 @@ export interface ICourse {
   id: string;
   title: string;
   disabled: boolean;
+  squareImage: string;
+  facebookImage: string;
+  twitterImage: string;
   summary: string;
 }
 
@@ -54,8 +57,9 @@ const CoursePageTemplate: React.FunctionComponent<ICourseTemplateProps> = ({
   const posts = data.allMarkdownRemark.edges;
   return (
     <CourseLayout courses={courses}>
-      <SEO title={course.title} description={course.summary} />
+      <SEO title={course.title} description={course.summary} twitterImage={course.twitterImage} facebookImage={course.facebookImage} />
       <header>
+        <img style={{float: 'right'}} width={200} src={course.squareImage} />
         <h1
           style={{
             marginTop: rhythm(1),
@@ -118,6 +122,9 @@ export const pageQuery = graphql`
           id
           title
           summary
+          squareImage
+          facebookImage
+          twitterImage
           disabled
         }
       }

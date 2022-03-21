@@ -1,18 +1,27 @@
 - title: "TypeScript Fundamentals v3"
   id: fundamentals-v3
   disabled: false
+  squareImage: /ts-fundamentals-v3.png
+  facebookImage: /fb-ts-fundamentals-v3.png
+  twitterImage: /tw-ts-fundamentals-v3.png
   summary:
     Learn everything you need to know in order to confidently and successfully
     use TypeScript to build a modern JavaScript app.
 - title: "Intermediate TypeScript"
   id: intermediate-v1
   disabled: false
+  squareImage: /intermediate-ts.png
+  facebookImage: /fb-intermediate-ts.png
+  twitterImage: /tw-intermediate-ts.png
   summary: |
     Leverage TypeScript's strengths to provide clarity in the face of
     complexity, while protecting your codebase and team from it's weaknesses.
 - title: Making TypeScript Stick
   id: making-typescript-stick
   disabled: true
+  squareImage: /making-typescript-stick.png
+  facebookImage: /fb-making-typescript-stick.png
+  twitterImage: /tw-making-typescript-stick.png
   summary: |
     Tackle a series of challenges designed to reinforce your knowledge and make
     the important concepts truly "stick" in your mind.
@@ -20,6 +29,9 @@
 - title: Full Stack TypeScript
   id: full-stack-typescript
   disabled: true
+  squareImage: /full-stack-ts.png
+  facebookImage: /fb-full-stack-ts.png
+  twitterImage: /tw-full-stack-ts.png
   summary: |
     Combine TypeScript and GraphQL's type systems to create full-stack, fully
     type-checked code bases that are shockingly easy to refactor and maintain.
