@@ -2,7 +2,8 @@
 title: Intro
 date: "2022-03-22T09:00:00.000Z"
 description: |
-  We'll discuss the goals of this course, and how best to take it
+  We'll discuss the inspiration and goals of this course, and how
+  to best build your TypeScript understanding over time
 course: making-typescript-stick
 order: 1
 ---

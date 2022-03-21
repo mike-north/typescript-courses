@@ -2,8 +2,8 @@
 title: "Game 1: Does it compile?"
 date: "2022-03-22T09:00:00.000Z"
 description: |
-  Let's play a game! We'll look at a few TypeScript code samples and see if we can figure
-  out if they will compile
+  Let's play a game! We'll look at a few TypeScript code samples and see if we
+  can figure out if they will compile
 course: making-typescript-stick
 order: 5
 ---

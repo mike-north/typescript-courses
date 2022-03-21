@@ -2,8 +2,8 @@
 title: Recent updates to TypeScript
 date: "2022-03-22T09:00:00.000Z"
 description: |
-  We'll discuss some important advancements in the TS language
-  and compiler, starting with the 4.0 release
+  We'll discuss a curated list of advancements in the TS language
+  and compiler, starting with the 4.0 release.
 course: making-typescript-stick
 order: 3
 ---
