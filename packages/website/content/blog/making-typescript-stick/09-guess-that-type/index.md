@@ -5,7 +5,7 @@ description: |
   Turn your brain into a TypeScript compiler with this game
 
 course: making-typescript-stick
-order: 8
+order: 9
 ---
 
 ## 1

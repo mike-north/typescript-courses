@@ -27,12 +27,24 @@ element of the tuple
 ```ts twoslash
 // @errors: 2322
 // Worked this way, even before TS 4.x
-type MyTuple = [number, ...string[]]
+enum Sandwich {
+  Hamburger,
+  VeggieBurger,
+  GrilledCheese,
+  BLT
+}
+type SandwichOrder = [
+  number, // order total
+  Sandwich, // sandwich
+  ...string[] // toppings
+]
 
-const x1: MyTuple = [4]
-const x2: MyTuple = [4, "foo"]
-const x3: MyTuple = [4, "foo", "bar"]
-const will_error: MyTuple = [4, 4]
+const order1: SandwichOrder = [12.99, Sandwich.Hamburger, "lettuce"]
+const order2: SandwichOrder = [14.99, Sandwich.Hamburger, "avocado", "cheese"]
+const order_with_error: SandwichOrder = [
+  10.99,
+  "lettuce"
+]
 ```
 
 It has even been possible to use generics for that spread type
@@ -55,33 +67,54 @@ do something like this ([example in TS playground](https://www.typescriptlang.or
 Why does this matter? Let's look at this example
 
 ```ts twoslash
+enum Sandwich {
+  Hamburger,
+  VeggieBurger,
+  GrilledCheese,
+  BLT
+}
+type SandwichOrder = [
+  number, // order total
+  Sandwich, // sandwich
+  ...string[] // toppings
+]
+
+const order1: SandwichOrder = [12.99, Sandwich.Hamburger, "lettuce"]
+
 /**
  * return an array containing everything except the first element
  */
-function tail<T>(arg: readonly [string, ...T[]]) {
+function tail<T>(arg: readonly [number, ...T[]]) {
   const [_ignored, ...rest] = arg
   return rest
 }
 
-const arr = ["my numbers", 1, 2, 3] as const
-const result = tail(arr)
+const orderWithoutTotal = tail(order1)
 //     ^?
 ```
 
-This is not ideal. A `(1 | 2 | 3)[]` is not the same thing as a `[1, 2, 3]`.
+This is not ideal. A `(string | Sandwich)[]` is not the same thing as a `[Sandwich, ...string[]]`.
 What we're seeing here is what happens when TS tries to infer the following
 
 ```ts
-T[]   <----->  [1, 2, 3]
+T[]   <-----> [Sandwich.Hamburger, "lettuce"]
 ```
 
 similar to what you'd see here
 
 ```ts twoslash
-function returnArray<T>(arg: T[]): T[] {
+enum Sandwich {
+  Hamburger,
+  VeggieBurger,
+  GrilledCheese,
+  BLT
+}
+// ---cut---
+function returnArray<T>(arg: readonly T[]): readonly T[] {
   return arg
 }
-const arr: [1, 2, 3] = [1, 2, 3]
+const arr = [Sandwich.Hamburger, "lettuce"] as const
+//     ^?
 const result = returnArray(arr)
 //     ^?
 ```
@@ -89,16 +122,24 @@ const result = returnArray(arr)
 What we want instead for our tuple scenario, something like this
 
 ```ts twoslash
+enum Sandwich {
+  Hamburger,
+  VeggieBurger,
+  GrilledCheese,
+  BLT
+}
+// ---cut---
 function returnArray<T extends any[]>(arg: T): T {
   return arg
 }
-const arr: [1, 2, 3] = [1, 2, 3]
+const arr: [Sandwich.Hamburger, "lettuce"] = [Sandwich.Hamburger, "lettuce"]
+//     ^?
 const result = returnArray(arr)
 //     ^?
 ```
 
 Inference is doing a lot more for us here, and I would argue, **we're no longer
-losing type information**, once `T = [1, 2, 3]`
+losing type information**, once `T = [Sandwich.Hamburger, "lettuce"]`
 
 TS 4.0 introduces support for _variadic tuples_. This relaxes the limitation
 shown above, and allows us to use `...T` in tuple types. Going back to our `tail`
@@ -106,26 +147,40 @@ example, let's make a small change
 
 ```diff
 
--function tail<T>(arg: readonly [string, ...T[]]) {
-+function tail<T extends any[]>(arg: readonly [string, ...T]) {
+-function tail<T>(arg: readonly [number, ...T[]]) {
++function tail<T extends any[]>(arg: readonly [number, ...T]) {
   const [_ignored, ...rest] = arg;
   return rest;
 }
 ```
 
 ```ts twoslash
+enum Sandwich {
+  Hamburger,
+  VeggieBurger,
+  GrilledCheese,
+  BLT
+}
+type SandwichOrder = [
+  number, // order total
+  Sandwich, // sandwich
+  ...string[] // toppings
+]
+
+
+// ---cut---
 /**
  * return an array containing everything except the first element
  */
 function tail<T extends any[]>(
-  arg: readonly [string, ...T]
+  arg: readonly [number, ...T]
 ) {
   const [_ignored, ...rest] = arg
   return rest
 }
+const order1: SandwichOrder = [12.99, Sandwich.Hamburger, "lettuce"]
 
-const arr = ["my numbers", 1, 2, 3] as const
-const result = tail(arr)
+const result = tail(order1)
 //     ^?
 ```
 
@@ -162,10 +217,10 @@ that this only works when `noImplicitAny` is set to `true`.
 
 ```ts twoslash
 class Color {
-  red
+  red  // :number no longer needed!
   // ^?
-  green
-  blue
+  green // :number no longer needed!
+  blue // :number no longer needed!
   constructor(c: [number, number, number]) {
     this.red = c[0]
     this.green = c[1]
@@ -181,6 +236,13 @@ Before TS 4.0, thrown values were always considered to be of type
 If you've ever found it risky to assume that a `message`, `stacktrace`,
 or `name` property is on every possible thrown value you encounter
 in a catch clause, this feature may make help you sleep a little more soundly.
+
+Thrown errors provide a nice stack trace
+![thrown error with stacktrace](./throw-error.png)
+
+Whereas thrown values of other types (e.g., `string`) often provide far less
+information
+![thrown string without stacktrace](./throw-string.png)
 
 **I advise always typing errors as `unknown`**, and can't think of any scenario
 where it would be worse than an `any`.

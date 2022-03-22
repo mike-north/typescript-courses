@@ -172,7 +172,7 @@ module.exports = {
         name: `TypeScript Training: Learn TypeScript with Mike North!`,
         short_name: `TS Training`,
         start_url: `/`,
-        background_color: `#ffffff`,
+        // background_color: `#ffffff`,
         theme_color: `#3178C6`,
         display: `minimal-ui`,
         icon: `content/assets/ts-logo-512.png`,

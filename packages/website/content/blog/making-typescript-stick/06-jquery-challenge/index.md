@@ -1,11 +1,11 @@
 ---
-title: "Challenge 1: Typing jQuery"
+title: "Challenge 2: Typing jQuery"
 date: "2022-03-22T09:00:00.000Z"
 description: |
   Just for fun (and practice), we'll write our own version of jQuery, built on
   top of the now standardized DOM APIs.
 course: making-typescript-stick
-order: 4
+order: 6
 ---
 
 ## What's a jQuery?
@@ -31,7 +31,7 @@ const $: any = {}
 $("button.continue").html("Next Step...")
 
 /**
- * Show the #banner-message element that is hidden with display:none in
+ * Show the #banner-message element that is hidden with visibility:"hidden" in
  * its CSS when any button in #button-container is clicked.
  */
 const hiddenBox = $("#banner-message")
@@ -40,9 +40,8 @@ $("#button-container button").on("click", (event) => {
 })
 
 /**
- * Call a local script on the server /api/getWeather with the query
- * parameter zipcode=97201 and replace the element #weather-temp's
- * html with the returned text.
+ * Make an API call and fill a <div id="post-info">
+ * with the response data
  */
 $.ajax({
   url: "https://jsonplaceholder.typicode.com/posts/33",
