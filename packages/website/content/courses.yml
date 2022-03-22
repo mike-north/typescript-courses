@@ -22,7 +22,7 @@
     complexity, while protecting your codebase and team from it's weaknesses.
 - title: Making TypeScript Stick
   id: making-typescript-stick
-  disabled: true
+  disabled: false
   squareImage: /making-typescript-stick.png
   facebookImage: /fb-making-typescript-stick.png
   twitterImage: /tw-making-typescript-stick.png

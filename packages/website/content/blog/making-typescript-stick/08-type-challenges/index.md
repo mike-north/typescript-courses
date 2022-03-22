@@ -1,10 +1,10 @@
 ---
-title: "Challenge 2: Type Challenges"
+title: "Challenge 3: Type Challenges"
 date: "2022-03-22T09:00:00.000Z"
 description: |
   We'll explore solving problems using only TypeScript's types
 course: making-typescript-stick
-order: 6
+order: 8
 ---
 
 [Type challenges](https://github.com/type-challenges/type-challenges)
