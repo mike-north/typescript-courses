@@ -208,6 +208,8 @@ type NOcompile1 = [...number[], ...string[]]
 type YEScompile2 = [boolean, ...number[], string]
 ```
 
+Check out [how this feature has allowed the Rx.js project to simplify their types](https://github.com/ReactiveX/rxjs/pull/5859/files)
+
 ## Class Property Inference from Constructors
 
 This major convenience feature reduces the need for class
@@ -342,3 +344,5 @@ However, it's tough to be vigilant enough to remember to do this to every
 index signature in your entire app.
 
 TypeScript now gives us a compiler flag that will do this for us: `noUncheckedIndexAccess`.
+
+Sadly we can't demonstrate how this works using these docs yet, but [here's an example from the typescript playground](https://www.typescriptlang.org/play?noUncheckedIndexedAccess=true#code/PTAEFkEsGsFNQC4AtIDtoGdEq5LB3AQwE9EB7M0MgBwUgFs86BjAKAWOvgBFJmEAPABUAfKAC8oAN6gA2gGkAXKAwIATmgDmAXWVDQAX1atmZVKtAATZb34DVG1JtnaxkqUcsA6NUgCuAEaEagFeAFZkaAAUAEQANKAxAJSgIKCAvBuApTtAA)
