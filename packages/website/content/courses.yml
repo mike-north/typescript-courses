@@ -34,7 +34,7 @@
 
 - title: Full Stack TypeScript
   id: full-stack-typescript
-  disabled: true
+  disabled: false
   squareImage: /full-stack-ts.png
   facebookImage: /fb-full-stack-ts.png
   twitterImage: /tw-full-stack-ts.png
