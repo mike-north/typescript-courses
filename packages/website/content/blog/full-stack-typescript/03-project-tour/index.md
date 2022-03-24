@@ -24,7 +24,7 @@ volta install node
 Then, check out a local copy of this repository
 
 ```sh
-git clone git@github.com:mike-north/full-stack-typescript
+git clone git@github.com:mike-north/full-stack-ts
 cd full-stack-typescript
 ```
 
