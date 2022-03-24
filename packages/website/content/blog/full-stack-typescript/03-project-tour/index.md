@@ -2,7 +2,7 @@
 title: Project Tour
 date: "2022-03-24T09:00:00.000Z"
 description: |
-  TBFI
+  Let's take a look at the starting point code for our workshop project, a twitter clone
 course: full-stack-typescript
 order: 3
 ---
