@@ -34,7 +34,13 @@ Next, install the project dependencies
 yarn
 ```
 
-Finally, start the project
+Build the project for the first time
+
+```sh
+yarn build
+```
+
+And finally, start the project
 
 ```sh
 yarn dev
