@@ -291,8 +291,10 @@ export const GET_TIMELINE_TWEETS = gql`
   }
 `
 ```
+Because we created a new operation, we'll need to run `yarn codegen` within the `client` sub-project again
+to get the new type information.
 
-Within the component, before it returns, add this
+Within this component, before it returns, add this
 
 ```ts
 const { loading, error, data } = useGetTimelineTweetsQuery()
