@@ -44,28 +44,29 @@ The "purple types" (let's call this the "db representation") are also visible on
 and also the DB. If we imagine a world where we _almost never handwrite DB queries_, we can also get some benefits
 of refactoring safety along API-to-DB communication.
 
-## Scenarios We'll Explore
+## The Scenario We'll Explore
 
 There are multiple approaches we could take to arrive at this outcome, and we’ll talk more than one of them because there are some important trade-offs to consider. We'll spend most of our time diving deep into my preferred setup (in my opinion, the one that's most likely to work for you).
-
-There are however a few places where we’ll limit our exploration
 
 - **We’ll use TypeScript to write all of our code**, although we will consider and discuss how things would work if our BE was written in another PL
 - **We’ll use GraphQL as our “API query language and wire format”**. Other options like falcor exist, but the graphql ecosystem is rich and makes our life easy (think: vscode and browser extensions, etc…)
 - **We’ll focus on using a very simple relational DB**. There are many good choices for databases, and many of them have great type systems, but exploring deeply into this is beyond the scope of this course.
 
-Here are some ideas we'll cover for certain:
-
-### "The Interfaces"
-
-We’ll define TypeScript types for our “schema” and generate the GraphQL part using a tool.
-
-Key tools: [type-graphql](https://github.com/MichalLytek/type-graphql), [Nest.js](https://docs.nestjs.com/graphql/quick-start)
+There are two main schools of thought around how to have a single source of truth for your types in one place
 
 ### "The Schema"
 
-**Our single source of truth will be a GraphQL schema**, and we’ll generate TypeScript code both for our UI and API.
+We will spend almost all of our time talking about this kind of setup
+
+A single source of truth will be a GraphQL schema, and we’ll generate TypeScript code both for our UI and API.
 
 Key tools: [graphqlgen](https://github.com/prisma-labs/graphqlgen), [graphql-code-generator](https://www.graphql-code-generator.com/), [apollo CLI codegen](https://github.com/apollographql/apollo-tooling#apollo-clientcodegen-output)
+
+### "The Interfaces"
+
+**We won't touch on this idea much, because the tooling around this setup is far less mature.**
+Define TypeScript types for our “schema” and generate the GraphQL part using a tool.
+
+Key tools: [type-graphql](https://github.com/MichalLytek/type-graphql), [Nest.js](https://docs.nestjs.com/graphql/quick-start)
 
 However, first we need to learn a little bit about what GraphQL is, and the problems it solves
