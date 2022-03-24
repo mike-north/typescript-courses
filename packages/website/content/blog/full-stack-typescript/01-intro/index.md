@@ -20,16 +20,16 @@ Let’s imagine a TS react app with a TS node server, and a relational DB of som
 
 ![fullstack-ts](./fullstack-ts.001.png)
 
-We enjoy well defined types in client-side code, server-side code, and in our DB schema. However without doing some significant extra work, these may all be islands of independent type information.
+We enjoy well defined types in client-side code, server-side code, and in our DB schema. However **without doing some significant extra work, these may all be islands of independent type information.**
 
-Note that we may get no type safety across API calls and DB queries – it’s possible for things to happen at runtime that are hard to predict and manage. Refactoring requires some significant vigilance!
+Note that **we may get no type safety across API calls.** It's possible for things to happen at runtime that are hard to predict and manage. Refactoring requires some significant vigilance!
 
 In particular, let's look at a couple of dangerous spots where we lack type checking
 
 - `fetch('/api/*')`
   - The payload sent to the API from a client
   - The payload returned to the client from the API
-- `sql.query('SELECT * from things')`
+- `sql.query('SELECT * from things')` (or some other equivalent thing)
   - The query sent to the DB
   - The result set returned to the API from the DB
 
@@ -46,26 +46,26 @@ of refactoring safety along API-to-DB communication.
 
 ## Scenarios We'll Explore
 
-There are multiple approaches we could take to arrive at this outcome, and we’ll talk about several options because there are some important trade-offs to consider and I want you to understand how to evaluate the landscape of available options rather than learn one prescriptive thing.
+There are multiple approaches we could take to arrive at this outcome, and we’ll talk more than one of them because there are some important trade-offs to consider. We'll spend most of our time diving deep into my preferred setup (in my opinion, the one that's most likely to work for you).
 
 There are however a few places where we’ll limit our exploration
 
 - **We’ll use TypeScript to write all of our code**, although we will consider and discuss how things would work if our BE was written in another PL
 - **We’ll use GraphQL as our “API query language and wire format”**. Other options like falcor exist, but the graphql ecosystem is rich and makes our life easy (think: vscode and browser extensions, etc…)
-- **We’ll focus on using a SQL relational DB**. There are many good choices for databases, and many of them have great type systems, but exploring this won't add much to our journey
+- **We’ll focus on using a very simple relational DB**. There are many good choices for databases, and many of them have great type systems, but exploring deeply into this is beyond the scope of this course.
 
 Here are some ideas we'll cover for certain:
-
-### "The Schema"
-
-**Our single source of truth will be a GraphQL schema**, and we’ll generate TypeScript code both for our UI and API.
-
-Key tools: [graphqlgen](https://github.com/prisma-labs/graphqlgen), [graphql-code-generator](https://www.graphql-code-generator.com/), [apollo CLI codegen](https://github.com/apollographql/apollo-tooling#apollo-clientcodegen-output)
 
 ### "The Interfaces"
 
 We’ll define TypeScript types for our “schema” and generate the GraphQL part using a tool.
 
 Key tools: [type-graphql](https://github.com/MichalLytek/type-graphql), [Nest.js](https://docs.nestjs.com/graphql/quick-start)
+
+### "The Schema"
+
+**Our single source of truth will be a GraphQL schema**, and we’ll generate TypeScript code both for our UI and API.
+
+Key tools: [graphqlgen](https://github.com/prisma-labs/graphqlgen), [graphql-code-generator](https://www.graphql-code-generator.com/), [apollo CLI codegen](https://github.com/apollographql/apollo-tooling#apollo-clientcodegen-output)
 
 However, first we need to learn a little bit about what GraphQL is, and the problems it solves
