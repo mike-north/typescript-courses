@@ -59,11 +59,11 @@ export async function createApolloServer(
 }
 ```
 
-In `server/src/index.ts ` add the following imports
+In `server/src/index.ts` add the following imports
 
 ```ts
-import { createApolloServer } from './apollo-server';
-import { createServer } from 'http';
+import { createApolloServer } from "./apollo-server"
+import { createServer } from "http"
 ```
 
 Next, add the following two lines immediately below the one that begins with `app.use('/static`

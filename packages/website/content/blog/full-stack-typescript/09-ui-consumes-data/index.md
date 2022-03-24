@@ -7,7 +7,7 @@ course: full-stack-typescript
 order: 9
 ---
 
-Open `server/src/resolvers/Query.ts ` and replace the fixture array in `suggestions()` with a call
+Open `server/src/resolvers/Query.ts` and replace the fixture array in `suggestions()` with a call
 to the db.
 
 ```ts
