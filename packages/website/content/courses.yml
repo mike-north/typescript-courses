@@ -26,7 +26,7 @@
   squareImage: /making-typescript-stick.png
   facebookImage: /fb-making-typescript-stick.png
   twitterImage: /tw-making-typescript-stick.png
-  femCourseUrl: https://frontendmasters.com/workshops/typescript-practice/
+  femCourseUrl: https://frontendmasters.com/courses/typescript-practice/
   femCoursePublished: false
   summary: |
     Tackle a series of challenges designed to reinforce your knowledge and make
@@ -38,7 +38,7 @@
   squareImage: /full-stack-ts.png
   facebookImage: /fb-full-stack-ts.png
   twitterImage: /tw-full-stack-ts.png
-  femCourseUrl: https://frontendmasters.com/workshops/fullstack-typescript/
+  femCourseUrl: https://frontendmasters.com/courses/fullstack-typescript/
   femCoursePublished: false
   summary: |
     Combine TypeScript and GraphQL's type systems to create full-stack, fully
