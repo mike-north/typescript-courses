@@ -21,7 +21,7 @@ module.exports = {
     title: `Learn TypeScript w/ Mike North`,
     author: {
       name: `Mike North`,
-      summary: `, a Senior Staff Engineer @ LinkedIn, and Frontend Masters Instructor.`,
+      summary: `, Developer Experience Tech Lead at Stripe, and Frontend Masters Instructor.`,
     },
     description: `Learn TypeScript with Mike North`,
     siteUrl: `https://www.typescript-training.com/`,
