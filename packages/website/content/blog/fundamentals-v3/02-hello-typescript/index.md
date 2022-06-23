@@ -88,7 +88,7 @@ function timeout(n: number) {
 }
 
 /**
- * Add three numbers
+ * Add two numbers
  * @param a first number
  * @param b second
  */
