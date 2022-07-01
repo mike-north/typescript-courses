@@ -29,7 +29,7 @@ function foo(x) {
 // TYPE CHECKING
 // -------------
 // Is `myValue` type-equivalent to
-//     what `foo` whats to receive?
+//     what `foo` wants to receive?
 foo(myValue)
 ```
 
@@ -85,7 +85,7 @@ public class Car {
 
 public class CarChecker {
   // takes a `Car` argument, returns a `String`
-  public static String printCar(Car car) {  }
+  public static String checkCar(Car car) {  }
 }
 
 Car myCar = new Car();
@@ -151,7 +151,7 @@ If the argument passed to it meets these requirements, `printCar` is happy.
 
 "Duck typing" gets its name from the "duck test".
 
-> “If it looks like a duck, swims like a duck, and quack like a duck, then it probably is a duck”.
+> “If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck”.
 
 In practice, this is very similar to structural typing, but "Duck typing" is usually
 used to describe dynamic type systems.
