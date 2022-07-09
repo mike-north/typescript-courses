@@ -261,7 +261,7 @@ function makeWeek(): Date & { end: Date } {
   const start = new Date()
   const end = new Date(start.valueOf() + ONE_WEEK)
 
-  return { ...start, end } // kind of Object.assign
+  return Object.assign(start, { end })
 }
 
 const thisWeek = makeWeek()
