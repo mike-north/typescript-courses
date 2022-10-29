@@ -228,7 +228,7 @@ d.bark
 //  ^?
 ```
 
-- Just as in in JavaScript, **a subclass `extends` from a base class**.
+- Just as in JavaScript, **a subclass `extends` from a base class**.
 - Additionally **a "sub-interface" `extends` from a base interface**, as shown in the example below
 
 ```ts twoslash
