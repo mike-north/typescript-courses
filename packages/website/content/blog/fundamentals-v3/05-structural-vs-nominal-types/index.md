@@ -85,7 +85,7 @@ public class Car {
 
 public class CarChecker {
   // takes a `Car` argument, returns a `String`
-  public static String printCar(Car car) {  }
+  public static String checkCar(Car car) {  }
 }
 
 Car myCar = new Car();
