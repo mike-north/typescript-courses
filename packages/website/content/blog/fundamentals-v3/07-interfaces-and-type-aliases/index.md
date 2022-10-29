@@ -104,7 +104,7 @@ type UserContactInfo = {
 
 A type alias can hold _any type_, as it's literally an alias (name) for a type of some sort.
 
-Here's an example of how we can "cleaned up" an the code from our Union and Intersection Types section (previous chapter) through the use of type aliases:
+Here's an example of how we can "clean up" the code from our Union and Intersection Types section (previous chapter) through the use of type aliases:
 
 ```ts twoslash
 ///////////////////////////////////////////////////////////
