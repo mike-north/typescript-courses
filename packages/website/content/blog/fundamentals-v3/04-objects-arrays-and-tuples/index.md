@@ -213,7 +213,7 @@ phones.fax
 //     ^?
 ```
 
-Now, no matter what key we lookup, we get an object that represents
+Now, no matter what key we look up, we get an object that represents
 a phone number.
 
 ## Array Types
