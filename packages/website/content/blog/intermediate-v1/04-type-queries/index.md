@@ -61,7 +61,7 @@ async function main() {
 }
 ```
 
-A common use of `typeof` is to obtain a type representing the "static site" of a class (meaning: constructor, `static` properties, and other things not present on an _instance_ of the class)
+A common use of `typeof` is to obtain a type representing the "static side" of a class (meaning: constructor, `static` properties, and other things not present on an _instance_ of the class)
 
 ```ts twoslash
 class Fruit {
