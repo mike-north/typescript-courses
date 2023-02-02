@@ -151,7 +151,7 @@ If the argument passed to it meets these requirements, `printCar` is happy.
 
 "Duck typing" gets its name from the "duck test".
 
-> “If it looks like a duck, swims like a duck, and quack like a duck, then it probably is a duck”.
+> “If it looks like a duck, swims like a duck, and quack like a duck, then it probably is a duck.”
 
 In practice, this is very similar to structural typing, but "Duck typing" is usually
 used to describe dynamic type systems.
