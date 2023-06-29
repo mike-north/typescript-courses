@@ -20,3 +20,4 @@ export async function addNumbers(a: number, b: number) {
 (async () => {
   console.log(await addNumbers(3, 4));
 })();
+
