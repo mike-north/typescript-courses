@@ -58,3 +58,5 @@ For example
 
 # Legal
 &copy; 2021, All Rights Reserved - Mike Works, Inc.
+
+STOP 6/29/23 @ 5:05 PM EST @ Arrays
