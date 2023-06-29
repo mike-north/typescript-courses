@@ -218,6 +218,7 @@ a phone number.
 
 
 <!-- STOP 6/29/23 @ 5:05 PM EST -->
+### STOP 6/29/23 @ 5:05 PM EST
 ## Array Types
 
 Describing types for arrays is often as easy as adding `[]` to the end of the
