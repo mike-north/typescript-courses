@@ -342,7 +342,7 @@ Imagine if we were passing this value through several other functions before rea
 type checking alerted us to a problem!
 
 ```ts twoslash
-// @errors: 2531 2339 2532
+// @errors: 2531 2339 2532 18048
 type JSONPrimitive = string | number | boolean | null
 type JSONObject = { [k: string]: JSONValue }
 type JSONArray = JSONValue[]
