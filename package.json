@@ -11,8 +11,8 @@
     "packages/*"
   ],
   "volta": {
-    "node": "14.17.0",
-    "yarn": "1.22.10"
+    "node": "16.20.2",
+    "yarn": "1.22.19"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0-0",

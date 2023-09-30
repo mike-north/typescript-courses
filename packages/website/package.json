@@ -90,7 +90,7 @@
     "typecheck": "tsc -P . --noEmit"
   },
   "volta": {
-    "node": "14.16.0",
-    "yarn": "1.22.10"
+    "node": "16.20.2",
+    "yarn": "1.22.19"
   }
 }
