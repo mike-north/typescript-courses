@@ -16610,6 +16610,11 @@ typescript@>3, typescript@^4.3.2:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.2.tgz#fe12d2727b708f4eef40f51598b3398baa9611d4"
   integrity sha512-HM/hFigTBHZhLXshn9sN37H085+hQGeJHJ/X7LpBWLID/fbc2acUMfU+lGD98X81sKP+pFa9f0DZmCwB9GnbAg==
 
+typescript@^5.2.0:
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.2.2.tgz#5ebb5e5a5b75f085f22bc3f8460fba308310fa78"
+  integrity sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==
+
 typography-breakpoint-constants@^0.16.19:
   version "0.16.19"
   resolved "https://registry.yarnpkg.com/typography-breakpoint-constants/-/typography-breakpoint-constants-0.16.19.tgz#e0e89147749562cbb46ce76c47ff0f73372765e7"
