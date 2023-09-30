@@ -95,7 +95,7 @@ However, `unknown` is different from `any` in a very important way:
 > applying a type guard
 
 ```ts twoslash
-// @errors: 2571
+// @errors: 2571 18046
 let myUnknown: unknown = 14
 myUnknown.it.is.possible.to.access.any.deep.property
 //          ^?
