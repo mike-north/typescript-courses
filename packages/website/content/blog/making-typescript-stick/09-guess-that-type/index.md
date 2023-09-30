@@ -81,6 +81,7 @@ const otherLibrary = new Library()
 ```ts {4}
 class AsyncManager {
   constructor(arg: 0 | 4 | string) {
+    // @ts-ignore
     if (arg > 0 || arg <= 0) {
       new Promise((resolve, reject) => {
         arg
@@ -95,6 +96,7 @@ class AsyncManager {
 <summary>Click for answer</summary>
 
 ```ts twoslash
+// @errors: 2365
 class AsyncManager {
   constructor(arg: 0 | 4 | string) {
     if (arg > 0 || arg <= 0) {
