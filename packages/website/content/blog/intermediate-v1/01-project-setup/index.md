@@ -10,10 +10,8 @@ order: 1
 
 ## About the Instructor
 
-- Sr. Staff Engineer @ [LinkedIn](https://linkedin.com)
-- Works in the **Developer Productivity and Happiness** org
-- Main focus: **Infra UX**
-- **TypeScript Infra Lead**
+- Developer Platform lead @ [Stripe](https://stripe.com)
+- One of Stripe's Product Architects
 
 ## Top Goals for this course
 
