@@ -17,7 +17,7 @@ In this chapter we will...
 
 ## Anatomy of the project
 
-Let's consider your [`a very simple TypeScript project`](https://github.com/mike-north/ts-fundamentals-v3/blob/main/packages/hello-ts/)
+Let's consider [`a very simple TypeScript project`](https://github.com/mike-north/ts-fundamentals-v3/blob/main/packages/hello-ts/)
 that consists of only three files:
 
 ```sh
