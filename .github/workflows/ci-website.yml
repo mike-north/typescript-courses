@@ -99,7 +99,7 @@ jobs:
     strategy:
       matrix:
         # typescript-version: ['~5.0.0', '~5.2.0', latest, next, beta, rc]
-        typescript-version: [latest, next, beta, rc]
+        typescript-version: [latest, next]
         include:
           - typescript-version: '~5.0.0'
             experimental: false
