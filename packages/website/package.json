@@ -48,7 +48,7 @@
     "@types/react-dom": "18",
     "@types/react-helmet": "^6.1.7",
     "@types/react-test-renderer": "^18.0.3",
-    "@types/sharp": "^0.30.0",
+    "@types/sharp": "^0.32.0",
     "@types/typography": "^0.16.3",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
