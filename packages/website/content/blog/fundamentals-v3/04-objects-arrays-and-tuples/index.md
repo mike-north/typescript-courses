@@ -34,7 +34,7 @@ We could create a JavaScript object to represent this information:
 }
 ```
 
-The type that would describes this object's structure:
+The type that would describe this object's structure:
 
 ```ts
 {
