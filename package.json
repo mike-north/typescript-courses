@@ -19,7 +19,7 @@
     "@babel/preset-typescript": "^7.16.7",
     "core-js": "^3.0.0",
     "lerna": "^4.0.0",
-    "replace-in-file": "^6.2.0",
+    "replace-in-file": "^7.0.1",
     "webpack": "^5.37.0"
   },
   "scripts": {
