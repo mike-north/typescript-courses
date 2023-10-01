@@ -3,7 +3,7 @@
     "license": "NOLICENSE",
     "version": "0.0.1",
     "devDependencies": {
-        "typescript": "^4.3.2"
+        "typescript": "~5.2.0"
     },
     "scripts": {
         "dev": "tsc --watch --preserveWatchOutput"
