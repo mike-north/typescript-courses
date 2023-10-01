@@ -331,7 +331,7 @@ d.rhubarb.join(", ") // 💥
 My advice was to explicitly type it as
 
 ```ts twoslash
-// @errors: 2532
+// @errors: 2532 18048
 type Dict<T> = { [K: string]: T | undefined }
 const d: Dict<string[]> = {}
 d.rhubarb.join(", ") // 💥

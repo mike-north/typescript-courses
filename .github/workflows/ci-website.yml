@@ -19,10 +19,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: volta-cli/action@v1
+      - uses: actions/checkout@v4
+      - uses: volta-cli/action@v4
       - name: restore lerna
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             node_modules
@@ -47,10 +47,10 @@ jobs:
         # - macos-latest
         - windows-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: volta-cli/action@v1
+      - uses: actions/checkout@v4
+      - uses: volta-cli/action@v4
       - name: restore lerna
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             node_modules
@@ -70,14 +70,15 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [18.x]
+        # node-version: [16.x, 18.x, 20.x]
     steps:
-      - uses: actions/checkout@v2
-      - uses: volta-cli/action@v1
+      - uses: actions/checkout@v4
+      - uses: volta-cli/action@v4
         with:
           node-version: ${{ matrix.node-version }}
       - name: restore lerna
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             node_modules
@@ -98,23 +99,17 @@ jobs:
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        typescript-version: ['~4.2.0', '~4.3.0', '~4.4.0','~4.5.0', latest, next, beta, rc]
+        typescript-version: ['~5.1.0', next, beta, rc]
         include:
-          - typescript-version: '~4.2.0'
+          # - typescript-version: '~5.0.0'
+          #   experimental: false
+          #   name: 'ts-5.0'
+          - typescript-version: '~5.1.0'
             experimental: false
-            name: 'ts-4.2'
-          - typescript-version: '~4.3.0'
-            experimental: false
-            name: 'ts-4.3'
-          - typescript-version: '~4.4.0'
-            experimental: false
-            name: 'ts-4.4'
-          - typescript-version: '~4.5.0'
-            experimental: false
-            name: 'ts-4.5'
-          - typescript-version: latest
-            experimental: false
-            name: 'ts-stable'
+            name: 'ts-5.1'
+          # - typescript-version: latest
+          #   experimental: false
+          #   name: 'ts-stable'
           - typescript-version: beta
             experimental: false
             name: 'ts-beta'
@@ -127,10 +122,10 @@ jobs:
 
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: volta-cli/action@v1
+      - uses: actions/checkout@v4
+      - uses: volta-cli/action@v4
       - name: restore lerna
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             node_modules
@@ -156,8 +151,8 @@ jobs:
     runs-on: ubuntu-latest
     if: success() && github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v1
-      - uses: volta-cli/action@v1
+      - uses: actions/checkout@v4
+      - uses: volta-cli/action@v4
       - run: |
           yarn
           yarn lerna bootstrap

@@ -75,7 +75,7 @@ operator just tells TypeScript to ignore that possibility.
 If the value _does_ turn out to be missing, you will get the familiar `cannot call foo on undefined` family of errors at runtime:
 
 ```ts twoslash
-// @errors: 2532
+// @errors: 2532 18048
 type GroceryCart = {
   fruits?: { name: string; qty: number }[]
   vegetables?: { name: string; qty: number }[]

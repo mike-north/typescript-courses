@@ -3,9 +3,13 @@
     "license": "NOLICENSE",
     "version": "0.0.1",
     "devDependencies": {
-        "typescript": "^4.3.2"
+        "typescript": "~5.2.0"
     },
     "scripts": {
         "dev": "tsc --watch --preserveWatchOutput"
+    },
+    "volta": {
+        "node": "20.8.0",
+        "yarn": "1.22.19"
     }
 }

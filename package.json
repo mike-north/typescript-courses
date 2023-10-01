@@ -11,15 +11,15 @@
     "packages/*"
   ],
   "volta": {
-    "node": "14.17.0",
-    "yarn": "1.22.10"
+    "node": "20.8.0",
+    "yarn": "1.22.19"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0-0",
     "@babel/preset-typescript": "^7.16.7",
     "core-js": "^3.0.0",
     "lerna": "^4.0.0",
-    "replace-in-file": "^6.2.0",
+    "replace-in-file": "^7.0.1",
     "webpack": "^5.37.0"
   },
   "scripts": {

@@ -183,7 +183,7 @@ printColor({
 **No, this will not compile**.
 
 ```ts twoslash
-// @errors: 2345
+// @errors: 2345 2353
 interface Color {
   red: number
   green: number

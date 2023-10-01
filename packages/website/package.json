@@ -14,7 +14,7 @@
     "gatsby-plugin-manifest": "^3.1.0",
     "gatsby-plugin-react-helmet": "^4.1.0",
     "gatsby-plugin-sass": "^4.1.0",
-    "gatsby-plugin-sharp": "^3.1.2",
+    "gatsby-plugin-sharp": "^3.0.0",
     "gatsby-plugin-typography": "^3.1.0",
     "gatsby-remark-autolink-headers": "^4.3.0",
     "gatsby-remark-copy-linked-files": "^4.2.1",
@@ -25,11 +25,12 @@
     "gatsby-source-filesystem": "^3.1.0",
     "gatsby-transformer-remark": "^3.0.0",
     "gatsby-transformer-sharp": "^3.1.0",
-    "prismjs": "^1.19.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "prismjs": "^1.29.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
-    "react-typography": "^0.16.19",
+    "react-typography": "^0.16.23",
+    "replace-in-file": "^7.0.1",
     "sass": "^1.32.8",
     "typeface-merriweather": "1.1.13",
     "typeface-montserrat": "1.1.13",
@@ -37,21 +38,25 @@
     "typography-theme-wordpress-2016": "^0.16.19"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.0-0",
+    "@babel/preset-typescript": "^7.16.7",
     "@types/jest": "^27.0.0",
     "@types/lodash": "^4.14.170",
+    "@types/node": "16",
     "@types/pkg-up": "^3.1.0",
-    "@types/react": "^17.0.3",
-    "@types/react-dom": "^17.0.3",
-    "@types/react-helmet": "^6.1.0",
-    "@types/react-test-renderer": "^17.0.1",
+    "@types/react": "18",
+    "@types/react-dom": "18",
+    "@types/react-helmet": "^6.1.7",
+    "@types/react-test-renderer": "^18.0.3",
     "@types/sharp": "^0.30.0",
     "@types/typography": "^0.16.3",
-    "@typescript-eslint/eslint-plugin": "^4.19.0",
-    "@typescript-eslint/parser": "^4.19.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
     "babel-jest": "^26.6.3",
-    "babel-preset-gatsby": "^2.9.1",
-    "eslint": "^7.23.0",
-    "eslint-plugin-react": "^7.29.4",
+    "babel-preset-gatsby": "^3.12.0",
+    "core-js": "^3.0.0",
+    "eslint": "^8.50.0",
+    "eslint-plugin-react": "^7.33.2",
     "gatsby-plugin-google-gtag": "^3.7.1",
     "gatsby-plugin-google-tagmanager": "^3.7.1",
     "gatsby-remark-custom-blocks": "^3.6.0",
@@ -64,8 +69,8 @@
     "markdownlint-cli": "^0.31.1",
     "pkg-up": "^3.1.0",
     "prettier": "^2.2.1",
-    "react-test-renderer": "^17.0.2",
-    "typescript": "^4.3.2"
+    "react-test-renderer": "^18.2.0",
+    "typescript": "~5.2.0"
   },
   "homepage": "https://github.com/mike-north/typescript-fundamentals-v3#readme",
   "keywords": [
@@ -90,7 +95,7 @@
     "typecheck": "tsc -P . --noEmit"
   },
   "volta": {
-    "node": "14.16.0",
-    "yarn": "1.22.10"
+    "node": "20.8.0",
+    "yarn": "1.22.19"
   }
 }

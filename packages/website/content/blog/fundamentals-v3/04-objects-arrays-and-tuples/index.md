@@ -34,7 +34,7 @@ We could create a JavaScript object to represent this information:
 }
 ```
 
-The type that would describes this object's structure:
+The type that would describe this object's structure:
 
 ```ts
 {
@@ -146,7 +146,7 @@ TypeScript helps us catch a particular type of problem around the use of object 
 Let's look at the situation where the error arises:
 
 ```ts twoslash
-// @errors: 2345
+// @errors: 2345 2353
 function printCar(car: {
   make: string
   model: string
@@ -213,7 +213,7 @@ phones.fax
 //     ^?
 ```
 
-Now, no matter what key we lookup, we get an object that represents
+Now, no matter what key we look up, we get an object that represents
 a phone number.
 
 ## Array Types
