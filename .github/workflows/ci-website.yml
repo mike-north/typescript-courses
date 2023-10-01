@@ -19,7 +19,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
       - name: restore lerna
         uses: actions/cache@v3
@@ -47,7 +47,7 @@ jobs:
         # - macos-latest
         - windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
       - name: restore lerna
         uses: actions/cache@v3
@@ -72,7 +72,7 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
         with:
           node-version: ${{ matrix.node-version }}
@@ -121,7 +121,7 @@ jobs:
 
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
       - name: restore lerna
         uses: actions/cache@v3
@@ -150,7 +150,7 @@ jobs:
     runs-on: ubuntu-latest
     if: success() && github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
       - run: |
           yarn
