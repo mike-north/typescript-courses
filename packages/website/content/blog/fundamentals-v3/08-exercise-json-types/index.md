@@ -57,7 +57,7 @@ isJSON(class {})
 // @ts-expect-error
 isJSON(undefined)
 // @ts-expect-error
-isJSON(new BigInt(143))
+isJSON(BigInt(143))
 // @ts-expect-error
 isJSON(isJSON)
 ```
@@ -93,7 +93,7 @@ isJSON(class {})
 // @ts-expect-error
 isJSON(undefined)
 // @ts-expect-error
-isJSON(new BigInt(143))
+isJSON(BigInt(143))
 // @ts-expect-error
 isJSON(isJSON)
 ```
