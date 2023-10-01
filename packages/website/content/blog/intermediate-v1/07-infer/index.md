@@ -547,7 +547,7 @@ improved type safety
 ```
 
 ```ts twoslash
-// @errors: 2322
+// @errors: 2322 2561
 class WebpackCompiler {
   constructor(options: {
     amd?: false | { [index: string]: any }

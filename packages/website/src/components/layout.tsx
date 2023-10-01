@@ -8,12 +8,13 @@ interface ILayoutProps {
     pathname: string;
   };
   title: string;
+  children?: React.ReactNode
 }
 
 const Layout: React.FunctionComponent<ILayoutProps> = ({
   location,
   title,
-  children,
+  children
 }) => {
   const rootPath = `${__PATH_PREFIX__}/`;
   let header;

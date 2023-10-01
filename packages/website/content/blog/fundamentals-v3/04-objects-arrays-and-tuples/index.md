@@ -146,7 +146,7 @@ TypeScript helps us catch a particular type of problem around the use of object 
 Let's look at the situation where the error arises:
 
 ```ts twoslash
-// @errors: 2345
+// @errors: 2345 2353
 function printCar(car: {
   make: string
   model: string

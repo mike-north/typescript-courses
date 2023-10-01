@@ -332,7 +332,7 @@ has different property names than the type being "iterated over" during the mapp
 Note the use of the `as` keyword in the index signature
 
 ```ts twoslash
-// @errors: 2345
+// @errors: 2345 2561
 interface DataState {
   digits: number[]
   names: string[]

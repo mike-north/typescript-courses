@@ -7,6 +7,7 @@ import { rhythm } from '../utils/typography';
 interface ICourseLayoutProps {
   courses: ICourse[];
   padTop: boolean;
+  children?: React.ReactNode
 }
 
 const CourseLayout: React.FunctionComponent<ICourseLayoutProps> = ({
