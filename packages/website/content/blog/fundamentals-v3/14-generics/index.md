@@ -211,7 +211,7 @@ Let's look at what this code means.
 
 ### The TypeParam, and usage to provide an argument type
 
-- **\<T\> to the right of `listDict`** <br/> means that the type of this function is now parameterized in terms of a type parameter `T` (which may change on a per-usage basis)
+- **\<T\> to the right of `listToDict`** <br/> means that the type of this function is now parameterized in terms of a type parameter `T` (which may change on a per-usage basis)
 - **`list: T[]` as a first argument** <br /> means we accept a list of `T`'s.
   - **TypeScript will infer what `T` is, on a per-usage basis, depending on what kind of array we pass in**. If we use a `string[]`, `T` will be `string`, if we use a `number[]`, `T` will be `number`.
 
