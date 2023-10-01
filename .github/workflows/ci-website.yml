@@ -30,7 +30,6 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - run: |
           yarn
-          yarn lerna bootstrap
       - name: Build
         run: yarn lerna run build --scope website
       - name: Lint
