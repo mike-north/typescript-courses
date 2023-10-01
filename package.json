@@ -11,14 +11,14 @@
     "packages/*"
   ],
   "volta": {
-    "node": "16.20.2",
+    "node": "18.18.0",
     "yarn": "1.22.19"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0-0",
     "@babel/preset-typescript": "^7.16.7",
     "core-js": "^3.0.0",
-    "lerna": "^4.0.0",
+    "lerna": "^7.3.0",
     "replace-in-file": "^6.2.0",
     "webpack": "^5.37.0"
   },

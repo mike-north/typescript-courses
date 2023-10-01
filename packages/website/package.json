@@ -91,7 +91,7 @@
     "typecheck": "tsc -P . --noEmit"
   },
   "volta": {
-    "node": "16.20.2",
+    "node": "18.18.0",
     "yarn": "1.22.19"
   }
 }
