@@ -43,6 +43,8 @@ jobs:
           working-directory: packages/website
           start: yarn test:cypress
           browser: chrome
+          wait-on: 'http://localhost:8000'
+          wait-on-timeout: 120
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   os-compatibility:
@@ -104,6 +106,8 @@ jobs:
           working-directory: packages/website
           start: yarn test:cypress
           browser: chrome
+          wait-on: 'http://localhost:8000'
+          wait-on-timeout: 120
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   ts-compatibility:
@@ -164,6 +168,8 @@ jobs:
           working-directory: packages/website
           start: yarn test:cypress
           browser: chrome
+          wait-on: 'http://localhost:8000'
+          wait-on-timeout: 120
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
