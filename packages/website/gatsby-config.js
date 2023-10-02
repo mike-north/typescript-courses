@@ -9,7 +9,7 @@ const PROJECT_ROOT_PATH = path.join(
 
 const yaml = require('js-yaml');
 
-const courses = yaml.load(
+const { courses, course_groups: courseGroups } = yaml.load(
   fs.readFileSync(
     path.join(PROJECT_ROOT_PATH, 'content', 'courses.yml'),
     'utf-8',
@@ -21,7 +21,7 @@ module.exports = {
     title: `Learn TypeScript w/ Mike North`,
     author: {
       name: `Mike North`,
-      summary: `, Developer Experience Tech Lead at Stripe, and Frontend Masters Instructor.`,
+      summary: `, Developer Platform Lead at Stripe, and Frontend Masters Instructor.`,
     },
     description: `Learn TypeScript with Mike North`,
     siteUrl: `https://www.typescript-training.com/`,
@@ -30,6 +30,7 @@ module.exports = {
       linkedin: 'northm',
     },
     courses,
+    courseGroups
   },
   plugins: [
     {

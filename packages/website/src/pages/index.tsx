@@ -5,15 +5,34 @@ import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { rhythm } from '../utils/typography';
+import {
+  ICourse,
+  ICourseGroup,
+} from '../templates/course-page';
 
-
+type IAbbrevCourse = Pick<
+  ICourse,
+  'id' | 'name' | 'squareImage' | 'summary'  | 'visibleInCourseIndex'
+>;
+type IAbbrevCourseGroup = Pick<
+  ICourseGroup,
+  | 'id'
+  | 'name'
+  | 'courseIndexOrder'
+  | 'courses'
+  | 'currentCourse'
+>;
 interface IBlogIndexProps {
   data: {
     allMarkdownRemark: {
       edges: {
         node: {
           excerpt: string;
-          frontmatter: { title: string; date: string; description: string };
+          frontmatter: {
+            title: string;
+            date: string;
+            description: string;
+          };
           fields: { slug: string };
         };
       }[];
@@ -21,13 +40,8 @@ interface IBlogIndexProps {
     site: {
       siteMetadata: {
         title: string;
-        courses: {
-          id: string;
-          title: string;
-          summary: string;
-          squareImage: string;
-          disabled: boolean;
-        }[];
+        courseGroups: IAbbrevCourseGroup[];
+        courses: IAbbrevCourse[];
       };
     };
   };
@@ -36,39 +50,65 @@ interface IBlogIndexProps {
   };
 }
 
-const BlogIndex: React.FunctionComponent<IBlogIndexProps> = ({
-  data,
-  location,
-}) => {
+const BlogIndex: React.FunctionComponent<
+  IBlogIndexProps
+> = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title;
-  const courses = data.site.siteMetadata.courses;
+  const { courseGroups, courses } = data.site.siteMetadata;
+  const courseGroupMap: {
+    [key: string]: { courses: IAbbrevCourse[]; current: IAbbrevCourse | null };
+  } = {};
+  const courseMap: Record<string, IAbbrevCourse> = {};
+  courses.filter(c => c.visibleInCourseIndex).forEach((c) => {
+    courseMap[c.id] = c;
+  });
+  courseGroups.forEach((cg) => {
+    courseGroupMap[cg.id] = {
+      current: courseMap[cg.currentCourse] ? courseMap[cg.currentCourse] : null,
+      courses: cg.courses.map((c) => courseMap[c]),
+    };
+  });
   // const posts = data.allMarkdownRemark.edges;
 
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="Courses" />
       <Bio />
-      {courses.filter(c => !c.disabled).map(({ title, id, squareImage, summary }) => {
-        return (
-          <article className='course-summary' key={id}>
-            <header>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <img style={{float: 'right'}} width={150} src={squareImage} />
-                <Link style={{ boxShadow: `none` }} to={`course/${id}`}>
-                  {title}
-                </Link>
-              </h3>
-            </header>
-            <section>
-              <p>{summary}</p>
-            </section>
-          </article>
-        );
-      })}
+      {courseGroups
+        .filter((c) => courseGroupMap[c.id].courses.length > 0)
+        .sort(
+          (a, b) => a.courseIndexOrder - b.courseIndexOrder,
+        )
+        .map(({ id }) => {
+          const { current } = courseGroupMap[id];
+          if (!current) return null;
+          return (
+            <article className="course-summary" key={id}>
+              <header>
+                <h3
+                  style={{
+                    marginBottom: rhythm(1 / 4),
+                  }}
+                >
+                  <img
+                    style={{ float: 'right' }}
+                    width={150}
+                    src={current.squareImage}
+                  />
+                  <Link
+                    style={{ boxShadow: `none` }}
+                    to={`course/${current.id}`}
+                  >
+                    {current.name}
+                  </Link>
+                </h3>
+              </header>
+              <section>
+                <p>{current.summary}</p>
+              </section>
+            </article>
+          );
+        })}
     </Layout>
   );
 };
@@ -80,20 +120,30 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        courseGroups {
+          id
+          name
+          courses
+          currentCourse
+          courseIndexOrder
+
+        }
         courses {
           id
-          title
+          name
           summary
           squareImage
           facebookImage
           twitterImage
           femCourseUrl
           femCoursePublished
-          disabled
+          visibleInCourseIndex
         }
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___order], order: ASC }) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___order], order: ASC }
+    ) {
       edges {
         node {
           excerpt

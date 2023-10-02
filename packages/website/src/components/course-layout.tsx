@@ -1,24 +1,26 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
-import { ICourse } from '../templates/course-page';
+import { ICourse, ICourseGroup } from '../templates/course-page';
 
 import { rhythm } from '../utils/typography';
 
 interface ICourseLayoutProps {
   courses: ICourse[];
+  courseGroups: ICourseGroup[];
   padTop: boolean;
   children?: React.ReactNode
 }
 
 const CourseLayout: React.FunctionComponent<ICourseLayoutProps> = ({
   courses,
+  courseGroups,
   children,
   padTop
 }) => {
-  console.log({ courses })
+  console.log({ courses, courseGroups })
   const header = (
     <ul className={padTop ? "course-tabs pad-top" : "course-tabs"}>
-      {courses.filter(c => !c.disabled).map((c) => (
+      {courses.filter(c => c.visibleInTopNav).map((c) => (
         <li key={c.id} className="course-tab">
           <Link
             activeClassName="active"
@@ -28,7 +30,7 @@ const CourseLayout: React.FunctionComponent<ICourseLayoutProps> = ({
             }}
             to={`/course/${c.id}`}
           >
-            {c.title}
+            {c.name}
           </Link>
         </li>
       ))}

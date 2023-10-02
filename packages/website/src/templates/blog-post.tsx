@@ -103,7 +103,7 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
             rel="next"
             className="course-title-link"
           >
-            <span className="course-title">{course.title}</span>
+            <span className="course-title">{course.name}</span>
           </Link>
           <EditOnGitHubLink chapter={post.fields.slug} />
           <h1 className="post-title">{post.frontmatter.title}</h1>
@@ -203,7 +203,7 @@ export const pageQuery = graphql`
         title
         courses {
           id
-          title
+          name
           summary
         }
       }
