@@ -12,12 +12,17 @@ exports.createSchemaCustomization = ({ actions }) => {
   const typeDefs = `
     type SiteSiteMetadataCourses implements Node {
       id: String
-      title: String
+      name: String
       squareImage: String
       facebookImage: String
       twitterImage: String
       femCourseUrl: String
       femCoursePublished: String
+      femWorkshopUrl: String
+      femWorkshopPublished: String
+      visibleInCoursePage: Boolean
+      visibleInCourseIndex: Boolean
+      visibleInTopNav: Boolean
       summary: String
     }
   `;
@@ -33,21 +38,26 @@ exports.createPages = async ({ graphql, actions }) => {
       'utf-8',
     ),
   );
-  ymlDoc.forEach((element) => {
-    console.log(`Creating page: ${element.id}`);
+  const { courses } = ymlDoc;
+  courses.forEach((element) => {
+    console.log(`Creating page: ${JSON.stringify(element)}`);
     createPage({
       path: `/course/${element.id}`,
       component: require.resolve('./src/templates/course-page.tsx'),
       context: {
-        title: element.title,
+        name: element.name,
         id: element.id,
-        disabled: element.disabled,
+        visibleInCourseIndex: element.visibleInCourseIndex,
+        visibleInTopNav: element.visibleInTopNav,
+        visibleInCoursePage: element.visibleInCoursePage,
         summary: element.summary,
         squareImage: element.squareImage,
         facebookImage: element.facebookImage,
         twitterImage: element.twitterImage,
         femCourseUrl: element.femCourseUrl,
         femCoursePublished: element.femCoursePublished,
+        femWorkshopUrl: element.femWorkshopUrl,
+        femWorkshopPublished: element.femWorkshopPublished,
       },
     });
   });

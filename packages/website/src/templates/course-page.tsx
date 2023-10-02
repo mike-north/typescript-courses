@@ -5,15 +5,27 @@ import CourseLayout from '../components/course-layout';
 import SEO from '../components/seo';
 import { rhythm } from '../utils/typography';
 
+export interface ICourseGroup {
+  id: string;
+  name: string;
+  topNavOrder: number;
+  courseIndexOrder: number;
+  currentCourse: string;
+  courses: string[];
+}
 export interface ICourse {
   id: string;
-  title: string;
-  disabled: boolean;
+  name: string;
+  visibleInTopNav: boolean;
+  visibleInCourseIndex: boolean;
+  visibleInCoursePage: boolean;
   squareImage: string;
   facebookImage: string;
   twitterImage: string;
   femCourseUrl: string;
   femCoursePublished: boolean;
+  femWorkshopUrl: string;
+  femWorkshopPublished: boolean;
   summary: string;
 }
 
@@ -24,6 +36,7 @@ interface ICourseTemplateProps {
       siteMetadata: {
         title: string;
         courses: ICourse[];
+        courseGroups: ICourseGroup[];
       };
     };
     allMarkdownRemark: {
@@ -54,10 +67,11 @@ const CoursePageTemplate: React.FunctionComponent<
   ICourseTemplateProps
 > = ({ pageContext: course, data }): JSX.Element => {
   if (!course) throw new Error('no course');
-  const courses = data.site.siteMetadata.courses;
+  console.log({ course })
+  const { courses, courseGroups } = data.site.siteMetadata;
   const posts = data.allMarkdownRemark.edges;
   let urlBanner: JSX.Element | null = null;
-  const { femCoursePublished, femCourseUrl } = course;
+  const { femCoursePublished, femCourseUrl, femWorkshopPublished, femWorkshopUrl } = course;
   console.log({ femCourseUrl });
   if (femCourseUrl) {
     if (femCoursePublished) {
@@ -65,19 +79,19 @@ const CoursePageTemplate: React.FunctionComponent<
         <p className="fem-course-banner">
           <img className='fem-logo' src="/fem-logo.png" />
           View the Frontend Masters video course for{' '}
-          {course.title}{' '}
+          {course.name}{' '}
           <a href={femCourseUrl} target="_blank">
             here
           </a>
         </p>
       );
-    } else {
+    } else if (femWorkshopPublished) {
       urlBanner = (
         <p className="fem-course-banner">
           <img className='fem-logo' src="/fem-logo.png" />
           View the Frontend Masters workshop for{' '}
-          {course.title}{' '}
-          <a href={femCourseUrl} target="_blank">
+          {course.name}{' '}
+          <a href={femWorkshopUrl} target="_blank">
             here
           </a>
         </p>
@@ -85,9 +99,9 @@ const CoursePageTemplate: React.FunctionComponent<
     }
   }
   return (
-    <CourseLayout courses={courses} padTop={!!urlBanner}>
+    <CourseLayout courses={courses} courseGroups={courseGroups} padTop={!!urlBanner}>
       <SEO
-        title={course.title}
+        title={course.name}
         description={course.summary}
         twitterImage={course.twitterImage}
         facebookImage={course.facebookImage}
@@ -105,7 +119,7 @@ const CoursePageTemplate: React.FunctionComponent<
             marginBottom: 0,
           }}
         >
-          {course.title}
+          {course.name}
         </h1>
       </header>
       <section style={{ marginTop: '10px' }}>
@@ -182,16 +196,27 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        courseGroups {
+          id
+          topNavOrder
+          courseIndexOrder
+          currentCourse
+          courses
+        }
         courses {
           id
-          title
+          name
           summary
           squareImage
           facebookImage
           twitterImage
           femCourseUrl
           femCoursePublished
-          disabled
+          femWorkshopPublished
+          femWorkshopUrl
+          visibleInTopNav
+          visibleInCourseIndex
+          visibleInCoursePage
         }
       }
     }

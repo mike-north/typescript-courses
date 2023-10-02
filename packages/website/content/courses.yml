@@ -1,47 +1,133 @@
-- title: "TypeScript Fundamentals v3"
-  id: fundamentals-v3
-  disabled: false
-  squareImage: /ts-fundamentals-v3.png
-  facebookImage: /fb-ts-fundamentals-v3.png
-  twitterImage: /tw-ts-fundamentals-v3.png
-  femCourseUrl: https://frontendmasters.com/courses/typescript-v3/
-  femCoursePublished: true
-  summary:
-    Learn everything you need to know in order to confidently and successfully
-    use TypeScript to build a modern JavaScript app.
-- title: "Intermediate TypeScript"
-  id: intermediate-v1
-  disabled: false
-  squareImage: /intermediate-ts.png
-  facebookImage: /fb-intermediate-ts.png
-  twitterImage: /tw-intermediate-ts.png
-  femCourseUrl: https://frontendmasters.com/courses/intermediate-typescript/
-  femCoursePublished: true
-  summary: |
-    Leverage TypeScript's strengths to provide clarity in the face of
-    complexity, while protecting your codebase and team from it's weaknesses.
-- title: Making TypeScript Stick
-  id: making-typescript-stick
-  disabled: false
-  squareImage: /making-typescript-stick.png
-  facebookImage: /fb-making-typescript-stick.png
-  twitterImage: /tw-making-typescript-stick.png
-  femCourseUrl: https://frontendmasters.com/courses/typescript-practice/
-  femCoursePublished: false
-  summary: |
-    Tackle a series of challenges designed to reinforce your knowledge and make
-    the important concepts truly "stick" in your mind.
+courses:
+  - name: "TypeScript Fundamentals v3"
+    id: fundamentals-v3
+    visibleInTopNav: true
+    visibleInCourseIndex: true
+    visibleInCoursePage: true
+    squareImage: /ts-fundamentals-v3.png
+    facebookImage: /fb-ts-fundamentals-v3.png
+    twitterImage: /tw-ts-fundamentals-v3.png
+    femCourseUrl: https://frontendmasters.com/courses/typescript-v3/
+    femCoursePublished: true
+    summary:
+      Learn everything you need to know in order to confidently and successfully
+      use TypeScript to build a modern JavaScript app.
+  - name: "TypeScript Fundamentals v4"
+    id: fundamentals-v4
+    visibleInTopNav: false
+    visibleInCourseIndex: false
+    visibleInCoursePage: true
+    squareImage: /ts-fundamentals-v3.png
+    facebookImage: /fb-ts-fundamentals-v3.png
+    twitterImage: /tw-ts-fundamentals-v3.png
+    femCourseUrl: https://frontendmasters.com/courses/typescript-v4/
+    femCoursePublished: false
+    femWorkshopUrl: https://frontendmasters.com/workshops/typescript-v4/
+    femWorkshopPublished: true
+    summary:
+      Learn everything you need to know in order to confidently and successfully
+      use TypeScript to build a modern JavaScript app.
+  - name: "Intermediate TypeScript"
+    id: intermediate-v1
+    visibleInTopNav: true
+    visibleInCourseIndex: true
+    visibleInCoursePage: true
+    squareImage: /intermediate-ts.png
+    facebookImage: /fb-intermediate-ts.png
+    twitterImage: /tw-intermediate-ts.png
+    femCourseUrl: https://frontendmasters.com/courses/intermediate-typescript/
+    femCoursePublished: true
+    summary: |
+      Leverage TypeScript's strengths to provide clarity in the face of
+      complexity, while protecting your codebase and team from it's weaknesses.
+  - name: Making TypeScript Stick
+    id: making-typescript-stick
+    visibleInTopNav: true
+    visibleInCourseIndex: true
+    visibleInCoursePage: true
+    squareImage: /making-typescript-stick.png
+    facebookImage: /fb-making-typescript-stick.png
+    twitterImage: /tw-making-typescript-stick.png
+    femCourseUrl: https://frontendmasters.com/courses/typescript-practice/
+    femCoursePublished: true
+    summary: |
+      Tackle a series of challenges designed to reinforce your knowledge and make
+      the important concepts truly "stick" in your mind.
+  - name: Enterprise TypeScript v2
+    id: enterprise-v2
+    squareImage: /full-stack-ts.png
+    facebookImage: /fb-full-stack-ts.png
+    twitterImage: /tw-full-stack-ts.png
+    femCourseUrl: https://frontendmasters.com/courses/enterprise-typescript-v2/
+    femCoursePublished: false
+    femWorkshopUrl: https://frontendmasters.com/workshops/enterprise-typescript-v2/
+    femWorkshopPublished: true
+    visibleInTopNav: false
+    visibleInCourseIndex: false
+    visibleInCoursePage: true
+    summary: |
+      Combine TypeScript and GraphQL's type systems to create full-stack, fully
+      type-checked code bases that are shockingly easy to refactor and maintain.
+  - name: Full Stack TypeScript
+    id: full-stack-typescript
+    squareImage: /full-stack-ts.png
+    facebookImage: /fb-full-stack-ts.png
+    twitterImage: /tw-full-stack-ts.png
+    femCourseUrl: https://frontendmasters.com/courses/fullstack-typescript/
+    femCoursePublished: true
+    visibleInTopNav: true
+    visibleInCourseIndex: true
+    visibleInCoursePage: true
+    summary: |
+      Combine TypeScript and GraphQL's type systems to create full-stack, fully
+      type-checked code bases that are shockingly easy to refactor and maintain.
+  - name: "Intermediate TypeScript"
+    id: intermediate-v2
+    squareImage: /intermediate-ts.png
+    facebookImage: /fb-intermediate-ts.png
+    twitterImage: /tw-intermediate-ts.png
+    femCourseUrl: https://frontendmasters.com/courses/intermediate-typescript-v2/
+    femCoursePublished: false
+    femWorkshopUrl: https://frontendmasters.com/workshops/intermediate-typescript-v2/
+    femWorkshopPublished: true
+    visibleInTopNav: false
+    visibleInCourseIndex: false
+    visibleInCoursePage: true
+    summary: |
+      Leverage TypeScript's strengths to provide clarity in the face of
+      complexity, while protecting your codebase and team from it's weaknesses.
 
-- title: Full Stack TypeScript
-  id: full-stack-typescript
-  disabled: false
-  squareImage: /full-stack-ts.png
-  facebookImage: /fb-full-stack-ts.png
-  twitterImage: /tw-full-stack-ts.png
-  femCourseUrl: https://frontendmasters.com/courses/fullstack-typescript/
-  femCoursePublished: false
-  summary: |
-    Combine TypeScript and GraphQL's type systems to create full-stack, fully
-    type-checked code bases that are shockingly easy to refactor and maintain.
-
-
+course_groups:
+  - name: "TypeScript Fundamentals"
+    id: typescript-fundamentals
+    topNavOrder: 1
+    courseIndexOrder: 1
+    currentCourse: fundamentals-v3
+    courses: [fundamentals-v3, fundamentals-v4]
+  - name: "Intermediate TypeScript"
+    id: intermediate-typescript
+    topNavOrder: 2
+    courseIndexOrder: 2
+    currentCourse: intermediate-v1
+    courses: [intermediate-v1, intermediate-v2]
+  - name: "Making TypeScript Stick"
+    id: making-typescript-stick
+    topNavOrder: 5
+    courseIndexOrder: 5
+    currentCourse: making-typescript-stick
+    courses: [making-typescript-stick]
+  - name: "Enterprise TypeScript"
+    id: enterprise-typescript
+    visibleInTopNav: true
+    visibleInCourseIndex: false
+    visibleInCoursePage: true
+    topNavOrder: 3
+    courseIndexOrder: 3
+    currentCourse: enterprise-v2
+    courses: [enterprise-v2]
+  - name: "Full Stack TypeScript"
+    id: full-stack-typescript
+    topNavOrder: 4
+    courseIndexOrder: 4
+    currentCourse: full-stack-typescript
+    courses: [full-stack-typescript]
