@@ -40,7 +40,7 @@ exports.createPages = async ({ graphql, actions }) => {
   );
   const { courses } = ymlDoc;
   courses.forEach((element) => {
-    console.log(`Creating page: ${JSON.stringify(element)}`);
+    console.log(`Creating page: ${element.id}`);
     createPage({
       path: `/course/${element.id}`,
       component: require.resolve('./src/templates/course-page.tsx'),
@@ -134,7 +134,6 @@ exports.createPages = async ({ graphql, actions }) => {
  * @type {import('gatsby').GatsbyNode<any, any>['onCreateNode']}
  */
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  // console.log(`Node created of type "${node.internal.type}"`);
 
   const { createNodeField } = actions;
 

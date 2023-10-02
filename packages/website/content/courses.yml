@@ -17,9 +17,9 @@ courses:
     visibleInTopNav: false
     visibleInCourseIndex: false
     visibleInCoursePage: true
-    squareImage: /ts-fundamentals-v3.png
-    facebookImage: /fb-ts-fundamentals-v3.png
-    twitterImage: /tw-ts-fundamentals-v3.png
+    squareImage: /ts-fundamentals-v4.png
+    facebookImage: /fb-ts-fundamentals-v4.png
+    twitterImage: /tw-ts-fundamentals-v4.png
     femCourseUrl: https://frontendmasters.com/courses/typescript-v4/
     femCoursePublished: false
     femWorkshopUrl: https://frontendmasters.com/workshops/typescript-v4/
@@ -83,9 +83,9 @@ courses:
       type-checked code bases that are shockingly easy to refactor and maintain.
   - name: "Intermediate TypeScript"
     id: intermediate-v2
-    squareImage: /intermediate-ts.png
-    facebookImage: /fb-intermediate-ts.png
-    twitterImage: /tw-intermediate-ts.png
+    squareImage: /intermediate-ts-v2.png
+    facebookImage: /fb-intermediate-ts-v2.png
+    twitterImage: /tw-intermediate-ts-v2.png
     femCourseUrl: https://frontendmasters.com/courses/intermediate-typescript-v2/
     femCoursePublished: false
     femWorkshopUrl: https://frontendmasters.com/workshops/intermediate-typescript-v2/

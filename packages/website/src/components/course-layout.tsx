@@ -13,11 +13,9 @@ interface ICourseLayoutProps {
 
 const CourseLayout: React.FunctionComponent<ICourseLayoutProps> = ({
   courses,
-  courseGroups,
   children,
   padTop
 }) => {
-  console.log({ courses, courseGroups })
   const header = (
     <ul className={padTop ? "course-tabs pad-top" : "course-tabs"}>
       {courses.filter(c => c.visibleInTopNav).map((c) => (

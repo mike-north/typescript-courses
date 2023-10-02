@@ -65,7 +65,6 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
   useEffect(setupTwoslashHovers, []);
 
   const postHtml = makeHTMLAdjustments(post.html);
-  console.log(post);
   const course = data.site.siteMetadata.courses.find(
     (c) => c.id === post.frontmatter.course,
   );
