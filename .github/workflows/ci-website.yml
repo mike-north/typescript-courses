@@ -94,7 +94,7 @@ jobs:
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
-          config-file: packages/website/tests/cypress.config.ts
+          config-file: packages/website/cypress.config.ts
           start: yarn lerna run test:cypress --scope website
           browser: chrome
   ts-compatibility:
@@ -152,7 +152,7 @@ jobs:
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
-          config-file: packages/website/tests/cypress.config.ts
+          config-file: packages/website/cypress.config.ts
           start: yarn lerna run test:cypress --scope website
           browser: chrome
 
