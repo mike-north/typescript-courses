@@ -37,7 +37,12 @@ jobs:
         run: yarn lerna run lint --scope website
       - name: Test
         run: yarn lerna run test:jest --scope website
-
+      - name: Cypress
+        uses: cypress-io/github-action@v6
+        with:
+          config-file: packages/website/cypress.config.ts
+          start: yarn lerna run test:cypress --scope website
+          browser: chrome
   os-compatibility:
     needs: build
     runs-on: ${{ matrix.os }}
