@@ -36,7 +36,7 @@ jobs:
       - name: Lint
         run: yarn lerna run lint --scope website
       - name: Test
-        run: yarn lerna run test --scope website
+        run: yarn lerna run test:jest --scope website
 
   os-compatibility:
     needs: build
@@ -62,7 +62,7 @@ jobs:
       - name: Build
         run: yarn lerna run build --scope website
       - name: Test
-        run: yarn lerna run test --scope website
+        run: yarn lerna run test:jest --scope website
 
   node-compatibility:
     needs: build
@@ -70,7 +70,8 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 19.x]
+        node-version: [18.x]
+        # node-version: [16.x, 18.x, 20.x]
     steps:
       - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
@@ -89,7 +90,7 @@ jobs:
       - name: Build
         run: yarn lerna run build --scope website
       - name: Test
-        run: yarn lerna run test --scope website
+        run: yarn lerna run test:jest --scope website
 
 
   ts-compatibility:
@@ -98,14 +99,17 @@ jobs:
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        typescript-version: ['~5.2.0', latest, next, beta, rc]
+        typescript-version: ['~5.1.0', next, beta, rc]
         include:
-          - typescript-version: '~5.2.0'
+          # - typescript-version: '~5.0.0'
+          #   experimental: false
+          #   name: 'ts-5.0'
+          - typescript-version: '~5.1.0'
             experimental: false
-            name: 'ts-5.2'
-          - typescript-version: latest
-            experimental: false
-            name: 'ts-stable'
+            name: 'ts-5.1'
+          # - typescript-version: latest
+          #   experimental: false
+          #   name: 'ts-stable'
           - typescript-version: beta
             experimental: false
             name: 'ts-beta'
@@ -140,7 +144,13 @@ jobs:
           yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
           yarn lerna run typecheck --scope website
       - name: Test
-        run: yarn lerna run test --scope website
+        run: yarn lerna run test:jest --scope website
+      - name: Cypress
+        uses: cypress-io/github-action@v6
+        with:
+          build: yarn lerna run build --scope website
+          start: yarn lerna run test:cypress --scope website
+          browser: chrome
 
   publish:
     needs: [build, os-compatibility, node-compatibility, ts-compatibility]

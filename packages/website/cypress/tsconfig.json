@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "types": ["cypress", "gatsby-cypress", "@testing-library/cypress"]
+  },
+  "include": ["./**/*.ts"]
+}
