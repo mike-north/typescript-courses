@@ -40,9 +40,11 @@ jobs:
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
-          config-file: packages/website/cypress.config.ts
-          start: yarn lerna run test:cypress --scope website
+          working-directory: packages/website
+          start: yarn test:cypress
           browser: chrome
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   os-compatibility:
     needs: build
     runs-on: ${{ matrix.os }}
@@ -102,6 +104,8 @@ jobs:
           config-file: packages/website/cypress.config.ts
           start: yarn lerna run test:cypress --scope website
           browser: chrome
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   ts-compatibility:
     needs: build
     runs-on: ubuntu-latest
@@ -160,6 +164,8 @@ jobs:
           config-file: packages/website/cypress.config.ts
           start: yarn lerna run test:cypress --scope website
           browser: chrome
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   publish:
     needs: [build, os-compatibility, node-compatibility, ts-compatibility]
