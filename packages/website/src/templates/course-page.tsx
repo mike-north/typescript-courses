@@ -67,12 +67,12 @@ const CoursePageTemplate: React.FunctionComponent<
   ICourseTemplateProps
 > = ({ pageContext: course, data }): JSX.Element => {
   if (!course) throw new Error('no course');
-  console.log({ course })
+
   const { courses, courseGroups } = data.site.siteMetadata;
   const posts = data.allMarkdownRemark.edges;
   let urlBanner: JSX.Element | null = null;
   const { femCoursePublished, femCourseUrl, femWorkshopPublished, femWorkshopUrl } = course;
-  console.log({ femCourseUrl });
+
   if (femCourseUrl) {
     if (femCoursePublished) {
       urlBanner = (

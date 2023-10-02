@@ -44,7 +44,6 @@ const getRootRect = (element: HTMLElement): DOMRect => {
 const setupTwoslashHovers = (): void => {
   // prettier-ignore
   const twoslashes = document.querySelectorAll('.shiki.twoslash')
-  console.log(twoslashes);
   // Gets triggered on the spans inside the codeblocks
   const hover = (event: Event) => {
     const hovered = event.target as HTMLElement;
