@@ -1,6 +1,6 @@
 ---
 title: Hello TypeScript
-date: "2021-06-08T09:00:00.000Z"
+date: "2021-10-23T09:00:00.000Z"
 description: |
   In this chapter, we'll get hands on with our first TypeScript program and the
   compiler CLI command, and examine a simple program's compiled output

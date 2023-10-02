@@ -1,6 +1,6 @@
 ---
 title: Top and bottom types
-date: "2021-06-08T09:00:00.000Z"
+date: "2021-10-23T09:00:00.000Z"
 description: |
   Top types can be anything, bottom types can't be anything. We will also look
   at three "extreme types" in TypeScript: any, unknown and never.

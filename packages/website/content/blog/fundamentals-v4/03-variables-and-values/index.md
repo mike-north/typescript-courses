@@ -1,6 +1,6 @@
 ---
 title: Variables and Values
-date: "2021-06-08T09:00:00.000Z"
+date: "2021-10-23T09:00:00.000Z"
 description: |
   We will begin our study of the TypeScript language with simple variables
   and functions.

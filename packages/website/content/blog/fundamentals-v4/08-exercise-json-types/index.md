@@ -1,6 +1,6 @@
 ---
 title: JSON types
-date: "2021-06-08T09:00:00.000Z"
+date: "2021-10-23T09:00:00.000Z"
 isExercise: true
 description: |
   We will take on our first challenge together: defining types

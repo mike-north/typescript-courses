@@ -1,6 +1,6 @@
 ---
 title: Intro
-date: "2021-06-08T09:00:00.000Z"
+date: "2021-10-23T09:00:00.000Z"
 description: |
   We'll discuss the goals and agenda of this course, and how to get up and
   running with the workshop project in 2 minutes or less.
@@ -11,28 +11,28 @@ order: 1
 ## About the Instructor
 
 - [Frontend Masters instructor](https://frontendmasters.com/teachers/mike-north/) for 9 years
-- Developer Platform Lead @ [Stripe](https://stripe.com), including the SDK team
-- Helps form the design patterns and semantics for [Stripe's API](https://stripe.com/docs/api)
-- Leads the org responsible for TypeScript projects like [Stripe Shell](https://stripe.sh/), and [Stripe Workbench](https://workbench.stripe.dev/)
+- Developer Platform Lead @ [Stripe](https://stripe.com)
+- Designs [Stripe's API semantics](https://stripe.com/docs/api)
+- Architect responsible for TypeScript projects like [node-stripe](https://github.com/stripe/stripe-node), [Stripe Shell](https://stripe.sh/), and [Stripe Workbench](https://workbench.stripe.dev/)
 
 ## #1 Goal for this course
 
-> By the end of this course, **I want you to have a rock solid mental model, that will serve you well for years**
+> By the end of this course, **I want you to have a rock solid mental model, that will allow you to design, discuss and understand types.**
 
 ## What is TypeScript?
 
 > TypeScript is an [open source](https://github.com/microsoft/TypeScript), typed **syntactic superset** of JavaScript
 
-- Compiles to readable JS
-- Three parts: Language, [Language Server](https://microsoft.github.io/language-server-protocol/) and Compiler
-- Kind of like a fancy linter
+- Compiles to clean, readable JS
+- Three parts: [Language](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html), [Language Server](https://microsoft.github.io/language-server-protocol/) and [Compiler](https://github.com/microsoft/TypeScript/tree/5c3045bc4f0d7b9a3e0d43cbf091ced99db8953c/src/compiler)
+- Kind of like a fancy linter -- helps purely at build time
 
 **TypeScript is _increasingly popular_**
 ![downloads-graph](./graph.png)
 
-## Why developers want types
+## Why types are a big deal
 
-It allows you, as a code author, **to leave more of your intent "on the page"**
+It allows developers **to leave more of their intent "on the page"**, especially when it comes to **articulating constraints**.
 
 This kind of _intent_ is often missing from JS code. For example:
 
@@ -64,7 +64,7 @@ function add(a: number, b: number): number {
 add(3, "4")
 ```
 
-**It has the potential to move some kinds of errors from _runtime_ to _compile time_** [^1]
+**TypeScript moves some kinds of common programming errors from _runtime_ to _compile time_** [^1]
 
 Examples:
 
@@ -113,6 +113,10 @@ Most of the "class time" is spent _building apps together_.
   This course focuses on **build pipelines, tooling, and practical use of TypeScript _at scale_**.
 - [JS &amp; TS Monorepos](https://frontendmasters.com/courses/monorepos/) <br />
   This course focuses on _monorepos_ -- the concept of **multiple sub-projects existing in a single git repository**. -->
+
+<!-- TODO: UPDATE AGENDA -->
+[[danger | :warning: TODO]]
+| Update the agenda
 
 ## Agenda
 

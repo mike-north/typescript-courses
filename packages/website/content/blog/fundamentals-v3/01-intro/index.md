@@ -11,9 +11,9 @@ order: 1
 ## About the Instructor
 
 - [Frontend Masters instructor](https://frontendmasters.com/teachers/mike-north/) for 9 years
-- Developer Platform Lead @ [Stripe](https://stripe.com), including the SDK team
-- Helps form the design patterns and semantics for [Stripe's API](https://stripe.com/docs/api)
-- Leads the org responsible for TypeScript projects like [Stripe Shell](https://stripe.sh/), and [Stripe Workbench](https://workbench.stripe.dev/)
+- Developer Platform Lead @ [Stripe](https://stripe.com)
+- Designs [Stripe's API semantics](https://stripe.com/docs/api)
+- Architect responsible for TypeScript projects like [node-stripe](https://github.com/stripe/stripe-node), [Stripe Shell](https://stripe.sh/), and [Stripe Workbench](https://workbench.stripe.dev/)
 
 ## #1 Goal for this course
 

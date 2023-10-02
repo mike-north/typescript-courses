@@ -1,6 +1,6 @@
 ---
 title: Classes
-date: "2021-06-08T09:00:00.000Z"
+date: "2021-10-23T09:00:00.000Z"
 description: |
   TypeScript classes add some powerful and important features on top
   of traditional JavaScript classes. In this unit, we will take a close look

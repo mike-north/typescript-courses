@@ -1,6 +1,6 @@
 ---
 title: Structural vs. Nominal Types
-date: "2021-06-08T09:00:00.000Z"
+date: "2021-10-23T09:00:00.000Z"
 description: |
   In this unit, we will explore how TypeScript is fundamentally different from
   nominal type systems, such as the ones found in Java and C++.
