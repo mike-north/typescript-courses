@@ -8143,13 +8143,13 @@ gatsby-remark-copy-linked-files@^6.12.0:
     probe-image-size "^7.2.3"
     unist-util-visit "^2.0.3"
 
-gatsby-remark-custom-blocks@^3.6.0:
-  version "3.15.0"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-custom-blocks/-/gatsby-remark-custom-blocks-3.15.0.tgz#d6ad4573f84c9afa4e71936ebe903894808852a4"
-  integrity sha512-PN3MiIxpSzKkZ9o77FRnxc8Wc4DH9QfsL/d0Qtria3ADbeNMDB3ziF4QYTDDl+sIZSwIw3Cq96w3g7aOrl0EQg==
+gatsby-remark-custom-blocks@^5.12.0:
+  version "5.12.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-custom-blocks/-/gatsby-remark-custom-blocks-5.12.0.tgz#b9ad8c2628c7b5036f190d4b7355bb432f7c0cc0"
+  integrity sha512-mDmnJ5NiptMr1IWBdeKdkMyp1xjZSE2+yowga4KkVy/hAkjJqdpUTGec0oGQk+aJvqKqm8aU/2ID3Mr17PjpMQ==
   dependencies:
-    "@babel/runtime" "^7.15.4"
-    remark-custom-blocks "^2.5.0"
+    "@babel/runtime" "^7.20.13"
+    remark-custom-blocks "^2.6.0"
 
 gatsby-remark-emojis@^0.4.3:
   version "0.4.3"
@@ -14508,7 +14508,7 @@ regjsparser@^0.9.1:
   dependencies:
     jsesc "~0.5.0"
 
-remark-custom-blocks@^2.5.0:
+remark-custom-blocks@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/remark-custom-blocks/-/remark-custom-blocks-2.6.0.tgz#487fa162016f9fc3a03e8d4ee3de7dbefc109ed6"
   integrity sha512-8Lt1WKxOzAGmYH4VrZ9Cq0ZhFCMW2wBKwCxCv0XmmF8jTfWChXer9QYUe0fi9vW/eMbjXh8RLMed3Rst3SQ+KA==
