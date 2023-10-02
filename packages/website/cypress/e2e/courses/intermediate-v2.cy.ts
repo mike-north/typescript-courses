@@ -26,7 +26,7 @@ describe('course page', () => {
   it('logo is present', () => {
     cy.get('main > header > img')
       .should('exist')
-      .should('have.attr', 'src', '/intermediate-ts.png');
+      .should('have.attr', 'src', '/intermediate-ts-v2.png');
   });
   it('clicking on a section works', () => {
     cy.get('.course-article__title')
