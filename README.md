@@ -1,5 +1,9 @@
 # TypeScript Training w/ Mike North
-This repo contains the code for `TypeScript Fundamentals v3` and `Intermediate TypeScript v1`
+This repo contains the code for
+* TypeScript Fundamentals v3
+* Intermediate TypeScript v1
+* Making TypeScript Stick v1
+* Full stack TypeScript v1
 
 The course website is at https://www.typescript-training.com
 
