@@ -1,6 +1,6 @@
 ---
 title: Union and Intersection Types
-date: "2021-10-23T09:00:00.000Z"
+date: "2023-10-23T09:00:00.000Z"
 description: |
   We will discuss and explore TypeScript's union and intersection types,
   which are effectively "AND" and "OR" boolean logic operators for types.

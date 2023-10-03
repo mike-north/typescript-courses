@@ -1,6 +1,6 @@
 ---
 title: Hello TypeScript
-date: "2021-10-23T09:00:00.000Z"
+date: "2023-10-23T09:00:00.000Z"
 description: |
   In this chapter, we'll get hands on with our first TypeScript program and the
   compiler CLI command, and examine a simple program's compiled output
@@ -17,7 +17,7 @@ In this chapter we will...
 
 ## Anatomy of the project
 
-Let's consider [`a very simple TypeScript project`](https://github.com/mike-north/ts-fundamentals-v3/blob/main/packages/hello-ts/)
+Let's consider [`a very simple TypeScript project`](https://github.com/mike-north/typescript-courses/blob/main/packages/hello-ts/)
 that consists of only three files:
 
 ```sh
@@ -27,14 +27,14 @@ src/index.ts   # "the program"
 ```
 
 `package.json`
-[(view source)](https://github.com/mike-north/ts-fundamentals-v3/blob/main/packages/hello-ts/package.json) <br />
+[(view source)](https://github.com/mike-north/typescript-courses/blob/main/packages/hello-ts/package.json) <br />
 
 ```jsonc
 {
   "name": "hello-ts",
   "license": "NOLICENSE",
   "devDependencies": {
-    "typescript": "^4.3.2"
+    "typescript": "^5.2.0"
   },
   "scripts": {
     "dev": "tsc --watch --preserveWatchOutput"
@@ -51,13 +51,14 @@ Note that...
 The following is just about the simplest possible [config file](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) for the TS compiler:
 
 `tsconfig.json`
-[(view source)](https://github.com/mike-north/ts-fundamentals-v3/blob/main/packages/hello-ts/tsconfig.json) <br />
+[(view source)](https://github.com/mike-north/typescript-courses/blob/main/packages/hello-ts/tsconfig.json) <br />
 
 ```jsonc
 {
   "compilerOptions": {
     "outDir": "dist", // where to put the TS files
-    "target": "ES3" // which level of JS support to target
+    "target": "ES5", // JS language level (as a build target)
+    "moduleResolution": "Node" // Find cjs modules in node_modules
   },
   "include": ["src"] // which files to compile
 }
@@ -72,11 +73,12 @@ property in our `tsconfig.json` more obvious**:
 
 - Use of a built in `Promise` constructor (introduced in ES2015)
 - Use of `async` and `await` (introduced in ES2017)
+- Use of a `static` private class field (introduced in ES2022)
 
 Here is the original (TypeScript) source code that we aim to compile:
 
 `src/index.ts`
-[(view source)](https://github.com/mike-north/ts-fundamentals-v3/blob/main/packages/hello-ts/src/index.ts) <br />
+[(view source)](https://github.com/mike-north/typescript-courses/blob/main/packages/hello-ts/src/index.ts) <br />
 
 ```ts twoslash
 /**
@@ -97,23 +99,34 @@ export async function addNumbers(a: number, b: number) {
   return a + b
 }
 
+class Foo {
+  static #bar = 3
+  static getValue() {
+    return Foo.#bar
+  }
+}
+
 //== Run the program ==//
 ;(async () => {
-  console.log(await addNumbers(3, 4))
+  console.log(await addNumbers(Foo.getValue(), 4))
 })()
 ```
 
 Note that when you hover over certain code points on this website, you get
-the equivalent of a "VScode tooltip". This is one of our most important
-tools for learning about how TypeScript understands our code!
-
-In the above example, we use the `export` keyword to demonstrate using TypeScript modules. Using modules works locally, but the "Try" link won't run in TypeScript playground since it doesn't support multiple files. Here is an example of the same code without the module export so you can [run the code in TypeScript playground](https://www.typescriptlang.org/play?#code/PQKhCgAIUhhAnApgQwC6MsyAHeB7AWwEsBnDVACzUiRLwBsA3REzAM3XkjoPKN6gwAAtmTxkBSADtpAVwIAjRFzxtIxevVKIAxnikATVkrZ4kOfMTI0WDZiUHBwbWVJ2oi+yB955ZqAAopAC45RWUASkgAbygbVFl4GSlEAHdIAAVLbQCA2iiAXgA+bkRUABV+RD9A2gAaaQiIgG5wAF9wcFAIaEgAQQMDbwokDCl5JXgHXpExCUxINiIp1DDJwUhZ8UkFUr1DR3BkEgBPN0XXd08ZZEGAOQnlEgDkUPHw+AaFN8f4KNjIJhUsgiKsfNV-AEAKwABhhLTiSASSQWAGpIApWh0usACgVIAAlVzDDC4PAAc22kDxwCcL1O5wChRKAMg+zo9EQADp6BSXsDQZh7r9ngBmBoAFiaWIiTNaQA)!
+the equivalent of a "VScode tooltip". **This is one of our most important
+tools for learning about how TypeScript understands our code!**
 
 ![cursor hovering](/cursor-tooltip-ts.gif)
 
 ## Running the compiler
 
-Optionally, you may run the following terminal command from the `packages/hello-ts` folder of [the git repo](https://github.com/mike-north/ts-fundamentals-v3/):
+From within the `packages/hello-ts` folder of [the git repo](https://github.com/mike-north/typescript-courses/), you can run
+
+```sh
+tsc
+```
+
+to build the project. Alternatively, from within the same folder, you can run this command to start a task that will rebuild the project whenever you change important files.
 
 ```sh
 yarn dev
@@ -216,7 +229,7 @@ var __generator =
         throw new TypeError(
           "Generator is already executing."
         )
-      while (_)
+      while ((g && ((g = 0), op[0] && (_ = 0)), _))
         try {
           if (
             ((f = 1),
@@ -290,7 +303,32 @@ var __generator =
       return { value: op[0] ? op[1] : void 0, done: true }
     }
   }
-exports.__esModule = true
+var __classPrivateFieldGet =
+  (this && this.__classPrivateFieldGet) ||
+  function (receiver, state, kind, f) {
+    if (kind === "a" && !f)
+      throw new TypeError(
+        "Private accessor was defined without a getter"
+      )
+    if (
+      typeof state === "function"
+        ? receiver !== state || !f
+        : !state.has(receiver)
+    )
+      throw new TypeError(
+        "Cannot read private member from an object whose class did not declare it"
+      )
+    return kind === "m"
+      ? f
+      : kind === "a"
+      ? f.call(receiver)
+      : f
+      ? f.value
+      : state.get(receiver)
+  }
+Object.defineProperty(exports, "__esModule", {
+  value: true,
+})
 exports.addNumbers = void 0
 /**
  * Create a promise that resolves after some time
@@ -320,17 +358,30 @@ function addNumbers(a, b) {
   })
 }
 exports.addNumbers = addNumbers
+var Foo = /** @class */ (function () {
+  function Foo() {}
+  Foo.getValue = function () {
+    return __classPrivateFieldGet(_a, _a, "f", _Foo_bar)
+  }
+  var _a, _Foo_bar
+  _a = Foo
+  _Foo_bar = { value: 3 }
+  return Foo
+})()
 //== Run the program ==//
 ;(function () {
   return __awaiter(void 0, void 0, void 0, function () {
-    var _a, _b
-    return __generator(this, function (_c) {
-      switch (_c.label) {
+    var _b, _c
+    return __generator(this, function (_d) {
+      switch (_d.label) {
         case 0:
-          _b = (_a = console).log
-          return [4 /*yield*/, addNumbers(3, 4)]
+          _c = (_b = console).log
+          return [
+            4 /*yield*/,
+            addNumbers(Foo.getValue(), 4),
+          ]
         case 1:
-          _b.apply(_a, [_c.sent()])
+          _c.apply(_b, [_d.sent()])
           return [2 /*return*/]
       }
     })
@@ -348,7 +399,7 @@ If we go to `hello-ts/tsconfig.json` and change the "compilerOptions.target" pro
 {
     "compilerOptions": {
         "outDir": "dist",
--       "target": "ES3"
+-       "target": "ES5"
 +       "target": "ES2015"
     },
     "include": ["src"]
@@ -362,7 +413,7 @@ Look at that `dist/index.js` file again -- it's much cleaner now! Do you notice 
 
 ```ts twoslash
 // @showEmit
-// @target: ES2015
+// @target ES2015
 /**
  * Create a promise that resolves after some time
  * @param n number of milliseconds before promise resolves
@@ -381,9 +432,16 @@ export async function addNumbers(a: number, b: number) {
   return a + b
 }
 
+class Foo {
+  static #bar = 3
+  static getValue() {
+    return Foo.#bar
+  }
+}
+
 //== Run the program ==//
 ;(async () => {
-  console.log(await addNumbers(3, 4))
+  console.log(await addNumbers(Foo.getValue(), 4))
 })()
 ```
 
@@ -435,13 +493,76 @@ export async function addNumbers(a: number, b: number) {
   return a + b
 }
 
+class Foo {
+  static #bar = 3
+  static getValue() {
+    return Foo.#bar
+  }
+}
+
 //== Run the program ==//
 ;(async () => {
-  console.log(await addNumbers(3, 4))
+  console.log(await addNumbers(Foo.getValue(), 4))
 })()
 ```
 
 </details>
+
+And now finally, let's try ES2022:
+
+```diff
+{
+    "compilerOptions": {
+        "outDir": "dist",
+-       "target": "ES2017"
++       "target": "ES2022"
+    },
+    "include": ["src"]
+}
+```
+
+You'll see that the code now looks pretty much like the original source code, with all the types stripped away (e.g. `a: string` -> `a`).
+
+<details>
+  <summary>Click here to see what the compiled output looks like</summary>
+
+```ts twoslash
+// @showEmit
+// @target: ES2022
+/**
+ * Create a promise that resolves after some time
+ * @param n number of milliseconds before promise resolves
+ */
+function timeout(n: number) {
+  return new Promise((res) => setTimeout(res, n))
+}
+
+/**
+ * Add three numbers
+ * @param a first number
+ * @param b second
+ */
+export async function addNumbers(a: number, b: number) {
+  await timeout(500)
+  return a + b
+}
+
+class Foo {
+  static #bar = 3
+  static getValue() {
+    return Foo.#bar
+  }
+}
+
+//== Run the program ==//
+;(async () => {
+  console.log(await addNumbers(Foo.getValue(), 4))
+})()
+```
+
+</details>
+
+### Declaration Files
 
 You may also notice that a `.d.ts` file is generated as part of the compile process. **This is known as a declaration file**.
 
@@ -481,7 +602,16 @@ A good way to think of TS files:
 - `.js` files contain only code that runs
 - `.d.ts` files contain only type information
 
+There are other types of file extensions which have a TypeScript equivalent
+
+| File Purpose | JS extension | TS extension |
+|----|----|----|
+| React  | `.jsx` | `.tsx` |
+| Native ES Modules | `.mjs` | `.mts` |
+
 ### Types of modules
+
+#### CommonJS
 
 Did you notice that the `export` keyword was still present in the build output for our program? We are generating [ES2015 modules][esm] from our TypeScript source.
 
@@ -502,7 +632,7 @@ SyntaxError: Unexpected token 'export'
 It seems that, at least with most recent versions of Node.js and the way
 our project is currently set up, we can't just run this program directly as-is.
 
-Node expects [CommonJS modules][cjs] [^1], so we'll have to tell TypeScript to output
+Node conventionally expects [CommonJS modules][cjs] [^1], so we'll have to tell TypeScript to output
 this kind of code.
 
 Let's add a new property to our `tsconfig` file:
@@ -535,7 +665,27 @@ node packages/hello-ts/dist/index.js
 If the program works correctly at this point, we should see it pause for a short
 time and then print `7` to the console, before ending successfully.
 
-[^1]: There are certainly ways of making modern versions of Node happy to run [ES2015 modules][esm], and they'll likely soon be the default type of JS module, but `.js` files passed directly into `node` with no flags or other arguments are still treated as CommonJS
+#### ES Modules
+
+Node now supports running native modules (`.ejs` files) directly! We can configure TypeScript to build this type of file. Make this change to your `tsconfig.json`
+
+```diff
+   "target": "ES2022",
++  "module": "NodeNext",
+-  "module": "CommonJS",
+-  "moduleResolution": "Node"
+```
+
+Build the file again by running `tsc` while in the `./packages/hello-ts` folder.
+
+Finally, run from within the same folder
+
+```sh
+node dist/index.js
+```
+
+And you should see `7` printed to the console again!
+
 
 CONGRATS! You've just compiled your first TypeScript program!
 

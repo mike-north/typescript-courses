@@ -1,6 +1,6 @@
 ---
 title: Intro
-date: "2021-10-23T09:00:00.000Z"
+date: "2023-10-23T09:00:00.000Z"
 description: |
   We'll discuss the goals and agenda of this course, and how to get up and
   running with the workshop project in 2 minutes or less.
@@ -63,6 +63,8 @@ function add(a: number, b: number): number {
 }
 add(3, "4")
 ```
+
+This code is more readable and is more self-documenting, in that it's more clear how the author of this function intends it to be used.
 
 **TypeScript moves some kinds of common programming errors from _runtime_ to _compile time_** [^1]
 

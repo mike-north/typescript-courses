@@ -1,6 +1,6 @@
 ---
 title: Type guards and narrowing
-date: "2021-10-23T09:00:00.000Z"
+date: "2023-10-23T09:00:00.000Z"
 description: |
   We have explored built-in type guards like typeof and instanceof,
   but there's a lot more power in type guards, including the ability

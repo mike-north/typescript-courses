@@ -1,6 +1,6 @@
 ---
 title: Interfaces and Type Aliases
-date: "2021-10-23T09:00:00.000Z"
+date: "2023-10-23T09:00:00.000Z"
 description: |
   TypeScript provides two mechanisms for centrally defining types and giving them
   useful and meaningful names: interfaces and type aliases. We will study both

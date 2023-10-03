@@ -16,7 +16,12 @@ export async function addNumbers(a: number, b: number) {
   return a + b;
 }
 
+class Foo {
+  static #bar = 3;
+  static getValue() { return Foo.#bar}
+}
+
 //== Run the program ==//
 (async () => {
-  console.log(await addNumbers(3, 4));
+  console.log(await addNumbers(Foo.getValue(), 4));
 })();

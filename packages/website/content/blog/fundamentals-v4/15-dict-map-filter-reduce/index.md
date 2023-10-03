@@ -1,6 +1,6 @@
 ---
 title: Dictionary map, filter and reduce
-date: "2021-10-23T09:00:00.000Z"
+date: "2023-10-23T09:00:00.000Z"
 isExercise: true
 description: |
   Many of us use array the higher-order functions map, filter and reduce

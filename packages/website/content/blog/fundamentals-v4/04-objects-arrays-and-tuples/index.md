@@ -1,6 +1,6 @@
 ---
 title: Objects, Arrays and Tuples
-date: "2021-10-23T09:00:00.000Z"
+date: "2023-10-23T09:00:00.000Z"
 description: |
   Now that we know how to type simple variables and functions, let's make things
   a bit more interesting with collections: in JavaScript this includes Objects and Arrays.
