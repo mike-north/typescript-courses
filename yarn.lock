@@ -5261,7 +5261,7 @@ commander@~9.0.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-9.0.0.tgz#86d58f24ee98126568936bd1d3574e0308a99a40"
   integrity sha512-JJfP2saEKbQqvW+FI93OYUB4ByV5cizMpFMiiJI8xDbBvQvSkIk0VvQdn1CZ8mqAO8Loq2h0gYTYtDFUZUeERw==
 
-common-tags@^1.8.0:
+common-tags@^1.8.0, common-tags@^1.8.2:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/common-tags/-/common-tags-1.8.2.tgz#94ebb3c076d26032745fd54face7f688ef5ac9c6"
   integrity sha512-gk/Z852D2Wtb//0I+kRFNKKE9dIIVirjoqPoA1wJU+XePVXZfGeBpk45+A1rKO4Q43prqWBNY/MiIeRLbPWUaA==
@@ -8177,14 +8177,14 @@ gatsby-remark-images@^5.2.1:
     unist-util-select "^3.0.4"
     unist-util-visit-parents "^3.1.1"
 
-gatsby-remark-responsive-iframe@^4.3.0:
-  version "4.12.0"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-responsive-iframe/-/gatsby-remark-responsive-iframe-4.12.0.tgz#42562f281909e3e815ea0eac55596e17779b3515"
-  integrity sha512-MCMk4j3OMYFq+2ssSIzbjBVdmZm3u8cNAmK3f8kabSGdi7X5i94a49/fo9kd5Qc9YXQ+pihUfiftxPzvKbIAsg==
+gatsby-remark-responsive-iframe@^6.12.0:
+  version "6.12.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-responsive-iframe/-/gatsby-remark-responsive-iframe-6.12.0.tgz#dec01db286542e3d5a1c0bb44fdc82e9640cc275"
+  integrity sha512-OkqLDCeXI/LDJ5QtIb5z5Sex3rDkMmBEDUGz7ZAh1HG1qnj0KuVuX9w+H5TMDn2HxopuoyTotJt/lc7Y3tG5Tg==
   dependencies:
-    "@babel/runtime" "^7.15.4"
+    "@babel/runtime" "^7.20.13"
     cheerio "^1.0.0-rc.10"
-    common-tags "^1.8.0"
+    common-tags "^1.8.2"
     lodash "^4.17.21"
     unist-util-visit "^2.0.3"
 
