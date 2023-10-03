@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('course page', () => {
+describe('full stack typescript course page', () => {
   beforeEach(() => {
     cy.visit(
       'http://localhost:8000/course/full-stack-typescript',

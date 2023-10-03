@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('course page', () => {
+describe('Intermediate typescript v1 course page', () => {
   beforeEach(() => {
     cy.visit(
       'http://localhost:8000/course/intermediate-v1',
