@@ -653,5 +653,3 @@ try {
 ```
 
 :tada: Success!
-
-[^1]: Definition of ternary: three-part
