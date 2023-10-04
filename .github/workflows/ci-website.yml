@@ -17,7 +17,7 @@ on:
       - 'yarn.lock'
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
@@ -75,7 +75,7 @@ jobs:
 
   node-compatibility:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     strategy:
       matrix:
@@ -112,7 +112,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   ts-compatibility:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
