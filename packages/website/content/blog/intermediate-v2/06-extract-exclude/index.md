@@ -91,5 +91,3 @@ type Extract<T, U> = T extends U ? T : never
 
 They're just conditional types, and the only difference
 between them is the reversal of the "if true" and "if false" expressions (`never : T` vs `T : never`).
-
-[^1]: Definition of ternary: three-part

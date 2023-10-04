@@ -84,26 +84,3 @@ Most of the "class time" is spent _building apps together_.
   This course focuses on **build pipelines, tooling, and practical use of TypeScript _at scale_**.
 - [JS &amp; TS Monorepos](https://frontendmasters.com/courses/monorepos/) <br />
   This course focuses on _monorepos_ -- the concept of **multiple sub-projects existing in a single git repository**.
-
-<!-- ## Agenda
-
-- Using `tsc` and **compiling** TS code into JavaScript
-- **Variables** and simple values
-- **Objects** and arrays
-  <br/>`--- BREAK ---`
-- Categorizing **type systems**
-- Set theory, **Union and Intersection types**
-- **Interfaces and Type Aliases**
-  <br/>`--- LUNCH ---`
-- **Hack**: Writing types for JSON values
-- **Functions**
-- **Classes** in TypeScript
-- **Top and bottom types**
-- User-defined **Type guards**
-  <br/>`--- BREAK ---`
-- Handling **nullish values**
-- **Generics**
-- **Hack**: higher-order functions for dictionaries
-- Wrap up
-
-[^1]: TypeScript by itself is not going to reduce the occurrence of errors in your projects. It does, however, provide several tools that _greatly_ improve visibility of some kinds of defects. -->
