@@ -28,9 +28,7 @@ jobs:
             node_modules
             */*/node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
-      - run: |
-          yarn
-          yarn lerna bootstrap
+      - run: yarn
       - name: Build
         run: yarn lerna run build --scope website
       - name: Lint
@@ -65,9 +63,7 @@ jobs:
             node_modules
             */*/node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
-      - run: |
-          yarn
-          yarn lerna bootstrap
+      - run: yarn
       - name: Build
         run: yarn lerna run build --scope website
       - name: Test
@@ -93,9 +89,7 @@ jobs:
             node_modules
             */*/node_modules
           key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
-      - run: |
-          yarn
-          yarn lerna bootstrap
+      - run: yarn
       - name: Build
         run: yarn lerna run build --scope website
       - name: Test
@@ -148,9 +142,7 @@ jobs:
             node_modules
             */*/node_modules
           key: ${{ runner.os }}-${{ matrix.typescript-version }}-${{ hashFiles('**/yarn.lock') }}
-      - run: |
-          yarn
-          yarn lerna bootstrap
+      - run: yarn
       - name: Installing TypeScript ${{ matrix.typescript-version }}
         run: |
           yarn lerna add -D typescript@${{ matrix.typescript-version}}
@@ -180,9 +172,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
-      - run: |
-          yarn
-          yarn lerna bootstrap
+      - run: yarn
       - name: Build
         run: yarn lerna run build-prod --scope website
       - uses: peaceiris/actions-gh-pages@v3
