@@ -75,7 +75,7 @@
     "prettier": "^2.2.1",
     "react-test-renderer": "^18.2.0",
     "start-server-and-test": "^2.0.1",
-    "typescript": "beta"
+    "typescript": "^5.3.0-beta"
   },
   "homepage": "https://github.com/mike-north/typescript-fundamentals-v3#readme",
   "keywords": [
