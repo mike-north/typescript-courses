@@ -126,9 +126,8 @@ humidity = 79; // (4) OK
 humidity = 78; // (5) ❌ ERROR
 ```
 
-Each of these `x = y` assignments involves making some determination of
-**type equivalence**, which means asking the question
-**"does the type of `y` fit within the type of `x`?**.
+Each of these `x = y` assignments involves making some determination of **type equivalence**, which
+means asking the question **"does the type of `y` fit within the type of `x`?**.
 
 Let's describe what's happening here using sets.
 
