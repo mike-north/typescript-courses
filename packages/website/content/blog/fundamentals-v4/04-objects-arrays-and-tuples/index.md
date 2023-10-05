@@ -75,6 +75,23 @@ Notice that we can use this exact same kind of type annotation for function argu
 At this point, you can start to see that we see "completions" when we start
 using `car` in the body of this function.
 
+
+```ts twoslash
+//@noErrors
+/**
+ * Print information about a car to the console
+ * @param car - the car to print
+ */
+function printCar(car: {
+  make: string
+  model: string
+  year: number
+}) {
+  console.log(`${car.m
+//                    ^|
+}
+```
+
 ### Optional Properties
 
 What if we take our car example a bit further by adding a fourth property that's only present sometimes?
@@ -105,8 +122,11 @@ function printCar(car: {
 }
 ```
 
-This will allow our `printCar` function to work, regardless of whether the `chargeVoltage`
-property is present or not:
+Note that the type of `chargeVoltage` is now `number | undefined`. We'll go deeper into what the `|`
+means, but for now you can consider it **OR, for types**. `number | undefined` means "either `number`
+or `undefined`"
+
+Our `printCar` function now works, regardless of whether the `chargeVoltage` property is present or not:
 
 ```ts twoslash
 function printCar(car: {
@@ -315,25 +335,70 @@ make
 
 Now, we get errors in the places we expect, and all types work out as we hoped.
 
-### Limitations
+### `readonly` tuples
 
-As of [TypeScript 4.3](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-3.html#separate-write-types-on-properties), there's limited support for enforcing
-tuple length constraints.
-
-For example, you get the support you'd hope for on assignment:
+Tuples are just regular JS `Array`s.
 
 ```ts twoslash
-// @errors: 2322
-const numPair: [number, number] = [4, 5, 6]
+// Source
+const numPair: [number, number] = [4, 5];
 ```
 
-but not around `push` and `pop`:
+```ts twoslash
+// @module: commonjs
+// @target: ES5
+// @showEmit
+// Compiled output (ES5)
+const numPair: [number, number] = [4, 5];
+```
+
+This imposes some degree of limitation on how tuples can be typed. For example, an `Array`
+allows new things to be `.push(...)`ed into them, allow `.splice(...)` and so on. At runtime
+these methods will exist on every tuple, and the types reflect that.
+
+Typescript provides a lot of the support you'd hope for on assignment:
 
 ```ts twoslash
 // @errors: 2322
-const numPair: [number, number] = [4, 5]
+const numPair: [number, number] = [4, 5];
+//     ^?
+const numTriplet: [number, number, number] = [7];
+```
+
+and we see something interesting happening with `.length`
+
+```ts twoslash
+const numPair: [number, number] = [4, 5];
+/// ---cut---
+[101, 102, 103].length
+//                ^?
+numPair.length
+//       ^?
+
+```
+
+but we get no protection around `push` and `pop`, which effectively would change the type of the tuple
+
+```ts twoslash
+const numPair: [number, number] = [4, 5];
+/// ---cut---
 numPair.push(6) // [4, 5, 6]
 numPair.pop() // [4, 5]
 numPair.pop() // [4]
 numPair.pop() // []
+
+numPair.length  // ❌ DANGER ❌
+//        ^?
+```
+
+If we are ok with treating this tuple as read-only, we can state so, and get a lot more safety
+around mutation.
+
+```ts twoslash
+// @errors: 2339
+const numPair: readonly [number, number] = [4, 5]
+numPair.length
+//       ^?
+numPair.push(6) // [4, 5, 6]
+numPair.pop() // [4, 5]
 ```

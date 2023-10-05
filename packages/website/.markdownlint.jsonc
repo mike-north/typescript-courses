@@ -1,5 +1,5 @@
 {
   "default": true,
   "MD033": false,
-  "line-length": true
+  "line-length":  { "line_length": 100 }
 }
