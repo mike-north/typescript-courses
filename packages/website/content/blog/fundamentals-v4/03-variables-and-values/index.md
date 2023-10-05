@@ -212,11 +212,49 @@ setTimeout(() => {
 Now, TypeScript will correctly alert us when we try to flip flop between the
 number `0` and a `Date`.
 
+## Type Casting
+
+There may be occasions, especially when exploring TypeScript where we want to
+_force_ the compiler to regard a value as being of a particular type. This is
+called [_type casting_](https://en.wikipedia.org/wiki/Type_conversion).
+
+```ts twoslash
+let frontEndMastersFounding = new Date("Jan 1, 2012")
+let date1 = frontEndMastersFounding
+//   ^?
+let date2 = frontEndMastersFounding as any; // force the type to be `any`
+//   ^?
+```
+
+This is something that you should do _very carefully_. It's sometimes safe to cast
+to a _more general_ type, but potentially dangerous to cast to a _more specific or
+unrelated_ type.
+
+Here's an example of a safe (but rather pointless) cast
+
+```ts twoslash
+const humidity = 79 as number; // is 79 a number? If so, this is safe!
+//     ^?
+```
+
+and here's an example of an unsafe cast. This kind of pattern effectively
+makes TypeScript lie to you.
+
+```ts twoslash
+//@noErrors
+let date3 = "oops" as Date
+date3 // TypeScript thinks this is a Date now, but it's really a string
+// ^?
+date3.toISOString() // what do we think will happen when we run this? 💥
+//       ^?
+```
+
 ## Function arguments and return values
 
 The `: Date` syntax we've just seen for variable type annotations can also be used
 to describe function arguments and return values. In this example it's not clear,
-even from the implementation of the function, whether `add` should accept numbers or strings.
+even from the implementation of the function, whether `add` should accept numbers
+or strings.
 
 ```ts twoslash
 // @noImplicitAny: false
@@ -256,11 +294,9 @@ If you've ever created a `Promise` using the promise constructor, you may see
 that we are using a `string` where we _should_ use a two-argument function. This
 is the kind of thing we'd hope that TypeScript could catch for us.
 
-Without type annotations, "anything goes" for the arguments passed into `add`. Why is this a problem?
-
 Let's add some type annotations to our function's arguments:
 
-```ts twoslash
+```ts{1} twoslash
 // @errors: 2345
 function add(a: number, b: number) {
   return a + b
@@ -280,13 +316,22 @@ const result = add(3, 4)
 //              ^?
 ```
 
-If we wanted to specifically state a return type, we could do so using the `:foo` syntax in one more place
+If we wanted to specifically state a return type, we could do so using basically the same
+syntax in one more place
 
 ```ts twoslash
 // @errors: 2355
 function add(a: number, b: number): number {}
 ```
 
-This is a great way for code authors to state their intentions up-front. TypeScript will make sure
-that we live up to this intention, and errors will be surfaced _at the location of the function declaration_
-instead of _where we use the value returned by the function_.
+This is a great way for code authors to state their intentions up-front. TypeScript
+will make sure that we live up to this intention, and errors will be surfaced
+_at the location of the function declaration_ instead of _where we use the value
+returned by the function_. Once we implement the body of the function, we'll no
+longer see this error.
+
+```ts twoslash
+function add(a: number, b: number): number {
+  return a + b
+}
+```
