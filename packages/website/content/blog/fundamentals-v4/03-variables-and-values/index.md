@@ -69,7 +69,7 @@ Types like `79` are called a **literal types** -- you can think of this as
 | be of type `79`, but this would have interfered with our ability to set this
 | re-assignable variable to `7` or `8`.
 
-### A type as a set of allowed values
+## A type as a set of allowed values
 
 It's often useful to think about a type as representing some group of allowed values.
 We'll use [a common syntax](https://en.wikipedia.org/wiki/Set_(mathematics)#Roster_notation)
@@ -178,17 +178,22 @@ setTimeout(() => {
 
 `endTime` is "born" without a type, so it ends up being an implicit `any`.
 
+Think of `any` as "the normal way JS variables work", in that you could assign
+`endTime` a `number`, then later a `function`, then a `string`.
+
 TypeScript doesn't have enough information around the declaration site to infer
 what `endTime` should be, so it gets **the most flexible type: `any`**. Going
 back to our comparison of types to sets, `any` represents
 the set `{ all possible values }`.
 
-Think of `any` as "the normal way JS variables work", in that you could assign
-`endTime` a `number`, then later a `function`, then a `string`.
-
 If we wanted more safety here, we could add a **type annotation**:
 
-```ts twoslash
+```diff
+- let endTime
++ let endTime: Date
+```
+
+```ts{6} twoslash
 // @errors: 2322
 // between 500 and 1000
 const RANDOM_WAIT_TIME =

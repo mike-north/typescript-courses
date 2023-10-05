@@ -79,7 +79,8 @@ Examples:
 Example: in-editor autocomplete, as shown here:
 
 ```ts twoslash
-window.setInterval
+//@noErrors
+window.se
 //       ^|
 ```
 
