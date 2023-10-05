@@ -240,12 +240,19 @@ and here's an example of an unsafe cast. This kind of pattern effectively
 makes TypeScript lie to you.
 
 ```ts twoslash
-//@noErrors
-let date3 = "oops" as Date
+let date3 = "oops" as any as Date
 date3 // TypeScript thinks this is a Date now, but it's really a string
 // ^?
 date3.toISOString() // what do we think will happen when we run this? 💥
 //       ^?
+```
+
+note that in the above example, we first have to cast _up_ to `any`, and then back _down_ to `Date`.
+TypeScript doesn't even allow us to cast directly from `string` to `Date` because it's dangerous
+
+```ts twoslash
+// @errors: 2352
+let date3 = "oops" as Date
 ```
 
 ## Function arguments and return values
