@@ -16406,9 +16406,9 @@ typescript@>3, "typescript@>=3 < 6":
   integrity sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==
 
 typescript@^5.3.0-beta:
-  version "5.3.0-dev.20231004"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.3.0-dev.20231004.tgz#d35b20c8a2dbfee5c6baa2a51a47374949b25d5c"
-  integrity sha512-deMSPmvpUJCz9hHInrVQeHJoYCI1tFP7qeUEKh6WouazlvGnLMbyyAHyKNfOBDjU2die9qfjwqtch3DF2aV4vQ==
+  version "5.3.0-dev.20231005"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.3.0-dev.20231005.tgz#266e2dd5671506b9297b845907d00e852f9bf9c1"
+  integrity sha512-Twm3wBauTO94CSWbjXFMpsHsbaOUVssreq6pUo4wr8YsaIp0jim8EeCa9LfawFetQ+P4PODMmiM+uBhhWRVX0Q==
 
 typography-breakpoint-constants@^0.16.19:
   version "0.16.19"
