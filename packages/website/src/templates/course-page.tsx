@@ -80,7 +80,7 @@ const CoursePageTemplate: React.FunctionComponent<
           <img className='fem-logo' src="/fem-logo.png" />
           View the Frontend Masters video course for{' '}
           {course.name}{' '}
-          <a href={femCourseUrl} target="_blank">
+          <a href={femCourseUrl} rel="noopener noreferrer" target="_blank">
             here
           </a>
         </p>
@@ -91,7 +91,7 @@ const CoursePageTemplate: React.FunctionComponent<
           <img className='fem-logo' src="/fem-logo.png" />
           View the Frontend Masters workshop for{' '}
           {course.name}{' '}
-          <a href={femWorkshopUrl} target="_blank">
+          <a href={femWorkshopUrl} rel="noopener noreferrer" target="_blank">
             here
           </a>
         </p>

@@ -16,7 +16,7 @@ const EditOnGitHubLink: React.FunctionComponent<EditOnGitHubLinkProps> = ({
     .replace('/course', '')
     .substr(1)}index.md`;
   return (
-    <a href={url} target="_blank">
+    <a href={url} rel="noopener noreferrer" target="_blank">
       <div className="edit-on-github-link">
         <img src={githubIcon} alt="GitHub" />
         Edit on GitHub
