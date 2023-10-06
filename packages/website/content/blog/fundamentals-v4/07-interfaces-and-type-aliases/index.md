@@ -18,65 +18,69 @@ Think back to the `: {name: string, email: string}` syntax we've used up until t
 Type aliases help to address this, by allowing us to:
 
 - define **a more meaningful name** for this type
-- declare the particulars of the type **in a single place**
-- **import and export** this type from modules, the same as if it were an exported value
+- declare the shape of the type **in a single place**
+- **import and export** this type from modules, the same as if it were an importable/exportable value
 
 ```ts twoslash
 ///////////////////////////////////////////////////////////
 // @filename: types.ts
-export type UserContactInfo = {
-  name: string
-  email: string
+export type Amount = {
+  currency: string
+  value: number
 }
 ///////////////////////////////////////////////////////////
 // @filename: utilities.ts
-import { UserContactInfo } from "./types"
+import { Amount } from "./types"
 //         ^?
-function printContactInfo(info: UserContactInfo) {
-  console.log(info)
+function printAmount(amt: Amount) {
+  console.log(amt)
   //           ^?
-  console.log(info.email)
+  const { currency, value } = amt
+  console.log(`${currency} ${value}`)
   //                ^?
 }
 ```
 
 We can see a couple of things here:
 
-- the tooltip on `info` is now a lot cleaner and **more semantic** (meaningful, in connection with the concept behind it)
+- the tooltip on `amt` is now a lot cleaner and **more semantic** (meaningful, in connection with the concept behind it)
 - import/export of this `type` works just as it would for a function or a class in JavaScript
 
-> It's important to realize that the **name** `UserContactInfo` is just for our convenience. This is still a structural type system
+> It's important to realize that the **name** `Amount` is just for our convenience. This is still a structural type system
 
 ```ts twoslash
 // @filename: types.ts
-export type UserContactInfo = {
-  name: string
-  email: string
+export type Amount = {
+  currency: string
+  value: number
 }
 /// ---cut---
 ///////////////////////////////////////////////////////////
 // @filename: utilities.ts
-import { UserContactInfo } from "./types"
-function printContactInfo(info: UserContactInfo) {
-  console.log(info)
-  console.log(info.email)
-}
-const painter = {
-  name: "Robert Ross",
-  email: "bross@pbs.org",
-  favoriteColor: "Titanium White",
+import { Amount } from "./types"
+
+function printAmount(amt: Amount) {
+  console.log(amt)
+  const { currency, value } = amt
+  console.log(`${currency} ${value}`)
 }
 
-printContactInfo(painter) // totally fine
+const donation = {
+  currency: "USD",
+  value: 30.00,
+  description: "Donation to food bank",
+};
+
+printAmount(donation) // 👍
 //                 ^?
 ```
 
 Let's look at the declaration syntax for a moment:
 
 ```ts twoslash
-type UserContactInfo = {
-  name: string
-  email: string
+type Amount = {
+  currency: string
+  value: number
 }
 ```
 
@@ -88,12 +92,12 @@ A few things to point out here:
 
 ```ts twoslash
 // @errors: 2300 2300
-type UserContactInfo = {
-  name: string
-  email: string
+type Amount = {
+  currency: string
+  value: number
 }
 
-type UserContactInfo = {
+type Amount = {
   fail: "this will not work"
 }
 ```

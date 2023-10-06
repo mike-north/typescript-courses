@@ -7,9 +7,5 @@
     },
     "scripts": {
         "dev": "tsc --watch --preserveWatchOutput"
-    },
-    "volta": {
-        "node": "20.8.0",
-        "yarn": "1.22.19"
     }
 }
