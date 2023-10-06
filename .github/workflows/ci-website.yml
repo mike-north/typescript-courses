@@ -71,7 +71,7 @@ jobs:
         run: yarn lerna run test:jest --scope website
 
   node-compatibility:
-    needs: build
+    # needs: build
     runs-on: ubuntu-latest
 
     strategy:
@@ -107,7 +107,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   ts-compatibility:
-    needs: build
+    needs: [build, node-compatibility]
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental }}
     strategy:
