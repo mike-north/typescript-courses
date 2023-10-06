@@ -9,15 +9,11 @@ course: fundamentals-v4
 order: 7
 ---
 
-TypeScript provides two mechanisms for centrally defining types and giving them
-useful and meaningful names: [interfaces](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces) and [type aliases](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-aliases). We will study both
-concepts in depth, and explain when it makes sense to use each type.
+TypeScript provides two mechanisms for centrally defining types and giving them useful and meaningful names: [interfaces](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces) and [type aliases](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-aliases). We will study both concepts in depth, and explain when it makes sense to use each type.
 
 ## Type aliases
 
-Think back to the `: {name: string, email: string}` syntax we've used up until this point for type annotations. This
-syntax will get increasingly complicated as more properties are added to this type. Furthermore, if we pass
-objects of this type around through various functions and variables, we will end up with a _lot_ of types that need to be manually updated whenever we need to make any changes!
+Think back to the `: {name: string, email: string}` syntax we've used up until this point for type annotations. This syntax will get increasingly complicated as more properties are added to this type. Furthermore, if we pass objects of this type around through various functions and variables, we will end up with a _lot_ of types that need to be manually updated whenever we need to make any changes!
 
 Type aliases help to address this, by allowing us to:
 
@@ -175,7 +171,7 @@ newYearsEve.getReason
 //             ^|
 ```
 
-While there's no true `extends` keyword that can be used when defining type aliases, this pattern has a very similar effect
+While there's no true `extends` keyword that can be used when defining type aliases, an intersection type has a very similar effect
 
 ## Interfaces
 
