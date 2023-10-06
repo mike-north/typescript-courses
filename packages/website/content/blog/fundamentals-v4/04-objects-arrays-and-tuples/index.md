@@ -75,7 +75,6 @@ Notice that we can use this exact same kind of type annotation for function argu
 At this point, you can start to see that we see "completions" when we start
 using `car` in the body of this function.
 
-
 ```ts twoslash
 //@noErrors
 /**

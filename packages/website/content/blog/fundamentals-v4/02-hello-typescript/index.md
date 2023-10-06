@@ -686,7 +686,6 @@ node dist/index.js
 
 And you should see `7` printed to the console again!
 
-
 CONGRATS! You've just compiled your first TypeScript program!
 
 [esm]: https://en.wikipedia.org/wiki/ECMAScript#6th_Edition_%E2%80%93_ECMAScript_2015

@@ -95,7 +95,7 @@
     "clean": "gatsby clean",
     "cy:open": "cypress open --browser chrome --e2e",
     "lint": "yarn lint:ts && yarn lint:md",
-    "lint:md": "yarn markdownlint -c .markdownlint.jsonc content",
+    "lint:md": "yarn markdownlint -c ../../.markdownlint.jsonc content",
     "lint:ts": "eslint . --ext ts,js,tsx,jsx",
     "test": "yarn test:jest && yarn test:cypress",
     "test:jest": "jest",

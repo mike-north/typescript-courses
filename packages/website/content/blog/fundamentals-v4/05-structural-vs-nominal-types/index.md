@@ -20,7 +20,6 @@ question of _compatibility_ or _type equivalence_.
 
 > "is type `y` equivalent to type `x`? --> **"does the type of `y` fit within the type of `x`?**
 
-
 This question can be asked at a function call
 
 ```ts{9} twoslash
@@ -74,7 +73,6 @@ occur in static type systems -- TypeScript, Scala, and Haskell all have some for
 **Dynamic type systems perform their "type equivalence" evaluation purely at runtime**. JavaScript, Python,
 Ruby, Perl and PHP fall into this category, although there are some great projects like [Sorbet(ruby)](https://sorbet.org/),
 [Mypy(python)](https://github.com/python/mypy/) and others that bring static type-checking to these languages.
-
 
 ### Duck typing
 
@@ -169,7 +167,7 @@ Revisiting our early discussion involving types as sets of values
 
 The argument passed to `printCar` has a type that could be described as...
 
-```
+```pre
 { all values which contain a...
       make  property which is a string
 and a model property which is a string
