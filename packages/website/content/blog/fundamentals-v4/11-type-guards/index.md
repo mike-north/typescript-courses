@@ -300,7 +300,7 @@ if (Invoice.isInvoice(val)) {
 }
 ```
 
-"Bulletproof" is not always the right decision. Remember, TypeScript is a structural type system, and we've effectively built in something that behaves in a nominal way. Nothing other than an instance of `Invoice` will pass the `isInvoice` test, because this `static` method can only access private fields on `Invoice`. This isn't a bad thing, and it's certainly no worse than the `instanceof` built-in type guard.
+A type guard like this is not always the right decision. Remember, TypeScript uses a structural type system, and we've effectively built in something that behaves in a nominal way. Nothing other than an instance of `Invoice` will pass the `isInvoice` test, because this `static` method can only access private fields on `Invoice`. This isn't a bad thing, and it's certainly no worse than the `instanceof` built-in type guard.
 
 ### Narrowing with `switch(true)`
 
@@ -317,8 +317,6 @@ function isNumberArray(val: any): val is number[] {
   return false;
 }
 ```
-
-
 
 ### Writing high-quality guards
 

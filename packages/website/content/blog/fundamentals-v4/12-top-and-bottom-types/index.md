@@ -235,5 +235,3 @@ Now, one of three things will happen in that final `else` block
 - If somehow an unexpected value "slip through" and is not caught until we actually run the code, we will get a meaningful error message
 
 Note that this approach works nicely with a `switch` statement, when the `UnreachableError` is thrown from the `default` case clause.
-
-[^1]: Technically in JS or TS this would be `{ y| -Number.MAX_VALUE <= y <= Number.MAX_VALUE }`, but if you know enough to ask, you probably don't need this footnote...!
