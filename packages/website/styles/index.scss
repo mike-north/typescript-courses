@@ -85,14 +85,14 @@ pre {
         border-bottom-right-radius: 230%;
         border-bottom-left-radius: 200%;
         position: absolute;
-        z-index: 999;
         transform: rotateZ(45deg);
         content: '';
         background: $ts_blue;
       }
       ul.dropdown {
+        margin-left: -1px;
         border: $tooltip_border;
-        border-left: 16px solid $ts_blue;
+        border-left: 18px solid $ts_blue;
         display: inline-block;
         color: $tooltip_dropdown_text_color;
         background: $tooltip_background_color;
