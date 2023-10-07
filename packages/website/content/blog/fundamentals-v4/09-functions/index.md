@@ -3,14 +3,14 @@ title: Functions
 date: "2023-10-23T09:00:00.000Z"
 description: |
   So far, we have dealt with function argument and return types. There
-  are a few more in-depth features we need to cover, including
+  are a few more in-depth concepts we need to cover, including
   multiple function heads and callable types.
 course: fundamentals-v4
 order: 9
 ---
 
 We have dealt with function argument and return types, but there
-are a few more in-depth features we need to cover.
+are a few more in-depth concepts we need to cover.
 
 ## Callable types
 
@@ -54,7 +54,7 @@ So why is it showing up as `void`?
 [`void`](https://www.typescriptlang.org/docs/handbook/2/functions.html#void) is a special type, that's specifically used to describe
 function return values. It has the following meaning:
 
-> The return value of a void function is intended to be _ignored_
+> **The return value of a `void`-returning function is intended to be ignored**
 
 We could type functions as returning `undefined`, but there are some interesting
 differences that highlight the reason for `void`'s existence:
@@ -78,7 +78,7 @@ and our `invokeInFourSeconds` function above is unhappy about this being returne
 
 ### Construct signatures
 
-[Construct signatures](https://www.typescriptlang.org/docs/handbook/2/functions.html#construct-signatures) are similar to call signatures, except they describe what should happen with the `new` keyword.
+[Construct signatures](https://www.typescriptlang.org/docs/handbook/2/functions.html#construct-signatures) are similar to call signatures, except they describe what should happen with the `new` keyword is used in an instantiation scenario.
 
 ```ts twoslash
 // @errors: 2454
