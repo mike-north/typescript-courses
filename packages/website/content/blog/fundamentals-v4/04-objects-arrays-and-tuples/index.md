@@ -123,7 +123,7 @@ function printCar(car: {
 
 Note that the type of `chargeVoltage` is now `number | undefined`. We'll go deeper into what the `|`
 means, but for now you can consider it **OR, for types**. `number | undefined` means "either `number`
-or `undefined`"
+or `undefined`".
 
 Our `printCar` function now works, regardless of whether the `chargeVoltage` property is present or not:
 

@@ -9,15 +9,11 @@ course: fundamentals-v4
 order: 16
 ---
 
-Now that we have covered the basic use of Generics, let's layer on
-two more concepts: how [scoping](https://www.typescriptlang.org/docs/handbook/variable-declarations.html#scoping-rules) work with type params, and how we
-can describe type params that have more specific requirement than `any`.
+Now that we have covered the basic use of Generics, let's layer on two more concepts: how [scoping](https://www.typescriptlang.org/docs/handbook/variable-declarations.html#scoping-rules) works with type params, and how we can describe type params that have more specific requirement than `any`.
 
 ## Generic Constraints
 
-Generic constraints allow us to describe the "minimum requirement" for a
-type param, such that we can achieve a high degree of flexibility, while
-still being able to safely assume _some_ minimal structure and behavior.
+Generic constraints allow us to describe the "minimum requirement" for a type param, such that we can achieve a high degree of flexibility, while still being able to safely assume _some_ minimal structure and behavior for use within the scope that has access to the type param.
 
 ### Motivating use case
 
@@ -51,9 +47,7 @@ function listToDict<T>(
 }
 ```
 
-In this situation, we ask the caller of `listToDict` to provide us with a means
-of obtaining an `id`, but let's imagine that **every type we wish to use this
-with has an `id: string` property**, and we should just use that as a key.
+In this situation, we ask the caller of `listToDict` to provide us with a means of obtaining an `id`, but let's imagine that **every type we wish to use this with has an `id: string` property**, and we should just use that as a key.
 
 How might we implement this without generics?
 
@@ -98,36 +92,27 @@ function listToDict<T>(list: T[]): Dict<T> {
 }
 ```
 
-The problem here is that **`T` can be _anything_**, potentially
-including things that don't have this `id: string` property. We
-were able to get away with this in our initial solution (with the `idGen` function)
-because **`listToDict` didn't really do anything with `T` other than store a reference
-to it in a dictionary**.
+The problem here is that **`T` can be _anything_**, potentially including things that don't have this `id: string` property. We were able to get away with this in our initial solution (with the `idGen` function) because **`listToDict` didn't really do anything with `T` other than store a reference to it in a dictionary**.
 
 ### Describing the constraint
 
-The way we define constraints on generics is by using the
-[`extends`](https://www.typescriptlang.org/docs/handbook/2/generics.html#generic-constraints) keyword.
+The way we define constraints on generics is by using the [`extends`](https://www.typescriptlang.org/docs/handbook/2/generics.html#generic-constraints) keyword.
 
-The correct way of making our function generic is shown
-in the 1-line change below:
+The correct way of making our function generic is shown in the 1-line change below:
 
 ```diff
 - function listToDict(list: HasId[]): Dict<HasId> {
 + function listToDict<T extends HasId>(list: T[]): Dict<T> {
 ```
 
-Note that our "requirement" for our argument type (`HasId[]`)
-is now represented in two places:
+Note that our "requirement" for our argument type (`HasId[]`) is now represented in two places:
 
 - `extends HasId` as the constraint on `T`
 - `list: T[]` to ensure that we still receive an array
 
 #### `T extends` vs `class extends`
 
-The `extends` keyword is used in object-oriented inheritance, and
-while not strictly equivalent to how it is used with type params,
-there is a conceptual connection:
+The `extends` keyword is used in object-oriented inheritance, and while not strictly equivalent to how it is used with type params, there is a conceptual connection:
 
 > When a class extends from a base class, it's guaranteed
 > to _at least_ align with the base class structure. In the same
@@ -135,8 +120,7 @@ there is a conceptual connection:
 
 ## Scopes and TypeParams
 
-When working with function parameters, we know that "inner scopes"
-have the ability to access "outer scopes" but not vice versa:
+When working with function parameters, we know that "inner scopes" have the ability to access "outer scopes" but not vice versa:
 
 ```js
 function receiveFruitBasket(bowl) {
@@ -165,11 +149,9 @@ const t2 = finishTuple([4, 8, 15, 16, 23, 42])
 //    ^?
 ```
 
-The same design principles that you use for deciding whether values belong as
-**class fields vs. arguments** passed to members should serve you well here.
+The same design principles that you use for deciding whether values belong as **class fields vs. arguments** passed to members should serve you well here.
 
-Remember, this is not exactly an _independent decision_ to make, as
-types belong to the same scope as values they describe.
+Remember, this is not exactly an _independent decision_ to make, as types belong to the same scope as values they describe.
 
 ## Best Practices
 
@@ -210,5 +192,4 @@ function ex2<T extends HasId>(list: T[]) {
 }
 ```
 
-Finally, only use type parameters when you have a real need for them.
-They introduce complexity, and you shouldn't be adding complexity to your code unless it is worth it!
+Finally, only use type parameters when you have a real need for them. They introduce complexity, and you shouldn't be adding complexity to your code unless it is worth it!

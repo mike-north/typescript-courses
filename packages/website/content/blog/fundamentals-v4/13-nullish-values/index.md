@@ -162,4 +162,220 @@ most certainly have a value of `false`.
 This is a good example of a totally appropriate use of the definite assignment
 operator, where **I as the code author have some extra context that the compiler does not**.
 
+## Optional chaining `?.`
+
+A less hazardous tool, relative to the non-null assertion operator is _optional chaining_.
+
+Let's say we have a big JSON object with a structure like this
+
+```typescript
+type Payment = {
+  id: string
+  amount: number
+  createdAt: Date
+}
+type Invoice = {
+  id: string
+  due: number
+  payments: Payment[]
+  lastPayment?: Payment
+  createdAt: Date
+}
+
+type Customer = { 
+  id: string,
+  lastInvoice?: Invoice
+  invoices: Invoice[]
+};
+
+type ResponseData = {
+  customers?: Customer[]
+  customer?: Customer
+}
+```
+
+So, we can have one or many `Customer`s, each of which _may_ have one or more `Invoice`s, each of which may have one or more `Payment`s.
+
+Now let's say we want to render information on a dashboard, for the customer's most recent payment on any invoice (or leave blank if they haven't made any payments).
+
+There's a whole lot of presence checking we'd need to perform!
+
+```ts twoslash
+type Payment = {
+  id: string
+  amount: number
+  createdAt: Date
+}
+type Invoice = {
+  id: string
+  due: number
+  payments: Payment[]
+  lastPayment?: Payment
+  createdAt: Date
+}
+
+type Customer = { 
+  id: string,
+  lastInvoice?: Invoice
+  invoices: Invoice[]
+};
+
+type ResponseData = {
+  customers?: Customer[]
+  customer?: Customer
+}
+/// ---cut---
+
+function getLastPayment(data: ResponseData): number | undefined {
+  const {customer} = data;
+  if (!customer) return;
+
+  const { lastInvoice } = customer;
+  if (!lastInvoice) return;
+
+  const { lastPayment } = lastInvoice;
+  if (!lastPayment) return;
+
+  return lastPayment.amount;
+}
+```
+
+All this, just to sort of drill down and find something if it's there. Optional chaining gives us a more concise way to do this
+
+```ts twoslash
+type Payment = {
+  id: string
+  amount: number
+  createdAt: Date
+}
+type Invoice = {
+  id: string
+  due: number
+  payments: Payment[]
+  lastPayment?: Payment
+  createdAt: Date
+}
+
+type Customer = { 
+  id: string,
+  lastInvoice?: Invoice
+  invoices: Invoice[]
+};
+
+type ResponseData = {
+  customers?: Customer[]
+  customer?: Customer
+}
+/// ---cut---
+
+function getLastPayment(data: ResponseData): number | undefined {
+  return data?.customer?.lastInvoice?.lastPayment?.amount
+}
+```
+
+Behind the scenes, what's happening here is very similar to the more lengthy version of this function that we wrote above. Here's the compiled output (target: `ES2017`)
+
+```ts twoslash
+// @target: ES2017
+// @showEmit
+type Payment = {
+  id: string
+  amount: number
+  createdAt: Date
+}
+type Invoice = {
+  id: string
+  due: number
+  payments: Payment[]
+  lastPayment?: Payment
+  createdAt: Date
+}
+
+type Customer = { 
+  id: string,
+  lastInvoice?: Invoice
+  invoices: Invoice[]
+};
+
+type ResponseData = {
+  customers?: Customer[]
+  customer?: Customer
+}
+/// ---cut---
+
+function getLastPayment(data: ResponseData): number | undefined {
+  return data?.customer?.lastInvoice?.lastPayment?.amount
+}
+```
+
+If any step of our "chain" ends up being `undefined`, the whole expression ends up evaluating to `undefined`
+
+## Nullish coalescing `??`
+
+Similar to the optional chaining operator, nullish coalescing allows for succinct handling of the possibility that something might be undesirably `null` or `undefined`.
+
+Let's imagine a scenario where we're building a video player, and have the following requirements
+
+* The range of allowed volume is `(0 - 100)` in increments of 25, where `0` indicates `"mute"`
+* Totally new users should start with a default volume of `50`
+* When users adjust their volume, we save it in a `config` object (imagine this is persisted somewhere) and restore their previous volume when they leave and come back
+
+```ts twoslash
+function setVolume(v: number): void {}
+/// ---cut---
+
+type PlayerConfig = {
+  volume?: 0 | 25 | 50 | 75 | 100
+}
+
+function initializePlayer(config: PlayerConfig): void {
+  const vol = typeof config.volume === 'undefined' ? 50 : config.volume
+  setVolume(vol);
+}
+```
+
+This line is where the interesting stuff is happening, and readability is not great
+
+```ts twoslash
+function setVolume(v: number): void {}
+
+type PlayerConfig = {
+  volume?: 0 | 25 | 50 | 75 | 100
+}
+
+const config: PlayerConfig = {}
+/// ---cut---
+const vol = typeof config.volume === 'undefined' ? 50 : config.volume
+```
+
+At first glance, we might want to try the logical OR operator `||` since that will handle the `undefined` case
+
+```ts twoslash
+function setVolume(v: number): void {}
+
+type PlayerConfig = {
+  volume?: 0 | 25 | 50 | 75 | 100
+}
+
+const config: PlayerConfig = {}
+/// ---cut---
+const vol = config.volume || 50
+//     ^?
+```
+
+Oops! This is more readable, but our "mute" value `0` has disappeared. Thankfully, we can do the same thing with our nullish coalescing operator `??`, which does not perform a truthy/falsy check, but a specific check for `null` and `undefined`, and we'll get the right result
+
+```ts twoslash
+function setVolume(v: number): void {}
+
+type PlayerConfig = {
+  volume?: 0 | 25 | 50 | 75 | 100
+}
+
+const config: PlayerConfig = {}
+/// ---cut---
+const vol = config.volume ?? 50
+//     ^?
+```
+
 [^1]: Where "proven" means, "the compiler can't convince itself."
