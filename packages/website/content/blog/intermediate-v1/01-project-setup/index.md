@@ -10,13 +10,14 @@ order: 1
 
 ## About the Instructor
 
-- Developer Platform lead @ [Stripe](https://stripe.com)
-- One of Stripe's Product Architects
+- [Frontend Masters instructor](https://frontendmasters.com/teachers/mike-north/) for 9 years
+- Developer Platform Lead @ [Stripe](https://stripe.com)
+- Designs [Stripe's API semantics](https://stripe.com/docs/api)
+- Architect responsible for TypeScript projects like [node-stripe](https://github.com/stripe/stripe-node), [Stripe Shell](https://stripe.sh/), and [Stripe Workbench](https://workbench.stripe.dev/)
 
 ## Top Goals for this course
 
 > Pass along key knowledge gained through _thousands_ of hours of TypeScript teaching, Q&A and pair programming
-<!-- markdownlint-disable-next-line MD028 -->
 > By the end of this course, **you will be able to understand _challenging_ type information**.
 
 This likely is pretty scary right now, but you'll know what it
