@@ -5,50 +5,20 @@ description: |
   Top types can be anything, bottom types can't be anything. We will also look
   at three "extreme types" in TypeScript: any, unknown and never.
 course: fundamentals-v4
-order: 11
+order: 12
 ---
-
-## Types describe sets of allowed values
-
-Let's imagine that types describe a set of allowed values that a value might be.
-
-For example:
-
-```ts
-const x: boolean
-```
-
-x could be either item from the following set `{true, false}`. Let's look at another example:
-
-```ts
-const y: number
-```
-
-y could be **any number**. If we wanted to get technical and express this in terms of [set builder notation](https://en.wikipedia.org/wiki/Set-builder_notation), this would be `{y | y is a number}`[^1]
-
-Let's look at a few more, just for completeness:
-
-```ts twoslash
-let a: 5 | 6 | 7 // anything in { 5, 6, 7 }
-let b: null // anything in { null }
-let c: {
-  favoriteFruit?: "pineapple" // { "pineapple", undefined }
-  // ^?
-}
-```
-
-Hopefully this makes sense. Now we are ready to continue...
 
 ## Top types
 
 A [top type](https://en.wikipedia.org/wiki/Top_type) (symbol: `⊤`) is a type that describes **any possible value allowed by the system**.
-To use our set theory mental model, we could describe this as `{x| x could be anything }`
+To use our set theory mental model, we could describe this as `{ any possible value }`
 
 TypeScript provides two of these types: [`any`](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#any) and [`unknown`](https://www.typescriptlang.org/docs/handbook/2/functions.html#unknown).
 
 ### `any`
 
 You can think of values with an `any` type as "playing by the usual JavaScript rules".
+
 Here's an illustrative example:
 
 ```ts twoslash
@@ -76,11 +46,11 @@ console.log(window, Promise, setTimeout, "foo")
 //       ^?
 ```
 
-We can see here that `any` is not always a "bug" or a "problem" -- it just indicates _maximal flexibility_ and _the absence of type checking validation_.
+We can see here that `any` is not always a "bug" or a "problem" -- it just indicates _maximal flexibility_ and _the absence of a need to type-check before using the value_.
 
 ### `unknown`
 
-Like `any`, unknown can _accept_ any value:
+Like `any`, unknown can _accept_ any value that is possible to create in JavaScript:
 
 ```ts twoslash
 let flexible: unknown = 4

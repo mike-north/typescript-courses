@@ -6,12 +6,40 @@ description: |
   but there's a lot more power in type guards, including the ability
   to define your own!
 course: fundamentals-v4
-order: 12
+order: 11
 ---
 
-We've explored built-in type guards like [typeof](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#typeof-type-guards) and [instanceof](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#instanceof-narrowing),
-but there's a lot more power in type guards, including the ability
-to define your own!
+Type guards, when used with control flow, allow TypeScript developers to create branches of code that have concrete assumptions, of what may be a relatively vague type. One example we've already worked with is the concept of a _discriminated union_, where we took a value that could indicate either success or failure information, and used an equality check with the _discriminator_ (`"success" | "failure"`), to send the successful case down one code branch, and the failing case down another
+
+```ts twoslash
+function maybeGetUserInfo():
+  | ["error", Error]
+  | ["success", { name: string; email: string }] {
+  if (Math.random() > 0.5) {
+    return [
+      "success",
+      { name: "Mike North", email: "mike@example.com" },
+    ]
+  } else {
+    return [
+      "error",
+      new Error("The coin landed on TAILS :("),
+    ]
+  }
+}
+/// ---cut---
+const outcome = maybeGetUserInfo()
+//       ^?
+if (outcome[0] === "error") {
+  outcome
+  // ^?
+} else {
+  outcome
+  // ^?
+}
+```
+
+If you have an extremely sharp eye, you may have noticed that we used [typeof](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#typeof-type-guards) and [instanceof](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#instanceof-narrowing) similarly. There's a lot more to this topic, including ways of designing your own type guards.
 
 ## Built-in type guards
 
@@ -77,7 +105,7 @@ interface CarLike {
   year: number
 }
 
-let maybeCar: unknown
+let maybeCar: any
 
 // the guard
 if (
@@ -109,7 +137,7 @@ interface CarLike {
   year: number
 }
 
-let maybeCar: unknown
+let maybeCar: any
 
 // the guard
 function isCarLike(valueToTest: any) {
@@ -141,7 +169,7 @@ As you can see, the broken/imperfect narrowing effect of this conditional has di
 
 The first kind of user-defined type guard we will review is an `is` type guard. It is perfectly suited for our example above
 because it's meant to work in cooperation with a control flow statement of some sort, to indicate that different branches
-of the "flow" will be taken based on an evaluation of `valueToTest`'s type. **Pay very close attention to `isCarLike`'s return type**
+of the "flow" will be taken based on an evaluation of `valueToTest`'s type.
 
 ```ts twoslash
 interface CarLike {
@@ -150,7 +178,7 @@ interface CarLike {
   year: number
 }
 
-let maybeCar: unknown
+let maybeCar: any
 
 // the guard
 function isCarLike(
@@ -175,9 +203,11 @@ if (isCarLike(maybeCar)) {
 }
 ```
 
+> What we're seeing here is that TypeScript now understands that **if `isCarLike` returns true, it's safe to assume `valueToTest` is a `CarLike`**
+
 ### `asserts value is Foo`
 
-There is another approach we could take that eliminates the need for a conditional. **Pay very close attention to `assertsIsCarLike`'s return type**:
+There is another approach we could take that eliminates the need for a conditional.
 
 ```ts twoslash
 interface CarLike {
@@ -186,7 +216,7 @@ interface CarLike {
   year: number
 }
 
-let maybeCar: unknown
+let maybeCar: any
 
 // the guard
 function assertsIsCarLike(
@@ -218,11 +248,77 @@ maybeCar
 ```
 
 Conceptually, what's going on behind the scenes is very similar. By using this special
-syntax to describe the return type, we are informing TypeScript that **if `assertsIsCarLike` throws an error,
-it should be taken as an indication that the `valueToTest` is NOT type-equivalent to `CarLike`**.
+syntax to describe the return type, we are informing TypeScript that...
+> **`assertsIsCarLike` will throw an error if `valueToTest` is NOT type-equivalent to `CarLike`**.
 
 Therefore, if we get past the assertion and keep executing code on the next line,
-the type changes from `unknown` to `CarLike`.
+the type changes from `any` to `CarLike`.
+
+### Use with private `#field` presence checks
+
+As discussed in the previous chapter, a `static` or instance method of a class can use a private `#field` to detect whether an object is an instance of the same class.
+
+```ts twoslash
+class Invoice {
+  static #nextInvoiceId = 1
+  #invoice_id = Invoice.#nextInvoiceId++
+
+  equals(other: any): boolean {
+    return other && // is it truthy
+      typeof other === "object" && // and an object
+      #invoice_id in other && // and "branded" with the #invoice_id property
+//                     ^?
+      other.#invoice_id === this.#invoice_id // and the values of #invoice_id are equal
+//     ^?
+  }
+}
+
+const inv = new Invoice();
+console.log(inv.equals(inv)) // ✅
+```
+
+This is quite convenient from a type guard standpoint. We can use this technique in a static method, and use our `is` flavor of guard return type to make an interesting type guard
+
+```ts twoslash
+class Invoice {
+  static #nextInvoiceId = 1
+  #invoice_id = Invoice.#nextInvoiceId++
+
+  static isInvoice(other: any): other is Invoice {
+    return other && // is it truthy
+      typeof other === "object" && // and an object
+      #invoice_id in other // and we can find a private field that we can access from here
+      // then it *must* be an invoice
+  }
+}
+
+let val: any
+
+if (Invoice.isInvoice(val)) {
+  val
+// ^?
+}
+```
+
+"Bulletproof" is not always the right decision. Remember, TypeScript is a structural type system, and we've effectively built in something that behaves in a nominal way. Nothing other than an instance of `Invoice` will pass the `isInvoice` test, because this `static` method can only access private fields on `Invoice`. This isn't a bad thing, and it's certainly no worse than the `instanceof` built-in type guard.
+
+### Narrowing with `switch(true)`
+
+Sometimes a bunch of type guards in a big cascade of `if`/`else` blocks can feel a little verbose, particularly if the action to be taken in each branch of the conditional is just a couple lines of code. TypeScript 5.3 introduced the ability to use `switch(true)` for narrowing
+
+```ts twoslash
+function isNumberArray(val: any): val is number[] {
+  switch (true) {
+    case Array.isArray(val):
+      val
+//     ^?
+      return val.every((x :any) => typeof x === 'number');
+  }
+  return false;
+}
+```
+
+
 
 ### Writing high-quality guards
 
