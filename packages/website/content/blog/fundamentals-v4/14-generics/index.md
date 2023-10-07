@@ -11,13 +11,11 @@ order: 14
 [Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html) allow us to parameterize types, which unlocks great opportunity
 to reuse types broadly across a TypeScript project.
 
-This is a somewhat abstract concept, so let's start by grounding ourselves
-in a practical example.
+This is a somewhat abstract concept, so let's start by grounding ourselves in a practical example.
 
 ## A motivating use case
 
-In an earlier chapter, we discussed the concept of dictionary
-data structures that could be typed using index signatures:
+In an earlier chapter, we discussed the concept of dictionary data structures that could be typed using index signatures:
 
 ```ts twoslash
 const phones: {
@@ -35,12 +33,9 @@ phones.mobile
 //       ^?
 ```
 
-Let's take as a given that sometimes it is more convenient to
-organize collections as key-value dictionaries, and other times
-it is more convenient to use arrays or lists.
+Let's take as a given that sometimes it is more convenient to organize collections as key-value dictionaries, and other times it is more convenient to use arrays or lists.
 
-It would be nice to have some kind of utility that would allow
-us to convert a "list of things into" a "dictionary of things".
+It would be nice to have some kind of utility that would allow us to convert a "list of things into" a "dictionary of things".
 
 So, let's treat this array of objects as our starting point:
 
@@ -72,14 +67,9 @@ const phoneDict = {
 }
 ```
 
-In the end, we hope to arrive at a solution that will work for
-_any_ list we wish to transform into an equivalent dictionary --
-not just this one specific use case.
+In the end, we hope to arrive at a solution that will work for _any_ list we wish to transform into an equivalent dictionary -- not just this one specific use case.
 
-We will need one thing first -- a way to produce the "key" for each
-object we encounter in the `phoneList` array. To remain flexible, we will
-design our function such that whoever is asking for the list-to-dictionary conversion
-should also provide a function that we can use to obtain a "key" from each item in the list.
+We will need one thing first -- a way to produce the "key" for each object we encounter in the `phoneList` array. To remain flexible, we will design our function such that whoever is asking for the list-to-dictionary conversion should also provide a function that we can use to obtain a "key" from each item in the list.
 
 Maybe our function signature would look something like this:
 
@@ -99,12 +89,9 @@ function listToDict(
 }
 ```
 
-Of course, we will see an error message as things stand right now,
-because we haven't implemented the function yet.
+Of course, we will see an error message as things stand right now, because we haven't implemented the function yet.
 
-This isn't too difficult to implement. Let's make
-a very specific solution right now with a `forEach` function - which we can refactor
-and generalize as a next step.
+This isn't too difficult to implement. Let's make a very specific solution right now with a `forEach` function - which we can refactor and generalize as a next step.
 
 ```ts twoslash
 interface PhoneInfo {
@@ -144,14 +131,9 @@ console.log(
 )
 ```
 
-Click the `Try` button for the code snippet above, click "Run"
-in the TypeScript playground, and you should see that this solution works
-for our specific example.
+Click the `Try` button for the code snippet above, click "Run" in the TypeScript playground, and you should see that this solution works for our specific example.
 
-Now, let's attempt to generalize this, and make it so that
-it works for lists and dictionaries of our `PhoneInfo` type,
-but lots of other types as well. How about if we replace every
-`PhoneInfo` type with `any`...
+Now, let's attempt to generalize this, and make it so that it works for lists and dictionaries of our `PhoneInfo` type, but lots of other types as well. How about if we replace every `PhoneInfo` type with `any`...
 
 ```ts twoslash
 function listToDict(
@@ -178,14 +160,9 @@ dict.Mike.I.should.not.be.able.to.do.this.NOOOOOOO
 //    ^?
 ```
 
-Ok, this works at runtime if we test it in the TypeScript playground,
-but every item in our dictionary is an `any`. In becoming more flexible
-and seeking to handle a variety of different items, we essentially
-lose all of our helpful type information.
+Ok, this works at runtime if we test it in the TypeScript playground, but every item in our dictionary is an `any`. In becoming more flexible and seeking to handle a variety of different items, we essentially lose all of our helpful type information.
 
-**What we need here is some mechanism of defining a relationship
-between the type of the thing we're passed, and the type of the thing
-we'll return. This is what Generics are all about**
+> **What we need here is some mechanism of defining a relationship between the type of the thing we're passed, and the type of the thing we'll return. This is what Generics are all about**
 
 ## Defining a type parameter
 
@@ -224,8 +201,7 @@ function wrapInArray<T>(arg: T): [T] {
 }
 ```
 
-Note how, in the three `wrapInArray` examples below, the `<T>` we see in the tooltip above is replaced
-by "the type of the thing we pass as an argument" - number, Date, and RegExp:
+Note how, in the three `wrapInArray` examples below, the `<T>` we see in the tooltip above is replaced by "the type of the thing we pass as an argument" - number, Date, and RegExp:
 
 ```ts twoslash
 function wrapInArray<T>(arg: T): [T] {
@@ -280,9 +256,7 @@ listToDict(
 )
 ```
 
-One last thing to examine: the `return` type. Based on the way we have
-defined this function, a `T[]` will be turned into a `{ [k: string]: T }`
-_for any `T` of our choosing_.
+One last thing to examine: the `return` type. Based on the way we have defined this function, a `T[]` will be turned into a `{ [k: string]: T }` _for any `T` of our choosing_.
 
 Now, let's put this all together with the original example we started with:
 
