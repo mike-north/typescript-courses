@@ -352,3 +352,100 @@ will propagate quickly through your codebase and cause problems that are quite d
 
 In cases where the rest of your code relies on a particular value being of a certain type,
 make sure to `throw` an error so that unexpected behavior is **LOUD** instead of <small>quiet</small>.
+
+## The `satisfies` keyword
+
+Let's look at the following scenario
+
+```ts twoslash
+type DateLike = Date | number | string;
+
+type Holidays = {
+  [k: string]: DateLike
+}
+
+const usHolidays = {
+  independenceDay: "July 4, 2024",
+  memorialDay: new Date("May 27, 2024"),
+  laborDay: 1725260400000, // September 2, 2024
+}
+```
+
+How can we make sure that `usHolidays` conforms to the type `Holidays`? We could use a type annotation
+
+```ts twoslash
+type DateLike = Date | number | string;
+
+type Holidays = {
+  [k: string]: DateLike
+}
+
+const usHolidays: Holidays = {
+  independenceDay: "July 4, 2024",
+  memorialDay: new Date("May 27, 2024"),
+  laborDay: 1725260400000, // September 2, 2024
+}
+
+usHolidays
+// ^?
+```
+
+but we've lost some specific type information (e.g. it's clear that `memorialDay` is a `Date`, but now we have to treat it as `Date | number | string`). We'd get the same result if we attempted to cast it using `as Holiday`.
+
+We could try passing it through a type guard and see what happens
+
+```ts twoslash
+type DateLike = Date | number | string;
+
+type Holidays = {
+  [k: string]: DateLike
+}
+/// ---cut---
+function assertIsHolidays(arg: any): asserts arg is Holidays {
+  if (typeof arg !== 'object') throw new Error();
+  for (let [day, date] of arg) {
+    if (typeof day !== 'string') throw new Error();
+      day
+//     ^?      
+    if (typeof date === "string" || typeof date === "number" || date instanceof Date)
+      date
+//     ^?
+    else throw new Error()
+  }
+}
+
+
+const usHolidays = {
+  independenceDay: "July 4, 2024",
+  memorialDay: new Date("May 27, 2024"),
+  laborDay: 1725260400000, // September 2, 2024
+}
+assertIsHolidays(usHolidays)
+usHolidays
+// ^?
+
+```
+
+This is _ok_, but we're executing additional code at runtime (the type guard's implementation), just to get the benefit of a type-check at compile time. There are still other ways to do this with very complicated use of type equivalence checks (through assignment or passing the value through a function signature) but those methods are similarly clunky.
+
+The `satisfies` keyword makes this much easier
+
+```ts twoslash
+type DateLike = Date | number | string;
+
+type Holidays = {
+  [k: string]: DateLike
+}
+
+const usHolidays = {
+  independenceDay: "July 4, 2024",
+  memorialDay: new Date("May 27, 2024"),
+  laborDay: 1725260400000, // September 2, 2024
+} satisfies Holidays
+
+usHolidays
+// ^?
+
+```
+
+It's important to remember that we're not actually executing a type guard here -- the `satisfies` operator is exclusively using type information, based on what's been inferred by the declaration of `usHolidays` and what's been declared for the `Holidays` type.
