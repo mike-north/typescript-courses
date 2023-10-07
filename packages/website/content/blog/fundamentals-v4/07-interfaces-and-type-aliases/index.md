@@ -590,7 +590,7 @@ In many situations, either a `type` alias or an `interface` would be
 perfectly fine, however...
 
 1. **If you need to define something other than an object type** (e.g., use of the `|` union type operator), you must use a type alias
-1. If you need to define a type **to use with the `implements` heritage term**, it's best to use an interface
+1. If you need to define a type **to use with the `implements` heritage term on a `class`**, use an interface
 1. If you need to **allow consumers of your types to _augment_ them**, you must use an interface.
 
 ## Recursion
