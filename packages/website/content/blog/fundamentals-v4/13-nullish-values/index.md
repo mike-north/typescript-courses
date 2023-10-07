@@ -377,4 +377,5 @@ const config: PlayerConfig = {}
 const vol = config.volume ?? 50
 //     ^?
 ```
+
 [^1]: Where "proven" means, "the compiler can't convince itself."
