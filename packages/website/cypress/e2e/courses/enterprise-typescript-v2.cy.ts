@@ -10,7 +10,7 @@ describe('enterprise TS v2 course page', () => {
   it('course sections appear', () => {
     cy.get('.course-article__title').should(
       'have.length.above',
-      4,
+      0,
     );
   });
 

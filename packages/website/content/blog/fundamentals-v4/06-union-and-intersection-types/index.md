@@ -1,6 +1,6 @@
 ---
 title: Union and Intersection Types
-date: "2021-06-08T09:00:00.000Z"
+date: "2023-10-23T09:00:00.000Z"
 description: |
   We will discuss and explore TypeScript's union and intersection types,
   which are effectively "AND" and "OR" boolean logic operators for types.
@@ -11,36 +11,93 @@ order: 6
 ## Union and Intersection Types, Conceptually
 
 Union and intersection types can conceptually be thought of as logical boolean operators
-(`AND`, `OR`) as they pertain to types. Let's look at this group of two overlapping
-sets of items as an example:
+(`AND`, `OR`) as they pertain to types. Here are a couple of example sets we'll use for this discussion
 
-![union](./venn.png)
+```py
+Evens = { 2, 4, 6, 8 }
+Odds = { 1, 3, 5, 7, 9 }
 
-A union type has [a very specific technical definition](<https://en.wikipedia.org/wiki/Union_(set_theory)>)
-that comes from set theory, but it's completely fine to think of it as **OR, for types**.
+Squares = { 1, 4, 9 }
 
-In the diagram above, if we had a type `Fruit OR Sour` it would include
-every one of the items on the entire chart.
+OneThroughNine = { 1, 2, 3, 4,
+                   5, 6, 7, 8, 9 }
+OneThroughFive = { 1, 2, 3, 4, 5 }
+```
 
-Intersection types also have [a name
-and definition that comes from set theory](<https://en.wikipedia.org/wiki/Intersection_(set_theory)>),
-but they can be thought of as **AND, for types**.
+### Union types `|`
 
-In the same diagram above, if we wanted _fruits that are also sour_ (`Fruit AND Sour`) we'd end up
-only getting `{ Lemon, Lime, Grapefruit }`.
+A union type can be thought of as **`OR`, for types**, and TypeScript uses the pipe (`|`)
+symbol to represent the **Union type operator**
+
+Using the example above, if we wanted to find `OneThroughFive | Odds` we'd combine all the members
+of the `OneThroughFive` set and all of the members of the `Odds` set.
+
+```py
+OneThroughFive | Odds => { 1, 2, 3, 4, 5, 7, 9 }
+```
+
+If you think about the assumptions we could make about a member of this set at random, we couldn't
+be sure whether it's between 1 and 5, and we couldn't be sure whether it's odd.
+
+### Intersection types `&`
+
+An intersection type can be thought of as **`AND`, for types**, and TypeScript uses the ampersand (`&`)
+symbol to represent the **Intersection type operator**
+
+Using the example again, if we wanted to find `OneThroughFive & Odds` we'd find all members that the
+`OneThroughFive` and `Odds` sets have in common
+
+```py
+OneThroughFive & Odds => { 1, 3, 5 }
+```
 
 ## Union Types in TypeScript
 
-Union types in TypeScript can be described using the `|` (pipe) operator.
+Let's think back to the concept of literal types from an earlier example
 
-For example, if we had a type that could be one of two strings, `"success"` or
-`"error"`, we could define it as
-
-```ts
-"success" | "error"
+```ts twoslash
+const humidity = 79
+//     ^?
 ```
 
-For example, the `flipCoin()` function will return `"heads"` if a number selected from `(0, 1)` is >= 0.5, or `"tails"` if <=0.5.
+If we wanted to create a union type that represented the set `{ 1, 2, 3, 4, 5 }` we could do it using
+the `|` operator. We can also use the `type` keyword to give this type a name (we'll talk more about
+this in the next chapter)
+
+```ts twoslash
+// @errors: 2322
+type OneThroughFive = 1 | 2 | 3 | 4 | 5
+//   ^?
+let upToFive: OneThroughFive = 3
+//   ^?
+upToFive = 8
+```
+
+and we could create another type called `Evens` to represent the set `{ 2, 4, 6, 8 }`
+
+```ts twoslash
+// @errors: 2322
+type Evens = 2 | 4 | 6 | 8
+//    ^?
+let evensOnly: Evens = 2;
+//    ^?
+evensOnly = 5;
+```
+
+Explicitly creating the union type is now simple
+
+```ts twoslash
+type OneThroughFive = 1 | 2 | 3 | 4 | 5
+type Evens = 2 | 4 | 6 | 8
+/// ---cut---
+let evensThroughFive: Evens | OneThroughFive;
+//    ^?
+```
+
+Union types often appear where control flow can produce a different value for different code paths.
+
+For example, the `flipCoin()` function will return `"heads"` if a number selected
+from `(0, 1)` is >= 0.5, or `"tails"` if <=0.5.
 
 ```ts twoslash
 function flipCoin(): "heads" | "tails" {
@@ -275,7 +332,5 @@ This is quite different than what we saw with union types -- this is quite liter
 a `Date` and `{ end: Date}` mashed together, and we have access to everything immediately.
 
 It is _far_ less common to use intersection types compared to union types. I expect
-it to be at least a 50-to-1 ratio for you in practice.
-
-[[question | :grey_question: Ask yourself: why might you run into union types more often?]]
-| - Consider control flow and function return types
+it to be at least a 50-to-1 ratio for you in practice. A real-world case where you'll find
+(and appreciate) an intersection type is [`Object.assign(a, b)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)

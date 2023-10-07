@@ -10,10 +10,10 @@ order: 1
 
 ## About the Instructor
 
-- Sr. Staff Engineer @ [LinkedIn](https://linkedin.com)
-- Works in the **Developer Productivity and Happiness** org
-- Main focus: **Infra UX**
-- **TypeScript Infra Lead**
+- [Frontend Masters instructor](https://frontendmasters.com/teachers/mike-north/) for 9 years
+- Developer Platform Lead @ [Stripe](https://stripe.com)
+- Designs [Stripe's API semantics](https://stripe.com/docs/api)
+- Architect responsible for TypeScript projects like [node-stripe](https://github.com/stripe/stripe-node), [Stripe Shell](https://stripe.sh/), and [Stripe Workbench](https://workbench.stripe.dev/)
 
 ## #1 Goal for this course
 

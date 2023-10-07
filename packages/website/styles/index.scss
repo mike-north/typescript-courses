@@ -19,8 +19,11 @@ $try_button_hover_background: navy;
 $try_button_hover_text: #fff;
 $try_button_hover_border: 1px solid navy;
 
-$tooltip_background_color: #3f3f3f;
-$tooltip_text_color: #fff;
+$tooltip_border: 1px solid #777;
+$tooltip_background_color: #ffd;
+$tooltip_text_color: #333;
+$tooltip_dropdown_text_color: #888;
+$tooltip_text_highlight_color: purple;
 
 $code_thing_shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
 
@@ -42,7 +45,7 @@ pre {
   /* Important to allow the code to move horizontally; */
   overflow: auto;
   position: relative;
-
+  color: purple;
   &.shiki {
     overflow: initial;
     position: relative;
@@ -53,6 +56,12 @@ pre {
     border-bottom: 1px solid #999;
     border-right: 1px solid #ccc;
     border-top: 1px solid #ccc;
+
+    code .line.highlight {
+      padding: 3px 7px;
+      margin: -3px -7px;
+      background: rgba(255,255, 200, 0.93);
+    }
   }
   .code-container {
     /* Give it some space to breathe */
@@ -67,7 +76,7 @@ pre {
       display: inline-block;
 
       &::before {
-        top: -4px;
+        top: -5px;
         left: 0;
         display: block;
         width: 15px;
@@ -76,22 +85,31 @@ pre {
         border-bottom-right-radius: 230%;
         border-bottom-left-radius: 200%;
         position: absolute;
-        z-index: 999;
         transform: rotateZ(45deg);
         content: '';
-        background: $tooltip_background_color;
+        background: $ts_blue;
       }
       ul.dropdown {
-        padding: 4px;
+        margin-left: -1px;
+        border: $tooltip_border;
+        border-left: 18px solid $ts_blue;
         display: inline-block;
-        color: darken($tooltip_text_color, 40%);
+        color: $tooltip_dropdown_text_color;
         background: $tooltip_background_color;
         li {
-          margin-bottom: 0;
+          background: $tooltip_background_color;
+          // color: #000;
+          border-bottom: 1px solid #777;
+          margin-bottom: 2px;
+          padding: 1px 5px;
           display: block;
           .result-found {
-            color: white;
+            color: $tooltip_text_highlight_color;
+            font-weight: 700;
           }
+        }
+        li:last-child {
+          border-bottom: 0;
         }
       }
     }
@@ -236,6 +254,7 @@ pre:hover data-lsp {
   background-color: $tooltip_background_color;
   color: $tooltip_text_color;
   box-shadow: $code_thing_shadow;
+  border: $tooltip_border;
   text-align: left;
   padding: 5px 8px;
   border-radius: 2px;
@@ -370,33 +389,31 @@ section.post-body {
     margin-top: 0;
   }
 }
-$popover_bg_color: lighten(grey, 40);
-$popover_fg_color: darken(steelblue, 10);
-$popover_border_color: lighten(grey, 20);
-$popover_border_style: solid;
-$popover_border_width: 1px;
 .popover {
   margin-bottom: 10px;
   background-color: l;
-  background-color: $popover_bg_color;
-  color: $popover_fg_color;
-  border-color: $popover_border_color;
-  border-width: $popover_border_width;
-  border-style: $popover_border_style;
+  background-color: $tooltip_background_color;
+  color:  $tooltip_text_color;
+  // border-color: $popover_border_color;
+  // border-width: $popover_border_width;
+  // border-style: $popover_border_style;
+  border: $tooltip_border;
   display: inline-block;
-  padding: 0 0.5rem 0.3rem;
+  padding: 0 0.5rem 0.4rem;
   margin-top: 10px;
   border-radius: 3px;
   box-shadow: $code_thing_shadow;
   .arrow {
-    color: $popover_fg_color;
-    border-left-width: 0;
-    border-right-width: $popover_border_width;
-    border-top-width: 0;
-    border-bottom-width: $popover_border_width;
-    border-style: $popover_border_style;
-    background-color: $popover_bg_color;
-    border-color: $popover_border_color;
+    border: $tooltip_border;
+    color: $tooltip_text_color;
+    // border-left-width: 0;
+    // border-right-width: $popover_border_width;
+    // border-top-width: 0;
+    // border-bottom-width: $popover_border_width;
+    // border-style: $popover_border_style;
+    border-left: none;
+    border-top: none;
+    background-color: $tooltip_background_color;
     position: relative;
     top: -7px;
     margin-left: 0.1rem;
