@@ -15,6 +15,7 @@ export async function addNumbers(a: number, b: number) {
   await timeout(500);
   return a + b;
 }
+
 //== Run the program ==//
 (async () => {
   console.log(await addNumbers(3, 4));

@@ -1,9 +1,7 @@
 {
-  "compilerOptions": {
-    "outDir": "dist",
-    "target": "ES3",
-    "moduleResolution": "node",
-    "ignoreDeprecations": "5.0",
-  },
-  "include": ["src"]
+    "compilerOptions": {
+        "outDir": "dist",
+        "target": "ES3"
+    },
+    "include": ["src"]
 }
