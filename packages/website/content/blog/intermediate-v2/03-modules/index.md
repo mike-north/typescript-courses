@@ -120,14 +120,14 @@ const y = new Foo()
 
 As we can see, using that constructor caused us to cross a threshold, where we now have to actually import `./a` at runtime, and invoke that `Foo()` constructor.
 
-### Using other tools like Babel, Webpack, Parcel etc...
+### Using other tools like Babel, Webpack, Parcel and more
 
 There are some other tools that can operate on TypeScript files and produce a build output, but they're subtle in a very important way. Sometimes you may not even know that you're using one of these tools, because they still perform type-checking with the TypeScript compiler. What they _don't do_, is actually have `tsc` produce the `.js` files.
 
 [Babel](https://babeljs.io/) and tools like it type-check and transpile one module at a time, instead of compiling the entire program at once. This has some advantages when it comes to the simplicity of incremental rebuilds and the ability to scale out the compile work horizontally. These tools often support (or are used with tools that support) dead code elimination (or ["tree shaking"](https://webpack.js.org/guides/tree-shaking/)), which attempts to discard non-imported modules from the build.
 
 However -- if you're compiling one module at a time, there's no way to be sure that our `Foo` import is just a type.
- 
+
 ### Type-only imports
 
 TypeScript provides an unambiguous way of importing _only types_. Please pardon the bug which is causing the error to show up on the wrong line

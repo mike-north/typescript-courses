@@ -75,7 +75,7 @@ condition ? exprIfTrue : exprIfFalse
 | exprIfTrue  | `Grill`             |
 | exprIfFalse | `Oven`              |
 
-You probably notice the `extends` keyword in the condition, which as of TypeScript v5.3 is the _only_ mechanism of expressing any kind of condition. 
+You probably notice the `extends` keyword in the condition, which as of TypeScript v5.3 is the _only_ mechanism of expressing any kind of condition.
 
 If we think back to the mental model of types a sets of allowed values, `extends` is a check of a _subset_ relationship. Let's look at a smaller example to convince ourselves of this
 
@@ -212,7 +212,6 @@ type OneNever = 1 | never
 ```
 
 As a consequence, all the union members that are subtypes of `U` and all of the union members that _aren't_ are effectively separated into groups. All that's different between `Extract` and `Exclude` is which group is returned to us, and which effectively disappears into `| never`s
-
 
 ### Quiz: Expressing conditions
 
