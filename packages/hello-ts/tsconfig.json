@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
         "outDir": "dist",
-        "target": "ES3"
+        "target": "ES3",
+        "ignoreDeprecations": "5.0"
     },
     "include": ["src"]
 }

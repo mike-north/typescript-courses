@@ -5,8 +5,8 @@ description: |
   In this chapter, we'll learn about scopes and constraints, as they pertain to
   type params, and what the language would look like if we didn't have these
   important tools
-course: fundamentals-v4
-order: 16
+course: intermediate-v2
+order: 4
 ---
 
 Now that we have covered the basic use of Generics, let's layer on two more concepts: how [scoping](https://www.typescriptlang.org/docs/handbook/variable-declarations.html#scoping-rules) works with type params, and how we can describe type params that have more specific requirement than `any`.
@@ -155,23 +155,6 @@ Remember, this is not exactly an _independent decision_ to make, as types belong
 
 ## Best Practices
 
-- **Use each type parameter _at least twice_**. Any less and you might be casting with the `as` keyword. Let's take a look at this example:
-
-```ts twoslash
-function returnAs<T>(arg: any): T {
-  return arg // 🚨 an `any` that will _seem_ like a `T`
-  //      ^?
-}
-
-// 🚨 DANGER! 🚨
-const first = returnAs<number>(window)
-//     ^?
-const sameAs = window as any as number
-//     ^?
-```
-
-In this example, we have told TypeScript a lie by saying `window` is a `number` (but it is not...). Now, TypeScript will fail to catch errors that it is suppose to be catching!
-
 - Define type parameters as simply as possible. Consider the two options for `listToDict`:
 
 ```ts twoslash
@@ -182,14 +165,38 @@ interface Dict<T> {
   [k: string]: T
 }
 
-function ex1<T extends HasId[]>(list: T) {
+function example1<T extends HasId[]>(list: T) {
   return list.pop()
   //      ^?
 }
-function ex2<T extends HasId>(list: T[]) {
+function example2<T extends HasId>(list: T[]) {
   return list.pop()
   //      ^?
 }
+
+class Payment implements HasId {
+  static #next_id_counter = 1;
+  id = `pmnt_${Payment.#next_id_counter++}`
+}
+class Invoice implements HasId {
+  static #next_id_counter = 1;
+  id = `invc_${Invoice.#next_id_counter++}`
+}
+
+const result1 = example1([
+  //   ^?
+  new Payment(),
+  new Invoice(),
+  new Payment()
+])
+
+const result2 = example2([
+  //   ^?
+  new Payment(),
+  new Invoice(),
+  new Payment()
+])
+
 ```
 
-Finally, only use type parameters when you have a real need for them. They introduce complexity, and you shouldn't be adding complexity to your code unless it is worth it!
+Compare the types of `result1` and `result2`, and observe that, although both `example1` and `example2` produce the exact same return value, we're effectively _losing type information_ because of the way we define our type parameter.

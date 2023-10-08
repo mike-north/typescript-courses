@@ -6,7 +6,7 @@ description: |
   are a few more in-depth concepts we need to cover, including
   multiple function heads and callable types.
 course: fundamentals-v4
-order: 9
+order: 10
 ---
 
 We have dealt with function argument and return types, but there
