@@ -7,7 +7,7 @@ description: |
   (instead of procedural steps to execute "in a flow"), this tool does provide
   an important foundation for switching logic based on type information
 course: intermediate-v2
-order: 05
+order: 5
 ---
 
 ## Ternary operator with _values_

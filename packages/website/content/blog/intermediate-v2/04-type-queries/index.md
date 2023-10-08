@@ -6,7 +6,7 @@ description: |
   As we work toward building our own "standard library" of
   utility types, we'll need this important tool in our toolbox
 course: intermediate-v2
-order: 04
+order: 4
 ---
 
 Type queries allow us to obtain type information from values, which is an incredibly important capability -- particularly when working with libraries that may not expose type information in a way that's most useful for you
