@@ -14,19 +14,20 @@
     "node": "20.8.0",
     "yarn": "1.22.19"
   },
+  "dependencies": {
+    "typescript": "^5.3.0-beta"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.0-0",
     "@babel/preset-typescript": "^7.16.7",
     "core-js": "^3.0.0",
     "lerna": "^7.0.0",
     "replace-in-file": "^7.0.1",
-    "typescript": "^5.3.0-beta",
     "webpack": "^5.37.0"
   },
   "scripts": {
     "postinstall": "replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts",
     "dev-website": "lerna run dev --scope website --stream",
     "dev-hello-ts": "lerna run dev --scope hello-ts --stream"
-  },
-  "dependencies": {}
+  }
 }

@@ -9,647 +9,339 @@ course: intermediate-v2
 order: 6
 ---
 
-Conditional types are not just for switching behavior based
-on comparison -- they can be used with an 'infer' keyword
-to access sub-parts of type information within a larger type
+Conditional types are not just for switching behavior based on comparison -- they can be used with an `infer` keyword to access sub-parts of type information within a larger type
 
 ## Type inference in conditional types
 
-In [the same release where conditional types were added to TypeScript](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-8.html)
-a new `infer` keyword was added as well. This keyword, which can _only_ be used
-in the context of a condition expression (within a conditional type declaration)
-is an important tool for being able to _extract_ out pieces of type information
-from other types.
+In [the same release where conditional types were added to TypeScript](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-8.html) a new `infer` keyword was added as well. This keyword, which can _only_ be used in the context of a condition expression (within a conditional type declaration) is an important tool for being able to _extract_ out pieces of type information from other types.
 
 ### A motivating use case
 
-**Let's consider a practical example**: a class whose constructor wants a
-complicated options object, but doesn't export the type for this object as an
-interface or type alias:
+**Let's consider a practical example**: You use a library that provides a well-typed function, but does not expose independent types for the arguments the function takes.
 
 ```ts twoslash
-class WebpackCompiler {
-  constructor(options: {
-    amd?: false | { [index: string]: any }
-    bail?: boolean
-    cache?:
-      | boolean
-      | {
-          maxGenerations?: number
-          type: "memory"
-        }
-    context?: string
-    dependencies?: string[]
-    devtool?: string | false
-    entry?: string
-    chunkLoading?: string | false
-    dependOn?: string | string[]
-    layer?: null | string
-    runtime?: string
-    wasmLoading?: string | false
-    externalsType?:
-      | "var"
-      | "module"
-      | "assign"
-      | "this"
-      | "window"
-      | "self"
-      | "global"
-      | "commonjs"
-      | "commonjs2"
-      | "commonjs-module"
-      | "amd"
-      | "amd-require"
-      | "umd"
-      | "umd2"
-      | "jsonp"
-      | "system"
-      | "promise"
-      | "import"
-      | "script"
+// @filename: node_modules/fruit-market.ts
+type AppleVarieties = 'fuji' | 'gala' | 'honeycrisp' | 'granny smith';
+type OrangeVarieties = 'navel' | 'valencia' | 'blood orange' | 'cara cara';
+type Allergies = 'peach' | 'kiwi' | 'strawberry' | 'pineapple';
+type Ripeness = 'green' | 'ripe' | 'overripe';
 
-    ignoreWarnings?: (
-      | RegExp
-      | {
-          file?: RegExp
+type QuantityRange = {
+    min: number;
+    max: number;
+};
 
-          message?: RegExp
+type FruitOrderItem<Varieties extends string> = {
+    variety: Varieties;
+    pricePerUnit: number;
+    quantity: number;
+    totalPrice: number;
+};
 
-          module?: RegExp
-        }
-    )[]
-    loader?: { [index: string]: any }
-    mode?: "development" | "production" | "none"
-    name?: string
-    parallelism?: number
-    profile?: boolean
-    recordsInputPath?: string | false
-    recordsOutputPath?: string | false
-    recordsPath?: string | false
-    stats?:
-      | boolean
-      | "none"
-      | "summary"
-      | "errors-only"
-      | "errors-warnings"
-      | "minimal"
-      | "normal"
-      | "detailed"
-      | "verbose"
-    target?: string | false | string[]
-    watch?: boolean
-  }) {}
+type FruitOrder = {
+    apples: FruitOrderItem<AppleVarieties>[];
+    oranges: FruitOrderItem<OrangeVarieties>[];
+    subtotal: number;
+    salesTax: number;
+    grandTotal: number;
+};
+
+type FruitOrderPreferences = {
+    apples: {
+        preferredVarieties: AppleVarieties[];
+        avoidSeeds: boolean;
+        organicOnly: boolean;
+        ripeness: Ripeness;
+        quantity: QuantityRange;
+    };
+    oranges: {
+        preferredVarieties: OrangeVarieties[];
+        seedlessOnly: boolean;
+        ripeness: Ripeness;
+        quantity: QuantityRange;
+    };
+    allergies: Allergies[];
+    prefersLocalProduce: boolean;
+};
+
+export function createOrder(prefs: FruitOrderPreferences): FruitOrder {
+    console.log(prefs)
+    return {
+        apples: [],
+        oranges: [],
+        subtotal: 0.00,
+        salesTax: 0.00,
+        grandTotal: 0.00,
+    }
 }
 ```
 
-If, in our own code, we want to declare a variable to store our configuration
-before passing it into the compiler, we're in trouble. Take a look below
-at how a spelling error around the word `watch` could create a tricky bug
+Look at all that great type information. It's a shape that none of those type aliases are exported! You want to be able to create a variable to hold a value of type `FruitOrderPreferences`, so we can assemble the right data together, log it, and then pass it to the `createOrder` to create that `FruitOrder`. A starting point for this code is below.
 
 ```ts twoslash
-class WebpackCompiler {
-  constructor(options: {
-    amd?: false | { [index: string]: any }
-    bail?: boolean
-    cache?:
-      | boolean
-      | {
-          maxGenerations?: number
-          type: "memory"
-        }
+// @filename: node_modules/fruit-market.ts
+type AppleVarieties = 'fuji' | 'gala' | 'honeycrisp' | 'granny smith';
+type OrangeVarieties = 'navel' | 'valencia' | 'blood orange' | 'cara cara';
+type Allergies = 'peach' | 'kiwi' | 'strawberry' | 'pineapple';
+type Ripeness = 'green' | 'ripe' | 'overripe';
 
-    context?: string
-    dependencies?: string[]
-    devtool?: string | false
-    entry?: string
-    chunkLoading?: string | false
+type QuantityRange = {
+    min: number;
+    max: number;
+};
 
-    dependOn?: string | string[]
-    layer?: null | string
-    runtime?: string
+type FruitOrderItem<Varieties extends string> = {
+    variety: Varieties;
+    pricePerUnit: number;
+    quantity: number;
+    totalPrice: number;
+};
 
-    wasmLoading?: string | false
+type FruitOrder = {
+    apples: FruitOrderItem<AppleVarieties>[];
+    oranges: FruitOrderItem<OrangeVarieties>[];
+    subtotal: number;
+    salesTax: number;
+    grandTotal: number;
+};
 
-    externalsType?:
-      | "var"
-      | "module"
-      | "assign"
-      | "this"
-      | "window"
-      | "self"
-      | "global"
-      | "commonjs"
-      | "commonjs2"
-      | "commonjs-module"
-      | "amd"
-      | "amd-require"
-      | "umd"
-      | "umd2"
-      | "jsonp"
-      | "system"
-      | "promise"
-      | "import"
-      | "script"
+type FruitOrderPreferences = {
+    apples: {
+        preferredVarieties: AppleVarieties[];
+        avoidSeeds: boolean;
+        organicOnly: boolean;
+        ripeness: Ripeness;
+        quantity: QuantityRange;
+    };
+    oranges: {
+        preferredVarieties: OrangeVarieties[];
+        seedlessOnly: boolean;
+        ripeness: Ripeness;
+        quantity: QuantityRange;
+    };
+    allergies: Allergies[];
+    prefersLocalProduce: boolean;
+};
 
-    ignoreWarnings?: (
-      | RegExp
-      | {
-          file?: RegExp
-
-          message?: RegExp
-
-          module?: RegExp
-        }
-    )[]
-
-    loader?: { [index: string]: any }
-    mode?: "development" | "production" | "none"
-    name?: string
-    parallelism?: number
-    profile?: boolean
-    recordsInputPath?: string | false
-    recordsOutputPath?: string | false
-    recordsPath?: string | false
-    stats?:
-      | boolean
-      | "none"
-      | "summary"
-      | "errors-only"
-      | "errors-warnings"
-      | "minimal"
-      | "normal"
-      | "detailed"
-      | "verbose"
-
-    target?: string | false | string[]
-
-    watch?: boolean
-  }) {}
+export function createOrder(prefs: FruitOrderPreferences): FruitOrder {
+    console.log(prefs)
+    return {
+        apples: [],
+        oranges: [],
+        subtotal: 0.00,
+        salesTax: 0.00,
+        grandTotal: 0.00,
+    }
 }
-
 /// ---cut---
-const cfg = {
-  entry: "src/index.ts",
-  wutch: true, // SPELLING ERROR!!
-}
-try {
-  const compiler = new WebpackCompiler(cfg)
-} catch (err) {
-  throw new Error(
-    `Problem compiling with config\n${JSON.stringify(
-      cfg,
-      null,
-      "  "
-    )}`
-  )
-}
+// @filename: index.ts
+import { createOrder } from 'fruit-market';
+//        ^?
+
+type GetFirstArg<T> = any;
+
+const prefs: GetFirstArg<typeof createOrder> = {}
+
+// createOrder(prefs)
 ```
 
-What we really want here is the ability to _extract_ that constructor argument
-out, so that we can obtain a type for it directly. Once we have that type, we'll
-be able to change our code above to `const cfg: WebpackCompilerOptions` and we'll
-have more complete validation of this object.
+What we really need is to fill in that `GetFirstArg<T>` type, so that it takes the type of the `createOrder` function and somehow grabs the first argument out of the function signature.
 
 ### The `infer` keyword
 
-The `infer` keyword gives us an important tool to solve this problem -- it lets
-us **extract and obtain** type information from larger types.
+The `infer` keyword gives us an important tool to solve this problem -- it lets us **extract and obtain** type information from larger types, by capturing types into a newly-declared type param
 
-Let's simplify the problem we aim to solve, by working with a much simpler class:
-
-```ts twoslash
-class FruitStand {
-  constructor(fruitNames: string[]) {}
-}
-```
-
-What we want is some kind of thing, where `FruitStand` is our
-input, and `string[]` is our result. Here's how we can make that happen:
+Here's an example of it in action:
 
 ```ts twoslash
-type ConstructorArg<C> = C extends {
-  new (arg: infer A, ...args: any[]): any
-}
-  ? A
-  : never
-```
+/**
+ * If the type `P` passed in is some kind of `PromiseLike<T>` 
+ * (where `T` is a new type param), extract `T` and return it.
+ * If `P` is not some subtype of `PromiseLike<any>`, pass the 
+ * type `P` straight through and return it 
+ */
+type UnwrapPromise<P> = P extends PromiseLike<infer T> ? T : P;
 
-First, let's establish that this works, and then we'll unpack the syntax
-so that we can understand exactly what's going on
-
-```ts twoslash
-class WebpackCompiler {
-  constructor(options: {
-    amd?: false | { [index: string]: any }
-    bail?: boolean
-    cache?:
-      | boolean
-      | {
-          maxGenerations?: number
-          type: "memory"
-        }
-
-    context?: string
-    dependencies?: string[]
-    devtool?: string | false
-    entry?: string
-    chunkLoading?: string | false
-
-    dependOn?: string | string[]
-    layer?: null | string
-    runtime?: string
-
-    wasmLoading?: string | false
-
-    externalsType?:
-      | "var"
-      | "module"
-      | "assign"
-      | "this"
-      | "window"
-      | "self"
-      | "global"
-      | "commonjs"
-      | "commonjs2"
-      | "commonjs-module"
-      | "amd"
-      | "amd-require"
-      | "umd"
-      | "umd2"
-      | "jsonp"
-      | "system"
-      | "promise"
-      | "import"
-      | "script"
-
-    ignoreWarnings?: (
-      | RegExp
-      | {
-          file?: RegExp
-
-          message?: RegExp
-
-          module?: RegExp
-        }
-    )[]
-
-    loader?: { [index: string]: any }
-    mode?: "development" | "production" | "none"
-    name?: string
-    parallelism?: number
-    profile?: boolean
-    recordsInputPath?: string | false
-    recordsOutputPath?: string | false
-    recordsPath?: string | false
-    stats?:
-      | boolean
-      | "none"
-      | "summary"
-      | "errors-only"
-      | "errors-warnings"
-      | "minimal"
-      | "normal"
-      | "detailed"
-      | "verbose"
-
-    target?: string | false | string[]
-
-    watch?: boolean
-  }) {}
-}
-/// ---cut---
-type ConstructorArg<C> = C extends {
-  new (arg: infer A): any
-}
-  ? A
-  : never
-
-class FruitStand {
-  constructor(fruitNames: string[]) {}
-}
-// our simple example
-let fruits: ConstructorArg<typeof FruitStand>
-//      ^?
-// our more realistic example
-let compilerOptions: ConstructorArg<typeof WebpackCompiler>
+const p1 = Promise.resolve("abcd");
 //     ^?
-```
-
-Ok, this is great -- let's take a close look at how we did it
-by stepping through the syntax
-
-First, we are creating a generic type, with a type param `C`
-which could be _anything_:
-
-```ts
-type ConstructorArg<C> ...
-```
-
-Next, we're beginning to define a conditional type, using the
-ternary operator syntax. We want to do something special if `C` looks
-like _the static side of a class (the type with a constructor)_.
-
-`{ new (...args: any[]): any }` is a type that matches _any_
-constructor signature, regardless of what arguments it may take, and
-what it instantiates:
-
-```ts
-type ConstructorArg<C> = C extends {
-  new (...args: any[]): any
-}...
-
-```
-
-Next, **we want to "collect" the first constructor argument**. This is
-where the new `infer` keyword comes into play.
-
-```diff
-- new (...args: any[]): any
-+ new (arg: infer A, ...args: any[]): any
-```
-
-It kind of looks like we're using a new type param (`A`) without
-including it next to `<C>` in the type parameter list. We also
-have an `infer` keyword to the left of `A`
-
-```ts
-type ConstructorArg<C> = C extends {
-  new (arg: infer A, ...args: any[]): any
-}
-  ? ...
-  : ...
-```
-
-We should take note that our _condition_ for this conditional type
-has changed. It will no longer match _zero-argument constructors_,
-but that's fine because there's nothing to extract in that case.
-
-In the case where our condition matches type `C`, we'll return the argument
-of type `A` that we "extracted" using that `infer` keyword.
-
-```ts
-type ConstructorArg<C> = C extends {
-  new (arg: infer A, ...args: any[]): any
-}
-  ? A
-  : ...
-
-```
-
-And finally, in the case where type `C` is _not a class_ we need
-to decide which type to "emit". Ideally this will be something that,
-when used in a Union type (`|`), will kind of "disappear".
-
-```ts
-// for type `X` we're trying to figure out, we want...
-
-;string | number | X // should just be `string | number`
-```
-
-What about `any`? Let's see how that behaves
-
-```ts twoslash
-let myValue: string | number | any
+let resolvedP1!: UnwrapPromise<typeof p1>
+//                                    ^?
+resolvedP1
+// ^?
+type t1 = UnwrapPromise<Promise<[string[], number[]]>>
+//   ^?
+type t2 = UnwrapPromise<number>
 //   ^?
 ```
 
-That's not just the wrong result, it's kind of the _opposite_ result
-of what I was looking for. `any`, when used in a Union type, kind of
-swallows everything else in the union.
-
-If `any` gives us the opposite of what we want, maybe the opposite of
-`any` (`never`) will give us _exactly what we're looking for_?
+Let's go back to our fruit stand example, and define that `GetFirstArg<T>` type. First, let's make sure the condition works the way we want it to, allowing us to return some type if the typeParam looks like a function with at least one argument, and `never` otherwise. We'll begin with the type for functions that have at least one argument, and make the type of that argument generic since we know we'll want to extract it in a future step.
 
 ```ts twoslash
-let myValue: string | number | never
-//   ^?
+type OneArgFn<A = any> = (firstArg: A, ..._: any[]) => void
 ```
 
-Great! Let's go back to our `ConstructorArg<C>` type and add this in
+I'm using the variable name `_` here to indicate that I don't care about any arguments after the first one, but I'm happy to tolerate their presence and ignore them.
+
+Now let's use a conditional type and a test function to make sure we're returning `never` in the right case, and something other than `never` (I'm using `string[]` temporarily) when we have function with at least one argument. Remember that the `never` is advisable here because it effectively _erases_ incompatible aspects of the type, in the case of a union type, just as we saw in `Extract<T>` and `Exclude<T>`.
 
 ```ts twoslash
-type ConstructorArg<C> = C extends {
-  new (arg: infer A, ...args: any[]): any
-}
-  ? A
-  : never
-```
+// @errors: 2344
+type OneArgFn<A = any> = (firstArg: A, ..._: any[]) => void
+type GetFirstArg<T extends OneArgFn> = T extends OneArgFn ? string[] : never;
 
-And we're done!
-
-```ts twoslash
-class WebpackCompiler {
-  constructor(options: {
-    amd?: false | { [index: string]: any }
-    bail?: boolean
-    cache?:
-      | boolean
-      | {
-          maxGenerations?: number
-          type: "memory"
-        }
-
-    context?: string
-    dependencies?: string[]
-    devtool?: string | false
-    entry?: string
-    chunkLoading?: string | false
-
-    dependOn?: string | string[]
-    layer?: null | string
-    runtime?: string
-
-    wasmLoading?: string | false
-
-    externalsType?:
-      | "var"
-      | "module"
-      | "assign"
-      | "this"
-      | "window"
-      | "self"
-      | "global"
-      | "commonjs"
-      | "commonjs2"
-      | "commonjs-module"
-      | "amd"
-      | "amd-require"
-      | "umd"
-      | "umd2"
-      | "jsonp"
-      | "system"
-      | "promise"
-      | "import"
-      | "script"
-
-    ignoreWarnings?: (
-      | RegExp
-      | {
-          file?: RegExp
-
-          message?: RegExp
-
-          module?: RegExp
-        }
-    )[]
-
-    loader?: { [index: string]: any }
-    mode?: "development" | "production" | "none"
-    name?: string
-    parallelism?: number
-    profile?: boolean
-    recordsInputPath?: string | false
-    recordsOutputPath?: string | false
-    recordsPath?: string | false
-    stats?:
-      | boolean
-      | "none"
-      | "summary"
-      | "errors-only"
-      | "errors-warnings"
-      | "minimal"
-      | "normal"
-      | "detailed"
-      | "verbose"
-
-    target?: string | false | string[]
-
-    watch?: boolean
-  }) {}
-}
-
-type ConstructorArg<C> = C extends {
-  new (arg: infer A, ...args: any[]): any
-}
-  ? A
-  : never
-
-/// ---cut---
-
-let dateFirst: ConstructorArg<typeof Date>
-//   ^?
-let promiseFirst: ConstructorArg<typeof Promise>
+// Test case
+function foo(x: string, y: number) {return null}
+//        ^?
+// Should be string[]
+type t1 = GetFirstArg<typeof foo>
 //    ^?
+```
 
-let webpackCfg: ConstructorArg<typeof WebpackCompiler>
+Next, let's bring in the `infer` keyword, and the type param it creates on the fly
+
+```ts twoslash
+type OneArgFn<A extends {}> = (firstArg: A, ..._: any[]) => void
+type GetFirstArg<T> = T extends OneArgFn<infer R> ? R : never;
+
+// Test case
+function foo(x: string, y: number) {return null}
+//        ^?
+type t1 = GetFirstArg<typeof foo>
+//    ^?
+```
+
+There we go! `string` is what we were looking for! Let's bring it back to our fruit market example
+
+```ts twoslash
+// @errors: 2739
+// @filename: node_modules/fruit-market.ts
+type AppleVarieties = 'fuji' | 'gala' | 'honeycrisp' | 'granny smith';
+type OrangeVarieties = 'navel' | 'valencia' | 'blood orange' | 'cara cara';
+type Allergies = 'peach' | 'kiwi' | 'strawberry' | 'pineapple';
+type Ripeness = 'green' | 'ripe' | 'overripe';
+
+type QuantityRange = {
+    min: number;
+    max: number;
+};
+
+type FruitOrderItem<Varieties extends string> = {
+    variety: Varieties;
+    pricePerUnit: number;
+    quantity: number;
+    totalPrice: number;
+};
+
+type FruitOrder = {
+    apples: FruitOrderItem<AppleVarieties>[];
+    oranges: FruitOrderItem<OrangeVarieties>[];
+    subtotal: number;
+    salesTax: number;
+    grandTotal: number;
+};
+
+type FruitOrderPreferences = {
+    apples: {
+        preferredVarieties: AppleVarieties[];
+        avoidSeeds: boolean;
+        organicOnly: boolean;
+        ripeness: Ripeness;
+        quantity: QuantityRange;
+    };
+    oranges: {
+        preferredVarieties: OrangeVarieties[];
+        seedlessOnly: boolean;
+        ripeness: Ripeness;
+        quantity: QuantityRange;
+    };
+    allergies: Allergies[];
+    prefersLocalProduce: boolean;
+};
+
+export function createOrder(prefs: FruitOrderPreferences): FruitOrder {
+    console.log(prefs)
+    return {
+        apples: [],
+        oranges: [],
+        subtotal: 0.00,
+        salesTax: 0.00,
+        grandTotal: 0.00,
+    }
+}
+// @filename: index.ts
+import { createOrder } from 'fruit-market';
+//        ^?
+
+type OneArgFn<A extends {}> = (firstArg: A, ..._: any[]) => void
+
+type GetFirstArg<T> = T extends OneArgFn<infer R> ? R : never;
+
+const prefs: GetFirstArg<typeof createOrder> = {}
+
+createOrder(prefs)
+```
+
+Awesome! We're getting an error that indicates we have the desired type!
+:tada: Success!
+
+## Constraints on `infer`
+
+TypeScript 5 allows type param constraints to be expressed _on inferred type params_. For example, what if we wanted to extract the first element of a tuple, but only if it's a subtype of `string`
+
+Without any kind of constraint, we're just getting the first element of the tuple, no matter what it is
+
+```ts twoslash
+type GetFirstStringIshElement<T> = T extends readonly [
+  infer S,
+  ..._:any[]
+] ? S : never
+
+const t1 = ["success", 2, 1, 4] as const
+//     ^?
+const t2 = [4, 54, 5] as const
+//     ^?
+let firstT1: GetFirstStringIshElement<typeof t1>
+//   ^?
+let firstT2: GetFirstStringIshElement<typeof t2>
 //   ^?
 ```
 
-Awesome! Now if we go back to the original thing we were trying to do, we get some
-improved type safety
+if we add a constraint
 
 ```diff
--const cfg = {
-+const cfg: ConstructorArg<typeof WebpackCompiler> = {
-  entry: "src/index.ts",
-  wutch: true, // SPELLING ERROR!!
-}
++ infer S extends string,
+- infer S,
+
 ```
+
+we get the desired result, with `firstT2` evaluating to `never`
 
 ```ts twoslash
-// @errors: 2322 2561
-class WebpackCompiler {
-  constructor(options: {
-    amd?: false | { [index: string]: any }
-    bail?: boolean
-    cache?:
-      | boolean
-      | {
-          maxGenerations?: number
-          type: "memory"
-        }
+type GetFirstStringIshElement<T> = T extends readonly [
+  infer S extends string,
+  ..._:any[]
+] ? S : never
 
-    context?: string
-    dependencies?: string[]
-    devtool?: string | false
-    entry?: string
-    chunkLoading?: string | false
-
-    dependOn?: string | string[]
-    layer?: null | string
-    runtime?: string
-
-    wasmLoading?: string | false
-
-    externalsType?:
-      | "var"
-      | "module"
-      | "assign"
-      | "this"
-      | "window"
-      | "self"
-      | "global"
-      | "commonjs"
-      | "commonjs2"
-      | "commonjs-module"
-      | "amd"
-      | "amd-require"
-      | "umd"
-      | "umd2"
-      | "jsonp"
-      | "system"
-      | "promise"
-      | "import"
-      | "script"
-
-    ignoreWarnings?: (
-      | RegExp
-      | {
-          file?: RegExp
-
-          message?: RegExp
-
-          module?: RegExp
-        }
-    )[]
-
-    loader?: { [index: string]: any }
-    mode?: "development" | "production" | "none"
-    name?: string
-    parallelism?: number
-    profile?: boolean
-    recordsInputPath?: string | false
-    recordsOutputPath?: string | false
-    recordsPath?: string | false
-    stats?:
-      | boolean
-      | "none"
-      | "summary"
-      | "errors-only"
-      | "errors-warnings"
-      | "minimal"
-      | "normal"
-      | "detailed"
-      | "verbose"
-
-    target?: string | false | string[]
-
-    watch?: boolean
-  }) {}
-}
-
-/// ---cut---
-type ConstructorArg<C> = C extends {
-  new (arg: infer A, ...args: any[]): any
-}
-  ? A
-  : never
-
-const cfg: ConstructorArg<typeof WebpackCompiler> = {
-  entry: "src/index.ts",
-  wutch: true, // SPELLING ERROR!!
-}
-try {
-  const compiler = new WebpackCompiler(cfg)
-} catch (err) {
-  throw new Error(
-    `Problem compiling with config\n${JSON.stringify(
-      cfg,
-      null,
-      "  "
-    )}`
-  )
-}
+const t1 = ["success", 2, 1, 4] as const
+//     ^?
+const t2 = [4, 54, 5] as const
+//     ^?
+let firstT1: GetFirstStringIshElement<typeof t1>
+//   ^?
+let firstT2: GetFirstStringIshElement<typeof t2>
+//   ^?
 ```
 
-:tada: Success!
+## Extracting string literal types
+
+TypeScript 5 allows `infer` to be used in combination with string template types, which we can use to effectively extract portions of strings as new string literal types
+
+```ts twoslash
+// @errors: 2322
+const courseWebsite = "Frontend Masters";
+
+type ExtractMasterName<S> = S extends `${infer T} Masters` ? T : never;
+
+let fe: ExtractMasterName<typeof courseWebsite> = 'Backend'
+//   ^?
+```
