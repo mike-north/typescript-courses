@@ -9,29 +9,20 @@ course: intermediate-v2
 order: 04
 ---
 
-Type queries allow us to obtain type information from values, which
-is an incredibly important capability -- particularly when working
-with libraries that may not expose type information in a way that's
-most useful for you
+Type queries allow us to obtain type information from values, which is an incredibly important capability -- particularly when working with libraries that may not expose type information in a way that's most useful for you
 
 ## `keyof`
 
-The `keyof` type query allows us to obtain type representing
-all property keys on a given interface
+The `keyof` type query allows us to obtain type representing all property keys on a given interface
 
 ```ts twoslash
 type DatePropertyNames = keyof Date
 //     ^?
 ```
 
-Not all keys are `string`s, so we can separate out
-those keys that are [`symbol`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/symbol)s and those that are `string`s
-using the intersection operator (`&`).
+Not all keys are `string`s, so we can separate out those keys that are [`symbol`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/symbol)s and those that are `string`s using the intersection operator (`&`).
 
-If you remember your geometry, **it may be useful to think of this
-as kind of like a dot product**, in that when we use the intersection
-operator, we're left only with the sub-part of the `keyof Date`
-that also is included by `string` or `symbol`, respectively.
+If you remember your geometry, **it may be useful to think of this as kind of like a dot product**, in that when we use the intersection operator, we're left only with the sub-part of the `keyof Date` that also is included by `string` or `symbol`, respectively.
 
 ```ts twoslash
 type DatePropertyNames = keyof Date
@@ -42,8 +33,7 @@ type DateSymbolPropertyNames = DatePropertyNames & symbol
 //    ^?
 ```
 
-Interesting! this [`Symbol.toPrimitive`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive) property
-is the only non-string. [^1]
+Interesting! this [`Symbol.toPrimitive`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive) property is the only non-string. [^1]
 
 ## `typeof`
 
