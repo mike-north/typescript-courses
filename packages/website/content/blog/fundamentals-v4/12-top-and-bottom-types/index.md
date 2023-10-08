@@ -152,9 +152,34 @@ try {
 
 ```
 
-### Almost top type: `object` or `{}`
+### Almost top type: `object`
 
-The type `object`, which can also be represented as `{}` represents the set `{ all possible values, except for null and undefined }`
+The `object` type represents the set `{ all possible values except for primitives }`. Primitive value types in JavaScript are `{ string, number, boolean, Symbol, null, undefined, BigInt }`
+
+It's important to understand that this is _not quite_ the same concept of the "object types" term used to describe shapes that `interface`s can model.
+
+```ts twoslash
+// @errors: 2322
+let val: object = { status: "ok" }
+val = "foo"
+val = null
+val = () => "ok"
+
+// The type of this value cannot be modeled by an interface
+let response:
+//     ^?
+    { success: string, data: unknown }
+  | { error: string, code: number }
+      = { success: "ok", data: [] }
+
+val = response
+
+
+```
+
+### Almost top type: `{}`
+
+The empty object typ `{}` represents the set `{ all possible values, except for null and undefined }`
 
 ```ts twoslash
 // @errors: 2322
