@@ -10,14 +10,16 @@ order: 1
 
 ## About the Instructor
 
-- Developer Platform lead @ [Stripe](https://stripe.com)
-- One of Stripe's Product Architects
+- [Frontend Masters instructor](https://frontendmasters.com/teachers/mike-north/) for 9 years
+- Developer Platform Lead @ [Stripe](https://stripe.com)
+- Designs [Stripe's API semantics](https://stripe.com/docs/api)
+- Architect responsible for TypeScript projects like [node-stripe](https://github.com/stripe/stripe-node), [Stripe Shell](https://stripe.sh/), and [Stripe Workbench](https://workbench.stripe.dev/)
 
 ## Top Goals for this course
 
-> Pass along key knowledge gained through _thousands_ of hours of TypeScript teaching, Q&A and pair programming
-<!-- markdownlint-disable-next-line MD028 -->
-> By the end of this course, **you will be able to understand _challenging_ type information**.
+- Pass along key knowledge gained through _thousands_ of hours of TypeScript teaching, Q&A and pair programming
+- Give you a framework for **understanding _challenging_ type information**.
+- Teach you how to understand and use a wide range of TypeScript's built-in utility types
 
 This likely is pretty scary right now, but you'll know what it
 means by the end of the course
@@ -47,8 +49,9 @@ type ValueFilteredDoc = Pick<
 
 - Modern javascript
 - The basics of function, object and array types
-- Basic generics (e.g., typescript fundamentals v3)
+- Basic generics (e.g., [TypeScript Fundamentals v4 - Generics](../../fundamentals-v4/14-generics/))
 - Index signatures
+- Top (`any`, `unknown`) and bottom (`never`) types
 
 Also... some practical experience is important
 
@@ -61,7 +64,7 @@ As long as you can access the following websites, you should require no further 
 
 ## Which of your TypeScript courses is right for me?
 
-I've made four TS courses for Frontend Masters so far:
+I've made six TypeScript courses for Frontend Masters so far:
 
 ### Core
 
@@ -69,9 +72,9 @@ These courses focus on deep understanding of the programming language
 and how the TS compiler models and checks your code. Most of the "class time" is
 spent in a _lab environment_.
 
-- [TypeScript Fundamentals (v3)](https://frontendmasters.com/workshops/typescript-v3/) <br />
+- [TypeScript Fundamentals (v4)](../../fundamentals-v4/) <br />
   By the end of this course, you'll have **a basic understanding of the TypeScript language**
-- [Intermediate TypeScript](https://frontendmasters.com/workshops/intermediate-typescript/) <br />
+- [Intermediate TypeScript (v2)](..) <br />
   By the end of this course, you'll be **prepared to contribute to a wide range of non-trivial TypeScript projects**. You
   could be well on your way to becoming the TypeScript expert on your team.
 
@@ -80,7 +83,11 @@ spent in a _lab environment_.
 These courses focus on _application_ of TypeScript to _solving problems at scale_.
 Most of the "class time" is spent _building apps together_.
 
-- [Production-Grade TypeScript](https://frontendmasters.com/courses/production-typescript/) <br />
+- [Enterprise TypeScript (v2)](../../enterprise-v2/) <br />
   This course focuses on **build pipelines, tooling, and practical use of TypeScript _at scale_**.
-- [JS &amp; TS Monorepos](https://frontendmasters.com/courses/monorepos/) <br />
+- [JS &amp; TS Monorepos (v1)](https://frontendmasters.com/courses/monorepos/) <br />
   This course focuses on _monorepos_ -- the concept of **multiple sub-projects existing in a single git repository**.
+- [Making TypeScript Stick (v1)](../../making-typescript-stick/) <br />
+  This course focuses on **hands-on practice defining advanced type information**.
+- [Full Stack TypeScript, with Node.js and GraphQL (v1)](../../full-stack-typescript/) <br />
+  This course focuses on **building a full stack, fully-typed medium sized web application**.

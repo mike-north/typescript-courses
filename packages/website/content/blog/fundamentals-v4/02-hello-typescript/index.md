@@ -1,5 +1,5 @@
 ---
-title: Hello TypeScript
+title: Welcome to TypeScript
 date: "2023-10-23T09:00:00.000Z"
 description: |
   In this chapter, we'll get hands on with our first TypeScript program and the
@@ -17,7 +17,7 @@ In this chapter we will...
 
 ## Anatomy of the project
 
-Let's consider [`a very simple TypeScript project`](https://github.com/mike-north/typescript-courses/blob/main/packages/hello-ts/)
+Let's consider [`a very simple TypeScript project`](https://github.com/mike-north/typescript-courses/blob/main/packages/welcome-to-ts/)
 that consists of only three files:
 
 ```sh
@@ -27,11 +27,11 @@ src/index.ts   # "the program"
 ```
 
 `package.json`
-[(view source)](https://github.com/mike-north/typescript-courses/blob/main/packages/hello-ts/package.json) <br />
+[(view source)](https://github.com/mike-north/typescript-courses/blob/main/packages/welcome-to-ts/package.json) <br />
 
 ```jsonc
 {
-  "name": "hello-ts",
+  "name": "welcome-to-ts",
   "license": "NOLICENSE",
   "devDependencies": {
     "typescript": "^5.2.0"
@@ -45,19 +45,19 @@ src/index.ts   # "the program"
 Note that...
 
 - We just have one dependency in our package.json: `typescript`.
-- We have a `dev` script (this is what runs when you invoke `yarn dev-hello-ts` from the project root)
+- We have a `dev` script (this is what runs when you invoke `yarn dev-welcome-to-ts` from the project root)
   - It runs the TypeScript compiler in "watch" mode (watches for source changes, and rebuilds automatically).
 
 The following is just about the simplest possible [config file](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) for the TS compiler:
 
 `tsconfig.json`
-[(view source)](https://github.com/mike-north/typescript-courses/blob/main/packages/hello-ts/tsconfig.json) <br />
+[(view source)](https://github.com/mike-north/typescript-courses/blob/main/packages/welcome-to-ts/tsconfig.json) <br />
 
 ```jsonc
 {
   "compilerOptions": {
     "outDir": "dist", // where to put the TS files
-    "target": "ES5", // JS language level (as a build target)
+    "target": "ES2015", // JS language level (as a build target)
     "moduleResolution": "Node" // Find cjs modules in node_modules
   },
   "include": ["src"] // which files to compile
@@ -78,7 +78,7 @@ property in our `tsconfig.json` more obvious**:
 Here is the original (TypeScript) source code that we aim to compile:
 
 `src/index.ts`
-[(view source)](https://github.com/mike-north/typescript-courses/blob/main/packages/hello-ts/src/index.ts) <br />
+[(view source)](https://github.com/mike-north/typescript-courses/blob/main/packages/welcome-to-ts/src/index.ts) <br />
 
 ```ts twoslash
 /**
@@ -120,7 +120,7 @@ tools for learning about how TypeScript understands our code!**
 
 ## Running the compiler
 
-From within the `packages/hello-ts` folder of [the git repo](https://github.com/mike-north/typescript-courses/), you can run
+From within the `packages/welcome-to-ts` folder of [the git repo](https://github.com/mike-north/typescript-courses/), you can run
 
 ```sh
 tsc
@@ -138,7 +138,7 @@ You should see something in your terminal like:
 12:01:57 PM - Starting compilation in watch mode...
 ```
 
-Note that within the "hello-ts" project
+Note that within the "welcome-to-ts" project
 
 - a `./dist` folder has appeared,
 - inside it is an `index.js` file.
@@ -149,305 +149,58 @@ Open this file -- **it will be a mess**
   <summary>Click here to see what the compiled output looks like</summary>
 
 ```js twoslash
-"use strict"
-var __awaiter =
-  (this && this.__awaiter) ||
-  function (thisArg, _arguments, P, generator) {
-    function adopt(value) {
-      return value instanceof P
-        ? value
-        : new P(function (resolve) {
-            resolve(value)
-          })
-    }
-    return new (P || (P = Promise))(function (
-      resolve,
-      reject
-    ) {
-      function fulfilled(value) {
-        try {
-          step(generator.next(value))
-        } catch (e) {
-          reject(e)
-        }
-      }
-      function rejected(value) {
-        try {
-          step(generator["throw"](value))
-        } catch (e) {
-          reject(e)
-        }
-      }
-      function step(result) {
-        result.done
-          ? resolve(result.value)
-          : adopt(result.value).then(fulfilled, rejected)
-      }
-      step(
-        (generator = generator.apply(
-          thisArg,
-          _arguments || []
-        )).next()
-      )
-    })
-  }
-var __generator =
-  (this && this.__generator) ||
-  function (thisArg, body) {
-    var _ = {
-        label: 0,
-        sent: function () {
-          if (t[0] & 1) throw t[1]
-          return t[1]
-        },
-        trys: [],
-        ops: [],
-      },
-      f,
-      y,
-      t,
-      g
-    return (
-      (g = {
-        next: verb(0),
-        throw: verb(1),
-        return: verb(2),
-      }),
-      typeof Symbol === "function" &&
-        (g[Symbol.iterator] = function () {
-          return this
-        }),
-      g
-    )
-    function verb(n) {
-      return function (v) {
-        return step([n, v])
-      }
-    }
-    function step(op) {
-      if (f)
-        throw new TypeError(
-          "Generator is already executing."
-        )
-      while ((g && ((g = 0), op[0] && (_ = 0)), _))
-        try {
-          if (
-            ((f = 1),
-            y &&
-              (t =
-                op[0] & 2
-                  ? y["return"]
-                  : op[0]
-                  ? y["throw"] ||
-                    ((t = y["return"]) && t.call(y), 0)
-                  : y.next) &&
-              !(t = t.call(y, op[1])).done)
-          )
-            return t
-          if (((y = 0), t)) op = [op[0] & 2, t.value]
-          switch (op[0]) {
-            case 0:
-            case 1:
-              t = op
-              break
-            case 4:
-              _.label++
-              return { value: op[1], done: false }
-            case 5:
-              _.label++
-              y = op[1]
-              op = [0]
-              continue
-            case 7:
-              op = _.ops.pop()
-              _.trys.pop()
-              continue
-            default:
-              if (
-                !((t = _.trys),
-                (t = t.length > 0 && t[t.length - 1])) &&
-                (op[0] === 6 || op[0] === 2)
-              ) {
-                _ = 0
-                continue
-              }
-              if (
-                op[0] === 3 &&
-                (!t || (op[1] > t[0] && op[1] < t[3]))
-              ) {
-                _.label = op[1]
-                break
-              }
-              if (op[0] === 6 && _.label < t[1]) {
-                _.label = t[1]
-                t = op
-                break
-              }
-              if (t && _.label < t[2]) {
-                _.label = t[2]
-                _.ops.push(op)
-                break
-              }
-              if (t[2]) _.ops.pop()
-              _.trys.pop()
-              continue
-          }
-          op = body.call(thisArg, _)
-        } catch (e) {
-          op = [6, e]
-          y = 0
-        } finally {
-          f = t = 0
-        }
-      if (op[0] & 5) throw op[1]
-      return { value: op[0] ? op[1] : void 0, done: true }
-    }
-  }
-var __classPrivateFieldGet =
-  (this && this.__classPrivateFieldGet) ||
-  function (receiver, state, kind, f) {
-    if (kind === "a" && !f)
-      throw new TypeError(
-        "Private accessor was defined without a getter"
-      )
-    if (
-      typeof state === "function"
-        ? receiver !== state || !f
-        : !state.has(receiver)
-    )
-      throw new TypeError(
-        "Cannot read private member from an object whose class did not declare it"
-      )
-    return kind === "m"
-      ? f
-      : kind === "a"
-      ? f.call(receiver)
-      : f
-      ? f.value
-      : state.get(receiver)
-  }
-Object.defineProperty(exports, "__esModule", {
-  value: true,
-})
-exports.addNumbers = void 0
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var _a, _Foo_bar;
 /**
  * Create a promise that resolves after some time
  * @param n number of milliseconds before promise resolves
  */
 function timeout(n) {
-  return new Promise(function (res) {
-    return setTimeout(res, n)
-  })
+    return new Promise((res) => setTimeout(res, n));
 }
 /**
  * Add three numbers
  * @param a first number
  * @param b second
  */
-function addNumbers(a, b) {
-  return __awaiter(this, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-      switch (_a.label) {
-        case 0:
-          return [4 /*yield*/, timeout(500)]
-        case 1:
-          _a.sent()
-          return [2 /*return*/, a + b]
-      }
-    })
-  })
+export function addNumbers(a, b) {
+    return __awaiter(this, void 0, void 0, function* () {
+        yield timeout(500);
+        return a + b;
+    });
 }
-exports.addNumbers = addNumbers
-var Foo = /** @class */ (function () {
-  function Foo() {}
-  Foo.getValue = function () {
-    return __classPrivateFieldGet(_a, _a, "f", _Foo_bar)
-  }
-  var _a, _Foo_bar
-  _a = Foo
-  _Foo_bar = { value: 3 }
-  return Foo
-})()
+class Foo {
+    static getValue() { return __classPrivateFieldGet(_a, _a, "f", _Foo_bar); }
+}
+_a = Foo;
+_Foo_bar = { value: 3 };
 //== Run the program ==//
-;(function () {
-  return __awaiter(void 0, void 0, void 0, function () {
-    var _b, _c
-    return __generator(this, function (_d) {
-      switch (_d.label) {
-        case 0:
-          _c = (_b = console).log
-          return [
-            4 /*yield*/,
-            addNumbers(Foo.getValue(), 4),
-          ]
-        case 1:
-          _c.apply(_b, [_d.sent()])
-          return [2 /*return*/]
-      }
-    })
-  })
-})()
+(() => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(yield addNumbers(Foo.getValue(), 4));
+}))();
 ```
 
 </details>
+<br />
+
+If you're familiar with the very old `ES5` JavaScript language level, there are a few things in here that tell us we're dealing with `ES2015`. For example, the use of the `yield` keyword, a generator `function*`, `class`es and a `Promise` constructor.
 
 ### Changing target language level
 
-If we go to `hello-ts/tsconfig.json` and change the "compilerOptions.target" property:
-
-```diff
-{
-    "compilerOptions": {
-        "outDir": "dist",
--       "target": "ES5"
-+       "target": "ES2015"
-    },
-    "include": ["src"]
-}
-```
-
-Look at that `dist/index.js` file again -- it's much cleaner now! Do you notice what has changed? Can you find a `Promise` constructor? Maybe the `yield` keyword?
-
-<details>
-  <summary>Click here to see what the compiled output looks like</summary>
-
-```ts twoslash
-// @showEmit
-// @target ES2015
-/**
- * Create a promise that resolves after some time
- * @param n number of milliseconds before promise resolves
- */
-function timeout(n: number) {
-  return new Promise((res) => setTimeout(res, n))
-}
-
-/**
- * Add three numbers
- * @param a first number
- * @param b second
- */
-export async function addNumbers(a: number, b: number) {
-  await timeout(500)
-  return a + b
-}
-
-class Foo {
-  static #bar = 3
-  static getValue() {
-    return Foo.#bar
-  }
-}
-
-//== Run the program ==//
-;(async () => {
-  console.log(await addNumbers(Foo.getValue(), 4))
-})()
-```
-
-</details>
-
-Now let's bump the language level up even more, to 2017:
+If we go to `welcome-to-ts/tsconfig.json` and change the "compilerOptions.target" property:
 
 ```diff
 {
@@ -460,14 +213,7 @@ Now let's bump the language level up even more, to 2017:
 }
 ```
 
-**It's even cleaner!**
-
-Some changes to observe:
-
-- We start to see `async` and `await`
-- We no longer see the `_awaiter` helper
-
-In fact, this looks a lot like **the type information has just been stripped away from our original `.ts` source code**.
+Look at that `dist/index.js` file again -- it's much cleaner now! Do you notice what has changed?
 
 <details>
   <summary>Click here to see what the compiled output looks like</summary>
@@ -507,6 +253,14 @@ class Foo {
 ```
 
 </details>
+<br />
+
+Some changes to observe:
+
+- We start to see `async` and `await`
+- We no longer see the `_awaiter` helper
+
+It's starting to look more recognizable -- as if **the type information has just been stripped away from our original `.ts` source code** in some places. There's still some compiler-provided workarounds for the private class field, which isn't supported in native JavaScript until ES2022.
 
 And now finally, let's try ES2022:
 
@@ -520,8 +274,6 @@ And now finally, let's try ES2022:
     "include": ["src"]
 }
 ```
-
-You'll see that the code now looks pretty much like the original source code, with all the types stripped away (e.g. `a: string` -> `a`).
 
 <details>
   <summary>Click here to see what the compiled output looks like</summary>
@@ -618,7 +370,7 @@ Did you notice that the `export` keyword was still present in the build output f
 If you tried to run this file with `node` like this:
 
 ```sh
-node packages/hello-ts/dist/index.js
+node packages/welcome-to-ts/dist/index.js
 ```
 
 There's an error!
@@ -643,7 +395,7 @@ Let's add a new property to our `tsconfig` file:
 +   "module": "CommonJS",
 ```
 
-Look at your `packages/hello-ts/dist/index.js` one more time now. You should see
+Look at your `packages/welcome-to-ts/dist/index.js` one more time now. You should see
 that the way the `addNumbers` function is exported has changed:
 
 ```js twoslash
@@ -659,7 +411,7 @@ This is an indication that we're emitting CommonJS modules! We could try running
 this program with `node` one more time:
 
 ```sh
-node packages/hello-ts/dist/index.js
+node packages/welcome-to-ts/dist/index.js
 ```
 
 If the program works correctly at this point, we should see it pause for a short
@@ -676,7 +428,7 @@ Node now supports running native modules (`.ejs` files) directly! We can configu
 -  "moduleResolution": "Node"
 ```
 
-Build the file again by running `tsc` while in the `./packages/hello-ts` folder.
+Build the file again by running `tsc` while in the `./packages/welcome-to-ts` folder.
 
 Finally, run from within the same folder
 

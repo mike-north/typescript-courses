@@ -1,11 +1,14 @@
 {
-    "name": "hello-ts",
+    "name": "welcome-to-ts",
     "license": "NOLICENSE",
     "version": "0.0.1",
     "devDependencies": {
-        "typescript": "^4.3.2"
+        "typescript": "^5.3.0-beta"
     },
     "scripts": {
         "dev": "tsc --watch --preserveWatchOutput"
+    },
+    "dependencies": {
+        "typescript": "^5.3.0-beta"
     }
 }
