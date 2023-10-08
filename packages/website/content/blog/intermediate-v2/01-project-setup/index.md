@@ -17,9 +17,9 @@ order: 1
 
 ## Top Goals for this course
 
-> Pass along key knowledge gained through _thousands_ of hours of TypeScript teaching, Q&A and pair programming
-<!-- markdownlint-disable-next-line MD028 -->
-> By the end of this course, **you will be able to understand _challenging_ type information**.
+- Pass along key knowledge gained through _thousands_ of hours of TypeScript teaching, Q&A and pair programming
+- Give you a framework for **understanding _challenging_ type information**.
+- Teach you how to understand and use a wide range of TypeScript's built-in utility types
 
 This likely is pretty scary right now, but you'll know what it
 means by the end of the course
