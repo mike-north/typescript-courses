@@ -5,7 +5,7 @@ description: |
   Indexed Access types provide a mechanism for retrieving
   part(s) of an array or object type via indices.
 course: intermediate-v2
-order: 8
+order: 07
 ---
 
 Indexed Access types provide a mechanism for retrieving

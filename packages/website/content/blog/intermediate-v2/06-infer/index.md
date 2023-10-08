@@ -6,7 +6,7 @@ description: |
   on comparison -- they can be used with an 'infer' keyword
   to access sub-parts of type information within a larger type
 course: intermediate-v2
-order: 07
+order: 06
 ---
 
 Conditional types are not just for switching behavior based
