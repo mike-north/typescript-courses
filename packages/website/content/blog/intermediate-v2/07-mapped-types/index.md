@@ -9,7 +9,7 @@ description: |
   types even more powerful!
 
 course: intermediate-v2
-order: 8
+order: 7
 ---
 
 Mapped allow types to be defined in other types through a
