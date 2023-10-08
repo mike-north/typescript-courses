@@ -5,7 +5,7 @@ description: |
   Top types can be anything, bottom types can't be anything. We will also look
   at three "extreme types" in TypeScript: any, unknown and never.
 course: fundamentals-v4
-order: 12
+order: 13
 ---
 
 Type systems often have types representing the largest and smallest possible sets of values. These are called top and bottom types.

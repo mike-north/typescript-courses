@@ -6,7 +6,7 @@ description: |
   but there's a lot more power in type guards, including the ability
   to define your own!
 course: fundamentals-v4
-order: 11
+order: 12
 ---
 
 Type guards, when used with control flow, allow TypeScript developers to create branches of code that have concrete assumptions, of what may be a relatively vague type. One example we've already worked with is the concept of a _discriminated union_, where we took a value that could indicate either success or failure information, and used an equality check with the _discriminator_ (`"success" | "failure"`), to send the successful case down one code branch, and the failing case down another

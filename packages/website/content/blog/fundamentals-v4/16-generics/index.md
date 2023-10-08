@@ -308,3 +308,22 @@ Let's look at this closely and make sure that we understand what's going on:
 - Take a close look at the types of the items in `dict1` and `dict2` above, to convince yourself that **we get a different kind of dictionary out of `listToDict`, depending on the type of the array we pass in**
 
 This is much better than our "dictionary of `any`s", in that we lose no type information as a side effect of going through the list-to-dictionary transformation.
+
+## Best Practices
+
+- **Use each type parameter _at least twice_**. Any less and you might be casting with the `as` keyword. Let's take a look at this example:
+
+```ts twoslash
+function returnAs<T>(arg: any): T {
+  return arg // 🚨 an `any` that will _seem_ like a `T`
+  //      ^?
+}
+
+// 🚨 DANGER! 🚨
+const first = returnAs<number>(window)
+//     ^?
+const sameAs = window as any as number
+//     ^?
+```
+
+In this example, we have told TypeScript a lie by saying `window` is a `number` (but it is not...). Now, TypeScript will fail to catch errors that it is suppose to be catching!

@@ -14,7 +14,7 @@ courses:
       use TypeScript to build a modern JavaScript app.
   - name: "TypeScript Fundamentals v4"
     id: fundamentals-v4
-    visibleInTopNav: false
+    visibleInTopNav: true
     visibleInCourseIndex: false
     visibleInCoursePage: true
     squareImage: /ts-fundamentals-v4.png
@@ -37,6 +37,21 @@ courses:
     twitterImage: /tw-intermediate-ts.png
     femCourseUrl: https://frontendmasters.com/courses/intermediate-typescript/
     femCoursePublished: true
+    summary: |
+      Leverage TypeScript's strengths to provide clarity in the face of
+      complexity, while protecting your codebase and team from it's weaknesses.
+  - name: "Intermediate TypeScript"
+    id: intermediate-v2
+    squareImage: /intermediate-ts-v2.png
+    facebookImage: /fb-intermediate-ts-v2.png
+    twitterImage: /tw-intermediate-ts-v2.png
+    femCourseUrl: https://frontendmasters.com/courses/intermediate-typescript-v2/
+    femCoursePublished: false
+    femWorkshopUrl: https://frontendmasters.com/workshops/intermediate-typescript-v2/
+    femWorkshopPublished: true
+    visibleInTopNav: true
+    visibleInCourseIndex: false
+    visibleInCoursePage: true
     summary: |
       Leverage TypeScript's strengths to provide clarity in the face of
       complexity, while protecting your codebase and team from it's weaknesses.
@@ -81,21 +96,6 @@ courses:
     summary: |
       Combine TypeScript and GraphQL's type systems to create full-stack, fully
       type-checked code bases that are shockingly easy to refactor and maintain.
-  - name: "Intermediate TypeScript"
-    id: intermediate-v2
-    squareImage: /intermediate-ts-v2.png
-    facebookImage: /fb-intermediate-ts-v2.png
-    twitterImage: /tw-intermediate-ts-v2.png
-    femCourseUrl: https://frontendmasters.com/courses/intermediate-typescript-v2/
-    femCoursePublished: false
-    femWorkshopUrl: https://frontendmasters.com/workshops/intermediate-typescript-v2/
-    femWorkshopPublished: true
-    visibleInTopNav: false
-    visibleInCourseIndex: false
-    visibleInCoursePage: true
-    summary: |
-      Leverage TypeScript's strengths to provide clarity in the face of
-      complexity, while protecting your codebase and team from it's weaknesses.
 
 course_groups:
   - name: "TypeScript Fundamentals"
