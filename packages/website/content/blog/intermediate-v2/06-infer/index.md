@@ -209,7 +209,7 @@ type UnwrapPromise<P> = P extends PromiseLike<infer T> ? T : P;
 
 Otherwise return the original typeParam `P`
 
-Let's go back to our need to define `GetFirstArg<T>` from our `fruit-market` library. 
+Let's go back to our need to define `GetFirstArg<T>` from our `fruit-market` library.
 
 First, let's make sure the condition in the conditional type works the way we want it to, allowing us to return one type if the typeParam looks like a function with at least one argument, and another (`never`) otherwise. We'll begin with the type for functions that have at least one argument, and make the type of that argument generic since we know we'll want to extract it in a future step.
 
@@ -496,7 +496,7 @@ type InstanceType
 
 ### `ThisParameterType<T>` and `OmitThisParameter<T>`
 
-As long as you know what a `this` type is, `ThisParameterType<T>` follows the last few examples so closely, that it probably doesn't need much explanation. 
+As long as you know what a `this` type is, `ThisParameterType<T>` follows the last few examples so closely, that it probably doesn't need much explanation.
 
 ```ts
 /**
