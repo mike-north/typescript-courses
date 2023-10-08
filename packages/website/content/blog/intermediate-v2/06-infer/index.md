@@ -19,8 +19,14 @@ In [the same release where conditional types were added to TypeScript](https://w
 
 **Let's consider a practical example**: You use a library that provides a well-typed function, but does not expose independent types for the arguments the function takes.
 
+Let's imagine that there's a `fruit-market` npm package, which only exports a `createOrder` function.
+
 ```ts twoslash
 // @filename: node_modules/fruit-market.ts
+
+//////////////////////////////////////////////////////////////
+//////////////////////// NOT EXPORTED ////////////////////////
+//////////////////////////////////////////////////////////////
 type AppleVarieties = 'fuji' | 'gala' | 'honeycrisp' | 'granny smith';
 type OrangeVarieties = 'navel' | 'valencia' | 'blood orange' | 'cara cara';
 type Allergies = 'peach' | 'kiwi' | 'strawberry' | 'pineapple';
@@ -64,6 +70,9 @@ type FruitOrderPreferences = {
     prefersLocalProduce: boolean;
 };
 
+//////////////////////////////////////////////////////////////
+////////////////////////// EXPORTED //////////////////////////
+//////////////////////////////////////////////////////////////
 export function createOrder(prefs: FruitOrderPreferences): FruitOrder {
     console.log(prefs)
     return {
@@ -76,7 +85,9 @@ export function createOrder(prefs: FruitOrderPreferences): FruitOrder {
 }
 ```
 
-Look at all that great type information. It's a shape that none of those type aliases are exported! You want to be able to create a variable to hold a value of type `FruitOrderPreferences`, so we can assemble the right data together, log it, and then pass it to the `createOrder` to create that `FruitOrder`. A starting point for this code is below.
+Look at all that great type information -- it's a shame that none of it is exported!
+
+Our goal is to **create a well-typed variable to hold a value of type `FruitOrderPreferences`**, so we can assemble the right data together, log it, and then pass it to the `createOrder` to create that `FruitOrder`. A starting point for this code is below. All we need to do is replace `GetFirstArg<T> = any` with a more meaningful type expression.
 
 ```ts twoslash
 // @filename: node_modules/fruit-market.ts
@@ -142,14 +153,12 @@ type GetFirstArg<T> = any;
 
 const prefs: GetFirstArg<typeof createOrder> = {}
 
-// createOrder(prefs)
+createOrder(prefs)
 ```
-
-What we really need is to fill in that `GetFirstArg<T>` type, so that it takes the type of the `createOrder` function and somehow grabs the first argument out of the function signature.
 
 ### The `infer` keyword
 
-The `infer` keyword gives us an important tool to solve this problem -- it lets us **extract and obtain** type information from larger types, by capturing types into a newly-declared type param
+The `infer` keyword gives us an important tool to solve this problem -- it lets us **extract and obtain** type information from larger types, by capturing pieces of types into a newly-declared type params.
 
 Here's an example of it in action:
 
@@ -162,32 +171,63 @@ Here's an example of it in action:
  */
 type UnwrapPromise<P> = P extends PromiseLike<infer T> ? T : P;
 
-const p1 = Promise.resolve("abcd");
-//     ^?
-let resolvedP1!: UnwrapPromise<typeof p1>
-//                                    ^?
-resolvedP1
-// ^?
-type t1 = UnwrapPromise<Promise<[string[], number[]]>>
+type test1 = UnwrapPromise<Promise<string>>
 //   ^?
-type t2 = UnwrapPromise<number>
+type test2 = UnwrapPromise<Promise<[string[], number[]]>>
+//   ^?
+type test3 = UnwrapPromise<number>
 //   ^?
 ```
 
-Let's go back to our fruit stand example, and define that `GetFirstArg<T>` type. First, let's make sure the condition works the way we want it to, allowing us to return some type if the typeParam looks like a function with at least one argument, and `never` otherwise. We'll begin with the type for functions that have at least one argument, and make the type of that argument generic since we know we'll want to extract it in a future step.
+Here's a breakdown of what the conditional type means
 
 ```ts twoslash
-type OneArgFn<A = any> = (firstArg: A, ..._: any[]) => void
+type UnwrapPromise<P> = P extends PromiseLike<infer T> ? T : P;
+//                      ---------------------
 ```
 
-I'm using the variable name `_` here to indicate that I don't care about any arguments after the first one, but I'm happy to tolerate their presence and ignore them.
+If `P` is a subset of `PromiseLike<any>`
+
+```ts twoslash
+type UnwrapPromise<P> = P extends PromiseLike<infer T> ? T : P;
+//                                           ---------
+```
+
+Extract the typeParam of `PromiseLike<?>` and store it in a new typeParam `T`
+
+```ts twoslash
+type UnwrapPromise<P> = P extends PromiseLike<infer T> ? T : P;
+//                                                      ---
+```
+
+And then return type `T`
+
+```ts twoslash
+type UnwrapPromise<P> = P extends PromiseLike<infer T> ? T : P;
+//                                                          ---
+```
+
+Otherwise return the original typeParam `P`
+
+Let's go back to our need to define `GetFirstArg<T>` from our `fruit-market` library. 
+
+First, let's make sure the condition in the conditional type works the way we want it to, allowing us to return one type if the typeParam looks like a function with at least one argument, and another (`never`) otherwise. We'll begin with the type for functions that have at least one argument, and make the type of that argument generic since we know we'll want to extract it in a future step.
+
+```ts twoslash
+type OneArgFn<A = any> = (firstArg: A, ..._args: any[]) => void
+```
+
+I'm using the variable name `_args` starting with an underscore (`_`) here to indicate that I don't care about any arguments after the first one, but I'm happy to tolerate their presence and ignore them.
 
 Now let's use a conditional type and a test function to make sure we're returning `never` in the right case, and something other than `never` (I'm using `string[]` temporarily) when we have function with at least one argument. Remember that the `never` is advisable here because it effectively _erases_ incompatible aspects of the type, in the case of a union type, just as we saw in `Extract<T>` and `Exclude<T>`.
 
 ```ts twoslash
 // @errors: 2344
-type OneArgFn<A = any> = (firstArg: A, ..._: any[]) => void
-type GetFirstArg<T extends OneArgFn> = T extends OneArgFn ? string[] : never;
+type OneArgFn<A = any> = (firstArg: A, ..._args: any[]) => void
+type GetFirstArg<T extends OneArgFn> 
+    = T extends OneArgFn
+        ? string[]
+        : never;
 
 // Test case
 function foo(x: string, y: number) {return null}
@@ -199,12 +239,16 @@ type t1 = GetFirstArg<typeof foo>
 
 Next, let's bring in the `infer` keyword, and the type param it creates on the fly
 
-```ts twoslash
-type OneArgFn<A extends {}> = (firstArg: A, ..._: any[]) => void
-type GetFirstArg<T> = T extends OneArgFn<infer R> ? R : never;
+```ts{3-4,10} twoslash
+type OneArgFn<A = any> = (firstArg: A, ..._args: any[]) => void
+type GetFirstArg<T>
+    = T extends OneArgFn<infer R>
+        ? R
+        : never;
 
 // Test case
 function foo(x: string, y: number) {return null}
+function bar(): void {}
 //        ^?
 type t1 = GetFirstArg<typeof foo>
 //    ^?
@@ -212,7 +256,7 @@ type t1 = GetFirstArg<typeof foo>
 
 There we go! `string` is what we were looking for! Let's bring it back to our fruit market example
 
-```ts twoslash
+```ts{60-63,65} twoslash
 // @errors: 2739
 // @filename: node_modules/fruit-market.ts
 type AppleVarieties = 'fuji' | 'gala' | 'honeycrisp' | 'granny smith';
@@ -274,15 +318,19 @@ import { createOrder } from 'fruit-market';
 
 type OneArgFn<A extends {}> = (firstArg: A, ..._: any[]) => void
 
-type GetFirstArg<T> = T extends OneArgFn<infer R> ? R : never;
+type GetFirstArg<T>
+    = T extends OneArgFn<infer R>
+        ? R
+        : never;
 
 const prefs: GetFirstArg<typeof createOrder> = {}
+//     ^?
 
 createOrder(prefs)
 ```
 
 Awesome! We're getting an error that indicates we have the desired type!
-:tada: Success!
+:tada:
 
 ## Constraints on `infer`
 
