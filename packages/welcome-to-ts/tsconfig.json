@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "target": "ES3",
+    "target": "ES2015",
     "moduleResolution": "node",
-    "ignoreDeprecations": "5.0",
   },
   "include": ["src"]
 }
