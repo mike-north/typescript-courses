@@ -2,27 +2,17 @@
 title: Mapped Types
 date: "2021-06-10T09:00:00.000Z"
 description: |
-  Mapped allow types to be defined in other types through a
-  much more flexible version of an index signature. We'll
-  study this type in detail, and demonstrate how it makes
-  language features like indexed access types and conditional
-  types even more powerful!
+  Mapped types are a powerful feature in TypeScript that allows you to create new types based on existing ones by transforming properties in a controlled manner. 
 
 course: intermediate-v2
 order: 7
 ---
 
-Mapped allow types to be defined in other types through a
-much more flexible version of an index signature. We'll
-study this type in detail, and demonstrate how it makes
-language features like indexed access types and conditional
-types even more powerful!
+Mapped types are a powerful feature in TypeScript that allows you to create new types based on existing ones by transforming properties in a controlled manner. Think of this feature kind of like `array.map()`, but for types instead of values.
 
 ## The basics
 
-If you recall the concept of index signatures allow specification
-of some value type for an arbitrary key. They're the foundation for
-dictionary types in TypeScript:
+Recall that index signatures allow specification of some value type for an arbitrary key. They're the foundation for dictionary types in TypeScript:
 
 ```ts twoslash
 type Fruit = {
@@ -31,19 +21,16 @@ type Fruit = {
   mass: number
 }
 
-type Dict<T> = { [k: string]: T } // <- index signature
+type Dict<T> = { [k: string]: T | undefined } // <- index signature
 
 const fruitCatalog: Dict<Fruit> = {}
 fruitCatalog.apple
 //            ^?
 ```
 
-What if we didn't want _just any key_ to be used to store fruits
-in our `fruitCatalog` object, but a specific subset of keys.
+What if we didn't want _just any key_ to be used to store fruits in our `fruitCatalog` object, but a specific subset of keys.
 
-You could do this with a map type. We'll stop calling our collection
-a `Dict`, since that would imply that we could still use arbitrary keys. Let's
-call this a `Record` instead. How about `MyRecord`...
+You could do this with a mapped type. We'll stop calling our collection a `Dict`, since that would imply that we could still use arbitrary keys. Let's call this a `Record` instead. How about `MyRecord`...
 
 ```ts twoslash
 // @errors: 2339
@@ -79,8 +66,8 @@ Let's compare this to a true index signature so that we can see the differences
 Notice:
 
 - The `in` keyword in the mapped type
-- Index signatures can be on _all `string`s_ or _all `number`s_, but not some
-  subset of strings or numbers
+- Index signatures can define keys as _all `string`s_, _all `number`s_, all `Symbol`s, but not some
+  specific subset of these primitive types
 
 ```ts twoslash
 // @errors: 1337
@@ -96,27 +83,26 @@ type MyRecord = { [key: "apple" | "cherry"]: Fruit }
 
 ### Record
 
-If make our type a bit more generalized with some type params
-instead of hardcoding `Fruit` and `"apple" | "cherry"` as shown below,
-we'll arrive at a _built-in utility type_ that comes with TypeScript.
+If make our type a bit more generalized we'll arrive at a _built-in utility type_ that comes with TypeScript.
+
+We just need to 
+
+- Replace the hardcoded `Fruit` and `"apple" | "cherry"` with typeParams
+- Replace the `string` type with a type that represents any possible property name in JavaScript.
+
+```ts twoslash
+type AnyPossibleKey = keyof any
+//    ^?
+```
+
 
 ```diff
 - type MyRecord = { [FruitKey in "apple" | "cherry"]: Fruit }
-+ type MyRecord<KeyType, ValueType> = { [Key in KeyType]: ValueType }
++ type MyRecord<K extends keyof any, V> = { [Key in K]: V }
 ```
 
 ```ts twoslash
-// @errors: 1337
-type Fruit = {
-  name: string
-  color: string
-  mass: number
-}
-
-/// ---cut---
-type MyRecord<KeyType extends string, ValueType> = {
-  [Key in KeyType]: ValueType
-}
+type MyRecord<K extends keyof any, V> = { [Key in K]: V }
 ```
 
 Here's the built-in TypeScript type, which matches this pretty much exactly:
@@ -130,18 +116,16 @@ type Record<K extends keyof any, T> = {
 }
 ```
 
-You may notice the `keyof any` difference. As you can see below, it's
-just `string | number | symbol`
-
-```ts twoslash
-let anyKey: keyof any
-//     ^?
-```
-
 ## Use with indexed access types
 
-Mapped types work _beautifully_ with indexed access types, because
-the _index_ can be used when defining the value type.
+Note that we've introduced a `Key` term in the mapped type
+
+```ts twoslash
+type MyRecord<K extends keyof any, V> = { [Key in K]: V }
+//                                          ^?
+```
+
+This is a newly created typeParam that happens in mapped types, which can be used as part of the type expression for the value associated with the key. Indexed access types work _beautifully_ with this new typeParam.
 
 ```ts twoslash
 type PartOfWindow = {
@@ -153,31 +137,20 @@ type PartOfWindow = {
 }
 ```
 
-We couldn't have written any equivalent of `Window[Key]` using regular
-index signatures. What we end up with, in a sense, is almost as if
-**the mapped type loops over all of the possible keys, and determines
-the appropriate value type
-for each key**
+We couldn't have written any equivalent of `Window[Key]` using regular index signatures. What we end up with, in a sense, is almost as if **the mapped type loops over all of the possible keys, and determines the appropriate value type for each key**
 
-Let's make this a little more generalized through the use of type params.
-First, we should let the caller define which keys they'd like to use. We'll call
-this type `PickWindowProperties` because we get to specify which things from
-`Window` we'd like
+Let's make this a little more generalized through the use of type params. First, we should let the caller define which keys they'd like to use. We'll call this type `PickWindowProperties` because we get to specify which things from `Window` we'd like
 
 ```ts twoslash
 type PickWindowProperties<Keys extends keyof Window> = {
   [Key in Keys]: Window[Key]
 }
-// prettier-ignore
-type PartOfWindow = PickWindowProperties<
+type PartOfWindow = 
 //     ^?
-  "document" | "navigator" | "setTimeout"
->
+  PickWindowProperties<"document" | "navigator" | "setTimeout">
 ```
 
-Let's generalize it one step further by allowing this type to work on anything,
-not just a `Window`. Because this is no longer a type that _exclusively_
-works with `Window`, we'll rename this type to `PickProperties`.
+Let's generalize it one step further by allowing this type to work on anything, not just a `Window`. Because this is no longer a type that _exclusively_ works with `Window`, we'll rename this type to `PickProperties`.
 
 ```ts twoslash
 type PickProperties<
@@ -186,18 +159,14 @@ type PickProperties<
 > = {
   [Key in Keys]: ValueType[Key]
 }
-// prettier-ignore
-type PartOfWindow = PickProperties<
+type PartOfWindow =
 //     ^?
-  Window,
-  "document" | "navigator" | "setTimeout"
->
+  PickProperties<Window, "document" | "navigator" | "setTimeout">
 ```
 
 ### Pick
 
-We've arrived at another built-in TypeScript utility type: `Pick`. Our `PickProperties`
-now matches it exactly (the names of our type params are not of consequence)
+We've arrived at another built-in TypeScript utility type: `Pick`. Our `PickProperties` now matches it exactly (the names of our type params are not of consequence)
 
 ```ts
 /**
@@ -254,8 +223,7 @@ type Readonly<T> = {
 }
 ```
 
-There is no built-in TypeScript "utility type" for `readonly` removal,
-but you could implement one if you needed to (not necessarily a good idea though)
+There is no built-in TypeScript "utility type" for `readonly` removal, but it's possible to implement one. Given this kind of utility type introduces mutability to values that someone intended to be immutable, there's probably a good reason that TypeScript doesn't include this one.
 
 ```ts twoslash
 type NotReadonly<T> = {
