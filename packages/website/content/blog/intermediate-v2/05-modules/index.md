@@ -8,7 +8,7 @@ description: |
   so that you have all the tools you need in order to consume all
   the dependencies you care about, while keeping the TS compiler happy
 course: intermediate-v2
-order: 03
+order: 5
 ---
 
 The JS ecosystem was without an "official" module specification

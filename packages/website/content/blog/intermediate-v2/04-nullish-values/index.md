@@ -6,8 +6,8 @@ description: |
   the possibility that values are null or undefined. In this chapter,
   we will dive deep into null, undefined, definite assignment,
   and the non-null assertion operator.
-course: fundamentals-v4
-order: 14
+course: intermediate-v2
+order: 4
 ---
 
 There are situations where we have to plan for, and deal with

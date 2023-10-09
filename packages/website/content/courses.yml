@@ -27,7 +27,7 @@ courses:
     summary:
       Learn everything you need to know in order to confidently and successfully
       use TypeScript to build a modern JavaScript app.
-  - name: "Intermediate TypeScript"
+  - name: "Intermediate TypeScript v1"
     id: intermediate-v1
     visibleInTopNav: true
     visibleInCourseIndex: true
@@ -40,7 +40,7 @@ courses:
     summary: |
       Leverage TypeScript's strengths to provide clarity in the face of
       complexity, while protecting your codebase and team from it's weaknesses.
-  - name: "Intermediate TypeScript"
+  - name: "Intermediate TypeScript v2"
     id: intermediate-v2
     squareImage: /intermediate-ts-v2.png
     facebookImage: /fb-intermediate-ts-v2.png

@@ -6,7 +6,7 @@ description: |
   on comparison -- they can be used with an 'infer' keyword
   to access sub-parts of type information within a larger type
 course: intermediate-v2
-order: 6
+order: 8
 ---
 
 Conditional types are not just for switching behavior based on comparison -- they can be used with an `infer` keyword to access sub-parts of type information within a larger type
@@ -377,20 +377,6 @@ const t2 = [4, 54, 5] as const
 let firstT1: GetFirstStringIshElement<typeof t1>
 //   ^?
 let firstT2: GetFirstStringIshElement<typeof t2>
-//   ^?
-```
-
-## Extracting string literal types
-
-TypeScript 5 allows `infer` to be used in combination with string template types, which we can use to effectively extract portions of strings as new string literal types
-
-```ts twoslash
-// @errors: 2322
-const courseWebsite = "Frontend Masters";
-
-type ExtractMasterName<S> = S extends `${infer T} Masters` ? T : never;
-
-let fe: ExtractMasterName<typeof courseWebsite> = 'Backend'
 //   ^?
 ```
 

@@ -27,7 +27,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
         with:
-          languages: javascript
+          languages: javascript-typescript
       - run: yarn
       - run: yarn build
       - name: Perform CodeQL Analysis

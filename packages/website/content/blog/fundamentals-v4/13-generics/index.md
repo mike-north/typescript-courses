@@ -5,7 +5,7 @@ description: |
   Generics allow us to parameterize types, which unlocks great opportunity
   to reuse types broadly across a TypeScript project.
 course: fundamentals-v4
-order: 14
+order: 13
 ---
 
 [Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html) allow us to parameterize types, which unlocks great opportunity
@@ -326,4 +326,4 @@ const sameAs = window as any as number
 //     ^?
 ```
 
-In this example, we have told TypeScript a lie by saying `window` is a `number` (but it is not...). Now, TypeScript will fail to catch errors that it is suppose to be catching!
+In this example, we have told TypeScript a lie by saying `window` is a `number` (but it is not...). Now, TypeScript will fail to catch errors that it is suppose to be catching
