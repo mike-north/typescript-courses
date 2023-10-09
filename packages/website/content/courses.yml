@@ -1,7 +1,7 @@
 courses:
   - name: "TypeScript Fundamentals v3"
     id: fundamentals-v3
-    visibleInTopNav: true
+    visibleInTopNav: false
     visibleInCourseIndex: true
     visibleInCoursePage: true
     squareImage: /ts-fundamentals-v3.png
@@ -49,7 +49,7 @@ courses:
     femCoursePublished: false
     femWorkshopUrl: https://frontendmasters.com/workshops/intermediate-typescript-v2/
     femWorkshopPublished: true
-    visibleInTopNav: true
+    visibleInTopNav: false
     visibleInCourseIndex: false
     visibleInCoursePage: true
     summary: |
