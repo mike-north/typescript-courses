@@ -183,7 +183,7 @@ jobs:
         run: yarn lerna run test:jest --scope website
         run: yarn lerna run test --scope chat
       - name: Cypress
-        chat: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v6
         with:
           working-directory: packages/website
           start: yarn test:cypress
