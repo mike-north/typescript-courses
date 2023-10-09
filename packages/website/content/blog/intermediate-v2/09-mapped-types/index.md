@@ -5,7 +5,7 @@ description: |
   Mapped types are a powerful feature in TypeScript that allows you to create new types based on existing ones by transforming properties in a controlled manner. 
 
 course: intermediate-v2
-order: 7
+order: 9
 ---
 
 Mapped types are a powerful feature in TypeScript that allows you to create new types based on existing ones by transforming properties in a controlled manner. Think of this feature kind of like `array.map()`, but for types instead of values.

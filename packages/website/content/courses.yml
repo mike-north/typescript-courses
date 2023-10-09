@@ -14,7 +14,7 @@ courses:
       use TypeScript to build a modern JavaScript app.
   - name: "TypeScript Fundamentals v4"
     id: fundamentals-v4
-    visibleInTopNav: false
+    visibleInTopNav: true
     visibleInCourseIndex: false
     visibleInCoursePage: true
     squareImage: /ts-fundamentals-v4.png
@@ -49,7 +49,7 @@ courses:
     femCoursePublished: false
     femWorkshopUrl: https://frontendmasters.com/workshops/intermediate-typescript-v2/
     femWorkshopPublished: true
-    visibleInTopNav: false
+    visibleInTopNav: true
     visibleInCourseIndex: false
     visibleInCoursePage: true
     summary: |

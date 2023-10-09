@@ -6,7 +6,7 @@ description: |
   type params, and what the language would look like if we didn't have these
   important tools
 course: intermediate-v2
-order: 4
+order: 6
 ---
 
 Now that we have covered the basic use of Generics, let's layer on two more concepts: how [scoping](https://www.typescriptlang.org/docs/handbook/variable-declarations.html#scoping-rules) works with type params, and how we can describe type params that have more specific requirement than `any`.

@@ -6,7 +6,7 @@ description: |
   Many of us use array the higher-order functions map, filter and reduce
   quite often. Let's build out similar utilities that operate on dictionaries!
 course: fundamentals-v4
-order: 16
+order: 14
 ---
 
 Let's put our newfound knowledge around **Generics** to the test by building out
