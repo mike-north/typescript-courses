@@ -25,10 +25,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn
+            ~/.cache
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-1
+      - run: yarn install --frozen-lockfile
       - name: Build
         run: yarn lerna run build --scope website
       - name: Lint
@@ -60,11 +59,10 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+            ~/.cache
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-1
       - run: yarn config set network-timeout 300000
-      - run: yarn
+      - run: yarn install --frozen-lockfile
       - name: Build
         run: yarn lerna run build --scope website
       - name: Test
@@ -89,10 +87,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn
+            ~/.cache
+          key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}-1
+      - run: yarn install --frozen-lockfile
       - name: Build
         run: yarn lerna run build --scope website
       - name: Test
@@ -139,10 +136,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ matrix.typescript-version }}-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn
+            ~/.cache
+          key: ${{ runner.os }}-${{ matrix.typescript-version }}-${{ hashFiles('**/yarn.lock') }}-1
+      - run: yarn install --frozen-lockfile
       - name: Installing TypeScript ${{ matrix.typescript-version }}
         run: |
           yarn workspace website add -D typescript@${{ matrix.typescript-version}}
@@ -173,7 +169,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
-      - run: yarn
+      - run: yarn install --frozen-lockfile
       - name: Build
         run: yarn lerna run build-prod --scope website
       - uses: peaceiris/actions-gh-pages@v3
