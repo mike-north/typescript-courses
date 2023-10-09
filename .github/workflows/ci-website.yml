@@ -26,6 +26,7 @@ jobs:
         with:
           path: |
             ~/.cache
+            /Users/runner/Library/Caches/
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-1
       - run: yarn install --frozen-lockfile
       - name: Build
@@ -60,6 +61,7 @@ jobs:
         with:
           path: |
             ~/.cache
+            /Users/runner/Library/Caches/
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-1
       - run: yarn config set network-timeout 300000
       - run: yarn install --frozen-lockfile
@@ -88,6 +90,7 @@ jobs:
         with:
           path: |
             ~/.cache
+            /Users/runner/Library/Caches/
           key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}-1
       - run: yarn install --frozen-lockfile
       - name: Build
@@ -137,6 +140,7 @@ jobs:
         with:
           path: |
             ~/.cache
+            /Users/runner/Library/Caches/
           key: ${{ runner.os }}-${{ matrix.typescript-version }}-${{ hashFiles('**/yarn.lock') }}-1
       - run: yarn install --frozen-lockfile
       - name: Installing TypeScript ${{ matrix.typescript-version }}
