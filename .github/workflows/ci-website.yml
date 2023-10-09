@@ -39,7 +39,7 @@ jobs:
         run: yarn lerna run lint --scope chat
       - name: Test
         run: yarn lerna run test:jest --scope website
-        run: yarn lerna run test:jest --scope chat
+        run: yarn lerna run test --scope chat
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
@@ -72,13 +72,12 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-1
       - run: yarn config set network-timeout 300000
       - run: yarn install --frozen-lockfile
-      - run: yarn install --frozen-chat
       - name: Build
         run: yarn lerna run build --scope website
         run: yarn lerna run build --scope chat
       - name: Test 
         run: yarn lerna run test:jest --scope website
-        run: yarn lerna run test:jest --scope chat
+        run: yarn lerna run test --scope chat
       - name: Cypress
         uses: cypress-io/github-action@v6
 
@@ -105,13 +104,12 @@ jobs:
             !~/cache/exclude
           key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}-1
       - run: yarn install --frozen-lockfile
-      - run: yarn install --frozen-chat
       - name: Build
         run: yarn lerna run build --scope website
         run: yarn lerna run build --scope chat
       - name: Test 
         run: yarn lerna run test:jest --scope website
-        run: yarn lerna run test:jest --scope chat
+        run: yarn lerna run test --scope chat
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
@@ -169,7 +167,6 @@ jobs:
       - name: TypeScript compile
         run: |
           yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
-          chatrn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
           yarn lerna run typecheck --scope website
           yarn lerna run chatypecheck --scope website
       - name: Test Website: yarn lerna run test:jest --scope website
