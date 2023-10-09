@@ -16400,15 +16400,10 @@ typescript@>3, "typescript@>=3 < 6":
   resolved "https://registry.npmjs.org/typescript/-/typescript-5.2.2.tgz"
   integrity sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==
 
-typescript@^4.3.2:
-  version "4.9.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
-  integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
-
-typescript@^5.3.0-beta:
-  version "5.3.0-dev.20231007"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.3.0-dev.20231007.tgz#c77a50058bfdb502365d70a11b7ae231447bf6d5"
-  integrity sha512-yNeHmU15JtC5TgUuiCaywQqtVJ6Q1T6mNwDg5N1ObnctoaqBrZ0FGy37NP0Y/UnJUhZxgcYrIb1gcial4fUiyA==
+typescript@^5.3.0-beta, typescript@^5.3.0-dev.20231009:
+  version "5.3.0-dev.20231009"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.3.0-dev.20231009.tgz#6d6bd4c40e714966c5fe105aebd8d0f0eb2166c8"
+  integrity sha512-0JwLa29peN3wK/3uUMHTr9bzLwJ7BIloeN3JTyHj0aeyoowNMJXjpVMSTu8geVzfP4RPL9vM/7iyVPrPBmLBaQ==
 
 typography-breakpoint-constants@^0.16.19:
   version "0.16.19"
