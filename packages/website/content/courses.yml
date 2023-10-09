@@ -1,7 +1,7 @@
 courses:
   - name: "TypeScript Fundamentals v3"
     id: fundamentals-v3
-    visibleInTopNav: false
+    visibleInTopNav: true
     visibleInCourseIndex: true
     visibleInCoursePage: true
     squareImage: /ts-fundamentals-v3.png
@@ -14,7 +14,7 @@ courses:
       use TypeScript to build a modern JavaScript app.
   - name: "TypeScript Fundamentals v4"
     id: fundamentals-v4
-    visibleInTopNav: true
+    visibleInTopNav: false
     visibleInCourseIndex: false
     visibleInCoursePage: true
     squareImage: /ts-fundamentals-v4.png
