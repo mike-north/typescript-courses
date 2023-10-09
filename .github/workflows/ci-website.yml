@@ -188,8 +188,9 @@ jobs:
           yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
           yarn lerna run typecheck --scope website
       - name: Test
-        run: yarn lerna run test:jest --scope website
-        run: yarn lerna run test --scope chat
+        run: |
+          yarn lerna run test:jest --scope website
+          yarn lerna run test --scope chat
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
