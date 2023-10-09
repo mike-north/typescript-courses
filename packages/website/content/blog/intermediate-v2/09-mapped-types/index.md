@@ -85,7 +85,7 @@ type MyRecord = { [key: "apple" | "cherry"]: Fruit }
 
 If make our type a bit more generalized we'll arrive at a _built-in utility type_ that comes with TypeScript.
 
-We just need to 
+We just need to...
 
 - Replace the hardcoded `Fruit` and `"apple" | "cherry"` with typeParams
 - Replace the `string` type with a type that represents any possible property name in JavaScript.
@@ -94,7 +94,6 @@ We just need to
 type AnyPossibleKey = keyof any
 //    ^?
 ```
-
 
 ```diff
 - type MyRecord = { [FruitKey in "apple" | "cherry"]: Fruit }
