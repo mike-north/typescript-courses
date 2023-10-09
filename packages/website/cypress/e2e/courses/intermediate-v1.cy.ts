@@ -17,7 +17,7 @@ describe('Intermediate typescript v1 course page', () => {
   it('title is present', () => {
     cy.get('h1').should(
       'have.text',
-      'Intermediate TypeScript',
+      'Intermediate TypeScript v1',
     );
   });
   it('summary is present', () => {

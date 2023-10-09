@@ -57,7 +57,7 @@ describe('course list page', () => {
     );
     cy.get('h1').should(
       'have.text',
-      'Intermediate TypeScript',
+      'Intermediate TypeScript v1',
     );
     cy.get('.course-article__title').should(
       'have.length.at.least',
