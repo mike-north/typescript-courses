@@ -380,20 +380,6 @@ let firstT2: GetFirstStringIshElement<typeof t2>
 //   ^?
 ```
 
-## Extracting string literal types
-
-TypeScript 5 allows `infer` to be used in combination with string template types, which we can use to effectively extract portions of strings as new string literal types
-
-```ts twoslash
-// @errors: 2322
-const courseWebsite = "Frontend Masters";
-
-type ExtractMasterName<S> = S extends `${infer T} Masters` ? T : never;
-
-let fe: ExtractMasterName<typeof courseWebsite> = 'Backend'
-//   ^?
-```
-
 ## Utility types that use `infer`
 
 TypeScript includes a number of utility types, which are kind of like a type-based standard library. A couple of these are essentially just based around generics, conditional types and the `infer` keyword. Let's take a close look at them

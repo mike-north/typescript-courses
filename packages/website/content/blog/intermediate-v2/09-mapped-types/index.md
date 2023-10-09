@@ -187,17 +187,11 @@ type PickProperties<
 
 ## Mapping modifiers
 
-Following our analogy of mapped types feeling like "looping over all keys",
-there are a couple of final things we can do to the properties as we
-create each type: set whether the value placed there should be `readonly`
-and/or `optional`
+Following our analogy of mapped types feeling like "looping over all keys", there are a couple of final things we can do to the properties as we create each type: set whether the value placed there should be `readonly` and/or `optional`
 
-This is fairly straightforward, and you can see the use of the
-`?` and `readonly` in the three more built-in TypeScript utility
-types below.
+This is fairly straightforward, and you can see the use of the `?` and `readonly` in the three more built-in TypeScript utility types below.
 
-If there's a `-` to the left of `readonly` or `?` in a mapped type, that
-indicates _removal_ of this modifier instead of _application_ of the modifier.
+If there's a `-` to the left of `readonly` or `?` in a mapped type, that indicates _removal_ of this modifier instead of _application_ of the modifier.
 
 ```ts
 /**
@@ -234,8 +228,7 @@ type NotReadonly<T> = {
 
 TypeScript 4.1 brought with it [template literal types](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html).
 
-Below you can see an example of how we take three things you
-could find in a painting, and four paint colors you could use.
+Below you can see an example of how we take three things you could find in a painting, and four paint colors you could use.
 
 ```ts twoslash
 type ArtFeatures = "cabin" | "tree" | "sunset"
@@ -246,10 +239,7 @@ type Colors =
   | "prussianBlue"
 ```
 
-We can use the **exact same syntax that one would find in an ECMAScript
-template literal**,
-but in a _type expression_ instead of a _value expression_, to create a new
-type that represents every possible combination of these art features and colors
+We can use the **exact same syntax that one would find in an ECMAScript template literal**, but in a _type expression_ instead of a _value expression_, to create a new type that represents every possible combination of these art features and colors
 
 ```ts twoslash
 type ArtFeatures = "cabin" | "tree" | "sunset"
@@ -263,12 +253,9 @@ type ArtMethodNames = `paint_${Colors}_${ArtFeatures}`
 //       ^?
 ```
 
-While something like `"paint_darkSienna_cabin"` could definitely be the
-name of a class method in JavaScript or TypeScript, it's more conventional
-to use `camelCase` instead of `snake_case`
+While something like `"paint_darkSienna_cabin"` could definitely be the name of a class method in JavaScript or TypeScript, it's more conventional to use `camelCase` instead of `snake_case`
 
-TypeScript provides a few special types you can use _within these
-template literal types_
+TypeScript provides a few special types you can use _within these template literal types_
 
 - `UpperCase`
 - `LowerCase`
@@ -289,12 +276,9 @@ type ArtMethodNames =
   `paint${Capitalize<Colors>}${Capitalize<ArtFeatures>}`
 ```
 
-There we go. `paintDarkSiennaCabin` is much more aligned with
-what we're used to seeing for function names.
+There we go. `paintDarkSiennaCabin` is much more aligned with what we're used to seeing for function names.
 
-Now, let's bring this back into the world of Mapped Types,
-to perform some **key mapping**, where the resultant Mapped Type
-has different property names than the type being "iterated over" during the mapping.
+Now, let's bring this back into the world of Mapped Types, to perform some **key mapping**, where the resultant Mapped Type has different property names than the type being "iterated over" during the mapping.
 
 Note the use of the `as` keyword in the index signature
 
@@ -319,18 +303,27 @@ function load(dataSDK: DataSDK) {
 }
 ```
 
-If you've ever written data layer code, where often there are defined
-types available, and potentially you have a lot of `is*`, `get*` and `set*`
-methods, you're probably starting to see how Mapped Types have the potential
-to provide rich validation across a wide range of data models.
+If you've ever written data layer code, where often there are defined types available, and potentially you have a lot of `is*`, `get*` and `set*` methods, you're probably starting to see how Mapped Types have the potential to provide rich validation across a wide range of data models.
+
+### Extracting string literal types
+
+TypeScript 5 allows `infer` to be used in combination with string template types, which we can use to effectively extract portions of strings as new string literal types
+
+```ts twoslash
+// @errors: 2322
+const courseWebsite = "Frontend Masters";
+
+type ExtractMasterName<S> = S extends `${infer T} Masters` ? T : never;
+
+let fe: ExtractMasterName<typeof courseWebsite> = 'Backend'
+//   ^?
+```
 
 ## Filtering properties out
 
-We've already seen how we could filter properties out of a mapped
-type, if the filter condition is based on the _key_.
+We've already seen how we could filter properties out of a mapped type, if the filter condition is based on the _key_.
 
-Here's an example using `Extract` and a template literal type
-to filter for only those members of `window.document` that begin with `"query"`:
+Here's an example using `Extract` and a template literal type to filter for only those members of `window.document` that begin with `"query"`:
 
 ```ts twoslash
 type DocKeys = Extract<keyof Document, `query${string}`>
@@ -340,16 +333,11 @@ type KeyFilteredDoc = {
 }
 ```
 
-But what if we needed to filter by _value_? To put this another way,
-what if we wanted things to be included or excluded from our mapped type
-based on `Document[K]`?
+But what if we needed to filter by _value_? To put this another way, what if we wanted things to be included or excluded from our mapped type based on `Document[K]`?
 
 Our solution has to do with `never` and conditional types.
 
-**Here we're using a flawed approach**, where we set the "type of the value"
-to `never` whenever
-we want to skip it. This is going to leave us with a type that still has 100%
-of the keys that `Document` has, with many many values of type `never`
+**Here we're using a flawed approach**, where we set the "type of the value" to `never` whenever we want to skip it. This is going to leave us with a type that still has 100% of the keys that `Document` has, with many many values of type `never`
 
 ```ts twoslash
 ///////////////////////////////////////////////////////////
@@ -370,12 +358,9 @@ function load(doc: ValueFilteredDoc) {
 }
 ```
 
-Click Try and poke at this code in the TypeScript playground. While we're kind of
-"blocked" from using the things we tried to omit in our mapped type, this
-is quite messy.
+Click Try and poke at this code in the TypeScript playground. While we're kind of "blocked" from using the things we tried to omit in our mapped type, this is quite messy.
 
-> A better approach, which will get us a much cleaner result is to filter
-> our keys first and then use those keys to build a mapped type
+> A better approach, which will get us a much cleaner result is to filter our keys first and then use those keys to build a mapped type
 
 ```ts twoslash
 // Get keys of type T whose values are assignable to type U
