@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link changes the class when hovered 1`] = `
+<div
+  className="flex items-start px-6 py-2 text-sm hover-target hover:bg-gray-100 message"
+  role="listitem"
+>
+  <figure
+    className="w-10 h-10 rounded overflow-hidden mr-3"
+  >
+    <img
+      alt="Mike"
+      className="message__user-avatar"
+      src=""
+    />
+  </figure>
+  <div
+    className="flex-1"
+  >
+    <h5
+      className="text-sm"
+    >
+      <a
+        className="message__user-name text-black font-bold no-underline hover:underline"
+        href="#"
+      >
+        Mike
+      </a>
+      <span
+        className="sr-only"
+      >
+        at
+      </span>
+      <time
+        className="message__timestamp text-gray-500 text-xs font-normal ml-1"
+      >
+        Jan 01, 2001 00:01:00 AM
+      </time>
+    </h5>
+    <p
+      className="message__body text-black leading-normal"
+    >
+      Hello world!
+    </p>
+  </div>
+  <button
+    aria-label="permanently delete this message"
+    className="message__delete-button border-transparent hover:border-red-400 show-on-hover hover:bg-red-100 border-1 rounded mb-1 pl-3 pr-2 py-1"
+  >
+    🗑
+  </button>
+</div>
+`;

@@ -1,0 +1,64 @@
+# markdown-spellcheck spelling configuration file
+# Format - lines beginning # are comments
+# global dictionary is at the start, file overrides afterwards
+# one word per line, to define a file override use ' - filename'
+# where filename is relative to this configuration file
+linter
+ts
+nullish
+falsy
+WeakMap
+variadic
+vscode
+JSDoc
+superset
+js
+UX
+runtime
+namespace
+JSON
+codebases
+i.e.
+refactorings
+es2020
+es2017
+APIs
+enums
+SemVer
+`.gitignore`
+volta
+tsconfig
+CommonJS
+es2018
+eslint
+config
+params
+npm
+webpack
+truthy
+ok
+fall-throughs
+codebase
+JSdoc
+CJS
+ESM
+interop
+node_modules
+Node.js
+codemod
+dtslint
+DefinitelyTyped
+stringified
+tslint
+subfolder
+tsd
+README
+initializers
+enum
+reassignable
+lodash
+React.js
+versioning
+tsx
+tsconfig.json
+rollup

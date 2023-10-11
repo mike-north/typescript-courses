@@ -1,0 +1,79 @@
+{
+  "scripts": {
+    "build": "parcel build index.html",
+    "dev": "node ./server/index.js",
+    "lint": "yarn eslint src server tests --ext .js,.ts,.jsx,.tsx -c ./.eslintrc",
+    "test": "yarn test-jest",
+    "test-jest": "jest tests/components",
+    "test-tsd": "tsd tests/types-tsd",
+    "test-dtslint": "dtslint tests/types-dtslint"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@fullhuman/postcss-purgecss": "^3.0.0",
+    "@microsoft/api-documenter": "^7.9.16",
+    "@microsoft/api-extractor": "^7.10.4",
+    "@types/express": "^4.17.8",
+    "@types/jest": "^26.0.14",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.2",
+    "@types/react-router": "^5.1.8",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/react-test-renderer": "^17.0.1",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "concurrently": "^6.0.0",
+    "date-fns": "^2.16.1",
+    "dtslint": "^4.0.4",
+    "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-sonarjs": "^0.21.0",
+    "jest": "^26.4.2",
+    "nodemon": "^2.0.4",
+    "postcss": "^8.1.1",
+    "postcss-import": "^12.0.0",
+    "postcss-nesting": "^7.0.1",
+    "postcss-preset-env": "^6.0.0",
+    "postcss-purgecss": "^2.0.0",
+    "prettier": "^2.2.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
+    "react-test-renderer": "^17.0.1",
+    "sass": "^1.26.11",
+    "tailwindcss": "^1.8.10",
+    "tsd": "^0.14.0",
+    "typescript": "^5.3.0-beta"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "json-server": "^0.16.2",
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^5.3.0-beta"
+  },
+  "name": "chat",
+  "version": "1.1.0",
+  "author": "Mike North <michael.l.north@gmail.com>",
+  "license": "NOLICENSE",
+  "private": true,
+  "jest": {
+    "verbose": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!server/**"
+    ]
+  },
+  "resolutions": {
+    "node-forge": "^0.10.0"
+  }
+}

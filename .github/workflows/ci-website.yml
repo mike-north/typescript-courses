@@ -26,14 +26,20 @@ jobs:
         with:
           path: |
             ~/.cache
+            ~/cache
+            ~/.dts/
+            !~/cache/exclude
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-1
       - run: yarn install --frozen-lockfile
       - name: Build
         run: yarn lerna run build --scope website
+        run: yarn lerna run build --scope chat
       - name: Lint
         run: yarn lerna run lint --scope website
+        run: yarn lerna run lint --scope chat
       - name: Test
         run: yarn lerna run test:jest --scope website
+        run: yarn lerna run test:jest --scope chat
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
@@ -60,13 +66,19 @@ jobs:
         with:
           path: |
             ~/.cache
+            ~/cache
+            ~/.dts/
+            !~/cache/exclude
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-1
       - run: yarn config set network-timeout 300000
       - run: yarn install --frozen-lockfile
+      - run: yarn install --frozen-chat
       - name: Build
         run: yarn lerna run build --scope website
-      - name: Test
+        run: yarn lerna run build --scope chat
+      - name: Test 
         run: yarn lerna run test:jest --scope website
+        run: yarn lerna run test:jest --scope chat
       - name: Cypress
         uses: cypress-io/github-action@v6
 
@@ -88,12 +100,18 @@ jobs:
         with:
           path: |
             ~/.cache
+            ~/cache
+            ~/.dts/
+            !~/cache/exclude
           key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}-1
       - run: yarn install --frozen-lockfile
+      - run: yarn install --frozen-chat
       - name: Build
         run: yarn lerna run build --scope website
-      - name: Test
+        run: yarn lerna run build --scope chat
+      - name: Test 
         run: yarn lerna run test:jest --scope website
+        run: yarn lerna run test:jest --scope chat
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
@@ -137,6 +155,9 @@ jobs:
         with:
           path: |
             ~/.cache
+            ~/cache
+            ~/.dts/
+            !~/cache/exclude
           key: ${{ runner.os }}-${{ matrix.typescript-version }}-${{ hashFiles('**/yarn.lock') }}-1
       - run: yarn install --frozen-lockfile
       - name: Installing TypeScript ${{ matrix.typescript-version }}
@@ -148,11 +169,13 @@ jobs:
       - name: TypeScript compile
         run: |
           yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
+          chatrn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
           yarn lerna run typecheck --scope website
-      - name: Test
-        run: yarn lerna run test:jest --scope website
+          yarn lerna run chatypecheck --scope website
+      - name: Test Website: yarn lerna run test:jest --scope website
       - name: Cypress
-        uses: cypress-io/github-action@v6
+      - name: Cypress
+        chat: cypress-io/github-action@v6
         with:
           working-directory: packages/website
           start: yarn test:cypress
