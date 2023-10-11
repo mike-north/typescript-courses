@@ -2728,7 +2728,7 @@
   dependencies:
     "@types/ms" "*"
 
-"@types/eslint-scope@^3.7.3":
+"@types/eslint-scope@^3.7.3", "@types/eslint-scope@~3.7.5":
   version "3.7.5"
   resolved "https://registry.yarnpkg.com/@types/eslint-scope/-/eslint-scope-3.7.5.tgz#e28b09dbb1d9d35fdfa8a884225f00440dfc5a3e"
   integrity sha512-JNvhIEyxVW6EoMIFIvj93ZOywYFatlpu9deeH6eSx6PE3WHYvHaQtmHmQeNw7aA81bYGBPPQqdtBm6b1SsQMmA==
@@ -2736,18 +2736,10 @@
     "@types/eslint" "*"
     "@types/estree" "*"
 
-"@types/eslint@*":
+"@types/eslint@*", "@types/eslint@^7.2.13", "@types/eslint@^7.29.0", "@types/eslint@~8.44.3":
   version "8.44.4"
   resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-8.44.4.tgz#28eaff82e1ca0a96554ec5bb0188f10ae1a74c2f"
   integrity sha512-lOzjyfY/D9QR4hY9oblZ76B90MYTB3RrQ4z2vBIJKj9ROCRqdkYl2gSUx1x1a4IWPjKJZLL4Aw1Zfay7eMnmnA==
-  dependencies:
-    "@types/estree" "*"
-    "@types/json-schema" "*"
-
-"@types/eslint@^7.2.13", "@types/eslint@^7.29.0":
-  version "7.29.0"
-  resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-7.29.0.tgz#e56ddc8e542815272720bb0b4ccc2aff9c3e1c78"
-  integrity sha512-VNcvioYDH8/FxaeTKkM4/TiTwt6pBV9E3OfGmvaw8tPl0rrHCJ4Ll15HRT+pMiFAf/MLQvAzC+6RzUMEL9Ceng==
   dependencies:
     "@types/estree" "*"
     "@types/json-schema" "*"
