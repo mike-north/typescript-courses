@@ -32,8 +32,6 @@
     "dev-welcome-to-ts": "lerna run dev --scope welcome-to-ts --stream"
   },
   "resolutions": {
-    "node-forge": "^0.10.0",
-    "@types/eslint": "~8.44.3",
-    "@types/eslint-scope": "~3.7.5"
+    "node-forge": "^0.10.0"
   }
 }
