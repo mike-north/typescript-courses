@@ -1,6 +1,6 @@
 // @ts-check
 import { Parcel } from "@parcel/core"
-import e from 'express';
+import * as express from 'express';
 import jsonServer from 'json-server';
 import { setupAPI } from './api-server.mjs';
 import { join }  from 'path';
@@ -14,13 +14,12 @@ if (!PKG_JSON_PATH) throw new Error('Could not determine package.json path');
 console.log("Directory: " + PKG_JSON_PATH)
 const DIR_NAME = join(PKG_JSON_PATH, '..');
 const DIST_INDEX_HTML = join(DIR_NAME, "dist", "index.html")
-const app = e();
+const app = express();
 
 setupAPI(server);
 
 
 const file = join(DIR_NAME, 'index.html'); // Pass an absolute path to the entrypoint here
-const options = {}; // See options section of api docs, for the possibilities
 
 // Initialize a new bundler using a file and options
 const bundler = new Parcel({ entries: file, defaultConfig: '@parcel/config-default',
@@ -34,13 +33,12 @@ await bundler.watch((err, buildEvent) => {
     if(buildEvent && buildEvent.type === "buildSuccess") {
         const { buildTime } = buildEvent;
         console.log(`🏗️ UI build complete: ${buildTime/1000}s`)
-        
     }
     if(err) console.error(err);
 });
 console.log("UI Build Watcher Started")
 
-app.use('/assets', e.static(join(DIR_NAME, 'assets')));
+app.use('/assets', express.static(join(DIR_NAME, 'assets')));
 app.use(server);
 app.get("*", (req, res, next) => {
     if (req.path.endsWith(".js")) { next(); return; }
@@ -50,7 +48,7 @@ app.get("*", (req, res, next) => {
     }
     else next();
 });
-app.get("*", e.static(join(DIR_NAME, "dist")))
+app.get("*", express.static(join(DIR_NAME, "dist")))
 
 // Listen on port PORT
 app.listen(PORT, () => {
