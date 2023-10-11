@@ -1,0 +1,30 @@
+
+### Get all users
+GET http://localhost:1234/api/users HTTP/1.1
+
+### Get one user
+GET http://localhost:1234/api/users/1 HTTP/1.1
+
+### Get all teams
+GET http://localhost:1234/api/teams HTTP/1.1
+
+### Get a team (includes channels)
+GET http://localhost:1234/api/teams/li HTTP/1.1
+
+### Get team channel messages
+GET http://localhost:1234/api/teams/li/channels/general/messages HTTP/1.1
+
+### Create a new message in a team channel
+POST http://localhost:1234/api/messages HTTP/1.1
+Content-Type: application/json
+
+{
+  "teamId": "li",
+  "channelId": "general",
+  "userId": 1,
+  "body": "Hi everyone!"
+}
+
+### Delete a message
+DELETE http://localhost:1234/api/messages/19 HTTP/1.1
+Content-Type: application/json

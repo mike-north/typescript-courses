@@ -1,0 +1,100 @@
+{
+  "env": {
+    "es2021": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "plugin:promise/recommended",
+    "plugin:sonarjs/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "project": "tsconfig.eslint.json"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "promise",
+    "sonarjs",
+    "prettier"
+  ],
+  "rules": {
+    "prefer-const": "error"
+  },
+  "overrides": [
+    /**
+     * CLIENT SIDE CODE
+     */
+    {
+      "files": ["src/**/*.{mts,ts,mjs,js,jsx,tsx}"],
+
+      "env": {
+        "browser": true,
+        "es2021": true
+      },
+      "rules": {
+        "react/prop-types": "off",
+        "react/no-children-prop": "off"
+      },
+      "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+      ]
+    },
+    /**
+     * SERVER SIDE CODE
+     */
+    {
+      "extends": ["plugin:node/recommended"],
+      "files": [
+        "config/**/*.js",
+        "babel.config.js",
+        "tailwind.config.js",
+        "postcss.config.js",
+        "server/**/*.mjs"
+      ],
+      "env": { "node": true },
+      "rules": {
+        
+      }
+    },
+    /**
+     * TYPESCRIPT CODE
+     */
+    {
+      "files": ["{src,tests}/**/*.{mts,ts,tsx}"],
+      "extends": [
+        "prettier",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ],
+      "rules": {
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/restrict-template-expressions": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-unsafe-return": "off",
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    },
+    /**
+     * TESTS
+     */
+    {
+      "files": ["tests/**/*.{mjs,jsx,mts,ts,tsx}"],
+      "extends": [],
+      "env": { "node": true, "jest": true }
+    }
+  ]
+}
