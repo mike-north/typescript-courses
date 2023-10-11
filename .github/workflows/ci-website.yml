@@ -30,11 +30,19 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - name: Build
-        run: yarn lerna run build --scope website
+        run: |
+          yarn lerna run build --scope website
+          yarn lerna run build --scope chat
+          yarn lerna run build --scope hello-ts
+          yarn lerna run build --scope welcome-to-ts
       - name: Lint
-        run: yarn lerna run lint --scope website
-      - name: Test
+        run: |
+          yarn lerna run lint --scope website
+          yarn lerna run lint --scope chat
+      - name: Test website
         run: yarn lerna run test:jest --scope website
+      - name: Test chat app
+        run: yarn lerna run test --scope chat
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
@@ -66,9 +74,15 @@ jobs:
       - run: yarn config set network-timeout 300000
       - run: yarn
       - name: Build
-        run: yarn lerna run build --scope website
+        run: |
+          yarn lerna run build --scope website
+          yarn lerna run build --scope chat
+          yarn lerna run build --scope hello-ts
+          yarn lerna run build --scope welcome-to-ts
       - name: Test
-        run: yarn lerna run test:jest --scope website
+        run: |
+          yarn lerna run test:jest --scope website
+          yarn lerna run test --scope chat
 
   node-compatibility:
     needs: build
@@ -93,9 +107,15 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - name: Build
-        run: yarn lerna run build --scope website
+        run: |
+          yarn lerna run build --scope website
+          yarn lerna run build --scope chat
+          yarn lerna run build --scope hello-ts
+          yarn lerna run build --scope welcome-to-ts
       - name: Test
-        run: yarn lerna run test:jest --scope website
+        run: |
+          yarn lerna run test:jest --scope website
+          yarn lerna run test:jest --scope chat
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
@@ -146,14 +166,22 @@ jobs:
         run: |
           yarn workspace website add -D typescript@${{ matrix.typescript-version}}
           yarn workspace hello-ts add -D typescript@${{ matrix.typescript-version}}
+          yarn workspace welcome-to-ts add -D typescript@${{ matrix.typescript-version}}
+          yarn workspace chat add -D typescript@${{ matrix.typescript-version}}
       - name: Build
-        run: yarn lerna run build --scope website
-      - name: TypeScript compile
+        run: |
+          yarn lerna run build --scope website
+          yarn lerna run build --scope chat
+          yarn lerna run build --scope hello-ts
+          yarn lerna run build --scope welcome-to-ts
+      - name: Type-check website 
         run: |
           yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
           yarn lerna run typecheck --scope website
       - name: Test
-        run: yarn lerna run test:jest --scope website
+        run: |
+          yarn lerna run test:jest --scope website
+          yarn lerna run test:jest --scope chat
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
