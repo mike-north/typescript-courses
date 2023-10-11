@@ -5,7 +5,14 @@ import jsonServer from 'json-server';
 import { setupAPI } from './api-server.mjs';
 import { join }  from 'path';
 import * as pkgUp from 'pkg-up';
- 
+import RateLimit from 'express-rate-limit';
+
+const limiter = RateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // max 100 requests per windowMs
+});
+
+// apply rate limiter to all requests
 const server = jsonServer.create();
 
 const PORT = process.env['PORT'] || 3000;
@@ -25,9 +32,9 @@ const file = join(DIR_NAME, 'index.html'); // Pass an absolute path to the entry
 const bundler = new Parcel({ entries: file, defaultConfig: '@parcel/config-default',
 defaultTargetOptions: {
     engines: {
-      browsers: ['last 1 Chrome version']
+        browsers: ['last 1 Chrome version']
     }
-  }})
+}})
 
 await bundler.watch((err, buildEvent) => {
     if(buildEvent && buildEvent.type === "buildSuccess") {
@@ -38,6 +45,7 @@ await bundler.watch((err, buildEvent) => {
 });
 console.log("UI Build Watcher Started")
 
+app.use(limiter);
 app.use('/assets', express.static(join(DIR_NAME, 'assets')));
 app.use(server);
 app.get("*", (req, res, next) => {
