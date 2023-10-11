@@ -12,11 +12,10 @@
     "date-fns": "^2.30.0",
     "json-server": "^0.17.4",
     "pkg-up": "^4.0.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
     "typescript": "^5.3.0-beta"
   },
   "devDependencies": {
+    "@babel/core": "^7.23.0",
     "@parcel/config-default": "^2.10.0",
     "@parcel/optimizer-data-url": "^2.8.2",
     "@parcel/packager-ts": "^2.8.2",
@@ -28,6 +27,8 @@
     "@types/react": "^18.2.28",
     "@types/react-dom": "^18.2.13",
     "@types/react-router-dom": "^5.3.3",
+    "babel-jest": "^29.7.0",
+    "node-fetch": "^3.3.2",
     "parcel": "^2.10.0",
     "postcss": "^8.4.31",
     "postcss-import": "^15.1.0",
