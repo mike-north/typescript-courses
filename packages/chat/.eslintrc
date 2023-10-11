@@ -63,7 +63,12 @@
         "postcss.config.js",
         "server/**/*.mjs"
       ],
-      "env": { "node": true }
+      "env": { "node": true },
+      "rules": {
+        "node/no-unpublished-import": ["error", {
+          "allowModules": ["express-rate-limit"]
+      }]
+      }
     },
     /**
      * TYPESCRIPT CODE
