@@ -4,8 +4,10 @@ import { createRoot } from 'react-dom/client';
 import App from './ui/App';
 
 function initializeReactApp() {
-  const appContainer = document.getElementById('appContainer');
-  if (!appContainer) throw new Error('No #appContainer found in DOM');
+  const appContainer =
+    document.getElementById('appContainer');
+  if (!appContainer)
+    throw new Error('No #appContainer found in DOM');
   const root = createRoot(appContainer);
   root.render(React.createElement(App));
 }
