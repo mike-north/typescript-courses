@@ -11,10 +11,10 @@
     "@parcel/core": "^2.10.0",
     "date-fns": "^2.30.0",
     "express": "^4.18.2",
+    "express-rate-limit": "^7.1.1",
     "json-server": "^0.17.4",
     "pkg-up": "^4.0.0",
-    "typescript": "^5.3.0-beta",
-    "express-rate-limit": "^7.1.1"
+    "typescript": "^5.3.0-beta"
   },
   "devDependencies": {
     "@babel/core": "^7.23.0",
