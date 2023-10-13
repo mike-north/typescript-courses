@@ -12,7 +12,11 @@ import {
 
 type IAbbrevCourse = Pick<
   ICourse,
-  'id' | 'name' | 'squareImage' | 'summary'  | 'visibleInCourseIndex'
+  | 'id'
+  | 'name'
+  | 'squareImage'
+  | 'summary'
+  | 'visibleInCourseIndex'
 >;
 type IAbbrevCourseGroup = Pick<
   ICourseGroup,
@@ -56,15 +60,22 @@ const BlogIndex: React.FunctionComponent<
   const siteTitle = data.site.siteMetadata.title;
   const { courseGroups, courses } = data.site.siteMetadata;
   const courseGroupMap: {
-    [key: string]: { courses: IAbbrevCourse[]; current: IAbbrevCourse | null };
+    [key: string]: {
+      courses: IAbbrevCourse[];
+      current: IAbbrevCourse | null;
+    };
   } = {};
   const courseMap: Record<string, IAbbrevCourse> = {};
-  courses.filter(c => c.visibleInCourseIndex).forEach((c) => {
-    courseMap[c.id] = c;
-  });
+  courses
+    .filter((c) => c.visibleInCourseIndex)
+    .forEach((c) => {
+      courseMap[c.id] = c;
+    });
   courseGroups.forEach((cg) => {
     courseGroupMap[cg.id] = {
-      current: courseMap[cg.currentCourse] ? courseMap[cg.currentCourse] : null,
+      current: courseMap[cg.currentCourse]
+        ? courseMap[cg.currentCourse]
+        : null,
       courses: cg.courses.map((c) => courseMap[c]),
     };
   });
@@ -75,7 +86,9 @@ const BlogIndex: React.FunctionComponent<
       <SEO title="Courses" />
       <Bio />
       {courseGroups
-        .filter((c) => courseGroupMap[c.id].courses.length > 0)
+        .filter(
+          (c) => courseGroupMap[c.id].courses.length > 0,
+        )
         .sort(
           (a, b) => a.courseIndexOrder - b.courseIndexOrder,
         )
@@ -126,7 +139,6 @@ export const pageQuery = graphql`
           courses
           currentCourse
           courseIndexOrder
-
         }
         courses {
           id

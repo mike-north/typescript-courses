@@ -10,7 +10,9 @@ const SelectedTeam = ({ match, teams }) => {
   const { teamId: selectedTeamId } = params;
   if (!selectedTeamId) throw new Error(`undefined teamId`);
 
-  const selectedTeam = teams.find((t) => t.id === selectedTeamId);
+  const selectedTeam = teams.find(
+    (t) => t.id === selectedTeamId,
+  );
   if (!selectedTeam)
     throw new Error(
       `Invalid could not find team with id {selectedTeamId}`,

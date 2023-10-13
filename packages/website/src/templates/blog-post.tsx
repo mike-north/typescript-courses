@@ -53,11 +53,9 @@ function makeHTMLAdjustments(raw: string): string {
   );
 }
 
-const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
-  data,
-  pageContext,
-  location,
-}) => {
+const BlogPostTemplate: React.FunctionComponent<
+  IBlogPostTemplateProps
+> = ({ data, pageContext, location }) => {
   const post = data.markdownRemark;
   const siteTitle = data.site.siteMetadata.title;
   const { previous, next } = pageContext;
@@ -68,16 +66,25 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
   const course = data.site.siteMetadata.courses.find(
     (c) => c.id === post.frontmatter.course,
   );
-  if (!course) throw new Error(`Undefined course: ${post.frontmatter.course}`);
+  if (!course)
+    throw new Error(
+      `Undefined course: ${post.frontmatter.course}`,
+    );
 
-  const hasToc = !!post.tableOfContents && post.tableOfContents.trim() !== '';
+  const hasToc =
+    !!post.tableOfContents &&
+    post.tableOfContents.trim() !== '';
   const toc = hasToc ? (
     <div className="post-toc">
-      <div className="post-toc__title">Table of Contents</div>
+      <div className="post-toc__title">
+        Table of Contents
+      </div>
 
       <section
         className="post-toc__content"
-        dangerouslySetInnerHTML={{ __html: post.tableOfContents }}
+        dangerouslySetInnerHTML={{
+          __html: post.tableOfContents,
+        }}
       />
     </div>
   ) : (
@@ -88,7 +95,9 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
     <Layout location={location} title={siteTitle}>
       <SEO
         title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
+        description={
+          post.frontmatter.description || post.excerpt
+        }
       />
 
       <article className="blog-post">
@@ -102,10 +111,14 @@ const BlogPostTemplate: React.FunctionComponent<IBlogPostTemplateProps> = ({
             rel="next"
             className="course-title-link"
           >
-            <span className="course-title">{course.name}</span>
+            <span className="course-title">
+              {course.name}
+            </span>
           </Link>
           <EditOnGitHubLink chapter={post.fields.slug} />
-          <h1 className="post-title">{post.frontmatter.title}</h1>
+          <h1 className="post-title">
+            {post.frontmatter.title}
+          </h1>
           <p
             style={{
               ...scale(-1 / 5),

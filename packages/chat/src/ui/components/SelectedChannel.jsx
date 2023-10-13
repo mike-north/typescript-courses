@@ -15,7 +15,9 @@ const SelectedChannel = ({ match, channels }) => {
   if (!selectedChannel)
     return (
       <div>
-        <p>Could not find channel with id {selectedChannelId}</p>
+        <p>
+          Could not find channel with id {selectedChannelId}
+        </p>
         <pre>{JSON.stringify(channels, null, '  ')}</pre>
       </div>
     );

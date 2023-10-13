@@ -32,7 +32,10 @@ export async function apiCall(path, init) {
   let response;
   let json;
   try {
-    const jsonRespInfo = await getJSON(`/api/${path}`, init);
+    const jsonRespInfo = await getJSON(
+      `/api/${path}`,
+      init,
+    );
     response = jsonRespInfo.response;
     json = jsonRespInfo.json;
   } catch (err) {
@@ -45,6 +48,9 @@ export async function apiCall(path, init) {
     );
   }
   if (!response.ok)
-    throw new HTTPError(response, 'Problem while making API call');
+    throw new HTTPError(
+      response,
+      'Problem while making API call',
+    );
   return json;
 }

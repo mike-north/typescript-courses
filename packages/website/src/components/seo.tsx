@@ -24,23 +24,21 @@ const SEO: React.FunctionComponent<ISEOProps> = ({
   meta = [],
   title,
   facebookImage,
-  twitterImage
+  twitterImage,
 }) => {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            social {
-              twitter
-            }
+  const { site } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          description
+          social {
+            twitter
           }
         }
       }
-    `,
-  );
+    }
+  `);
 
   const metaDescription =
     description || site.siteMetadata.description;
@@ -49,14 +47,16 @@ const SEO: React.FunctionComponent<ISEOProps> = ({
     React.MetaHTMLAttributes<HTMLMetaElement>,
     HTMLMetaElement
   >[] = [];
-  if (facebookImage) imageTags.push({
+  if (facebookImage)
+    imageTags.push({
       property: `og:image`,
       content: facebookImage,
-  })
-  if (twitterImage) imageTags.push({
+    });
+  if (twitterImage)
+    imageTags.push({
       property: `twitter:image`,
       content: twitterImage,
-  })
+    });
 
   return (
     <Helmet

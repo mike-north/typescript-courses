@@ -8,13 +8,13 @@ interface ILayoutProps {
     pathname: string;
   };
   title: string;
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
 const Layout: React.FunctionComponent<ILayoutProps> = ({
   location,
   title,
-  children
+  children,
 }) => {
   const rootPath = `${__PATH_PREFIX__}/`;
   let header;
@@ -69,7 +69,9 @@ const Layout: React.FunctionComponent<ILayoutProps> = ({
     >
       <header>{header}</header>
       <main>{children}</main>
-      <footer>© {new Date().getFullYear()} All Rights Reserved</footer>
+      <footer>
+        © {new Date().getFullYear()} All Rights Reserved
+      </footer>
     </div>
   );
 };

@@ -9,9 +9,9 @@ export interface EditOnGitHubLinkProps {
 
 const REPO = 'mike-north/ts-fundamentals-v3';
 
-const EditOnGitHubLink: React.FunctionComponent<EditOnGitHubLinkProps> = ({
-  chapter,
-}): JSX.Element => {
+const EditOnGitHubLink: React.FunctionComponent<
+  EditOnGitHubLinkProps
+> = ({ chapter }): JSX.Element => {
   const url = `https://github.com/${REPO}/edit/main/packages/website/content/blog/${chapter
     .replace('/course', '')
     .substr(1)}index.md`;

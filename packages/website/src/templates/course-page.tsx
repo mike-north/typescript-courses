@@ -71,16 +71,25 @@ const CoursePageTemplate: React.FunctionComponent<
   const { courses, courseGroups } = data.site.siteMetadata;
   const posts = data.allMarkdownRemark.edges;
   let urlBanner: JSX.Element | null = null;
-  const { femCoursePublished, femCourseUrl, femWorkshopPublished, femWorkshopUrl } = course;
+  const {
+    femCoursePublished,
+    femCourseUrl,
+    femWorkshopPublished,
+    femWorkshopUrl,
+  } = course;
 
   if (femCourseUrl) {
     if (femCoursePublished) {
       urlBanner = (
         <p className="fem-course-banner">
-          <img className='fem-logo' src="/fem-logo.png" />
+          <img className="fem-logo" src="/fem-logo.png" />
           View the Frontend Masters video course for{' '}
           {course.name}{' '}
-          <a href={femCourseUrl} rel="noopener noreferrer" target="_blank">
+          <a
+            href={femCourseUrl}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             here
           </a>
         </p>
@@ -88,10 +97,14 @@ const CoursePageTemplate: React.FunctionComponent<
     } else if (femWorkshopPublished) {
       urlBanner = (
         <p className="fem-course-banner">
-          <img className='fem-logo' src="/fem-logo.png" />
+          <img className="fem-logo" src="/fem-logo.png" />
           View the Frontend Masters workshop for{' '}
           {course.name}{' '}
-          <a href={femWorkshopUrl} rel="noopener noreferrer" target="_blank">
+          <a
+            href={femWorkshopUrl}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             here
           </a>
         </p>
@@ -99,7 +112,11 @@ const CoursePageTemplate: React.FunctionComponent<
     }
   }
   return (
-    <CourseLayout courses={courses} courseGroups={courseGroups} padTop={!!urlBanner}>
+    <CourseLayout
+      courses={courses}
+      courseGroups={courseGroups}
+      padTop={!!urlBanner}
+    >
       <SEO
         title={course.name}
         description={course.summary}
