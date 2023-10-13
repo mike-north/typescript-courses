@@ -5,11 +5,7 @@ module.exports = {
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,
   },
-  purge: {
-    enabled: true,
-    content: ['index.html', './src/ui/**/*.jsx', './src/ui/**/*.tsx'],
-    mode: 'all',
-  },
+  content: ['index.html', './src/ui/**/*.jsx', './src/ui/**/*.tsx'],
   theme: {
     extend: {
       colors: {

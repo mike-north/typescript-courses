@@ -1,6 +1,6 @@
 // @ts-check
 import { Parcel } from "@parcel/core"
-import * as express from 'express';
+import express from 'express';
 import jsonServer from 'json-server';
 import { setupAPI } from './api-server.mjs';
 import { join }  from 'path';
