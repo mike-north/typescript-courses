@@ -5,18 +5,18 @@ Wordpress2016.overrideThemeStyles = () => {
   return {
     h1: {
       fontWeight: 700,
-      color: '#111'
+      color: '#111',
     },
-    h2: { color: '#111'},
-    h3: { color: '#111'},
-    h4: { color: '#111'},
+    h2: { color: '#111' },
+    h3: { color: '#111' },
+    h4: { color: '#111' },
     body: {
-      color: '#222'
+      color: '#222',
     },
     strong: {
       fontWeight: 900,
       color: '#000',
-      backgroundColor: '#ff9'
+      backgroundColor: '#ff9',
     },
     'a.gatsby-resp-image-link': {
       boxShadow: `none`,

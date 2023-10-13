@@ -45,12 +45,17 @@ const PureBio: React.FunctionComponent<IPureBioProps> = ({
           borderRadius: `50%`,
         }}
       />
-      <p style={{
-        flex: 1
-      }}>
-        Written by <strong>{author.name}</strong> {author.summary}
+      <p
+        style={{
+          flex: 1,
+        }}
+      >
+        Written by <strong>{author.name}</strong>{' '}
+        {author.summary}
         {` `}
-        <a href={`https://linkedin.com/in/${social.linkedin}`}>
+        <a
+          href={`https://linkedin.com/in/${social.linkedin}`}
+        >
           You should connect with him on LinkedIn
         </a>
         &nbsp;or&nbsp;
@@ -65,7 +70,9 @@ const PureBio: React.FunctionComponent<IPureBioProps> = ({
 const Bio = (): JSX.Element => {
   const data = useStaticQuery(graphql`
     query BioQuery {
-      avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+      avatar: file(
+        absolutePath: { regex: "/profile-pic.jpg/" }
+      ) {
         childImageSharp {
           fixed(width: 125, height: 125) {
             ...GatsbyImageSharpFixed
@@ -88,7 +95,13 @@ const Bio = (): JSX.Element => {
   `);
 
   const { author, social } = data.site.siteMetadata;
-  return <PureBio author={author} social={social} avatar={data.avatar} />;
+  return (
+    <PureBio
+      author={author}
+      social={social}
+      avatar={data.avatar}
+    />
+  );
 };
 
 export default Bio;

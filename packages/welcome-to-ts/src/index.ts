@@ -18,7 +18,9 @@ export async function addNumbers(a: number, b: number) {
 
 class Foo {
   static #bar = 3;
-  static getValue() { return Foo.#bar}
+  static getValue() {
+    return Foo.#bar;
+  }
 }
 
 //== Run the program ==//
