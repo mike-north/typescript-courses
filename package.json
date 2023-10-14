@@ -27,15 +27,15 @@
     "dev-chat": "yarn workspace chat dev",
     "dev-hello-ts": "yarn workspace hello-ts dev",
     "dev-welcome-to-ts": "yarn workspace welcome-to-ts dev",
-    "build": "yarn workspaces foreach --parallel run build",
+    "build": "yarn workspaces foreach -vpi run build",
     "lint-local-md": "yarn markdownlint README.md",
     "lint-local": "yarn lint-local-md",
-    "lint": "yarn lint-local && yarn workspaces foreach --parallel run lint",
-    "typecheck": "yarn workspaces foreach --parallel run typecheck",
+    "lint": "yarn lint-local && yarn workspaces foreach -vpi run lint",
+    "typecheck": "yarn workspaces foreach -vpi run typecheck",
     "test": "yarn test-jest && yarn test-tsd && yarn test-dtslint",
-    "test-jest": "yarn workspaces foreach --parallel run test-jest",
-    "test-tsd": "yarn workspaces foreach --parallel run test-tsd",
-    "test-dtslint": "yarn workspaces foreach --parallel run test-dtslint"
+    "test-jest": "yarn workspaces foreach -vpi run test-jest",
+    "test-tsd": "yarn workspaces foreach -vpi run test-tsd",
+    "test-dtslint": "yarn workspaces foreach -vpi run test-dtslint"
   },
   "resolutions": {
     "@types/eslint": "8.44.3"
