@@ -34,6 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
     "babel-jest": "^29.7.0",
+    "dtslint": "^4.2.1",
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-node": "^11.1.0",
@@ -49,16 +50,15 @@
     "postcss-preset-env": "^9.2.0",
     "postcss-purgecss": "^5.0.0",
     "tailwindcss": "^3.3.3",
+    "tsd": "^0.29.0",
     "typescript": "^5.3.0-beta"
   },
   "scripts": {
     "build": "yarn parcel build index.html",
     "dev": "node ./server/index.mjs",
     "lint": "yarn eslint src server tests --ext .js,.ts,.jsx,.tsx,.mjs,.mts -c ./.eslintrc.js",
-    "test": "yarn test:jest",
-    "test:jest": "jest tests",
-    "test:tsd": "tsd tests/types-tsd",
-    "test:dtslint": "dtslint tests/types-dtslint"
+    "test": "yarn test-jest",
+    "test-jest": "yarn jest tests"
   },
   "volta": {
     "node": "18.18.2",

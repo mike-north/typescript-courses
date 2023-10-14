@@ -98,8 +98,8 @@
     "lint:md": "yarn markdownlint -c ../../.markdownlint.jsonc content",
     "lint:ts": "eslint . --ext ts,js,tsx,jsx",
     "test": "yarn test:jest && yarn test:cypress",
-    "test:jest": "jest",
-    "test:cypress": "CYPRESS_SUPPORT=y start-server-and-test dev http://localhost:8000 cy:open",
+    "test-jest": "jest",
+    "test-cypress": "CYPRESS_SUPPORT=y start-server-and-test dev http://localhost:8000 cy:open",
     "typecheck": "tsc -P . --noEmit"
   },
   "volta": {

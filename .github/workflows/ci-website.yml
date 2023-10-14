@@ -26,10 +26,8 @@ jobs:
         run: yarn build
       - name: Lint
         run: yarn lint
-      - name: Test website
-        run: yarn workspace website run test:jest
-      - name: Test chat app
-        run: yarn workspace chat run test
+      - name: Test
+        run: yarn test
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
@@ -57,9 +55,7 @@ jobs:
       - name: Build
         run: yarn build
       - name: Test
-        run: |
-          yarn workspace website run test:jest
-          yarn workspace chat run test
+        run: yarn test
 
   node-compatibility:
     needs: build
@@ -132,7 +128,7 @@ jobs:
       - name: Type-check website 
         run: |
           yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
-          yarn workspace website run typecheck
+          yarn typecheck
       - name: Test
         run: yarn test
       - name: Cypress
