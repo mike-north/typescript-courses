@@ -32,7 +32,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: packages/website
-          start: yarn test:cypress
+          start: yarn test-cypress
           key: cypress-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
           install-command: yarn install
           browser: chrome
@@ -80,7 +80,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: packages/website
-          start: yarn test:cypress
+          start: yarn test-cypress
           key: cypress-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
           install-command: yarn install
           browser: chrome
@@ -118,24 +118,18 @@ jobs:
       - uses: volta-cli/action@v4
       - run: yarn
       - name: Installing TypeScript ${{ matrix.typescript-version }}
-        run:  |
-          yarn workspace website add -D typescript@${{ matrix.typescript-version}}
-          yarn workspace chat add -D typescript@${{ matrix.typescript-version}}
-          yarn workspace hello-ts add -D typescript@${{ matrix.typescript-version}}
-          yarn workspace welcome-to-ts add -D typescript@${{ matrix.typescript-version}}
+        run: yarn workspaces foreach add -D typescript@${{ matrix.typescript-version}}
       - name: Build
         run: yarn build
       - name: Type-check website 
-        run: |
-          yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
-          yarn typecheck
+        run: yarn postinstall && yarn typecheck
       - name: Test
         run: yarn test
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
           working-directory: packages/website
-          start: yarn test:cypress
+          start: yarn test-cypress
           key: cypress-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
           install-command: yarn install
           browser: chrome
