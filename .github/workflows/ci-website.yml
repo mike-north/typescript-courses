@@ -73,7 +73,6 @@ jobs:
             node_modules
             */*/node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn config set network-timeout 300000
       - run: yarn
       - name: Build
         run: |
