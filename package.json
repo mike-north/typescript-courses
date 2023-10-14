@@ -12,7 +12,7 @@
   ],
   "volta": {
     "node": "20.8.0",
-    "yarn": "1.22.19"
+    "yarn": "4.0.0-rc.53"
   },
   "dependencies": {
     "typescript": "^5.3.0-beta"
