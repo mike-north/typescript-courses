@@ -21,24 +21,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
-      - name: restore lerna
-        uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - name: Build
         run: yarn build
       - name: Lint
-        run: |
-          yarn lerna run lint --scope website
-          yarn lerna run lint --scope chat
+        run: yarn lint
       - name: Test website
-        run: yarn lerna run test:jest --scope website
+        run: yarn workspace website run test:jest
       - name: Test chat app
-        run: yarn lerna run test --scope chat
+        run: yarn workspace chat run test
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
@@ -62,20 +53,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
-      - name: restore lerna
-        uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - name: Build
         run: yarn build
       - name: Test
         run: |
-          yarn lerna run test:jest --scope website
-          yarn lerna run test --scope chat
+          yarn workspace website run test:jest
+          yarn workspace chat run test
 
   node-compatibility:
     needs: build
@@ -91,20 +75,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           yarn-version: 1.22
-      - name: restore lerna
-        uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - name: Build
         run: yarn build
       - name: Test
-        run: |
-          yarn lerna run test:jest --scope website
-          yarn lerna run test:jest --scope chat
+        run: yarn workspace foreach --from {chat,website} run test:jest
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
@@ -145,30 +120,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
-      - name: restore lerna
-        uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ matrix.typescript-version }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - name: Installing TypeScript ${{ matrix.typescript-version }}
-        run: |
-          yarn workspace website add -D typescript@${{ matrix.typescript-version}}
-          yarn workspace hello-ts add -D typescript@${{ matrix.typescript-version}}
-          yarn workspace welcome-to-ts add -D typescript@${{ matrix.typescript-version}}
-          yarn workspace chat add -D typescript@${{ matrix.typescript-version}}
+        run:  yarn workspace foreach add -D typescript@${{ matrix.typescript-version}}
       - name: Build
         run: yarn build
       - name: Type-check website 
         run: |
           yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts
-          yarn lerna run typecheck --scope website
+          yarn workspace website run typecheck
       - name: Test
-        run: |
-          yarn lerna run test:jest --scope website
-          yarn lerna run test:jest --scope chat
+        run: yarn workspace foreach --from {chat,website} run test:jest
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
@@ -191,7 +153,7 @@ jobs:
       - uses: volta-cli/action@v4
       - run: yarn
       - name: Build
-        run: yarn lerna run build-prod --scope website
+        run: yarn workspace website run build-prod
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.ACCESS_TOKEN }}
