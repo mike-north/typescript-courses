@@ -6,7 +6,8 @@
         "typescript": "^4.9.5"
     },
     "scripts": {
-        "dev": "tsc --watch --preserveWatchOutput"
+        "dev": "yarn tsc --watch --preserveWatchOutput",
+        "typecheck": "yarn tsc -P . --noEmit"
     },
     "volta": {
         "node": "18.18.2",
