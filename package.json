@@ -18,14 +18,23 @@
     "@babel/core": "^7.23.2",
     "@babel/preset-typescript": "^7.23.2",
     "core-js": "^3.33.0",
-    "lerna": "^7.3.1",
-    "replace-in-file": "^7.0.1",
-    "webpack": "^5.89.0"
+    "replace-in-file": "^7.0.1"
   },
   "scripts": {
     "postinstall": "replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts",
-    "dev-website": "lerna run dev --scope website --stream",
-    "dev-hello-ts": "lerna run dev --scope hello-ts --stream",
-    "dev-welcome-to-ts": "lerna run dev --scope welcome-to-ts --stream"
+    "dev-website": "yarn workspace website dev",
+    "dev-chat": "yarn workspace chat dev",
+    "dev-hello-ts": "yarn workspace hello-ts dev",
+    "dev-welcome-to-ts": "yarn workspace welcome-to-ts dev",
+    "build": "yarn workspaces foreach --parallel run build",
+    "lint": "yarn workspaces foreach --parallel run lint",
+    "typecheck": "yarn workspaces foreach --parallel run typecheck",
+    "test": "yarn test-jest && yarn test-tsd && yarn test-dtslint",
+    "test-jest": "yarn workspaces foreach --parallel run test-jest",
+    "test-tsd": "yarn workspaces foreach --parallel run test-tsd",
+    "test-dtslint": "yarn workspaces foreach --parallel run test-dtslint"
+  },
+  "resolutions": {
+    "@types/eslint": "8.44.3"
   }
 }

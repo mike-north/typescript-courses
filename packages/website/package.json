@@ -57,7 +57,7 @@
     "babel-preset-gatsby": "^3.12.0",
     "core-js": "^3.33.0",
     "cypress": "^13.3.1",
-    "eslint": "^8.51.0",
+    "eslint": "latest",
     "eslint-plugin-cypress": "^2.15.1",
     "eslint-plugin-react": "^7.33.2",
     "gatsby-cypress": "^3.12.0",
@@ -98,8 +98,12 @@
     "lint:md": "yarn markdownlint -c ../../.markdownlint.jsonc content",
     "lint:ts": "eslint . --ext ts,js,tsx,jsx",
     "test": "yarn test:jest && yarn test:cypress",
-    "test:jest": "jest",
-    "test:cypress": "CYPRESS_SUPPORT=y start-server-and-test dev http://localhost:8000 cy:open",
+    "test-jest": "jest",
+    "test-cypress": "CYPRESS_SUPPORT=y start-server-and-test dev http://localhost:8000 cy:open",
     "typecheck": "tsc -P . --noEmit"
+  },
+  "volta": {
+    "node": "18.18.2",
+    "yarn": "3.6.4"
   }
 }

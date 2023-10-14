@@ -1,10 +1,10 @@
 import { format } from 'date-fns';
 
 /**
- * Format a timestamp as a string
- * @param {Date} date
+ * Formats a given date object into a string with the format 'MMM dd, yyyy HH:MM:SS a'.
  *
- * @return {string}
+ * @param {Date} date - The date object to format.
+ * @returns {string} The formatted date string.
  */
 export function formatTimestamp(date) {
   return format(date, 'MMM dd, yyyy HH:MM:SS a');

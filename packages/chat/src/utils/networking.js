@@ -30,6 +30,7 @@ async function getJSON(input, init) {
  */
 export async function apiCall(path, init) {
   let response;
+  /** @type {{}} */
   let json;
   try {
     const jsonRespInfo = await getJSON(
@@ -48,6 +49,7 @@ export async function apiCall(path, init) {
     );
   }
   if (!response.ok)
+    json = null
     throw new HTTPError(
       response,
       'Problem while making API call',

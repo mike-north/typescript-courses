@@ -1,4 +1,4 @@
-{
+module.exports = {
   "env": {
     "es2021": true
   },
@@ -7,6 +7,7 @@
       "version": "detect"
     }
   },
+  "root": true,
   "extends": [
     "eslint:recommended",
     "prettier",
@@ -19,6 +20,7 @@
       "jsx": true
     },
     "ecmaVersion": 12,
+    tsconfigRootDir: __dirname,
     "project": "tsconfig.eslint.json"
   },
   "plugins": [
@@ -29,7 +31,7 @@
     "prettier"
   ],
   "rules": {
-    "prefer-const": "error"
+    "prefer-const": "error",
   },
   "overrides": [
     /**
@@ -44,12 +46,24 @@
       },
       "rules": {
         "react/prop-types": "off",
-        "react/no-children-prop": "off"
+        "react/no-children-prop": "off",
+        "no-unused-vars": "off",
+        "no-unreachable": "off",
       },
       "extends": [
         "eslint:recommended",
         "plugin:react/recommended"
       ]
+    },
+    /**
+     * SCRIPTS
+     */
+    {
+      "extends": ["plugin:node/recommended"],
+      "files": [
+        "scripts/**/*.mjs"
+      ],
+      "env": { "node": true }
     },
     /**
      * SERVER SIDE CODE
@@ -92,9 +106,12 @@
      * TESTS
      */
     {
-      "files": ["tests/**/*.{mjs,jsx,mts,ts,tsx}"],
+      "files": ["tests/**/*.{js,mjs,jsx,mts,ts,tsx}"],
       "extends": [],
-      "env": { "node": true, "jest": true }
+      "env": { "node": true, "jest": true, "mocha": true },
+      "rules": {
+        "sonarjs/no-duplicate-string": "off"
+      }
     }
   ]
 }
