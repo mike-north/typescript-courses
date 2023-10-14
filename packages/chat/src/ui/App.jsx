@@ -13,13 +13,13 @@ import TeamSelector from './components/TeamSelector';
 const { useState } = React;
 
 const App = () => {
-  const [teams, setTeams] = useState();
+  const [teams, setTeams] = useState(null);
 
   useAsyncDataEffect(() => getAllTeams(), {
     setter: setTeams,
     stateName: 'teams',
   });
-  if (!teams) return <Loading message="Loading teams" />;
+  if (teams === null) return <Loading message="Loading teams" />;
   return (
     <Router>
       <div className="flex flex-col sm:flex-row w-full h-full">

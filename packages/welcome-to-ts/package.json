@@ -6,6 +6,11 @@
         "typescript": "^5.3.0-beta"
     },
     "scripts": {
-        "dev": "tsc --watch --preserveWatchOutput"
+        "dev": "tsc --watch --preserveWatchOutput",
+        "typecheck": "yarn tsc -P . --noEmit"
+    },
+    "volta": {
+        "node": "18.18.2",
+        "yarn": "3.6.4"
     }
 }
