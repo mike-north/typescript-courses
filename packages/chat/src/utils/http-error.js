@@ -15,6 +15,7 @@ export const HTTPErrorKind = {
  * @return {HTTPErrorKind}
  */
 function determineKind(status) {
+  const statusCode = status;
   if (status >= 100 && status < 200)
     return HTTPErrorKind.Information;
   else if (status < 300) return HTTPErrorKind.Success;
@@ -29,7 +30,7 @@ function determineKind(status) {
 export default class HTTPError extends Error {
   /**
    *
-   * @param {Response} info
+   * @param {Pick<Response, 'statusText' | 'status'>} info
    * @param {string} message
    */
   constructor(info, message) {

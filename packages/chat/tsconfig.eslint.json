@@ -4,5 +4,5 @@
     "allowJs": true,
     "types": ["jest", "express", "parcel-bundler"]
   },
-  "include": ["src", "tests", "server"]
+  "include": ["src", "tests", "server", "scripts"]
 }

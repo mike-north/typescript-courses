@@ -17,7 +17,8 @@ test('Link changes the class when hovered', () => {
                 name: 'general',
                 id: 'g',
                 teamId: 'linkedin',
-                description: 'general chat for general folks',
+                description:
+                  'general chat for general folks',
               },
             ],
           },

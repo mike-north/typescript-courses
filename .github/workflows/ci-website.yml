@@ -30,11 +30,7 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - name: Build
-        run: |
-          yarn lerna run build --scope website
-          yarn lerna run build --scope chat
-          yarn lerna run build --scope hello-ts
-          yarn lerna run build --scope welcome-to-ts
+        run: yarn build
       - name: Lint
         run: |
           yarn lerna run lint --scope website
@@ -75,11 +71,7 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - name: Build
-        run: |
-          yarn lerna run build --scope website
-          yarn lerna run build --scope chat
-          yarn lerna run build --scope hello-ts
-          yarn lerna run build --scope welcome-to-ts
+        run: yarn build
       - name: Test
         run: |
           yarn lerna run test:jest --scope website
@@ -108,11 +100,7 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - name: Build
-        run: |
-          yarn lerna run build --scope website
-          yarn lerna run build --scope chat
-          yarn lerna run build --scope hello-ts
-          yarn lerna run build --scope welcome-to-ts
+        run: yarn build
       - name: Test
         run: |
           yarn lerna run test:jest --scope website
@@ -172,11 +160,7 @@ jobs:
           yarn workspace welcome-to-ts add -D typescript@${{ matrix.typescript-version}}
           yarn workspace chat add -D typescript@${{ matrix.typescript-version}}
       - name: Build
-        run: |
-          yarn lerna run build --scope website
-          yarn lerna run build --scope chat
-          yarn lerna run build --scope hello-ts
-          yarn lerna run build --scope welcome-to-ts
+        run: yarn build
       - name: Type-check website 
         run: |
           yarn replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts

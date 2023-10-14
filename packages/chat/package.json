@@ -13,7 +13,10 @@
     "express": "^4.18.2",
     "express-rate-limit": "^7.1.1",
     "json-server": "^0.17.4",
-    "pkg-up": "^4.0.0"
+    "pkg-up": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^5.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",
@@ -37,25 +40,22 @@
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-sonarjs": "^0.21.0",
-    "node-fetch": "^3.3.2",
+    "execa": "^8.0.1",
     "parcel": "^2.10.0",
     "postcss": "^8.4.31",
     "postcss-import": "^15.1.0",
     "postcss-nesting": "^12.0.1",
     "postcss-preset-env": "^9.2.0",
     "postcss-purgecss": "^5.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^5.3.4",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.3.0-beta"
   },
   "scripts": {
     "build": "yarn parcel build index.html",
     "dev": "node ./server/index.mjs",
-    "lint": "yarn eslint src server tests --ext .js,.ts,.jsx,.tsx,.mjs,.mts -c ./.eslintrc",
+    "lint": "yarn eslint src server tests --ext .js,.ts,.jsx,.tsx,.mjs,.mts -c ./.eslintrc.js",
     "test": "yarn test-jest",
-    "test-jest": "jest tests/components",
+    "test-jest": "jest tests",
     "test-tsd": "tsd tests/types-tsd",
     "test-dtslint": "dtslint tests/types-dtslint"
   }
