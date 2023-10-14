@@ -18,8 +18,7 @@
     "@babel/core": "^7.23.2",
     "@babel/preset-typescript": "^7.23.2",
     "core-js": "^3.33.0",
-    "replace-in-file": "^7.0.1",
-    "webpack": "^5.89.0"
+    "replace-in-file": "^7.0.1"
   },
   "scripts": {
     "postinstall": "replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts",
