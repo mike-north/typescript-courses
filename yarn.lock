@@ -3020,6 +3020,7 @@ __metadata:
     "@babel/core": ^7.23.2
     "@babel/preset-typescript": ^7.23.2
     core-js: ^3.33.0
+    markdownlint-cli: ^0.37.0
     replace-in-file: ^7.0.1
   languageName: unknown
   linkType: soft
