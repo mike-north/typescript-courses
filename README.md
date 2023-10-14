@@ -1,23 +1,25 @@
 # TypeScript Training w/ Mike North
+
 This repo contains the code for
+
 * TypeScript Fundamentals v3
 * Intermediate TypeScript v1
 * Making TypeScript Stick v1
 * Full stack TypeScript v1
 
-The course website is at https://www.typescript-training.com
+The course website is at [www.typescript-training.com](https://www.typescript-training.com)
 
 [![Website](https://github.com/mike-north/ts-fundamentals-v3/actions/workflows/ci-website.yml/badge.svg)](https://github.com/mike-north/ts-fundamentals-v3/actions/workflows/ci-website.yml)
 
-### Operating System
+## Operating System
 
 This workshop project works best in a [POSIX-compliant][posix] dev environment
 like Linux, macOS, or Windows 10 (with [Windows Subsystem for Linux][wsl2]).
 
 ### JavaScript Tool chain
 
-- We'll be using `yarn` as our package manager, not `npm`
-- Please install [Volta][volta], to ensure you run this project with the correct `node` and `yarn` versions
+* We'll be using `yarn` as our package manager, not `npm`
+* Please install [Volta][volta], to ensure you run this project with the correct `node` and `yarn` versions
 
 ### Browser
 
@@ -31,13 +33,13 @@ the _officially_ supported editor for this course.
 
 ### Checking out the code & preparing to run
 
-- If you don't yet have a [GitHub](https://github.com) account, [create a new one](https://docs.github.com/en/github/getting-started-with-github/signing-up-for-github/signing-up-for-a-new-github-account) and [set up your SSH keys](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+* If you don't yet have a [GitHub](https://github.com) account, [create a new one](https://docs.github.com/en/github/getting-started-with-github/signing-up-for-github/signing-up-for-a-new-github-account) and [set up your SSH keys](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 
-  - If you've done this correctly, you should be able to run `ssh git@github.com` in your terminal, and see something like `Hi mike-north! You've successfully authenticated, but GitHub does not provide shell access.`
+  * If you've done this correctly, you should be able to run `ssh git@github.com` in your terminal, and see something like `Hi mike-north! You've successfully authenticated, but GitHub does not provide shell access.`
 
-- Clone this repo by running `git clone git@github.com:mike-north/ts-fundamentals-v3`
-- Enter the repo by running `cd ts-fundamentals-v3`
-- Install dependencies by running `yarn` ([volta][volta] may download the right version(s) automatically)
+* Clone this repo by running `git clone git@github.com:mike-north/ts-fundamentals-v3`
+* Enter the repo by running `cd ts-fundamentals-v3`
+* Install dependencies by running `yarn` ([volta][volta] may download the right version(s) automatically)
 
 ### Running the project(s)
 
@@ -46,11 +48,10 @@ Projects are found within the [packages](https://github.com/mike-north/ts-fundam
 
 For example
 
-- `yarn dev-website` starts the website project
+* `yarn dev-website` starts the website project
 
 [posix]: https://en.wikipedia.org/wiki/POSIX
 [wsl2]: https://docs.microsoft.com/en-us/windows/wsl/
-[cygwin]: (https://www.cygwin.com/)
 [volta]: (https://volta.sh/)
 [lsp]: (https://microsoft.github.io/language-server-protocol/)
 [vscode]: (http://code.visualstudio.com/)
@@ -59,6 +60,6 @@ For example
 [opera]: (https://www.opera.com/)
 [googlechrome]: (https://www.google.com/chrome/)
 
+## Legal
 
-# Legal
 &copy; 2023, All Rights Reserved - Mike Works, Inc.
