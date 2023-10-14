@@ -97,7 +97,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.1.0, @babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.15.5, @babel/core@npm:^7.23.0, @babel/core@npm:^7.4.0-0, @babel/core@npm:^7.7.5":
+"@babel/core@npm:^7.1.0, @babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.15.5, @babel/core@npm:^7.23.2, @babel/core@npm:^7.7.5":
   version: 7.23.2
   resolution: "@babel/core@npm:7.23.2"
   dependencies:
@@ -1538,7 +1538,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-typescript@npm:^7.15.0, @babel/preset-typescript@npm:^7.16.7":
+"@babel/preset-typescript@npm:^7.15.0, @babel/preset-typescript@npm:^7.23.2":
   version: 7.23.2
   resolution: "@babel/preset-typescript@npm:7.23.2"
   dependencies:
@@ -3067,12 +3067,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@mike-north/typescript-fundamentals-v3@workspace:."
   dependencies:
-    "@babel/core": ^7.4.0-0
-    "@babel/preset-typescript": ^7.16.7
-    core-js: ^3.0.0
-    lerna: ^7.0.0
+    "@babel/core": ^7.23.2
+    "@babel/preset-typescript": ^7.23.2
+    core-js: ^3.33.0
+    lerna: ^7.3.1
     replace-in-file: ^7.0.1
-    webpack: ^5.37.0
+    webpack: ^5.89.0
   languageName: unknown
   linkType: soft
 
@@ -3712,7 +3712,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@parcel/optimizer-data-url@npm:^2.8.2":
+"@parcel/optimizer-data-url@npm:^2.10.0":
   version: 2.10.0
   resolution: "@parcel/optimizer-data-url@npm:2.10.0"
   dependencies:
@@ -3859,7 +3859,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@parcel/packager-ts@npm:^2.8.2":
+"@parcel/packager-ts@npm:^2.10.0":
   version: 2.10.0
   resolution: "@parcel/packager-ts@npm:2.10.0"
   dependencies:
@@ -4065,7 +4065,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@parcel/transformer-inline-string@npm:^2.8.2":
+"@parcel/transformer-inline-string@npm:^2.10.0":
   version: 2.10.0
   resolution: "@parcel/transformer-inline-string@npm:2.10.0"
   dependencies:
@@ -4172,7 +4172,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@parcel/transformer-typescript-tsc@npm:^2.8.2":
+"@parcel/transformer-typescript-tsc@npm:^2.10.0":
   version: 2.10.0
   resolution: "@parcel/transformer-typescript-tsc@npm:2.10.0"
   dependencies:
@@ -4185,7 +4185,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@parcel/transformer-typescript-types@npm:^2.8.2":
+"@parcel/transformer-typescript-types@npm:^2.10.0":
   version: 2.10.0
   resolution: "@parcel/transformer-typescript-types@npm:2.10.0"
   dependencies:
@@ -5159,7 +5159,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^27.0.0":
+"@types/jest@npm:^27.5.2":
   version: 27.5.2
   resolution: "@types/jest@npm:27.5.2"
   dependencies:
@@ -5210,7 +5210,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:*, @types/lodash@npm:^4.14.170, @types/lodash@npm:^4.14.92":
+"@types/lodash@npm:*, @types/lodash@npm:^4.14.199, @types/lodash@npm:^4.14.92":
   version: 4.14.199
   resolution: "@types/lodash@npm:4.14.199"
   checksum: e68d1fcbbfce953ed87b296a628573f62939227bcda0c934954e862b421e8a34c5e71cad6fea27b9980567909e6a4698f09025692958e36d64ea9ed99ec6fb2e
@@ -5305,12 +5305,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20":
-  version: 20.8.5
-  resolution: "@types/node@npm:20.8.5"
+"@types/node@npm:20.8.6":
+  version: 20.8.6
+  resolution: "@types/node@npm:20.8.6"
   dependencies:
     undici-types: ~5.25.1
-  checksum: 4bca4e4f6307a6f5dc78812015eca9c5a998b35fcf3ba4058c9851d3dde2b22c914fa25a85b804eab5af2ab95375d15943dce8e9ba5e01d15f4bf516ca0d2816
+  checksum: ccfb7ac482c5a96edeb239893c5c099f5257fcc2ed9ae62fefdfbc782b79e16dbc2af9a85b379665237bf759904b44ca2be68e75d239e0297882aad42f61905c
   languageName: node
   linkType: hard
 
@@ -5395,7 +5395,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:18, @types/react-dom@npm:^18.2.13":
+"@types/react-dom@npm:18.2.13, @types/react-dom@npm:^18.2.13":
   version: 18.2.13
   resolution: "@types/react-dom@npm:18.2.13"
   dependencies:
@@ -5443,7 +5443,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:18, @types/react@npm:^18.2.28":
+"@types/react@npm:*, @types/react@npm:18.2.28, @types/react@npm:^18.2.28":
   version: 18.2.28
   resolution: "@types/react@npm:18.2.28"
   dependencies:
@@ -5508,7 +5508,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/sharp@npm:^0.30.0":
+"@types/sharp@npm:^0.30.5":
   version: 0.30.5
   resolution: "@types/sharp@npm:0.30.5"
   dependencies:
@@ -5545,7 +5545,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/typography@npm:^0.16.3":
+"@types/typography@npm:^0.16.5":
   version: 0.16.5
   resolution: "@types/typography@npm:0.16.5"
   checksum: 54f538ee350538ea3bff5a002d53261bedd2e720b3850143e1af2a7ea07c374932289724e8d70bacef8eb98ea9437c4617937afd1ab47dd4802ca26807a38a61
@@ -5658,7 +5658,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^6.7.3, @typescript-eslint/eslint-plugin@npm:^6.7.5":
+"@typescript-eslint/eslint-plugin@npm:^6.7.5":
   version: 6.7.5
   resolution: "@typescript-eslint/eslint-plugin@npm:6.7.5"
   dependencies:
@@ -5716,7 +5716,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^6.7.3, @typescript-eslint/parser@npm:^6.7.5":
+"@typescript-eslint/parser@npm:^6.7.5":
   version: 6.7.5
   resolution: "@typescript-eslint/parser@npm:6.7.5"
   dependencies:
@@ -7894,14 +7894,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "chat@workspace:packages/chat"
   dependencies:
-    "@babel/core": ^7.23.0
+    "@babel/core": ^7.23.2
     "@parcel/config-default": ^2.10.0
     "@parcel/core": ^2.10.0
-    "@parcel/optimizer-data-url": ^2.8.2
-    "@parcel/packager-ts": ^2.8.2
-    "@parcel/transformer-inline-string": ^2.8.2
-    "@parcel/transformer-typescript-tsc": ^2.8.2
-    "@parcel/transformer-typescript-types": ^2.8.2
+    "@parcel/optimizer-data-url": ^2.10.0
+    "@parcel/packager-ts": ^2.10.0
+    "@parcel/transformer-inline-string": ^2.10.0
+    "@parcel/transformer-typescript-tsc": ^2.10.0
+    "@parcel/transformer-typescript-types": ^2.10.0
     "@types/express": ^4.17.19
     "@types/json-server": ^0.14.5
     "@types/react": ^18.2.28
@@ -7930,7 +7930,7 @@ __metadata:
     postcss-purgecss: ^5.0.0
     react: ^18.2.0
     react-dom: ^18.2.0
-    react-router-dom: ^5.2.0
+    react-router-dom: ^5.3.4
     tailwindcss: ^3.3.3
     typescript: ^5.3.0-beta
   languageName: unknown
@@ -8772,7 +8772,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^3.0.0, core-js@npm:^3.17.2":
+"core-js@npm:^3.17.2, core-js@npm:^3.33.0":
   version: 3.33.0
   resolution: "core-js@npm:3.33.0"
   checksum: dd62217935ac281faf6f833bb306fb891162919fcf9c1f0c975b1b91e82ac09a940f5deb5950bbb582739ceef716e8bd7e4f9eab8328932fb029d3bc2ecb2881
@@ -9202,7 +9202,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:^13.3.0":
+"cypress@npm:^13.3.1":
   version: 13.3.1
   resolution: "cypress@npm:13.3.1"
   dependencies:
@@ -10883,7 +10883,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.50.0, eslint@npm:^8.51.0":
+"eslint@npm:^8.51.0":
   version: 8.51.0
   resolution: "eslint@npm:8.51.0"
   dependencies:
@@ -12104,7 +12104,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-image@npm:^3.1.0":
+"gatsby-image@npm:^3.11.0":
   version: 3.11.0
   resolution: "gatsby-image@npm:3.11.0"
   dependencies:
@@ -12166,7 +12166,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-feed@npm:^3.1.0":
+"gatsby-plugin-feed@npm:^3.15.0":
   version: 3.15.0
   resolution: "gatsby-plugin-feed@npm:3.15.0"
   dependencies:
@@ -12185,7 +12185,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-google-gtag@npm:^3.7.1":
+"gatsby-plugin-google-gtag@npm:^3.15.0":
   version: 3.15.0
   resolution: "gatsby-plugin-google-gtag@npm:3.15.0"
   dependencies:
@@ -12199,7 +12199,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-google-tagmanager@npm:^3.7.1":
+"gatsby-plugin-google-tagmanager@npm:^3.15.0":
   version: 3.15.0
   resolution: "gatsby-plugin-google-tagmanager@npm:3.15.0"
   dependencies:
@@ -12213,7 +12213,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-manifest@npm:^3.1.0":
+"gatsby-plugin-manifest@npm:^3.15.0":
   version: 3.15.0
   resolution: "gatsby-plugin-manifest@npm:3.15.0"
   dependencies:
@@ -12249,7 +12249,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-react-helmet@npm:^4.1.0":
+"gatsby-plugin-react-helmet@npm:^4.15.0":
   version: 4.15.0
   resolution: "gatsby-plugin-react-helmet@npm:4.15.0"
   dependencies:
@@ -12261,7 +12261,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-sass@npm:^4.1.0":
+"gatsby-plugin-sass@npm:^4.15.0":
   version: 4.15.0
   resolution: "gatsby-plugin-sass@npm:4.15.0"
   dependencies:
@@ -12275,7 +12275,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-sharp@npm:^3.0.0":
+"gatsby-plugin-sharp@npm:^3.15.0":
   version: 3.15.0
   resolution: "gatsby-plugin-sharp@npm:3.15.0"
   dependencies:
@@ -12317,7 +12317,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-typography@npm:^3.1.0":
+"gatsby-plugin-typography@npm:^3.15.0":
   version: 3.15.0
   resolution: "gatsby-plugin-typography@npm:3.15.0"
   dependencies:
@@ -12424,7 +12424,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-remark-autolink-headers@npm:^4.3.0":
+"gatsby-remark-autolink-headers@npm:^4.12.0":
   version: 4.12.0
   resolution: "gatsby-remark-autolink-headers@npm:4.12.0"
   dependencies:
@@ -12441,7 +12441,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-remark-copy-linked-files@npm:^4.2.1":
+"gatsby-remark-copy-linked-files@npm:^4.12.0":
   version: 4.12.0
   resolution: "gatsby-remark-copy-linked-files@npm:4.12.0"
   dependencies:
@@ -12459,7 +12459,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-remark-custom-blocks@npm:^3.6.0":
+"gatsby-remark-custom-blocks@npm:^3.15.0":
   version: 3.15.0
   resolution: "gatsby-remark-custom-blocks@npm:3.15.0"
   dependencies:
@@ -12478,7 +12478,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-remark-images@npm:^5.2.1":
+"gatsby-remark-images@npm:^5.12.0":
   version: 5.12.0
   resolution: "gatsby-remark-images@npm:5.12.0"
   dependencies:
@@ -12499,7 +12499,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-remark-responsive-iframe@npm:^4.3.0":
+"gatsby-remark-responsive-iframe@npm:^4.12.0":
   version: 4.12.0
   resolution: "gatsby-remark-responsive-iframe@npm:4.12.0"
   dependencies:
@@ -12514,7 +12514,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-remark-shiki-twoslash@npm:^3.0.0":
+"gatsby-remark-shiki-twoslash@npm:^3.0.38":
   version: 3.0.38
   resolution: "gatsby-remark-shiki-twoslash@npm:3.0.38"
   dependencies:
@@ -12525,7 +12525,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-remark-smartypants@npm:^4.2.0":
+"gatsby-remark-smartypants@npm:^4.12.0":
   version: 4.12.0
   resolution: "gatsby-remark-smartypants@npm:4.12.0"
   dependencies:
@@ -12539,7 +12539,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-filesystem@npm:^3.1.0":
+"gatsby-source-filesystem@npm:^3.15.0":
   version: 3.15.0
   resolution: "gatsby-source-filesystem@npm:3.15.0"
   dependencies:
@@ -12584,7 +12584,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-transformer-remark@npm:^3.0.0":
+"gatsby-transformer-remark@npm:^3.2.0":
   version: 3.2.0
   resolution: "gatsby-transformer-remark@npm:3.2.0"
   dependencies:
@@ -12614,7 +12614,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-transformer-sharp@npm:^3.1.0":
+"gatsby-transformer-sharp@npm:^3.15.0":
   version: 3.15.0
   resolution: "gatsby-transformer-sharp@npm:3.15.0"
   dependencies:
@@ -12642,7 +12642,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby@npm:^3.1.2":
+"gatsby@npm:^3.15.0":
   version: 3.15.0
   resolution: "gatsby@npm:3.15.0"
   dependencies:
@@ -13750,7 +13750,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "hello-ts@workspace:packages/hello-ts"
   dependencies:
-    typescript: ^4.3.2
+    typescript: ^4.9.5
   languageName: unknown
   linkType: soft
 
@@ -16317,7 +16317,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lerna@npm:^7.0.0":
+"lerna@npm:^7.3.1":
   version: 7.3.1
   resolution: "lerna@npm:7.3.1"
   dependencies:
@@ -21730,7 +21730,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:^5.2.0":
+"react-router-dom@npm:^5.3.4":
   version: 5.3.4
   resolution: "react-router-dom@npm:5.3.4"
   dependencies:
@@ -22840,7 +22840,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.32.8":
+"sass@npm:^1.69.3":
   version: 1.69.3
   resolution: "sass@npm:1.69.3"
   dependencies:
@@ -25067,7 +25067,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.3.2":
+"typescript@npm:^4.9.5":
   version: 4.9.5
   resolution: "typescript@npm:4.9.5"
   bin:
@@ -25097,7 +25097,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.3.2#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.9.5#~builtin<compat/typescript>":
   version: 4.9.5
   resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=289587"
   bin:
@@ -25141,7 +25141,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typography@npm:^0.16.19":
+"typography@npm:^0.16.24":
   version: 0.16.24
   resolution: "typography@npm:0.16.24"
   dependencies:
@@ -26144,7 +26144,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack@npm:^5.35.0, webpack@npm:^5.37.0":
+"webpack@npm:^5.35.0":
   version: 5.88.2
   resolution: "webpack@npm:5.88.2"
   dependencies:
@@ -26181,54 +26181,91 @@ __metadata:
   languageName: node
   linkType: hard
 
+"webpack@npm:^5.89.0":
+  version: 5.89.0
+  resolution: "webpack@npm:5.89.0"
+  dependencies:
+    "@types/eslint-scope": ^3.7.3
+    "@types/estree": ^1.0.0
+    "@webassemblyjs/ast": ^1.11.5
+    "@webassemblyjs/wasm-edit": ^1.11.5
+    "@webassemblyjs/wasm-parser": ^1.11.5
+    acorn: ^8.7.1
+    acorn-import-assertions: ^1.9.0
+    browserslist: ^4.14.5
+    chrome-trace-event: ^1.0.2
+    enhanced-resolve: ^5.15.0
+    es-module-lexer: ^1.2.1
+    eslint-scope: 5.1.1
+    events: ^3.2.0
+    glob-to-regexp: ^0.4.1
+    graceful-fs: ^4.2.9
+    json-parse-even-better-errors: ^2.3.1
+    loader-runner: ^4.2.0
+    mime-types: ^2.1.27
+    neo-async: ^2.6.2
+    schema-utils: ^3.2.0
+    tapable: ^2.1.1
+    terser-webpack-plugin: ^5.3.7
+    watchpack: ^2.4.0
+    webpack-sources: ^3.2.3
+  peerDependenciesMeta:
+    webpack-cli:
+      optional: true
+  bin:
+    webpack: bin/webpack.js
+  checksum: 43fe0dbc30e168a685ef5a86759d5016a705f6563b39a240aa00826a80637d4a3deeb8062e709d6a4b05c63e796278244c84b04174704dc4a37bedb0f565c5ed
+  languageName: node
+  linkType: hard
+
 "website@workspace:packages/website":
   version: 0.0.0-use.local
   resolution: "website@workspace:packages/website"
   dependencies:
-    "@babel/core": ^7.4.0-0
-    "@babel/preset-typescript": ^7.16.7
+    "@babel/core": ^7.23.2
+    "@babel/preset-typescript": ^7.23.2
     "@testing-library/cypress": ^10.0.1
-    "@types/jest": ^27.0.0
-    "@types/lodash": ^4.14.170
-    "@types/node": 20
+    "@types/jest": ^27.5.2
+    "@types/lodash": ^4.14.199
+    "@types/node": 20.8.6
     "@types/pkg-up": ^3.1.0
-    "@types/react": 18
-    "@types/react-dom": 18
+    "@types/react": 18.2.28
+    "@types/react-dom": 18.2.13
     "@types/react-helmet": ^6.1.7
     "@types/react-test-renderer": ^18.0.3
-    "@types/sharp": ^0.30.0
-    "@types/typography": ^0.16.3
-    "@typescript-eslint/eslint-plugin": ^6.7.3
-    "@typescript-eslint/parser": ^6.7.3
+    "@types/sharp": ^0.30.5
+    "@types/typography": ^0.16.5
+    "@typescript-eslint/eslint-plugin": ^6.7.5
+    "@typescript-eslint/parser": ^6.7.5
     babel-jest: ^26.6.3
     babel-preset-gatsby: ^3.12.0
-    core-js: ^3.0.0
-    cypress: ^13.3.0
-    eslint: ^8.50.0
+    core-js: ^3.33.0
+    cypress: ^13.3.1
+    eslint: ^8.51.0
     eslint-plugin-cypress: ^2.15.1
     eslint-plugin-react: ^7.33.2
-    gatsby: ^3.1.2
+    gatsby: ^3.15.0
     gatsby-cypress: ^3.12.0
-    gatsby-image: ^3.1.0
-    gatsby-plugin-feed: ^3.1.0
-    gatsby-plugin-google-gtag: ^3.7.1
-    gatsby-plugin-google-tagmanager: ^3.7.1
-    gatsby-plugin-manifest: ^3.1.0
-    gatsby-plugin-react-helmet: ^4.1.0
-    gatsby-plugin-sass: ^4.1.0
-    gatsby-plugin-sharp: ^3.0.0
-    gatsby-plugin-typography: ^3.1.0
-    gatsby-remark-autolink-headers: ^4.3.0
-    gatsby-remark-copy-linked-files: ^4.2.1
-    gatsby-remark-custom-blocks: ^3.6.0
+    gatsby-image: ^3.11.0
+    gatsby-plugin-feed: ^3.15.0
+    gatsby-plugin-google-gtag: ^3.15.0
+    gatsby-plugin-google-tagmanager: ^3.15.0
+    gatsby-plugin-manifest: ^3.15.0
+    gatsby-plugin-react-helmet: ^4.15.0
+    gatsby-plugin-sass: ^4.15.0
+    gatsby-plugin-sharp: ^3.15.0
+    gatsby-plugin-typography: ^3.15.0
+    gatsby-remark-autolink-headers: ^4.12.0
+    gatsby-remark-copy-linked-files: ^4.12.0
+    gatsby-remark-custom-blocks: ^3.15.0
     gatsby-remark-emojis: ^0.4.3
-    gatsby-remark-images: ^5.2.1
-    gatsby-remark-responsive-iframe: ^4.3.0
-    gatsby-remark-shiki-twoslash: ^3.0.0
-    gatsby-remark-smartypants: ^4.2.0
-    gatsby-source-filesystem: ^3.1.0
-    gatsby-transformer-remark: ^3.0.0
-    gatsby-transformer-sharp: ^3.1.0
+    gatsby-remark-images: ^5.12.0
+    gatsby-remark-responsive-iframe: ^4.12.0
+    gatsby-remark-shiki-twoslash: ^3.0.38
+    gatsby-remark-smartypants: ^4.12.0
+    gatsby-source-filesystem: ^3.15.0
+    gatsby-transformer-remark: ^3.2.0
+    gatsby-transformer-sharp: ^3.15.0
     identity-obj-proxy: ^3.0.0
     jest: ^26.6.3
     js-yaml: ^4.1.0
@@ -26244,12 +26281,12 @@ __metadata:
     react-test-renderer: ^18.2.0
     react-typography: ^0.16.23
     replace-in-file: ^7.0.1
-    sass: ^1.32.8
+    sass: ^1.69.3
     start-server-and-test: ^2.0.1
     typeface-merriweather: 1.1.13
     typeface-montserrat: 1.1.13
     typescript: ^5.3.0-beta
-    typography: ^0.16.19
+    typography: ^0.16.24
     typography-theme-wordpress-2016: ^0.16.19
   languageName: unknown
   linkType: soft

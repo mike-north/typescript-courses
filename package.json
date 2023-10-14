@@ -15,12 +15,12 @@
     "yarn": "3.6.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.0-0",
-    "@babel/preset-typescript": "^7.16.7",
-    "core-js": "^3.0.0",
-    "lerna": "^7.0.0",
+    "@babel/core": "^7.23.2",
+    "@babel/preset-typescript": "^7.23.2",
+    "core-js": "^3.33.0",
+    "lerna": "^7.3.1",
     "replace-in-file": "^7.0.1",
-    "webpack": "^5.37.0"
+    "webpack": "^5.89.0"
   },
   "scripts": {
     "postinstall": "replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts",
