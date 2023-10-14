@@ -9,7 +9,7 @@ This repo contains the code for
 
 The course website is at [www.typescript-training.com](https://www.typescript-training.com)
 
-[![Website](https://github.com/mike-north/ts-fundamentals-v3/actions/workflows/ci-website.yml/badge.svg)](https://github.com/mike-north/ts-fundamentals-v3/actions/workflows/ci-website.yml)
+[![Website](https://github.com/mike-north/typescript-courses/actions/workflows/ci-website.yml/badge.svg)](https://github.com/mike-north/typescript-courses/actions/workflows/ci-website.yml)
 
 ## Operating System
 
@@ -37,13 +37,13 @@ the _officially_ supported editor for this course.
 
   * If you've done this correctly, you should be able to run `ssh git@github.com` in your terminal, and see something like `Hi mike-north! You've successfully authenticated, but GitHub does not provide shell access.`
 
-* Clone this repo by running `git clone git@github.com:mike-north/ts-fundamentals-v3`
-* Enter the repo by running `cd ts-fundamentals-v3`
+* Clone this repo by running `git clone git@github.com:mike-north/typescript-courses`
+* Enter the repo by running `cd typescript-courses`
 * Install dependencies by running `yarn` ([volta][volta] may download the right version(s) automatically)
 
 ### Running the project(s)
 
-Projects are found within the [packages](https://github.com/mike-north/ts-fundamentals-v3/tree/main/packages) folder, each can be started using the command
+Projects are found within the [packages](https://github.com/mike-north/typescript-courses/tree/main/packages) folder, each can be started using the command
 `yarn dev-<project name>`.
 
 For example
