@@ -14,22 +14,22 @@ In my [TS Fundamentals Course (v2)](https://drive.google.com/file/d/170oHzpLNepr
 
 <p align='center'>
 
-![](./img/slide-018.png)
+![foo](./img/slide-018.png)
 
 </p>
 <p align='center'>
 
-![](./img/slide-019.png)
+![foo](./img/slide-019.png)
 
 </p>
 <p align='center'>
 
-![](./img/slide-020.png)
+![foo](./img/slide-020.png)
 
 </p>
 <p align='center'>
 
-![](./img/slide-021.png)
+![foo](./img/slide-021.png)
 
 </p>
 
@@ -90,21 +90,12 @@ For example:
 
 There are steps beyond this conversion that are important in order to mitigate some other risks. We'll get into those later
 
-# CHALLENGE: Follow steps 1 and 2 to convert the workshop chat app from JS to ts
+## CHALLENGE: Follow steps 1 and 2 to convert the workshop chat app from JS to ts
 
-## Some Quick Tricks
+### Some Quick Tricks
 
 ```sh
-# rename all JSX files in src/ to TSX
-find src -name '*.jsx' -exec bash -c 'git mv "$0" "${0%.jsx}.tsx"' "{}" \;
-# rename all JS files in src/ to TS
-find src -name '*.js' -exec bash -c 'git mv "$0" "${0%.js}.ts"' "{}" \;
-# rename all JSX files in src/ to TSX
-find tests -name '*.jsx' -exec bash -c 'git mv "$0" "${0%.jsx}.tsx"' "{}" \;
-# rename all JSX files in src/ to TSX
-find tests -name '*.jsx.snap' -exec bash -c 'git mv "$0" "${0%.jsx.snap}.tsx.snap"' "{}" \;
-# rename all JS files in tests/ to TS
-find tests -name '*.js' -exec bash -c 'git mv "$0" "${0%.js}.ts"' "{}" \;
+node scripts/rename-to-ts.mjs
 ```
 
 and don't forget to make this small change to [`/index.html`](/index.html)
@@ -141,6 +132,6 @@ and this change to tsconfig for step 1
      "jsx": "react",
 ```
 
-## Other tips
+### Other tips
 
-- Most react components can be typed as `React:FunctionComponent<any>`
+- Most react components can be typed as `React.FC<any>`

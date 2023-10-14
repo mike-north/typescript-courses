@@ -29,7 +29,7 @@ TL;DR: TypeScript professionals need to know BOTH. You won’t get away from dts
 
 This is what’s used by DefinitelyTyped, and it effectively has 3 features
 
-```
+```pre
 // $ExpectType
 // $ExpectError
 ```
@@ -55,10 +55,12 @@ without early termination
 
 This is “the new kid on the block”, but it’s my current favorite for basic typescript testing
 
+<!-- markdownlint-disable-next-line MD024 -->
 #### Concerns
 
 At the time of writing, it does not allow testing against multiple compiler versions (Issue)
 
+<!-- markdownlint-disable-next-line MD024 -->
 #### Benefits
 
 - **Better assertion mechanism**
@@ -70,7 +72,7 @@ At the time of writing, it does not allow testing against multiple compiler vers
 - **Support for deprecations**
   Catch that accidental (un-)deprecation. This is very important for responsible management of a stable API surface
 
-# Challenge: tests for types
+## Challenge: tests for types
 
 1. `tsd` and `dtslint` are both installed. Set up a subfolder in `tests/` for each of them
 2. wire both commands up to `yarn test`
@@ -81,7 +83,7 @@ Make sure your new `isTypedArray` generic user-defined type guard works
 
 For your `dtslint` tests, use the following config files
 
-#### `tsconfig.json`
+### `tsconfig.json`
 
 ```json
 {

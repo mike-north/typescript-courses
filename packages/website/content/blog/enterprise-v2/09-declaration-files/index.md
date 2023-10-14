@@ -98,13 +98,13 @@ We can make other tough compromises (i.e., “we always track latest minor”) a
 **Prioritization based on file type**
 .ts > .tsx > .js+.d.ts
 
-**Prioritization based on type of location**
+### Prioritization based on type of location
 
 - tsconfig.json paths: {}
 - “Type roots”
 - Explicit module declarations
 - @types/\*
 
-**Prioritization based on location**
+### Prioritization based on location
 
 Same as Node’s require.resolve algorithm, as long as moduleResolution: “Node”

@@ -128,7 +128,7 @@ ls -p .dist-types
 
 You should see something like
 
-```
+```pre
 data/                    type-guards.d.ts         utils/
 index.d.ts               types.d.ts
 public-api-surface.d.ts  ui/
@@ -201,7 +201,7 @@ Next, let's fix the errors in your console, it shouldn't take long
 
 - `tsdoc-param-tag-missing-hyphen` wants `@param` JSDoc tags to look like
 
-```
+```pre
 @param foo - description of foo
 ```
 

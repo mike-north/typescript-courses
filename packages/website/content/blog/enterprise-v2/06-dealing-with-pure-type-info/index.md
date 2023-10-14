@@ -126,7 +126,7 @@ export interface IChannel {
 }
 ```
 
-# Challenge: get rid of all of the new lint errors
+## Challenge: get rid of all of the new lint errors
 
 Keep replacing `any`s until the ESLint errors and warnings go away, **with one exception**
 
