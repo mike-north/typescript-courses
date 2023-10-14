@@ -74,7 +74,7 @@ jobs:
       - uses: volta-cli/action@v4
         with:
           node-version: ${{ matrix.node-version }}
-          yarn-version: 1.22
+          yarn-version: 3.6.4
       - run: yarn
       - name: Build
         run: yarn build
@@ -122,7 +122,11 @@ jobs:
       - uses: volta-cli/action@v4
       - run: yarn
       - name: Installing TypeScript ${{ matrix.typescript-version }}
-        run:  yarn workspace foreach add -D typescript@${{ matrix.typescript-version}}
+        run:  |
+          yarn workspace website add -D typescript@${{ matrix.typescript-version}}
+          yarn workspace chat add -D typescript@${{ matrix.typescript-version}}
+          yarn workspace hello-ts add -D typescript@${{ matrix.typescript-version}}
+          yarn workspace welcome-to-ts add -D typescript@${{ matrix.typescript-version}}
       - name: Build
         run: yarn build
       - name: Type-check website 
