@@ -13,17 +13,16 @@
     "express": "^4.18.2",
     "express-rate-limit": "^7.1.1",
     "json-server": "^0.17.4",
-    "pkg-up": "^4.0.0",
-    "typescript": "^5.3.0-beta"
+    "pkg-up": "^4.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.0",
+    "@babel/core": "^7.23.2",
     "@parcel/config-default": "^2.10.0",
-    "@parcel/optimizer-data-url": "^2.8.2",
-    "@parcel/packager-ts": "^2.8.2",
-    "@parcel/transformer-inline-string": "^2.8.2",
-    "@parcel/transformer-typescript-tsc": "^2.8.2",
-    "@parcel/transformer-typescript-types": "^2.8.2",
+    "@parcel/optimizer-data-url": "^2.10.0",
+    "@parcel/packager-ts": "^2.10.0",
+    "@parcel/transformer-inline-string": "^2.10.0",
+    "@parcel/transformer-typescript-tsc": "^2.10.0",
+    "@parcel/transformer-typescript-types": "^2.10.0",
     "@types/express": "^4.17.19",
     "@types/json-server": "^0.14.5",
     "@types/react": "^18.2.28",
@@ -47,7 +46,7 @@
     "postcss-purgecss": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^5.3.4",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.3.0-beta"
   },

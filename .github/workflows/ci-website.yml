@@ -48,6 +48,8 @@ jobs:
         with:
           working-directory: packages/website
           start: yarn test:cypress
+          key: cypress-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+          install-command: yarn install
           browser: chrome
           wait-on: 'http://localhost:8000'
           wait-on-timeout: 120
@@ -71,7 +73,6 @@ jobs:
             node_modules
             */*/node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn config set network-timeout 300000
       - run: yarn
       - name: Build
         run: |
@@ -121,6 +122,8 @@ jobs:
         with:
           working-directory: packages/website
           start: yarn test:cypress
+          key: cypress-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+          install-command: yarn install
           browser: chrome
           wait-on: 'http://localhost:8000'
           wait-on-timeout: 120
@@ -187,6 +190,8 @@ jobs:
         with:
           working-directory: packages/website
           start: yarn test:cypress
+          key: cypress-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+          install-command: yarn install
           browser: chrome
           wait-on: 'http://localhost:8000'
           wait-on-timeout: 120
