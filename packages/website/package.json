@@ -1,11 +1,11 @@
 {
   "name": "website",
   "private": true,
-  "description": "Mike North's TypeScript Fundamentals v3 course",
+  "description": "Mike North's TypeScript Course Websites",
   "version": "0.0.1",
   "author": "Mike North <michael.l.north@gmail.com> (https://mike.works)",
   "bugs": {
-    "url": "https://github.com/mike-north/ts-fundamentals-v3"
+    "url": "https://github.com/mike-north/typescript-courses"
   },
   "dependencies": {
     "gatsby": "^3.15.0",
@@ -77,30 +77,30 @@
     "start-server-and-test": "^2.0.1",
     "typescript": "^5.3.0-beta"
   },
-  "homepage": "https://github.com/mike-north/typescript-fundamentals-v3#readme",
+  "homepage": "https://github.com/mike-north/typescript-courses#readme",
   "keywords": [
     "gatsby"
   ],
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mike-north/typescript-fundamentals-v3.git"
+    "url": "git+https://github.com/mike-north/typescript-courses.git"
   },
   "scripts": {
-    "build": "gatsby build",
+    "build": "yarn gatsby build",
     "build-prod": "yarn build --prefix-paths",
-    "dev": "gatsby develop --verbose",
+    "dev": "yarn gatsby develop --verbose",
     "format": "prettier --write \"**/*.{ts,js,tsx,jsx,json,md}\"",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "cy:open": "cypress open --browser chrome --e2e",
+    "serve": "yarn gatsby serve",
+    "clean": "yarn gatsby clean",
+    "cy:open": "yarn cypress open --browser chrome --e2e",
     "lint": "yarn lint:ts && yarn lint:md",
     "lint:md": "yarn markdownlint -c ../../.markdownlint.jsonc content",
-    "lint:ts": "eslint . --ext ts,js,tsx,jsx",
+    "lint:ts": "yarn eslint . --ext ts,js,tsx,jsx",
     "test": "yarn test:jest && yarn test:cypress",
-    "test-jest": "jest",
-    "test-cypress": "CYPRESS_SUPPORT=y start-server-and-test dev http://localhost:8000 cy:open",
-    "typecheck": "tsc -P . --noEmit"
+    "test-jest": "yarn jest",
+    "test-cypress": "CYPRESS_SUPPORT=y yarn start-server-and-test dev http://localhost:8000 cy:open",
+    "typecheck": "yarn tsc -P . --noEmit"
   },
   "volta": {
     "node": "18.18.2",

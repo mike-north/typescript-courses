@@ -2,7 +2,6 @@ name: Website
 
 on:
   pull_request:
-    branches: [main]
     paths:
       - 'packages/**/*'
       - '.github/**'
@@ -119,7 +118,7 @@ jobs:
       - uses: volta-cli/action@v4
       - run: yarn
       - name: Installing TypeScript ${{ matrix.typescript-version }}
-        run: yarn workspaces foreach add -D typescript@${{ matrix.typescript-version}}
+        run: yarn workspaces foreach -vpi add -D typescript@${{ matrix.typescript-version}}
       - name: Build
         run: yarn build
       - name: Type-check website 

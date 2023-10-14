@@ -15,6 +15,25 @@ order: 1
 - Designs [Stripe's API semantics](https://stripe.com/docs/api)
 - Architect responsible for TypeScript projects like [node-stripe](https://github.com/stripe/stripe-node), [Stripe Shell](https://stripe.sh/), and [Stripe Workbench](https://workbench.stripe.dev/)
 
+## What do we mean by **Enterprise software**?
+
+Enterprise software just means software intended _for large organizations_. How large? For the purposes of this course, let's say big enough that
+
+- No one person could possibly master the entire codebase
+- Multiple teams are involved in the evolution of the project, and they don't want to be tightly coupled with each other
+- If everyone "does their own thing" the codebase (and resultant product) will lose cohesion and become unmanageable
+
+In essence
+
+> Lots of teams, working on lots of code
+
+Being in this situation requires that we pay extra attention to:
+
+- **Productivity is really important**. A broken build, an incompatible dependency, etc... interrupts the work of many people.
+- **It's important to balance opinionated foundations, with flexibility**. There need to be helpful forces that keep the project cohesive, while still providing enough flexibility for creative license, and customizations to meet certain needs in specific areas of the codebase.
+- **Shelf life**. Successful large projects are often around for a long time. They need to be able to evolve as things change, and avoid the need for a rewrite every few years
+- **Managing complexity**. Once a codebase gets large enough, managing the interactions between different areas starts to become overwhelming if the architecture is not designed well.
+
 ## Top Goals for this course
 <!-- TODO - Fill this in -->
 
