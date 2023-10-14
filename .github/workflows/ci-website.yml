@@ -8,6 +8,7 @@ on:
       - '.github/**'
       - 'package.json'
       - 'yarn.lock'
+      - README.md
   push:
     branches: [main]
     paths:
