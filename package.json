@@ -1,9 +1,9 @@
 {
-  "name": "@mike-north/typescript-fundamentals-v3",
+  "name": "@mike-north/typescript-courses",
   "version": "0.0.1",
-  "description": "Mike's TypeScript Fundamentals Course (v3)",
+  "description": "Mike's TypeScript Courses",
   "main": "index.js",
-  "repository": "git@github.com:mike-north/ts-fundamentals-v3.git",
+  "repository": "git@github.com:mike-north/typescript-courses.git",
   "author": "Mike North <michael.l.north@gmail.com>",
   "license": "NOLICENSE",
   "private": true,
