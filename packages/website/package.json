@@ -101,5 +101,9 @@
     "test:jest": "jest",
     "test:cypress": "CYPRESS_SUPPORT=y start-server-and-test dev http://localhost:8000 cy:open",
     "typecheck": "tsc -P . --noEmit"
+  },
+  "volta": {
+    "node": "18.18.2",
+    "yarn": "3.6.4"
   }
 }
