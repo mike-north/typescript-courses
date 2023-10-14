@@ -2,7 +2,7 @@ name: Website
 
 on:
   pull_request:
-    branches: *
+    branches: '*'
     paths:
       - 'packages/**/*'
       - '.github/**'
