@@ -2126,10 +2126,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint-community/regexpp@npm:^4.5.1, @eslint-community/regexpp@npm:^4.6.1":
+"@eslint-community/regexpp@npm:^4.5.1":
   version: 4.9.0
   resolution: "@eslint-community/regexpp@npm:4.9.0"
   checksum: 82411f0643ab9bfd271bf12c8c75031266b13595d9371585ee3b0d680d918d4abf37c7e94d0da22e45817c9bbc59b79dfcbd672050dfb00af88fb89c80fd420f
+  languageName: node
+  linkType: hard
+
+"@eslint-community/regexpp@npm:^4.6.1":
+  version: 4.9.1
+  resolution: "@eslint-community/regexpp@npm:4.9.1"
+  checksum: 06fb839e9c756f6375cc545c2f2e05a0a64576bd6370e8e3c07983fd29a3d6e164ef4aa48a361f7d27e6713ab79c83053ff6a2ccb78748bc955e344279c4a3b6
   languageName: node
   linkType: hard
 
@@ -4568,23 +4575,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:*":
+"@types/eslint@npm:8.44.3":
   version: 8.44.3
   resolution: "@types/eslint@npm:8.44.3"
   dependencies:
     "@types/estree": "*"
     "@types/json-schema": "*"
   checksum: 3a0d152785400cb83a887a646d9c8877468e686b6fb439635c64856b70dbe91019e588d2b32bc923cd60642bf5dca7f70b2cf61eb431cf25fbdf2932f6e13dd3
-  languageName: node
-  linkType: hard
-
-"@types/eslint@npm:^7.2.13, @types/eslint@npm:^7.29.0":
-  version: 7.29.0
-  resolution: "@types/eslint@npm:7.29.0"
-  dependencies:
-    "@types/estree": "*"
-    "@types/json-schema": "*"
-  checksum: df13991c554954353ce8f3bb03e19da6cc71916889443d68d178d4f858b561ba4cc4a4f291c6eb9eebb7f864b12b9b9313051b3a8dfea3e513dadf3188a77bdf
   languageName: node
   linkType: hard
 
@@ -7460,7 +7457,7 @@ __metadata:
     babel-jest: ^29.7.0
     date-fns: ^2.30.0
     dtslint: ^4.2.1
-    eslint: ^8.51.0
+    eslint: latest
     eslint-config-prettier: ^9.0.0
     eslint-plugin-node: ^11.1.0
     eslint-plugin-prettier: ^5.0.1
@@ -10256,7 +10253,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.51.0":
+"eslint@npm:latest":
   version: 8.51.0
   resolution: "eslint@npm:8.51.0"
   dependencies:
@@ -12464,21 +12461,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^13.19.0, globals@npm:^13.20.0, globals@npm:^13.6.0, globals@npm:^13.9.0":
-  version: 13.22.0
-  resolution: "globals@npm:13.22.0"
-  dependencies:
-    type-fest: ^0.20.2
-  checksum: 64af5a09565341432770444085f7aa98b54331c3b69732e0de411003921fa2dd060222ae7b50bec0b98f29c4d00b4f49bf434049ba9f7c36ca4ee1773f60458c
-  languageName: node
-  linkType: hard
-
-"globals@npm:^13.2.0":
+"globals@npm:^13.19.0, globals@npm:^13.2.0":
   version: 13.23.0
   resolution: "globals@npm:13.23.0"
   dependencies:
     type-fest: ^0.20.2
   checksum: 194c97cf8d1ef6ba59417234c2386549c4103b6e5f24b1ff1952de61a4753e5d2069435ba629de711a6480b1b1d114a98e2ab27f85e966d5a10c319c3bbd3dc3
+  languageName: node
+  linkType: hard
+
+"globals@npm:^13.20.0, globals@npm:^13.6.0, globals@npm:^13.9.0":
+  version: 13.22.0
+  resolution: "globals@npm:13.22.0"
+  dependencies:
+    type-fest: ^0.20.2
+  checksum: 64af5a09565341432770444085f7aa98b54331c3b69732e0de411003921fa2dd060222ae7b50bec0b98f29c4d00b4f49bf434049ba9f7c36ca4ee1773f60458c
   languageName: node
   linkType: hard
 
@@ -24651,7 +24648,7 @@ __metadata:
     babel-preset-gatsby: ^3.12.0
     core-js: ^3.33.0
     cypress: ^13.3.1
-    eslint: ^8.51.0
+    eslint: latest
     eslint-plugin-cypress: ^2.15.1
     eslint-plugin-react: ^7.33.2
     gatsby: ^3.15.0

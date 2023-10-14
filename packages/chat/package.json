@@ -35,7 +35,7 @@
     "@typescript-eslint/parser": "^6.7.5",
     "babel-jest": "^29.7.0",
     "dtslint": "^4.2.1",
-    "eslint": "^8.51.0",
+    "eslint": "latest",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.0.1",
@@ -58,7 +58,8 @@
     "dev": "node ./server/index.mjs",
     "lint": "yarn eslint src server tests --ext .js,.ts,.jsx,.tsx,.mjs,.mts -c ./.eslintrc.js",
     "test": "yarn test-jest",
-    "test-jest": "yarn jest tests"
+    "test-jest": "yarn jest tests",
+    "typecheck": "yarn tsc -P ."
   },
   "volta": {
     "node": "18.18.2",
