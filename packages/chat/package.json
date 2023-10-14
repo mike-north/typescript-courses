@@ -55,10 +55,10 @@
     "build": "yarn parcel build index.html",
     "dev": "node ./server/index.mjs",
     "lint": "yarn eslint src server tests --ext .js,.ts,.jsx,.tsx,.mjs,.mts -c ./.eslintrc.js",
-    "test": "yarn test-jest",
-    "test-jest": "jest tests",
-    "test-tsd": "tsd tests/types-tsd",
-    "test-dtslint": "dtslint tests/types-dtslint"
+    "test": "yarn test:jest",
+    "test:jest": "jest tests",
+    "test:tsd": "tsd tests/types-tsd",
+    "test:dtslint": "dtslint tests/types-dtslint"
   },
   "volta": {
     "node": "18.18.2",

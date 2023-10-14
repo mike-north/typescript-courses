@@ -29,6 +29,7 @@
     "dev-welcome-to-ts": "yarn workspace welcome-to-ts dev",
     "build": "yarn workspaces foreach run build",
     "lint": "yarn workspaces foreach --from '{chat,website}' run lint",
-    "typecheck": "yarn workspaces foreach run typecheck"
+    "typecheck": "yarn workspaces foreach run typecheck",
+    "test": "yarn workspaces foreach run test:jest"
   }
 }
