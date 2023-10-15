@@ -1,0 +1,9 @@
+{
+    "extends": "../tsconfig.json",
+    "references": [{ "name": "chat-stdlib", "path": ".." }],
+    "compilerOptions": {
+      "types": ["jest"],
+      "rootDir": ".."
+    },
+    "include": ["."]
+  }
