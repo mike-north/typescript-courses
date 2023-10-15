@@ -41,6 +41,7 @@ We'll cover a variety of modern TypeScript development topics that align with th
 - We'll **create a TypeScript library from scratch**, with API docs, linting and automated detection of changes to our public API surface!
 - We'll **migrate a non-trivial JS codebase to TypeScript**, using a low-risk incremental strategy
 - We'll look at **how to keep pace with new TS compiler versions and deal with breaking changes** using [`rehearsal-js`](https://github.com/rehearsal-js/rehearsal-js) [`typesVersions`](https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html#multiple-fields) and [downlevel-dts](https://github.com/sandersn/downlevel-dts)
+- We'll develop an **in-depth understanding of "strictness"**, both from the standpoint of compiler settings and lint rules
 - We'll experiment with some exciting new tooling like `swc`, a rust-based TypeScript compiler that can run significantly faster
 - We'll use `yarn`'s built-in support for workspaces, allowing us to focus in on sub-parts of a large project and work locally
 

@@ -1,5 +1,5 @@
 ---
-title: Mike's TS Setup
+title: TypeScript Libraries - Zero to One
 date: "2021-06-10T09:00:00.000Z"
 description: |
   We'll discuss the goals and agenda of this course, and how to get up and
@@ -8,7 +8,7 @@ course: enterprise-v2
 order: 2
 ---
 
-## Mike's "bare bones" TS setup
+## A "bare bones" TypeScript Library Setup
 
 Let's start by creating new small library from nothing, so you can see how Mike's "lots of value out of few tools" approach keeps things nice and simple.
 
