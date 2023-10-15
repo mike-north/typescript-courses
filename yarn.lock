@@ -5243,7 +5243,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^6.7.5":
+"@typescript-eslint/eslint-plugin@npm:^6.7.5, @typescript-eslint/eslint-plugin@npm:latest":
   version: 6.7.5
   resolution: "@typescript-eslint/eslint-plugin@npm:6.7.5"
   dependencies:
@@ -5301,7 +5301,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^6.7.5":
+"@typescript-eslint/parser@npm:^6.7.5, @typescript-eslint/parser@npm:latest":
   version: 6.7.5
   resolution: "@typescript-eslint/parser@npm:6.7.5"
   dependencies:
@@ -7433,6 +7433,18 @@ __metadata:
   checksum: 767e4ea65014c3a93ed6943d230150b80bea8842b3a19890a30a477f47c8dfb68687d754f5a538bd628fc3a0a6b84c4986c9c3f9c541c4956239d8d280472614
   languageName: node
   linkType: hard
+
+"chat-stdlib@workspace:packages/chat-stdlib":
+  version: 0.0.0-use.local
+  resolution: "chat-stdlib@workspace:packages/chat-stdlib"
+  dependencies:
+    "@types/eslint": ^8
+    "@typescript-eslint/eslint-plugin": latest
+    "@typescript-eslint/parser": latest
+    eslint: ^8.51.0
+    typescript: ^5.2.2
+  languageName: unknown
+  linkType: soft
 
 "chat@workspace:packages/chat":
   version: 0.0.0-use.local
@@ -10253,7 +10265,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:latest":
+"eslint@npm:^8.51.0, eslint@npm:latest":
   version: 8.51.0
   resolution: "eslint@npm:8.51.0"
   dependencies:
@@ -23549,7 +23561,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:>3":
+"typescript@npm:>3, typescript@npm:^5.2.2":
   version: 5.2.2
   resolution: "typescript@npm:5.2.2"
   bin:
@@ -23579,7 +23591,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@>3#~builtin<compat/typescript>":
+"typescript@patch:typescript@>3#~builtin<compat/typescript>, typescript@patch:typescript@^5.2.2#~builtin<compat/typescript>":
   version: 5.2.2
   resolution: "typescript@patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"
   bin:
