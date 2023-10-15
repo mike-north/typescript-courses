@@ -1,4 +1,4 @@
-import { formatTimestamp } from '../../src/utils/date.js'
+import { formatTimestamp } from 'chat/src/utils/date.cjs'
 import { format } from 'date-fns'
 
 describe('Utils - formatTimestamp', () => {

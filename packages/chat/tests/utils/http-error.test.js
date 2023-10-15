@@ -1,4 +1,4 @@
-import HTTPError, { HTTPErrorKind } from 'chat/src/utils/http-error'
+import { HTTPError, HTTPErrorKind } from 'chat/src/utils/http-error.cjs'
 
 describe('HTTPError', () => {
   test('should set the kind property correctly for a 1xx status code', () => {

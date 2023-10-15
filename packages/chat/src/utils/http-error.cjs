@@ -1,7 +1,7 @@
 /**
  * @enum {number}
  */
-export const HTTPErrorKind = {
+const HTTPErrorKind = {
   Information: 100,
   Success: 200,
   Redirect: 300,
@@ -39,4 +39,4 @@ class HTTPError extends Error {
   }
 }
 
-module.exports = HTTPError
+module.exports = { HTTPError, HTTPErrorKind }

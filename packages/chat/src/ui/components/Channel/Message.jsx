@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as formatTimestamp from '../../../utils/date.cjs'
+import { formatTimestamp } from '../../../utils/date.cjs'
 
 const Message = ({ user, date, body }) => (
   <div
