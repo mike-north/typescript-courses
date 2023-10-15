@@ -1,6 +1,6 @@
 ---
 title: Intro & Project Setup
-date: "2021-06-10T09:00:00.000Z"
+date: "2023-10-27T09:00:00.000Z"
 description: |
   This course tackles challenges in large-scale enterprise software,
   emphasizing productivity, cohesion, longevity, and complexity for TypeScript developers.

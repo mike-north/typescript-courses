@@ -1,9 +1,8 @@
 ---
 title: App vs Library Concerns
-date: "2021-06-10T09:00:00.000Z"
+date: "2023-10-27T09:00:00.000Z"
 description: |
-  We'll discuss the goals and agenda of this course, and how to get up and
-  running with the workshop project in 2 minutes or less.
+  A discussion of different concerns to optimize for, depending on whether you're building a library or an app
 course: enterprise-v2
 order: 4
 ---
