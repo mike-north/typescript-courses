@@ -2,8 +2,8 @@
 title: Intro & Project Setup
 date: "2021-06-10T09:00:00.000Z"
 description: |
-  We'll discuss the goals and agenda of this course, and how to get up and
-  running with the workshop project in 2 minutes or less.
+  This course tackles challenges in large-scale enterprise software,
+  emphasizing productivity, cohesion, longevity, and complexity for TypeScript developers.
 course: enterprise-v2
 order: 1
 ---
@@ -15,49 +15,49 @@ order: 1
 - Designs [Stripe's API semantics](https://stripe.com/docs/api)
 - Architect responsible for TypeScript projects like [node-stripe](https://github.com/stripe/stripe-node), [Stripe Shell](https://stripe.sh/), and [Stripe Workbench](https://workbench.stripe.dev/)
 
-## Top Goals for this course
-<!-- TODO - Fill this in -->
+## What's this course all about
 
-We'll cover a lot of ground in this course, but much of it will come back to a
-few central themes:
+Enterprise software just means software intended _for large organizations_. How large? For the purposes of this course, let's say big enough that
 
-### Productivity through stability and automation
+- No one person could possibly master the entire codebase
+- Multiple teams are involved in the evolution of the project, and they don't want to be tightly coupled with each other
+- If everyone "does their own thing" the codebase (and resultant product) will lose cohesion and become unmanageable
 
-- The whole point of TS is to allow you do more, and do it better. We'll learn how to make sure that it delivers on this promise
-- The bigger your team is, and the more critical your app is, the more costly disruptions can be. We'll learn how to avoid them
+In essence
 
-### Developer ergonomics, and a modern authoring environment
+> Lots of teams, working on lots of code
 
-- Part of the TS value proposition is the idea of a _fantastic development environment_.
-  We'll learn how to make sure this is set up nicely so that it works well
-  for even _very large_ apps.
-- We'll learn about how to use valuable (but oft neglected) features like API
-  deprecations, tracking a public API surface, and marking parts of your
-  code as "alpha" or "beta" maturity
+Being in this situation requires that we pay extra attention to a few areas.
 
-### Release Confidence & Type Safety
+- **Productivity**. A broken build, an incompatible dependency, etc... interrupts the work of many people.
+- **A balance opinionated foundations, and flexibility**. There need to be helpful forces that keep the project cohesive, while still providing enough flexibility for creative license, and customizations to meet certain needs in specific areas of the codebase.
+- **Designing for a long shelf life**. Successful large projects are often around for a long time. They need to be able to evolve as things change, and avoid the need for a rewrite every few years
+- **Managing complexity**. Once a codebase gets large enough, managing the interactions between different areas starts to become overwhelming if the architecture is not designed well.
 
-- TypeScript places a greater importance on productivity than 100% type safety.
-  Compare this to [flow](https://flow.org), which has made a different choice
-  > In type systems, soundness is the ability for a type checker to catch every single error that might happen at runtime. This comes at the cost of sometimes catching errors that will not actually happen at runtime.
-  >
-  > On the flip-side, completeness is the ability for a type checker to only ever catch errors that would happen at runtime. This comes at the cost of sometimes missing errors that will happen at runtime.
-  >
-  > In an ideal world, every type checker would be both sound and complete so that it catches every error that will happen at runtime.
-  >
-  > Flow tries to be as sound and complete as possible. But because JavaScript was not designed around a type system, Flow sometimes has to make a trade-off. When this happens Flow tends to favor soundness over completeness, ensuring that code doesn’t have any bugs. ([source](https://flow.org/en/docs/lang/types-and-expressions/#toc-soundness-and-completeness))
+We'll cover a variety of modern TypeScript development topics that align with these four areas.
 
-### Take extra care where runtime and type-checking meet
+### Course goals
 
-- We'll see first hand how bugs in these areas significantly weaken TypeScript's value as a tool
-- By the end of this course, you'll understand how to give these areas extra attention
+- We'll **create a TypeScript library from scratch**, with API docs, linting and automated detection of changes to our public API surface!
+- We'll **migrate a non-trivial JS codebase to TypeScript**, using a low-risk incremental strategy
+- We'll look at **how to keep pace with new TS compiler versions and deal with breaking changes** using [`rehearsal-js`](https://github.com/rehearsal-js/rehearsal-js) [`typesVersions`](https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html#multiple-fields) and [downlevel-dts](https://github.com/sandersn/downlevel-dts)
+- We'll develop an **in-depth understanding of "strictness"**, both from the standpoint of compiler settings and lint rules
+- We'll experiment with some exciting new tooling like `swc`, a rust-based TypeScript compiler that can run significantly faster
+- We'll use `yarn`'s built-in support for workspaces, allowing us to focus in on sub-parts of a large project and work locally
 
-## What do you assume I already know?
-<!-- TODO - Fill this in -->
+## What you should already know
 
 This course is intended for developers who are already familiar with TypeScript
 as a programming language, and are interested in learning more about how
 to use it at scale, in libraries, and as a core part of large software projects.
+
+Beyond TypeScript, should be familiar with most of the topics below
+
+- Managing dependencies with `yarn` or `npm`
+- Linting with `eslint` or similar tools
+- The concept of `MAJOR`, `MINOR` and `PATCH` releases, as described by [semantic versioning](https://semver.org/#summary).
+- Basic use of [React.js](https://react.dev/)
+- Working with basic shell scripts (or equivalent powershell commands)
 
 ## Project tour and getting started
 
@@ -67,7 +67,7 @@ In this workshop we'll be working in the context of a simplified Slack app
 
 As we begin the course, it's written entirely in JavaScript, and is comprised of a few mostly stateless React components.
 
-The web client for this app lives in [`src/`](../src/), and is roughly organized as
+The web client for this app lives in [`src/`](https://github.com/mike-north/typescript-courses/blob/main/packages/chat/src/), and is roughly organized as
 
 ```bash
 src/        # web client
@@ -79,6 +79,10 @@ src/        # web client
 
 There's a API and database in this project as well, but we won't be changing them during the workshop.
 
-The database comes from your [`db.json`](../db.json) file, and the API code is located in the [`server/`](../server/) folder.
+```bash
+server/     # Server-side code
+src/
+db.json     # The database
+```
 
-**One thing you _absolutely will_ want to look at is the API documentation, which can be found in your [`API_EXAMPLES.http`](API_EXAMPLES.http) file**.
+**One thing you _absolutely will_ want to look at is the API examples, which can be found in your [`API_EXAMPLES.http`](https://github.com/mike-north/typescript-courses/blob/main/packages/chat/API_EXAMPLES.http) file**.

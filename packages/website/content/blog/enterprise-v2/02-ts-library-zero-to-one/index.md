@@ -1,16 +1,16 @@
 ---
-title: Mike's TS Setup
+title: TypeScript Libraries - Zero to One
 date: "2021-06-10T09:00:00.000Z"
 description: |
   We'll discuss the goals and agenda of this course, and how to get up and
   running with the workshop project in 2 minutes or less.
 course: enterprise-v2
-order: 3
+order: 2
 ---
 
-## Mike's "bare bones" TS setup
+## A "bare bones" TypeScript Library Setup
 
-In this part of the workshop, we'll create a new small library from nothing, so you can see how Mike's "lots of value out of few tools" approach keeps things nice and simple.
+Let's start by creating new small library from nothing, so you can see how Mike's "lots of value out of few tools" approach keeps things nice and simple.
 
 ## Getting Started
 
@@ -31,14 +31,12 @@ and a package.json file
 
 ```sh
 yarn init --yes
+yarn config set nodeLinker node-modules
 ```
 
 Make a few direct modifications to your `package.json` file as follows
 
 ```diff
---- a/package.json
-+++ b/package.json
-@@ -1,6 +1,13 @@
  {
    "name": "my-lib",
    "version": "1.0.0",
@@ -46,10 +44,10 @@ Make a few direct modifications to your `package.json` file as follows
 +  "main": "dist/index.js",
 +  "types": "dist/index.d.ts",
 +  "scripts": {
-+    "build": "tsc",
++    "build": "yarn tsc",
 +    "dev": "yarn build --watch --preserveWatchOutput",
-+    "lint": "eslint src --ext js,ts",
-+    "test": "jest"
++    "lint": "yarn eslint src --ext js,ts",
++    "test": "yarn jest"
 +  },
    "license": "MIT"
  }
@@ -60,29 +58,28 @@ This ensures that TS and non-TS consumers alike can use this library, and that w
 ```sh
 yarn build   # build the project
 yarn dev     # build, and rebuild when source is changed
-yarn lint    # run the linter
+yarn lint    # run linting
 yarn test    # run tests
 ```
 
 Pin the node and yarn versions to their current stable releases using volta
 
 ```sh
-volta pin node yarn
+volta pin node@lts yarn@^3
 ```
 
-this will add `node` and `yarn` versions to your `package.json` automatically.
+this will add `node` and `yarn` versions to your `package.json` automatically. Note that we're using an LTS version of `node`, which is what the Node.js project tells us to do
 
-Next, initialize the git repository
+> LTS release status is "long-term support", which typically guarantees that critical bugs will be fixed for a total of 30 months. **Production applications should only use Active LTS or Maintenance LTS releases.**
 
-```sh
-git init
-```
+Source: [nodejs.dev/en/about/releases/](https://nodejs.dev/en/about/releases/)
 
 ## TypeScript Compiler
 
-install typescript as a development dependency. We'll only need this at build
-time, because not all consumers of this library may be using TypeScript
-themselves.
+Install typescript as a `devDependency`, which establishes two important things
+
+- TypeScript is included at build time, and not packaged with the library as a runtime dependency
+- Consumers of this library do not need to use the same version of TypeScript being used to build this library. They don't necessarily need to use TypeScript at all.
 
 ```sh
 yarn add -D typescript
@@ -101,7 +98,7 @@ and ensure the following values are set:
 ```diff
   "compilerOptions": {
 +   "outDir": "dist",
-+   "rootDirs": ["src"],
++   "rootDir": "src",
   },
 + "include": ["src"]
 ```
@@ -113,7 +110,7 @@ Next, make sure that the TS compiler creates Node-friendly CommonJS modules, and
 ```diff
   "compilerOptions": {
 +   "module": "commonjs",
-+   "target": "ES2018",
++   "target": "ES2022",
   }
 ```
 
@@ -155,6 +152,12 @@ And finally, let's make sure that we set up an "extra strict" type-checking conf
 +   "stripInternal": true,
 +   "types": [],
 +   "forceConsistentCasingInFileNames": true,
++   "exactOptionalPropertyTypes": true,
++   "noImplicitReturns": true,
++   "noUncheckedIndexedAccess": true,                
++   "noImplicitOverride": true,                      
++   "noPropertyAccessFromIndexSignature": true,      
+
   }
 ```
 
@@ -230,6 +233,13 @@ You should see something like
 index.d.ts index.js
 ```
 
+Make a commit! We have working build script.
+
+```sh
+git add -A .
+git commit -m "Build is working"
+```
+
 ## Linting
 
 Install eslint as a development dependency
@@ -259,16 +269,11 @@ When asked, please answer as follows for the choices presented to you:
     <dd>Node</dd>
     <dt>What format do you want your config file to be in?</dt>
     <dd>JSON</dd>
-    <dt>Would you like to install them now with npm?</dt>
+    <dt>Would you like to install them now?</dt>
     <dd>Yes</dd>
+    <dt>Which package manager are you using?</dt>
+    <dd>yarn</dd>
 </dl>
-
-Because we're using `yarn`, let's delete that `npm` file `package-lock.json` and run `yarn` to update `yarn.lock`.
-
-```sh
-rm package-lock.json
-yarn
-```
 
 Let's also enable a set of rules that take advantage of type-checking information
 
@@ -381,12 +386,19 @@ should tell us that this is a problem. If properly configured, you may also see 
 
 Undo the problematic code change, run `yarn lint` again and you should see no errors
 
+Make a commit! We have working lint command.
+
+```sh
+git add -A .
+git commit -m "Linting with ESLint is working"
+```
+
 ## Testing
 
 Next, let's install our test runner, and associated type information, along with some required babel plugins
 
 ```sh
-yarn add -D jest @types/jest @babel/preset-env @babel/preset-typescript
+yarn add -D jest @types/jest @babel/core @babel/preset-env @babel/preset-typescript
 ```
 
 and make a folder for our tests
@@ -494,6 +506,13 @@ Ran all test suites.
 ✨  Done in 1.74s.
 ```
 
+Make a commit! We have the beginnings of a test suite in place.
+
+```sh
+git add -A .
+git commit -m "Testing with Jest is working"
+```
+
 ## API Surface Report & Docs
 
 We're going to use Microsoft's [api-extractor](https://api-extractor.com/) as our
@@ -522,7 +541,7 @@ up and make the following changes
     * SUPPORTED TOKENS: <projectFolder>, <packageName>, <unscopedPackageName>
     */
 -  "mainEntryPointFilePath": "<projectFolder>/lib/index.d.ts",
-+  "mainEntryPointFilePath": "<projectFolder>/dist/index.d.ts",^M
++  "mainEntryPointFilePath": "<projectFolder>/dist/index.d.ts",
 
    /**
     * A list of NPM package names whose exports should be treated as part of this package.
@@ -531,7 +550,7 @@ up and make the following changes
       * (REQUIRED) Whether to generate the .d.ts rollup file.
       */
 -    "enabled": true
-+    "enabled": true,^M
++    "enabled": true,
 
      /**
       * Specifies the output path for a .d.ts rollup file to be generated without any trimming.
@@ -588,6 +607,7 @@ should add this to your `.gitignore`.
  .yarn/install-state.gz
  .pnp.*
 +
++# API Extractor working folder
 +temp
 ```
 
@@ -628,6 +648,13 @@ Make a commit so you have a clean workspace.
 
 ```sh
 git commit -am "setup api-extractor and api-documenter"
+```
+
+Make a commit! We have API extraction and a documentation generator in place.
+
+```sh
+git add -A .
+git commit -m "API Extractor and API Documenter are working"
 ```
 
 ## Making a change that affects our API
@@ -726,6 +753,13 @@ index 8ab69a1..4ca8888 100644
 
 <b>Returns:</b>
 
+```
+
+Make a commit! We've introduced the first change to our library's public API
+
+```sh
+git add -A .
+git commit -m "Add fourth operand to `sum3` function"
 ```
 
 Congrats! we now have
