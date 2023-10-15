@@ -68,7 +68,7 @@ ${err.stack || '(no stack trace information)'}`
  * @param err - The thrown value
  * @beta
  */
-export function stringifyError(err: unknown, errorDescription?: string) {
+export function stringifyError(err: unknown, errorDescription: string) {
     return `${errorDescription ?? "( no error description )"}\n${err instanceof Error
             ? stringifyErrorValue(err)
             : err
