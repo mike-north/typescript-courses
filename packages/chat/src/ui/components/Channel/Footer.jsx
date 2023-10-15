@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 
 const Footer = ({ channel: { name: channelName } }) => (
   <footer className="pb-6 px-4 flex-none channel-footer">
@@ -43,6 +43,6 @@ const Footer = ({ channel: { name: channelName } }) => (
       </button>
     </form>
   </footer>
-);
+)
 
-export default Footer;
+export default Footer

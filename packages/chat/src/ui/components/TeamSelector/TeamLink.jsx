@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import * as React from 'react'
+import { Link, useRouteMatch } from 'react-router-dom'
 
 const TeamLink = ({ team }) => {
   const match = useRouteMatch({
     path: `/team/${team.id}`,
     exact: false,
-  });
+  })
 
   return (
     <Link
@@ -23,7 +23,7 @@ const TeamLink = ({ team }) => {
         />
       </div>
     </Link>
-  );
-};
+  )
+}
 
-export default TeamLink;
+export default TeamLink

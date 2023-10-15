@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 
 const Header = ({ title, description }) => (
   <header className="border-b flex px-6 py-2 items-center flex-row channel-header">
@@ -12,6 +12,6 @@ const Header = ({ title, description }) => (
       </h4>
     </div>
   </header>
-);
+)
 
-export default Header;
+export default Header

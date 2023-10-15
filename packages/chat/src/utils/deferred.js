@@ -8,10 +8,10 @@ export class Deferred {
   /**
    * The function to call to resolve the deferred operation.
    * @type {(reason: any) => void}
-  */
- #_resolve
- /** 
-  * The function to call to reject the deferred operation.
+   */
+  #_resolve
+  /**
+   * The function to call to reject the deferred operation.
    * @type {(reason: any) => void}
    */
   #_reject
@@ -27,23 +27,23 @@ export class Deferred {
      * @private
      */
     this.#_promise = new Promise((resolve, reject) => {
-      this.#_resolve = resolve;
-      this.#_reject = reject;
-    });
+      this.#_resolve = resolve
+      this.#_reject = reject
+    })
 
     /**
      * The function to call to resolve the deferred operation.
      * @type {function}
      * @private
      */
-    this.#_resolve;
+    this.#_resolve
 
     /**
      * The function to call to reject the deferred operation.
      * @type {function}
      * @private
      */
-    this.#_reject;
+    this.#_reject
   }
 
   /**
@@ -51,7 +51,7 @@ export class Deferred {
    * @type {Promise}
    */
   get promise() {
-    return this.#_promise;
+    return this.#_promise
   }
 
   /**
@@ -59,7 +59,7 @@ export class Deferred {
    * @type {function}
    */
   get resolve() {
-    return this.#_resolve;
+    return this.#_resolve
   }
 
   /**
@@ -67,6 +67,6 @@ export class Deferred {
    * @type {function}
    */
   get reject() {
-    return this.#_reject;
+    return this.#_reject
   }
 }
