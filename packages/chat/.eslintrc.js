@@ -1,6 +1,6 @@
 module.exports = {
   "env": {
-    "es2021": true
+    "es2022": true
   },
   "settings": {
     "react": {
@@ -34,15 +34,27 @@ module.exports = {
     "prefer-const": "error",
   },
   "overrides": [
+    {/**
+      * ESLINT CONFIG
+      */
+      "files": [".eslintrc.js"],
+      "env": { "node": true },
+      "extends": [
+        "eslint:recommended"
+      ],
+      "rules": {
+        "sonarjs/no-duplicate-string": "off",
+      }
+    },
     /**
-     * CLIENT SIDE CODE
+     * CLIENT SIDE CODE (ESM)
      */
     {
       "files": ["src/**/*.{mts,ts,mjs,js,jsx,tsx}"],
 
       "env": {
         "browser": true,
-        "es2021": true
+        "es2022": true,
       },
       "rules": {
         "react/prop-types": "off",
@@ -53,6 +65,23 @@ module.exports = {
       "extends": [
         "eslint:recommended",
         "plugin:react/recommended"
+      ]
+    },
+    {
+    /**
+     * CLIENT SIDE CODE (CJS)
+     */
+      "files": ["src/**/*.{cts,cjs}"],
+      "env": {
+        "node": true,
+        "es2022": true
+      },
+      "rules": {
+        "no-unused-vars": "off",
+        "no-unreachable": "off",
+      },
+      "extends": [
+        "eslint:recommended"
       ]
     },
     /**

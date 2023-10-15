@@ -27,7 +27,7 @@ function determineKind(status) {
 }
 
 /** @param {HTTPErrorKind} kind */
-export default class HTTPError extends Error {
+class HTTPError extends Error {
   /**
    *
    * @param {Pick<Response, 'statusText' | 'status'>} info
@@ -40,3 +40,5 @@ export default class HTTPError extends Error {
     this.kind = determineKind(info.status);
   }
 }
+
+module.exports = HTTPError

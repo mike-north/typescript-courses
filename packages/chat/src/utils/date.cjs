@@ -6,6 +6,6 @@ import { format } from 'date-fns';
  * @param {Date} date - The date object to format.
  * @returns {string} The formatted date string.
  */
-export function formatTimestamp(date) {
+module.exports = function formatTimestamp(date) {
   return format(date, 'MMM dd, yyyy HH:MM:SS a');
 }

@@ -1,5 +1,5 @@
 import { stringifyError } from './error';
-import HTTPError from './http-error';
+import * as HTTPError from './http-error.cjs';
 
 /**
  *
@@ -48,11 +48,12 @@ export async function apiCall(path, init) {
       ),
     );
   }
-  if (!response.ok)
+  if (!response.ok) {
     json = null
     throw new HTTPError(
       response,
       'Problem while making API call',
     );
+  }
   return json;
 }
