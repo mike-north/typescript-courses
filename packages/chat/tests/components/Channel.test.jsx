@@ -1,6 +1,6 @@
-import * as React from 'react';
-import * as renderer from 'react-test-renderer';
-import Channel from '../../src/ui/components/Channel';
+import * as React from 'react'
+import * as renderer from 'react-test-renderer'
+import Channel from '../../src/ui/components/Channel'
 
 test.skip('Link changes the class when hovered', () => {
   const component = renderer.create(
@@ -12,7 +12,7 @@ test.skip('Link changes the class when hovered', () => {
         teamId: 'linkedin',
       }}
     />,
-  );
-  const tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
-});
+  )
+  const tree = component.toJSON()
+  expect(tree).toMatchSnapshot()
+})
