@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import * as React from 'react'
+import { Link, useRouteMatch } from 'react-router-dom'
 
 const ChannelLink = ({ to, channel }) => {
-  const match = useRouteMatch(to);
+  const match = useRouteMatch(to)
   return (
     <Link
       to={to}
@@ -14,7 +14,7 @@ const ChannelLink = ({ to, channel }) => {
       <span aria-hidden="true"># </span>
       {channel.name}
     </Link>
-  );
-};
+  )
+}
 
-export default ChannelLink;
+export default ChannelLink

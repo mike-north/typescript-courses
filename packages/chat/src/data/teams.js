@@ -1,18 +1,18 @@
-import { apiCall } from '../utils/networking';
+import { apiCall } from '../utils/networking'
 
-let cachedAllTeamsList;
+let cachedAllTeamsList
 export async function getAllTeams() {
   if (typeof cachedAllTeamsList === 'undefined')
-    cachedAllTeamsList = apiCall('teams');
+    cachedAllTeamsList = apiCall('teams')
 
-  return await cachedAllTeamsList;
+  return await cachedAllTeamsList
 }
 
-const cachedTeamRecords = {};
+const cachedTeamRecords = {}
 
 export async function getTeamById(id) {
-  let cached = cachedTeamRecords[id];
+  let cached = cachedTeamRecords[id]
   if (typeof cached === 'undefined')
-    cached = cachedTeamRecords[id] = apiCall(`teams/${id}`);
-  return await cached;
+    cached = cachedTeamRecords[id] = apiCall(`teams/${id}`)
+  return await cached
 }

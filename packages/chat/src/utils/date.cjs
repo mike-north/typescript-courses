@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { format } from 'date-fns'
 
 /**
  * Formats a given date object into a string with the format 'MMM dd, yyyy HH:MM:SS a'.
@@ -7,5 +7,5 @@ import { format } from 'date-fns';
  * @returns {string} The formatted date string.
  */
 module.exports = function formatTimestamp(date) {
-  return format(date, 'MMM dd, yyyy HH:MM:SS a');
+  return format(date, 'MMM dd, yyyy HH:MM:SS a')
 }

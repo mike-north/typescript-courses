@@ -1,5 +1,5 @@
-import * as React from 'react';
-import ChannelLink from './TeamSidebar/ChannelLink';
+import * as React from 'react'
+import ChannelLink from './TeamSidebar/ChannelLink'
 
 const TeamSidebar = ({ team }) => {
   return (
@@ -71,7 +71,7 @@ const TeamSidebar = ({ team }) => {
         </button>
       </footer>
     </section>
-  );
-};
+  )
+}
 
-export default TeamSidebar;
+export default TeamSidebar
