@@ -1,0 +1,20 @@
+{
+  "name": "chat-stdlib",
+  "packageManager": "yarn@3.6.4",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "yarn tsc",
+    "dev": "yarn build --watch --preserveWatchOutput",
+    "lint": "yarn eslint src --ext js,ts",
+    "test": "yarn jest"
+  },
+  "license": "NOLICENSE",
+  "volta": {
+    "node": "18.18.2",
+    "yarn": "3.6.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}
