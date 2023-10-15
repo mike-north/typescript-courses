@@ -1,5 +1,5 @@
 ---
-title: A close look at tsconfig.json
+title: tsconfig strictness
 date: "2023-10-27T09:00:00.000Z"
 description: |
   We'll look closely at the tsconfig we created for our library, examining a variety of the compiler options we enabled 
