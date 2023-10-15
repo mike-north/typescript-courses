@@ -1,25 +1,25 @@
-import * as React from 'react';
+import * as React from 'react'
 import {
   BrowserRouter as Router,
   Route,
   Switch,
-} from 'react-router-dom';
-import { getAllTeams } from '../data/teams';
-import { useAsyncDataEffect } from '../utils/api';
-import Loading from './components/Loading';
-import SelectedTeam from './components/SelectedTeam';
-import TeamSelector from './components/TeamSelector';
+} from 'react-router-dom'
+import { getAllTeams } from '../data/teams'
+import { useAsyncDataEffect } from '../utils/api'
+import Loading from './components/Loading'
+import SelectedTeam from './components/SelectedTeam'
+import TeamSelector from './components/TeamSelector'
 
-const { useState } = React;
+const { useState } = React
 
 const App = () => {
-  const [teams, setTeams] = useState(null);
+  const [teams, setTeams] = useState(null)
 
   useAsyncDataEffect(() => getAllTeams(), {
     setter: setTeams,
     stateName: 'teams',
-  });
-  if (teams === null) return <Loading message="Loading teams" />;
+  })
+  if (teams === null) return <Loading message="Loading teams" />
   return (
     <Router>
       <div className="flex flex-col sm:flex-row w-full h-full">
@@ -44,6 +44,6 @@ const App = () => {
         </Switch>
       </div>
     </Router>
-  );
-};
-export default App;
+  )
+}
+export default App

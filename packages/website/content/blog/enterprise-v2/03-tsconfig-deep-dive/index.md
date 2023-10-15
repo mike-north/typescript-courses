@@ -1,14 +1,13 @@
 ---
-title: What have I done?
-date: "2021-06-10T09:00:00.000Z"
+title: A close look at tsconfig.json
+date: "2023-10-27T09:00:00.000Z"
 description: |
-  We'll discuss the goals and agenda of this course, and how to get up and
-  running with the workshop project in 2 minutes or less.
+  We'll look closely at the tsconfig we created for our library, examining a variety of the compiler options we enabled 
 course: enterprise-v2
 order: 3
 ---
 
-## What have I done?
+## What's in the `tsconfig.json`?
 
 Let's look closely at what we just did, and make sure we understand all of the parts that make up the whole
 

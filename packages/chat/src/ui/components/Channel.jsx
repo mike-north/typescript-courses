@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { getChannelMessages } from '../../data/messages';
-import { useAsyncDataEffect } from '../../utils/api';
-import ChannelFooter from './Channel/Footer';
-import ChannelHeader from './Channel/Header';
-import ChannelMessage from './Channel/Message';
-import Loading from './Loading';
+import * as React from 'react'
+import { getChannelMessages } from '../../data/messages'
+import { useAsyncDataEffect } from '../../utils/api'
+import ChannelFooter from './Channel/Footer'
+import ChannelHeader from './Channel/Header'
+import ChannelMessage from './Channel/Message'
+import Loading from './Loading'
 
 const Channel = ({ channel }) => {
-  const [messages, setMessages] = React.useState();
+  const [messages, setMessages] = React.useState()
   useAsyncDataEffect(
     () => getChannelMessages(channel.teamId, channel.id),
     {
@@ -15,15 +15,13 @@ const Channel = ({ channel }) => {
       stateName: 'messages',
       otherStatesToMonitor: [channel],
     },
-  );
-  if (!messages)
-    return <Loading message="Loading messages" />;
-  if (messages.length === 0)
-    return <Loading message="No messages" />;
+  )
+  if (!messages) return <Loading message="Loading messages" />
+  if (messages.length === 0) return <Loading message="No messages" />
   console.log(
     `%c CHANNEL render: ${channel.name}`,
     'background-color: purple; color: white',
-  );
+  )
   return (
     <main className="flex-1 flex flex-col bg-white overflow-hidden channel">
       <ChannelHeader
@@ -46,6 +44,6 @@ const Channel = ({ channel }) => {
 
       <ChannelFooter channel={channel} />
     </main>
-  );
-};
-export default Channel;
+  )
+}
+export default Channel

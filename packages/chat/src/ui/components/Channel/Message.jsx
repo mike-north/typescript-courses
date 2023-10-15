@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { formatTimestamp } from '../../../utils/date';
+import * as React from 'react'
+import { formatTimestamp } from '../../../utils/date.cjs'
 
 const Message = ({ user, date, body }) => (
   <div
@@ -40,6 +40,6 @@ const Message = ({ user, date, body }) => (
       🗑
     </button>
   </div>
-);
+)
 
-export default Message;
+export default Message
