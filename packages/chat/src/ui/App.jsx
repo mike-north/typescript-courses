@@ -7,7 +7,6 @@ import {
 import { getAllTeams } from '../data/teams'
 import { useAsyncDataEffect } from '../utils/api'
 import Loading from './components/Loading'
-import SelectedTeam from './components/SelectedTeam'
 import TeamSelector from './components/TeamSelector'
 
 const { useState } = React
