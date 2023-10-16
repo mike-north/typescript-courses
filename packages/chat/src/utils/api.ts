@@ -16,7 +16,7 @@ export function useAsyncDataEffect(getData, options) {
   let cancelled = false
   const { setter, stateName } = options
   useEffect(() => {
-    const d = new Deferred()
+    const d = new Deferred("requesting data")
 
     getData()
       .then((jsonData) => {
