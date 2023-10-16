@@ -1,7 +1,8 @@
 import * as React from 'react'
 import Channel from './Channel'
+import { match } from 'react-router-dom'
 
-const SelectedChannel = ({ match, channels }) => {
+const SelectedChannel: React.FC<{match: match<{channelId: string}>, channels: {id: string}[]}> = ({ match, channels }) => {
   if (!channels) throw new Error('no channels')
   if (!match) throw new Error('no match')
 

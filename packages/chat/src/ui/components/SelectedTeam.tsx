@@ -1,19 +1,13 @@
 import * as React from 'react'
 import Team from './Team'
 
-const SelectedTeam = ({ match, teams }) => {
-  if (!match) throw new Error('no match')
+const SelectedTeam: React.FC<{ teamId: string , teams: any[]}> = ({ teamId, teams }) => {
 
-  const { params } = match
-  if (!params) throw new Error('no match params')
+  const selectedTeam = teams.find((t) => t.id === teamId)
 
-  const { teamId: selectedTeamId } = params
-  if (!selectedTeamId) throw new Error(`undefined teamId`)
-
-  const selectedTeam = teams.find((t) => t.id === selectedTeamId)
   if (!selectedTeam)
     throw new Error(
-      `Invalid could not find team with id {selectedTeamId}`,
+      `Invalid could not find team with id {teamId}`,
     )
 
   return <Team team={selectedTeam} />

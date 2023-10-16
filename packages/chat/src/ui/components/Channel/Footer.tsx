@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-const Footer = ({ channel: { name: channelName } }) => (
+const Footer: React.FC<{channel: { name: string }}> = ({ channel: { name: channelName } }) => (
   <footer className="pb-6 px-4 flex-none channel-footer">
     <form
       className="flex w-full rounded-lg border-2 border-gray overflow-hidden"

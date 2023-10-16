@@ -6,11 +6,9 @@ import ChannelHeader from './Channel/Header'
 import ChannelMessage from './Channel/Message'
 import Loading from './Loading'
 
-const Channel = ({ channel }) => {
-  /**
-   * @type {any[] | null}
-   */
-  const initialMessages = null
+
+const Channel: React.FC<{channel: any}> = ({ channel }) => {
+  const initialMessages: {id: string, body: string, createdAt: string, user: any}[] = null
   const [messages, setMessages] = React.useState(initialMessages)
   useAsyncDataEffect(
     () => getChannelMessages(channel.teamId, channel.id),
