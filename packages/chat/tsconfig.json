@@ -9,7 +9,8 @@
     "jsx": "react",
     "moduleResolution": "Node",
     "allowImportingTsExtensions": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "rootDir": ".",
   },
-  "include": ["src", "tests", ".eslintrc.js", "jest.config.js"],
+  "include": ["src", "tests", "types", ".eslintrc.js", "jest.config.js"],
 }

@@ -63,4 +63,4 @@ Each of these steps should involve verifying that building and testing the progr
 
 There are [a wide range of TypeScript ESLint rules](https://typescript-eslint.io/rules/) available, but not all of them are necessarily useful as part of the journey to add static types to a formerly un-typed codebase. In particular, I would avoid making _stylistic changes_ (e.g. [naming conventions for certain types of declarations](https://typescript-eslint.io/rules/naming-convention)) during this conversion journey, as this is more perturbance of the codebase while it's in a partially-typed state.
 
-Let's get started!
+We won't go through every one of these steps together, as the whole point of this approach is that the work becomes quite methodical and predictable.

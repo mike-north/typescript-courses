@@ -5,7 +5,7 @@ description: |
   We'll discuss the goals and agenda of this course, and how to get up and
   running with the workshop project in 2 minutes or less.
 course: enterprise-v2
-order: 7.1
+order: 9
 ---
 
 ## Types at Runtime
@@ -46,8 +46,6 @@ create a new file [`src/type-guards.ts`](../src/type-guards.ts) and build
 the following functions such that they provide a meaningful runtime check that can be used as a guard for compile-time type-checking.
 
 ```ts
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { IChannel, IMessage, ITeam } from './types';
 
 export function isTypedArray<T>(
@@ -62,4 +60,36 @@ export function isChannel(arg: any): arg is IChannel {}
 export function isMessage(arg: any): arg is IMessage {}
 ```
 
-and then apply these guards for all files in the [`/src/data/`](../src/data) folder
+and then apply these guards for all files in the [`/src/data/`](../src/data) folder using patterns like
+
+```ts twoslash
+function apiCall(path: string): Promise<unknown> {return Promise.resolve(null as unknown)}
+const id: string = 'asd'
+function isChannel(arg: any): arg is IChannel {return true}
+function isTypedArray<T>(
+  arr: unknown,
+  check: (x: any) => x is T,
+): arr is T[] { return true}
+interface IChannel {}
+/// ---cut---
+// Single resource
+apiCall(`Channels/${id}`)
+  .then(channel => {
+//         ^?
+    if (!isChannel(channel))
+      throw new Error('getChannelById: received invalid data from server')
+    return channel;
+//          ^?
+  })
+
+// Collection
+apiCall(`Channels`)
+  .then(channels => {
+//         ^?
+    if (!isTypedArray(channels, isChannel))
+      throw new Error('getChannels: received invalid data from server')
+    return channels;
+//          ^?
+  })
+
+```

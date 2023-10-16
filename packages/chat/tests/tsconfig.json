@@ -1,8 +1,6 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "checkJs": true,
-    "noEmit": true,
-    "jsx": "react",
     "module": "CommonJS",
     "moduleResolution": "node"
   },
