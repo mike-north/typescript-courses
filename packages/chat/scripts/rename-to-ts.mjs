@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs'
 import * as execa from 'execa'
-import path from 'path'
+import * as path from 'path';
 
 /**
  * Rename all files in a folder that have one extension to another extension

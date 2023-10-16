@@ -1,4 +1,3 @@
-// @ts-check
 import { Parcel } from '@parcel/core'
 import express from 'express'
 import jsonServer from 'json-server'
