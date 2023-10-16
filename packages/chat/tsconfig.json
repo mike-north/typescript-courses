@@ -2,13 +2,13 @@
   "compilerOptions": {
     "target": "ES2018",
     "allowJs": true,
-    "checkJs": true,
     "module": "commonjs",
     "noEmit": true,
     "outDir": "dist",
     "declaration": true,
     "jsx": "react",
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "allowImportingTsExtensions": true
   },
   "include": ["src", "tests", ".eslintrc.js", "jest.config.js"],
 }

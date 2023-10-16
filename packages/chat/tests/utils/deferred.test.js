@@ -1,6 +1,9 @@
-import { Deferred } from 'chat/src/utils/deferred.js'
+import { Deferred } from 'chat/src/utils/deferred'
 
 describe('Utils - Deferred', () => {
+  /**
+   * @type {Deferred}
+   */
   let deferred
 
   beforeEach(() => {

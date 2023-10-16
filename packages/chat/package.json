@@ -10,16 +10,15 @@
   "dependencies": {
     "@parcel/core": "^2.10.0",
     "date-fns": "^2.30.0",
+    "execa": "^8.0.1",
     "express": "^4.18.2",
     "express-rate-limit": "^7.1.1",
     "json-server": "^0.17.4",
+    "parcel": "^2.10.0",
     "pkg-up": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^5.3.4",
-    "execa": "^8.0.1",
-    "parcel": "^2.10.0"
-
+    "react-router-dom": "^5.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",
@@ -38,7 +37,7 @@
     "@typescript-eslint/parser": "^6.7.5",
     "babel-jest": "^29.7.0",
     "dtslint": "^4.2.1",
-    "eslint": "latest",
+    "eslint": "^7.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.0.1",

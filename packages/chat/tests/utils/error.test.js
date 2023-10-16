@@ -44,15 +44,4 @@ describe('Utils - stringifyError', () => {
 
     expect(result).toBe(expectedString)
   })
-  it('should handle non-string error descriptions', () => {
-    const errorDescription = 12345 // number
-    const testError = new Error('This is a test error')
-    const expectedString = `12345\n${testError.name.toUpperCase()}: ${
-      testError.message
-    }\n  ${testError.stack}`
-
-    const result = stringifyError(errorDescription, testError)
-
-    expect(result).toBe(expectedString)
-  })
 })

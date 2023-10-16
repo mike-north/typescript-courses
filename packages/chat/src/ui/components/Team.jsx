@@ -19,9 +19,26 @@ const Team = ({ team }) => {
         <Route
           exact
           path={`/team/${team.id}/channel/:channelId`}
-          children={({ match }) => (
-            <SelectedChannel match={match} channels={channels} />
-          )}
+          children={({ match }) => {
+            if (!channels) throw new Error('no channels')
+            if (!match) throw new Error('no match')
+
+            const { params } = match
+            if (!match) return <p>No match params</p>
+            const { channelId: selectedChannelId } = params
+            if (!selectedChannelId) return <p>Invalid channelId</p>
+            const selectedChannel = channels.find(
+              (c) => c.id === selectedChannelId,
+            )
+            if (!selectedChannel)
+              return (
+                <div>
+                  <p>Could not find channel with id {selectedChannelId}</p>
+                  <pre>{JSON.stringify(channels, null, '  ')}</pre>
+                </div>
+              )
+            return <Channel channel={selectedChannel} />
+          }}
         />
       </Switch>
     </div>

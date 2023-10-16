@@ -2,6 +2,7 @@ import { promises as fs } from 'fs'
 import * as execa from 'execa'
 import * as path from 'path';
 
+
 /**
  * Rename all files in a folder that have one extension to another extension
  *
@@ -17,19 +18,24 @@ const renameFiles = async (dir, oldExt, newExt) => {
 
     if (file.isDirectory()) {
       await renameFiles(fullPath, oldExt, newExt)
-    } else if (file.isFile() && path.extname(file.name) === oldExt) {
-      const newFileName = path.basename(file.name, oldExt) + newExt
-      const newFullPath = path.join(dir, newFileName)
+    } else if (file.isFile()) {
+      const fileName = file.name
 
-      // Using git mv to rename with execa
-      try {
-        execa.execaSync('git', ['mv', fullPath, newFullPath])
-        console.log(`Renamed ${fullPath} to ${newFullPath}`)
-      } catch (error) {
-        console.error(
-          `Error renaming ${fullPath} to ${newFullPath}:`,
-          error.message,
-        )
+      // Check if the file name ends with the old extension
+      if (fileName.endsWith(oldExt)) {
+        const newFileName = fileName.replace(new RegExp(`${oldExt}$`), newExt)
+        const newFullPath = path.join(dir, newFileName)
+
+        // Using git mv to rename with execa
+        try {
+          execa.execaSync('git', ['mv', fullPath, newFullPath])
+          console.log(`Renamed ${fullPath} to ${newFullPath}`)
+        } catch (error) {
+          console.error(
+            `Error renaming ${fullPath} to ${newFullPath}:`,
+            error.message,
+          )
+        }
       }
     }
   }
@@ -39,7 +45,7 @@ const main = async () => {
   await renameFiles('src', '.jsx', '.tsx')
   await renameFiles('src', '.js', '.ts')
   await renameFiles('tests', '.jsx', '.tsx')
-  await renameFiles('tests', '.jsx.snap', '.tsx.snap')
+  await renameFiles('tests', '.test.jsx.snap', '.test.tsx.snap')
   await renameFiles('tests', '.js', '.ts')
 }
 
