@@ -5,7 +5,7 @@ description: |
   We'll discuss the goals and agenda of this course, and how to get up and
   running with the workshop project in 2 minutes or less.
 course: enterprise-v2
-order: 7
+order: 7.1
 ---
 
 ## Types at Runtime

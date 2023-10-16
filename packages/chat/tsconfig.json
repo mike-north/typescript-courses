@@ -8,7 +8,8 @@
     "declaration": true,
     "jsx": "react",
     "moduleResolution": "Node",
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "baseUrl": "."
   },
   "include": ["src", "tests", ".eslintrc.js", "jest.config.js"],
 }

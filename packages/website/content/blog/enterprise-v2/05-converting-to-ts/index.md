@@ -26,6 +26,7 @@ Each of these steps should involve verifying that building and testing the progr
 1. **Forbid implicit `any`s**, replacing them throughout the codebase with _explicit `any`s_, `{}`s or more descriptive types
    - Improve error handling by enabling `useUnknownInCatchVariables` in tsconfig
    - Install community-supported types from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/) where necessary
+1. **Start formalizing type information relating to your codebase**. Make some `interface`s and `type` aliases.
 1. **Add safety to boolean expressions, and improve handling of `null` and `undefined`**
    - Enable the ESLint rule `@typescript-eslint/strict-boolean-expressions` to catch problematic truthy/falsy expressions
    - Enable the tsconfig option `strictNullChecks` to ensure that if `null` is desired to be an allowed value in a type, it has to be explicitly stated as such
