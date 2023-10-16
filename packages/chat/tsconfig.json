@@ -10,5 +10,5 @@
     "jsx": "react",
     "moduleResolution": "Node"
   },
-  "include": ["src", "tests", "server", "scripts", ".eslintrc.js", "jest.config.js"],
+  "include": ["src", "tests", ".eslintrc.js", "jest.config.js"],
 }
