@@ -112,7 +112,7 @@ Pin the node and yarn versions to their current stable releases using volta
 volta pin node@lts yarn@^3
 ```
 
-this will add `node` and `yarn` versions to your `package.json` automatically. 
+this will add `node` and `yarn` versions to your `package.json` automatically.
 
 ```diff
 + "volta": {
@@ -416,7 +416,6 @@ compiler is responsible for telling us about those
    }
  }
 ```
-
 
 Going back to our `/.eslintrc.json`, we need to tell ESLint about this new TS config -- rules that require type-checking need to know about where it is
 
@@ -964,7 +963,7 @@ yarn build-with-docs
 
 You should see something like
 
-```pre 
+```pre
 Warning: You have changed the public API signature for this project. 
   Please copy the file "temp/chat-stdlib.api.md" to "etc/chat-stdlib.api.md",
   or perform a local build (which does this automatically). See the Git

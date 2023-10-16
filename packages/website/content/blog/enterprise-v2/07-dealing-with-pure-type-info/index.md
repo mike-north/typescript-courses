@@ -18,7 +18,7 @@ type information of various kinds. Two we'll focus on in particular are
 
 ## Formalizing interfaces for our domain model
 
-The models that a slack-like app needs to deal with include concepts like 
+The models that a slack-like app needs to deal with include concepts like
 
 ```js
 TEAMS                USERS
