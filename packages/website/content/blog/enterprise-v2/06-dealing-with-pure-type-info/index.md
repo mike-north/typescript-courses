@@ -5,7 +5,7 @@ description: |
   We'll discuss the goals and agenda of this course, and how to get up and
   running with the workshop project in 2 minutes or less.
 course: enterprise-v2
-order: 6
+order: 6.2
 ---
 
 ## Dealing with Pure Type Information
