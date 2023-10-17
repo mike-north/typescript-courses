@@ -7456,7 +7456,7 @@ __metadata:
     babel-jest: ^29.7.0
     date-fns: ^2.30.0
     dtslint: ^4.2.1
-    eslint: ^7.0.0
+    eslint: ^8.51.0
     eslint-config-prettier: ^9.0.0
     eslint-plugin-node: ^11.1.0
     eslint-plugin-prettier: ^5.0.1
@@ -10203,7 +10203,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^7.0.0, eslint@npm:^7.32.0":
+"eslint@npm:^7.32.0":
   version: 7.32.0
   resolution: "eslint@npm:7.32.0"
   dependencies:
@@ -10253,7 +10253,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:latest":
+"eslint@npm:^8.51.0, eslint@npm:latest":
   version: 8.51.0
   resolution: "eslint@npm:8.51.0"
   dependencies:
