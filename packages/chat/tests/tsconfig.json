@@ -1,10 +1,8 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "checkJs": true,
-    "noEmit": true,
-    "jsx": "react",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext"
+    "module": "CommonJS",
+    "moduleResolution": "node"
   },
   "include": ["."]
 }

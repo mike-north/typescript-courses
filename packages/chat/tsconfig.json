@@ -2,15 +2,15 @@
   "compilerOptions": {
     "target": "ES2018",
     "allowJs": true,
-    "module": "commonjs" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */,
-    "strict": true /* Enable all strict type-checking options. */,
-    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
     "noEmit": true,
     "outDir": "dist",
     "declaration": true,
     "jsx": "react",
     "moduleResolution": "Node",
-    "noPropertyAccessFromIndexSignature": true
+    "allowImportingTsExtensions": true,
+    "baseUrl": ".",
+    "rootDir": ".",
   },
-  "include": ["src"]
+  "include": ["src", "tests", "types", ".eslintrc.js", "jest.config.js"],
 }

@@ -1,8 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "allowJs": true,
-    "types": ["jest", "express", "parcel-bundler"]
-  },
-  "include": ["src", "tests", "server", "scripts", ".eslintrc.js"]
-}

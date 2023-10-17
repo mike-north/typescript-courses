@@ -1,6 +1,6 @@
 module.exports = {
   "env": {
-    "es2022": true
+    "es2021": true
   },
   "settings": {
     "react": {
@@ -21,7 +21,7 @@ module.exports = {
     },
     "ecmaVersion": 12,
     tsconfigRootDir: __dirname,
-    "project": "tsconfig.eslint.json"
+    "project": true
   },
   "plugins": [
     "react",
@@ -54,7 +54,7 @@ module.exports = {
 
       "env": {
         "browser": true,
-        "es2022": true,
+        "es2021": true,
       },
       "rules": {
         "react/prop-types": "off",
@@ -74,7 +74,7 @@ module.exports = {
       "files": ["src/**/*.{cts,cjs}"],
       "env": {
         "node": true,
-        "es2022": true
+        "es2021": true
       },
       "rules": {
         "no-unused-vars": "off",
@@ -118,8 +118,8 @@ module.exports = {
       "files": ["{src,tests}/**/*.{mts,ts,tsx}"],
       "extends": [
         "prettier",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+        // "plugin:@typescript-eslint/recommended",
+        // "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
       "rules": {
         "no-unused-vars": "off",

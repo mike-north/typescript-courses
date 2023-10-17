@@ -7,8 +7,8 @@ import {
 import { getAllTeams } from '../data/teams'
 import { useAsyncDataEffect } from '../utils/api'
 import Loading from './components/Loading'
-import SelectedTeam from './components/SelectedTeam'
 import TeamSelector from './components/TeamSelector'
+import Team from './components/Team'
 
 const { useState } = React
 
@@ -37,9 +37,22 @@ const App = () => {
           </Route>
           <Route
             path="/team/:teamId"
-            children={({ match }) => (
-              <SelectedTeam match={match} teams={teams} />
-            )}
+            children={({ match }) => {
+              if (!match) throw new Error('no match')
+
+              const { params } = match
+              if (!params) throw new Error('no match params')
+
+              const { teamId: selectedTeamId } = params
+              if (!selectedTeamId) throw new Error(`undefined teamId`)
+
+              const selectedTeam = teams.find((t) => t.id === selectedTeamId)
+              if (!selectedTeam)
+                throw new Error(
+                  `Invalid could not find team with id {selectedTeamId}`,
+                )
+              return <Team team={selectedTeam} />
+            }}
           />
         </Switch>
       </div>
