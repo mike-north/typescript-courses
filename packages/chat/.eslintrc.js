@@ -1,6 +1,6 @@
 module.exports = {
   "env": {
-    "es2022": true
+    "es2021": true
   },
   "settings": {
     "react": {
@@ -54,7 +54,7 @@ module.exports = {
 
       "env": {
         "browser": true,
-        "es2022": true,
+        "es2021": true,
       },
       "rules": {
         "react/prop-types": "off",
@@ -74,7 +74,7 @@ module.exports = {
       "files": ["src/**/*.{cts,cjs}"],
       "env": {
         "node": true,
-        "es2022": true
+        "es2021": true
       },
       "rules": {
         "no-unused-vars": "off",
