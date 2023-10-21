@@ -49,12 +49,12 @@ evenNumber = 5; //! 5 is not in the set
 //? Think critically: "AND" vs "OR", as it pertains to the contents of the set,
 //? vs the assumptions we can make about the value
 
-let x = 5 as Evens | OneThroughFive;
+// let x = 5 as Evens | OneThroughFive;
 
-function printEven(even: Evens): void { }
-function printLowNumber(lowNum: OneThroughFive): void { }
-function printEvenNumberUnder5(num: 2 | 4): void { }
-function printNumber(num: number): void { }
+// function printEven(even: Evens): void { }
+// function printLowNumber(lowNum: OneThroughFive): void { }
+// function printEvenNumberUnder5(num: 2 | 4): void { }
+// function printNumber(num: number): void { }
 
 /*
 // printEven(x) //! Not guaranteed to be even
