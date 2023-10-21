@@ -396,7 +396,7 @@ around mutation.
 // @errors: 2339
 const roNumPair: readonly [number, number] = [4, 5]
 roNumPair.length
-//       ^?
+//          ^?
 roNumPair.push(6) // [4, 5, 6]
 roNumPair.pop() // [4, 5]
 ```
