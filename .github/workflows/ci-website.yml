@@ -94,7 +94,7 @@ jobs:
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        typescript-version: ['5.3.0-beta', next]
+        typescript-version: [beta, next]
         include:
           - typescript-version: beta
             experimental: false
