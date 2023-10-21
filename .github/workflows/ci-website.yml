@@ -101,7 +101,7 @@ jobs:
             name: 'ts-beta'
           - typescript-version: next
             experimental: true
-            name: 'ts-canary'
+            name: 'ts-nightly'
 
 
     steps:
