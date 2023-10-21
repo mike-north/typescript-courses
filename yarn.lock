@@ -5029,11 +5029,11 @@ __metadata:
   linkType: hard
 
 "@types/react-test-renderer@npm:^18.0.3":
-  version: 18.0.3
-  resolution: "@types/react-test-renderer@npm:18.0.3"
+  version: 18.0.5
+  resolution: "@types/react-test-renderer@npm:18.0.5"
   dependencies:
     "@types/react": "*"
-  checksum: 6834c7c998d9e699b7b9aca31ce0f550a29a63526a9ab15f62764eeade28fcce634030e5cfd223a8417e8c53234e01bfb961906b35fd9a72dd513aba549181f0
+  checksum: c0932fa6c99dc84df3f8132f728f4fad7aeb05ea667f1524384c083e62b90e3a91107d89d2e91b03bd0ca02cc6bbec8cfe9669c29a8394ae990af549ca16c0a3
   languageName: node
   linkType: hard
 
