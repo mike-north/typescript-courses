@@ -70,15 +70,15 @@ courses:
       the important concepts truly "stick" in your mind.
   - name: Enterprise TypeScript v2
     id: enterprise-v2
-    squareImage: /full-stack-ts.png
-    facebookImage: /fb-full-stack-ts.png
-    twitterImage: /tw-full-stack-ts.png
+    squareImage: /enterprise-ts-v2.png
+    facebookImage: /fb-enterprise-ts-v2.png
+    twitterImage: /tw-enterprise-ts-v2.png
     femCourseUrl: https://frontendmasters.com/courses/enterprise-typescript-v2/
     femCoursePublished: false
     femWorkshopUrl: https://frontendmasters.com/workshops/enterprise-typescript-v2/
     femWorkshopPublished: true
-    visibleInTopNav: false
-    visibleInCourseIndex: false
+    visibleInTopNav: true
+    visibleInCourseIndex: true
     visibleInCoursePage: true
     summary: |
       Combine TypeScript and GraphQL's type systems to create full-stack, fully
@@ -119,7 +119,7 @@ course_groups:
   - name: "Enterprise TypeScript"
     id: enterprise-typescript
     visibleInTopNav: true
-    visibleInCourseIndex: false
+    visibleInCourseIndex: true
     visibleInCoursePage: true
     topNavOrder: 3
     courseIndexOrder: 3
