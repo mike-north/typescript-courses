@@ -1,50 +1,96 @@
 //* Union types in TypeScript
 
+const humidity = 79 //? Recall literal types
+
 //? Create types for two sets of numbers
 
-type OneThroughFive = 1 | 2 | 3 | 4 | 5 
-// let upToFive: OneThroughFive = 3
-// upToFive = 8
+//? A set of numbers from 1 to 5
+type OneThroughFive = 1 | 2 | 3 | 4 | 5
+let lowNumber: OneThroughFive = 3 //✔️ Valid
+lowNumber = 8 //! 8 is not in the set
 
 
-// type Evens = 2 | 4 | 6 | 8
-// let evensOnly: Evens = 2;
-// evensOnly = 5;
+//? A set of even numbers from 1 to 9
+type Evens = 2 | 4 | 6 | 8
+let evenNumber: Evens = 2; //✔️ Valid
+evenNumber = 5; //! 5 is not in the set
 
-//? Create a union type
+/*
+// //? A set of numbers from 1 to 5 OR a set of even numbers from 1 to 9
+// let evenOrLowNumber = 5 as Evens | OneThroughFive;
 
-//let evensThroughFive: Evens | OneThroughFive;
-
-//? Control flow sometimes results in union types
-// function flipCoin(): "heads" | "tails" {
-//   if (Math.random() > 0.5) return "heads"
-//   return "tails"
+/*
+// //? Control flow sometimes results in union types
+// function flipCoin() {
+//     if (Math.random() > 0.5) return "heads"
+//     return "tails"
 // }
 
 // const outcome = flipCoin()
+// //     ^? "heads" | "tails"
+// //? A more complicated example
 
-//? A more complicated example
+// const success = ["success", { name: "Mike North", email: "mike@example.com" }] as const
+// const fail = ["error", new Error("Something went wrong!")] as const
 
-const success = ["success", { name: "Mike North", email: "mike@example.com"} ]
-const fail = ["error", new Error("Something went wrong!") ]
-
-// function maybeGetUserInfo():
-//   | ["error", Error]
-//   | ["success", { name: string; email: string }] {
-//   if (flipCoin() === "heads") {
-//     return [
-//       "success",
-//       { name: "Mike North", email: "mike@example.com" },
-//     ]
-//   } else {
-//     return [
-//       "error",
-//       new Error("The coin landed on TAILS :("),
-//     ]
-//   }
+/*
+// function maybeGetUserInfo() {
+//     if (flipCoin() === "heads") {
+//         return success
+//     } else {
+//         return fail
+//     }
 // }
- 
-// const outcome = maybeGetUserInfo()
+
+// const outcome2 = maybeGetUserInfo()
+
+//* Working with union types
+/*
+//? Think critically: "AND" vs "OR", as it pertains to the contents of the set,
+//? vs the assumptions we can make about the value
+
+let x = 5 as Evens | OneThroughFive;
+
+function printEven(even: Evens): void { }
+function printLowNumber(lowNum: OneThroughFive): void { }
+function printEvenNumberUnder5(num: 2 | 4): void { }
+function printNumber(num: number): void { }
+
+/*
+// printEven(x) //! Not guaranteed to be even
+// printLowNumber(x) //! Not guaranteed to be in {1, 2, 3, 4, 5}
+// printEvenNumberUnder5(x) //! Not guaranteed to be in {2, 4}
+// printNumber(x) //✔️ Guaranteed to be a number
+
+//* Narrowing with type guards
+/*
+// const [first, second] = outcome2
+// if (second instanceof Error) {
+//     // In this branch of your code, second is an Error
+//     second
+// } else {
+//     // In this branch of your code, second is the user info
+//     second
+// }
+
+//* Discriminated unions
+/*
+// if (first === "error") {
+//     // In this branch of your code, second is an Error
+//     second
+// } else {
+//     // In this branch of your code, second is the user info
+//     second
+// }
+
+//* Intersection Types
+/*
+// let y = 4 as Evens & OneThroughFive;
+
+// printEven(y) //✔️ Guaranteed to be even
+// printLowNumber(y) //✔️ Guaranteed to be in {1, 2, 3, 4, 5}
+// printEvenNumberUnder5(y) //✔️ Guaranteed to be in {2, 4}
+// printNumber(y) //✔️ Guaranteed to be a number
 
 /**/
 

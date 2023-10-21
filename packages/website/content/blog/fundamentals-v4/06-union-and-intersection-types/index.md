@@ -15,25 +15,21 @@ Union and intersection types can conceptually be thought of as logical boolean o
 
 ```py
 Evens = { 2, 4, 6, 8 }
-Odds = { 1, 3, 5, 7, 9 }
-
-Squares = { 1, 4, 9 }
-
-OneThroughNine = { 1, 2, 3, 4,
-                   5, 6, 7, 8, 9 }
 OneThroughFive = { 1, 2, 3, 4, 5 }
 ```
+
+![venn diagram of evens and numbers one through five](./venn.png)
 
 ### Union types `|`
 
 A union type can be thought of as **`OR`, for types**, and TypeScript uses the pipe (`|`)
 symbol to represent the **Union type operator**
 
-Using the example above, if we wanted to find `OneThroughFive | Odds` we'd combine all the members
-of the `OneThroughFive` set and all of the members of the `Odds` set.
+Using the example above, if we wanted to find `OneThroughFive | Evens` we'd combine all the members
+of the `OneThroughFive` set and all of the members of the `Evens` set.
 
 ```py
-OneThroughFive | Odds => { 1, 2, 3, 4, 5, 7, 9 }
+OneThroughFive | Evens => { 1, 2, 3, 4, 5, 6, 8 }
 ```
 
 If you think about the assumptions we could make about a member of this set at random, we couldn't
@@ -44,12 +40,14 @@ be sure whether it's between 1 and 5, and we couldn't be sure whether it's odd.
 An intersection type can be thought of as **`AND`, for types**, and TypeScript uses the ampersand (`&`)
 symbol to represent the **Intersection type operator**
 
-Using the example again, if we wanted to find `OneThroughFive & Odds` we'd find all members that the
-`OneThroughFive` and `Odds` sets have in common
+Using the example again, if we wanted to find `OneThroughFive & Evens` we'd find all members that the
+`OneThroughFive` and `Evens` sets have in common
 
 ```py
-OneThroughFive & Odds => { 1, 3, 5 }
+OneThroughFive & Odds => { 2, 4 }
 ```
+
+![allowed values in union and intersection types](./union-intersection-preview.png)
 
 ## Union Types in TypeScript
 
@@ -68,9 +66,9 @@ this in the next chapter)
 // @errors: 2322
 type OneThroughFive = 1 | 2 | 3 | 4 | 5
 //   ^?
-let upToFive: OneThroughFive = 3
+let lowNumber: OneThroughFive = 3
 //   ^?
-upToFive = 8
+lowNumber = 8
 ```
 
 and we could create another type called `Evens` to represent the set `{ 2, 4, 6, 8 }`
@@ -79,9 +77,9 @@ and we could create another type called `Evens` to represent the set `{ 2, 4, 6,
 // @errors: 2322
 type Evens = 2 | 4 | 6 | 8
 //    ^?
-let evensOnly: Evens = 2;
+let evenNumber: Evens = 2;
 //    ^?
-evensOnly = 5;
+evenNumber = 5;
 ```
 
 Explicitly creating the union type is now simple
@@ -90,8 +88,8 @@ Explicitly creating the union type is now simple
 type OneThroughFive = 1 | 2 | 3 | 4 | 5
 type Evens = 2 | 4 | 6 | 8
 /// ---cut---
-let evensThroughFive: Evens | OneThroughFive;
-//    ^?
+let evenOrLowNumber = 5 as Evens | OneThroughFive;
+//         ^?
 ```
 
 Union types often appear where control flow can produce a different value for different code paths.
@@ -100,9 +98,9 @@ For example, the `flipCoin()` function will return `"heads"` if a number selecte
 from `(0, 1)` is >= 0.5, or `"tails"` if <=0.5.
 
 ```ts twoslash
-function flipCoin(): "heads" | "tails" {
-  if (Math.random() > 0.5) return "heads"
-  return "tails"
+function flipCoin() {
+  if (Math.random() > 0.5) return "heads" // the "heads" branch
+  return "tails" // the "tails" branch
 }
 
 const outcome = flipCoin()
@@ -116,31 +114,32 @@ Let's make this a bit more interesting by using tuples, that is structured as fo
   - `"success"` case: a piece of contact information: `{ name: string; email: string; }`
   - `"error"` case: an `Error` instance
 
+```ts twoslash
+const success = ["success", { name: "Mike North", email: "mike@example.com"} ] as const
+//     ^?
+const fail = ["error", new Error("Something went wrong!") ] as const
+//     ^?
+```
+
 We'll still decide which of these things actually happens based on our 50/50 coin flip from above
 
 ```ts twoslash
-function flipCoin(): "heads" | "tails" {
+function flipCoin() {
   if (Math.random() > 0.5) return "heads"
   return "tails"
 }
-
-function maybeGetUserInfo():
-  | ["error", Error]
-  | ["success", { name: string; email: string }] {
+const success = ["success", { name: "Mike North", email: "mike@example.com"} ] as const
+const fail = ["error", new Error("Something went wrong!") ] as const
+/// ---cut---
+function maybeGetUserInfo() {
   if (flipCoin() === "heads") {
-    return [
-      "success",
-      { name: "Mike North", email: "mike@example.com" },
-    ]
+    return success
   } else {
-    return [
-      "error",
-      new Error("The coin landed on TAILS :("),
-    ]
+    return fail
   }
 }
 
-const outcome = maybeGetUserInfo()
+const outcome2 = maybeGetUserInfo()
 //     ^?
 ```
 
@@ -154,25 +153,24 @@ Let's continue with our example from above and attempt to do something with the
 First, let's destructure the tuple and see what TypeScript has to say about its members
 
 ```ts twoslash
-function maybeGetUserInfo():
-  | ["error", Error]
-  | ["success", { name: string; email: string }] {
-  if (Math.random() > 0.5) {
-    return [
-      "success",
-      { name: "Mike North", email: "mike@example.com" },
-    ]
+function flipCoin() {
+  if (Math.random() > 0.5) return "heads"
+  return "tails"
+}
+const success = ["success", { name: "Mike North", email: "mike@example.com"} ] as const
+const fail = ["error", new Error("Something went wrong!") ] as const
+
+function maybeGetUserInfo() {
+  if (flipCoin() === "heads") {
+    return success
   } else {
-    return [
-      "error",
-      new Error("The coin landed on TAILS :("),
-    ]
+    return fail
   }
 }
 /// ---cut---
-const outcome = maybeGetUserInfo()
+const outcome2 = maybeGetUserInfo()
 
-const [first, second] = outcome
+const [first, second] = outcome2
 first
 // ^?
 second
@@ -184,27 +182,27 @@ second
 | Explore what's available in the autocomplete for each.
 
 ```ts twoslash
-function maybeGetUserInfo():
-  | ["error", Error]
-  | ["success", { name: string; email: string }] {
-  if (Math.random() > 0.5) {
-    return [
-      "success",
-      { name: "Mike North", email: "mike@example.com" },
-    ]
+// @noErrors
+function flipCoin() {
+  if (Math.random() > 0.5) return "heads"
+  return "tails"
+}
+const success = ["success", { name: "Mike North", email: "mike@example.com"} ] as const
+const fail = ["error", new Error("Something went wrong!") ] as const
+
+function maybeGetUserInfo() {
+  if (flipCoin() === "heads") {
+    return success
   } else {
-    return [
-      "error",
-      new Error("The coin landed on TAILS :("),
-    ]
+    return fail
   }
 }
 /// ---cut---
-const outcome = maybeGetUserInfo()
-const [first, second] = outcome
-first.split
+const outcome2 = maybeGetUserInfo()
+const [first, second] = outcome2
+first.s
 //     ^|
-second.name
+second.n
 //      ^|
 ```
 
@@ -216,8 +214,27 @@ The second value is a bit more complicated -- only the `name` property is availa
 This is because, both our "user info object, and instances of the `Error` class have a `name`
 property whose value is a string.
 
-> What we are seeing here is, when a value has a type that includes a union, we are only able
-> to use the "common behavior" that's guaranteed to be there.
+Let's also look at our previous example involving `{1,2,3,4,5} | {2,4,6,8}` and consider how these `AND` and `OR` type operators describe the set of possible values, and the assumptions we can make about any given value in the set
+
+```ts twoslash
+// @errors: 2345
+type OneThroughFive = 1 | 2 | 3 | 4 | 5
+type Evens = 2 | 4 | 6 | 8
+let x = 5 as Evens | OneThroughFive;
+
+
+function printEven(even: Evens): void {}
+function printLowNumber(lowNum: OneThroughFive): void {}
+function printEvenNumberUnder5(num: 2 | 4): void {}
+function printNumber(num: number): void {}
+
+printEven(x)
+printLowNumber(x)
+printEvenNumberUnder5(x)
+printNumber(x)
+```
+
+> *Essentially, **`|` means "anything in either set" in terms of the allowed values**, and because of this **"only the behavior that's definitely present on every member of both sets" is available to us**
 
 ### Narrowing with type guards
 
@@ -232,19 +249,18 @@ execution of your code. We will work with one that you should already be familia
 to start: `instanceof`.
 
 ```ts twoslash
-function maybeGetUserInfo():
-  | ["error", Error]
-  | ["success", { name: string; email: string }] {
-  if (Math.random() > 0.5) {
-    return [
-      "success",
-      { name: "Mike North", email: "mike@example.com" },
-    ]
+function flipCoin(): "heads" | "tails" {
+  if (Math.random() > 0.5) return "heads"
+  return "tails"
+}
+const success = ["success", { name: "Mike North", email: "mike@example.com"} ] as const
+const fail = ["error", new Error("Something went wrong!") ] as const
+
+function maybeGetUserInfo() {
+  if (flipCoin() === "heads") {
+    return success
   } else {
-    return [
-      "error",
-      new Error("The coin landed on TAILS :("),
-    ]
+    return fail
   }
 }
 /// ---cut---
@@ -271,30 +287,31 @@ It gets even better...
 ### Discriminated Unions
 
 ```ts twoslash
-function maybeGetUserInfo():
-  | ["error", Error]
-  | ["success", { name: string; email: string }] {
-  if (Math.random() > 0.5) {
-    return [
-      "success",
-      { name: "Mike North", email: "mike@example.com" },
-    ]
+function flipCoin(): "heads" | "tails" {
+  if (Math.random() > 0.5) return "heads"
+  return "tails"
+}
+const success = ["success", { name: "Mike North", email: "mike@example.com"} ] as const
+const fail = ["error", new Error("Something went wrong!") ] as const
+
+function maybeGetUserInfo() {
+  if (flipCoin() === "heads") {
+    return success
   } else {
-    return [
-      "error",
-      new Error("The coin landed on TAILS :("),
-    ]
+    return fail
   }
 }
 /// ---cut---
 const outcome = maybeGetUserInfo()
-if (outcome[0] === "error") {
+const [first, second] = outcome
+
+if (first === "error") {
   // In this branch of your code, second is an Error
-  outcome
+  second
   // ^?
 } else {
   // In this branch of your code, second is the user info
-  outcome
+  second
   // ^?
 }
 ```
@@ -306,30 +323,35 @@ What we are seeing here is sometimes referred to as a [discriminated or "tagged"
 
 Intersection types in TypeScript can be described using the `&` (ampersand) operator.
 
-For example, what if we had a `Promise`, that had extra `startTime` and `endTime`
-properties added to it?
+Let's look again at our example using sets of numbers
 
 ```ts twoslash
-const ONE_WEEK = 1000 * 60 * 60 * 24 * 7 // 1w in ms
+// @errors: 2345
+type OneThroughFive = 1 | 2 | 3 | 4 | 5
+type Evens = 2 | 4 | 6 | 8
+
 /// ---cut---
-function makeWeek(): Date & { end: Date } {
-  //⬅ return type
+function printEven(even: Evens): void {}
+function printLowNumber(lowNum: OneThroughFive): void {}
+function printEvenNumberUnder5(num: 2 | 4): void {}
+function printNumber(num: number): void {}
 
-  const start = new Date()
-  const end = new Date(start.valueOf() + ONE_WEEK)
+let y = 4 as Evens & OneThroughFive;
+//  ^?
 
-  return { ...start, end } // kind of Object.assign
-}
-
-const thisWeek = makeWeek()
-thisWeek.toISOString()
-//   ^?
-thisWeek.end.toISOString()
-//        ^?
+printEven(y)
+printLowNumber(y)
+printEvenNumberUnder5(y)
+printNumber(y)
 ```
 
-This is quite different than what we saw with union types -- this is quite literally
-a `Date` and `{ end: Date}` mashed together, and we have access to everything immediately.
+We can see that we end up with only those numbers in _both_ sets, and we can call _all of the functions_ successfully
+
+> Essentially, **`&` means "anything that is in both sets" in terms of the allowed values**, and because of this, we can use **"any of the behavior definitely present on members of _either_ set".**
+
+![venn diagram of evens and numbers one through five](./venn.png)
+
+![Union and intersection types](./union-intersection.png)
 
 It is _far_ less common to use intersection types compared to union types. I expect
 it to be at least a 50-to-1 ratio for you in practice. A real-world case where you'll find
