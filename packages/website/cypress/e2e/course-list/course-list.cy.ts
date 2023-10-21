@@ -72,6 +72,6 @@ describe('course list page', () => {
   it('course top nav has the correct courses', () => {
     cy.get('.course-summary:nth-child(2) header h3 a').click();
     cy.get('li.course-tab a').should("have.length", 4);
-    cy.get('li.course-tab a').should("contain.text", "TypeScript Fundamentals v3Intermediate TypeScript v1Making TypeScript StickFull Stack TypeScript");
+    cy.get('li.course-tab a').should("contain.text", "TypeScript Fundamentals v4Intermediate TypeScript v1Making TypeScript StickFull Stack TypeScript");
   });
 });
