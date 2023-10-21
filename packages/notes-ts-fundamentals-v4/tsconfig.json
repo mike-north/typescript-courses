@@ -4,6 +4,8 @@
         "module": "CommonJS",
         "outDir": "dist",
         "target": "ES2018",
-        "moduleResolution": "Node"
+        "moduleResolution": "Node",
+        "noUnusedParameters": false,
+        "noUnusedLocals": false,
     }
 }
