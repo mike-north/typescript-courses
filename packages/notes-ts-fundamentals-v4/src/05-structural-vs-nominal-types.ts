@@ -31,3 +31,6 @@
 //printCar(new Car()) //✔️ Fine
 //printCar(new Truck()) //✔️ Fine
 //printCar(vehicle) //✔️ Fine
+
+
+export default {}
