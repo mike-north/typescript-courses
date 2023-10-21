@@ -217,24 +217,34 @@ property whose value is a string.
 Let's also look at our previous example involving `{1,2,3,4,5} | {2,4,6,8}` and consider how these `AND` and `OR` type operators describe the set of possible values, and the assumptions we can make about any given value in the set
 
 ```ts twoslash
-// @errors: 2345
+// @errors: 2345 2322
 type OneThroughFive = 1 | 2 | 3 | 4 | 5
 type Evens = 2 | 4 | 6 | 8
-let x = 5 as Evens | OneThroughFive;
-
-
+/// ---cut---
 function printEven(even: Evens): void {}
 function printLowNumber(lowNum: OneThroughFive): void {}
 function printEvenNumberUnder5(num: 2 | 4): void {}
 function printNumber(num: number): void {}
 
+let x = 5 as Evens | OneThroughFive;
+
+// What does Evens | OneThroughFive accept as values?
+let evenOrLowNumber: Evens | OneThroughFive;
+evenOrLowNumber = 6 //✔️ An even
+evenOrLowNumber = 3 //✔️ A low number
+evenOrLowNumber = 4 //✔️ A even low number
+
+
+// What requirements can `Evens | OneThroughFive` meet?
 printEven(x)
 printLowNumber(x)
 printEvenNumberUnder5(x)
 printNumber(x)
 ```
 
-> *Essentially, **`|` means "anything in either set" in terms of the allowed values**, and because of this **"only the behavior that's definitely present on every member of both sets" is available to us**
+There's some interesting asymmetry at play here. A `Evens | OneThroughFive` can accept a wide range of values, but because allows for this flexibility, it doesn't meet the type-checking requirements for most of the `print*` functions.
+
+> *Essentially, **`|` means "anything in either set" in terms of the allowed values**, and because of this **only the behavior that's definitely present on every member of both sets is available to us**
 
 ### Narrowing with type guards
 
@@ -326,7 +336,7 @@ Intersection types in TypeScript can be described using the `&` (ampersand) oper
 Let's look again at our example using sets of numbers
 
 ```ts twoslash
-// @errors: 2345
+// @errors: 2345 2322
 type OneThroughFive = 1 | 2 | 3 | 4 | 5
 type Evens = 2 | 4 | 6 | 8
 
@@ -339,13 +349,20 @@ function printNumber(num: number): void {}
 let y = 4 as Evens & OneThroughFive;
 //  ^?
 
+// What does Evens & OneThroughFive accept as values?
+let evenAndLowNumber: Evens & OneThroughFive;
+evenAndLowNumber = 6 //✔️ An even
+evenAndLowNumber = 3 //✔️ A low number
+evenAndLowNumber = 4 //✔️ A even low number
+
+// What requirements can `Evens & OneThroughFive` meet?
 printEven(y)
 printLowNumber(y)
 printEvenNumberUnder5(y)
 printNumber(y)
 ```
 
-We can see that we end up with only those numbers in _both_ sets, and we can call _all of the functions_ successfully
+Again, we see some degree of asymmetry, but it's almost like it's in the opposite direction compared to union types. The intersection type can accept a very narrow range of values, but because of this, it can meet the type-checking requirements of all four `print*` functions.
 
 > Essentially, **`&` means "anything that is in both sets" in terms of the allowed values**, and because of this, we can use **"any of the behavior definitely present on members of _either_ set".**
 
