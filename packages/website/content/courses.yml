@@ -29,7 +29,7 @@ courses:
       use TypeScript to build a modern JavaScript app.
   - name: "Intermediate TypeScript v1"
     id: intermediate-v1
-    visibleInTopNav: true
+    visibleInTopNav: false
     visibleInCourseIndex: true
     visibleInCoursePage: true
     squareImage: /intermediate-ts.png
@@ -49,8 +49,8 @@ courses:
     femCoursePublished: false
     femWorkshopUrl: https://frontendmasters.com/workshops/intermediate-typescript-v2/
     femWorkshopPublished: true
-    visibleInTopNav: false
-    visibleInCourseIndex: false
+    visibleInTopNav: true
+    visibleInCourseIndex: true
     visibleInCoursePage: true
     summary: |
       Leverage TypeScript's strengths to provide clarity in the face of
@@ -108,7 +108,7 @@ course_groups:
     id: intermediate-typescript
     topNavOrder: 2
     courseIndexOrder: 2
-    currentCourse: intermediate-v1
+    currentCourse: intermediate-v2
     courses: [intermediate-v1, intermediate-v2]
   - name: "Making TypeScript Stick"
     id: making-typescript-stick
