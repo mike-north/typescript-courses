@@ -7,13 +7,13 @@ const humidity = 79 //? Recall literal types
 //? A set of numbers from 1 to 5
 type OneThroughFive = 1 | 2 | 3 | 4 | 5
 let lowNumber: OneThroughFive = 3 //✔️ Valid
-lowNumber = 8 //! 8 is not in the set
+// lowNumber = 8 //! 8 is not in the set
 
 
 //? A set of even numbers from 1 to 9
 type Evens = 2 | 4 | 6 | 8
 let evenNumber: Evens = 2; //✔️ Valid
-evenNumber = 5; //! 5 is not in the set
+// evenNumber = 5; //! 5 is not in the set
 
 /*
 // //? A set of numbers from 1 to 5 OR a set of even numbers from 1 to 9
