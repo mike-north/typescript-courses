@@ -1,7 +1,7 @@
 courses:
   - name: "TypeScript Fundamentals v3"
     id: fundamentals-v3
-    visibleInTopNav: true
+    visibleInTopNav: false
     visibleInCourseIndex: true
     visibleInCoursePage: true
     squareImage: /ts-fundamentals-v3.png
@@ -14,8 +14,8 @@ courses:
       use TypeScript to build a modern JavaScript app.
   - name: "TypeScript Fundamentals v4"
     id: fundamentals-v4
-    visibleInTopNav: false
-    visibleInCourseIndex: false
+    visibleInTopNav: true
+    visibleInCourseIndex: true
     visibleInCoursePage: true
     squareImage: /ts-fundamentals-v4.png
     facebookImage: /fb-ts-fundamentals-v4.png
@@ -102,7 +102,7 @@ course_groups:
     id: typescript-fundamentals
     topNavOrder: 1
     courseIndexOrder: 1
-    currentCourse: fundamentals-v3
+    currentCourse: fundamentals-v4
     courses: [fundamentals-v3, fundamentals-v4]
   - name: "Intermediate TypeScript"
     id: intermediate-typescript
