@@ -17716,7 +17716,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "notes-enterprise-ts-v2@workspace:packages/notes-enterprise-ts-v2"
   dependencies:
-    typescript: ^5.2.2
+    typescript: 5.3.0-beta
   languageName: unknown
   linkType: soft
 
@@ -17724,7 +17724,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "notes-intermediate-ts-v2@workspace:packages/notes-intermediate-ts-v2"
   dependencies:
-    typescript: ^5.2.2
+    typescript: 5.3.0-beta
   languageName: unknown
   linkType: soft
 
@@ -17732,7 +17732,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "notes-ts-fundamentals-v4@workspace:packages/notes-ts-fundamentals-v4"
   dependencies:
-    typescript: ^5.2.2
+    typescript: 5.3.0-beta
   languageName: unknown
   linkType: soft
 
@@ -23449,7 +23449,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:>3, typescript@npm:^5.2.2":
+"typescript@npm:>3":
   version: 5.2.2
   resolution: "typescript@npm:5.2.2"
   bin:
@@ -23479,7 +23479,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@>3#~builtin<compat/typescript>, typescript@patch:typescript@^5.2.2#~builtin<compat/typescript>":
+"typescript@patch:typescript@>3#~builtin<compat/typescript>":
   version: 5.2.2
   resolution: "typescript@patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"
   bin:

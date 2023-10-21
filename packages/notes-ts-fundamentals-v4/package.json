@@ -6,7 +6,7 @@
     "yarn": "3.6.4"
   },
   "devDependencies": {
-    "typescript": "^5.2.2"
+    "typescript": "5.3.0-beta"
   },
   "scripts": {
     "build": "yarn tsc"
