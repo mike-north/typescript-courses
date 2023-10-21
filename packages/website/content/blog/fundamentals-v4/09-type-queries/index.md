@@ -145,12 +145,12 @@ let carProperty: Car["color" | "year"]
 We're going to touch on one concept we haven't talked about yet, but we can use a basic definition for the purpose of understanding this example.
 
 ```ts
-declare module "./data" {
+declare module "./lib/registry" {
 
 }
 ```
 
-This is called a **module declaration**, and it allows us to effectively **layer types on top of things already exported by a module `data.ts`**. Remember, there's only one definition of the types exported by `data.ts`, so if we modify them using a module declaration, that modification will affect _every place where its types are used_.
+This is called a **module declaration**, and it allows us to effectively **layer types on top of things already exported by a module `./lib/registry.ts`**. Remember, there's only one definition of the types exported by `./lib/registry.ts`, so if we modify them using a module declaration, that modification will affect _every place where its types are used_.
 
 Now, let's use `keyof`, module declarations and what we just learned about open interfaces to solve a problem.
 
@@ -168,10 +168,21 @@ fetchRecord("magazine", "mz_456")
 fetchRecord("blah", "")
 ```
 
+Our project might have a file structure like
+
+```js
+data/
+  book.ts       // A model for Book records
+  magazine.ts   // A model for Magazine records
+lib/
+  registry.ts   // Our type registry, and a `fetchRecord` function
+index.ts        // Entry point
+```
+
 Let's focus on that first argument of the `fetchRecord` function. We can create a "registry" interface that any consumer of this library can use to "install" their resource types, and define the `fetchRecord` function using our new `keyof` type query.
 
 ```ts twoslash
-// @filename: node_modules/data.ts
+// @filename: lib/registry.ts
 export interface DataTypeRegistry
 {
  // empty by design
@@ -186,37 +197,37 @@ Now let's focus our attention toward "app code". We'll define classes for `Book`
 
 ```ts twoslash
 // @errors: 2322
-// @filename: node_modules/data.ts
+// @filename: lib/registry.ts
 export interface DataTypeRegistry
 {
-
+ // empty by design
 }
-// the "& string" is just a trick to get the tooltip to render using literal types
+// the "& string" is just a trick to get
+// a nicer tooltip to show you in the next step
 export function fetchRecord(arg: keyof DataTypeRegistry & string, id: string) {
-
 }
 /// ---cut---
-// @filename: app/book.ts
+// @filename: data/book.ts
 export class Book {
   deweyDecimalNumber(): number {
     return 42
   }
 }
-declare module "data" {
+declare module "../lib/registry" {
   export interface DataTypeRegistry {
     book: Book
   }
 }
 
 
-// @filename: app/magazine.ts
+// @filename: data/magazine.ts
 export class Magazine {
   issueNumber(): number {
     return 42
   }
 }
 
-declare module "data" {
+declare module "../lib/registry" {
   export interface DataTypeRegistry {
     magazine: Magazine
   }
@@ -227,7 +238,7 @@ Now look what happens to the first argument of that `fetchRecord` function! it's
 
 ```ts twoslash
 // @errors: 2322
-// @filename: node_modules/data.ts
+// @filename: lib/registry.ts
 export interface DataTypeRegistry
 {
 
@@ -236,34 +247,34 @@ export interface DataTypeRegistry
 export function fetchRecord(arg: keyof DataTypeRegistry & string, id: string) {
 
 }
-// @filename: app/book.ts
+// @filename: data/book.ts
 export class Book {
   deweyDecimalNumber(): number {
     return 42
   }
 }
-declare module "data" {
+declare module "../lib/registry" {
   export interface DataTypeRegistry {
     book: Book
   }
 }
 
 
-// @filename: app/magazine.ts
+// @filename: data/magazine.ts
 export class Magazine {
   issueNumber(): number {
     return 42
   }
 }
 
-declare module "data" {
+declare module "../lib/registry" {
   export interface DataTypeRegistry {
     magazine: Magazine
   }
 }
 /// ---cut---
 // @filename: index.ts
-import { DataTypeRegistry, fetchRecord } from 'data'
+import { DataTypeRegistry, fetchRecord } from './lib/registry'
 
 
 fetchRecord("book", "bk_123")
