@@ -24,15 +24,15 @@ describe('course list page', () => {
       5,
     );
   });
-  it('clicking TS-intermediate v1 course link visits the course page', () => {
+  it('clicking TS-intermediate v2 course link visits the course page', () => {
     cy.contains('Intermediate TypeScript').click();
     cy.location('href').should(
       'include',
-      'course/intermediate-v1',
+      'course/intermediate-v2',
     );
     cy.get('h1').should(
       'have.text',
-      'Intermediate TypeScript v1',
+      'Intermediate TypeScript v2',
     );
     cy.get('.course-article__title').should(
       'have.length.at.least',
