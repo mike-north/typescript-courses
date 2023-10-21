@@ -94,23 +94,14 @@ jobs:
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        typescript-version: [~5.2.0, latest, next, beta, rc]
+        typescript-version: ['5.3.0-beta', next]
         include:
-          - typescript-version: '~5.2.0'
-            experimental: false
-            name: 'ts-5.2'
-          - typescript-version: latest
-            experimental: false
-            name: 'ts-stable'
           - typescript-version: beta
             experimental: false
             name: 'ts-beta'
-          - typescript-version: rc
-            experimental: true
-            name: 'ts-rc'
           - typescript-version: next
             experimental: true
-            name: 'ts-canary'
+            name: 'ts-nightly'
 
 
     steps:
