@@ -133,21 +133,21 @@ Let's describe what's happening here using sets.
 
 ```ts twoslash
 // @errors: 2322
-let temperature = 19; // temperature's type is { all numbers }
-let humidity = 79 as const; // humidity's type is { 79 }
+let temp2 = 19; // temp2's type is { all numbers }
+let humid2 = 79 as const; // humid2's type is { 79 }
 //
 //
 // Is each member in { 23 } also in { all numbers }? ✅ YES
-temperature = 23;
+temp2 = 23;
 // Is each member in { 79 } also in { all numbers }? ✅ YES
-temperature = humidity;
+temp2 = humid2;
 // Is each member in { all numbers } also in { 79 }? ❌ NO
-humidity = temperature;
+humid2 = temp2;
 
 // Is each member in { 79 } also in { 79 } ✅ YES
-humidity = 79;
+humid2 = 79;
 // Is each member in { 78 } also in { 79 } ❌ NO
-humidity = 78;
+humid2 = 78;
 ```
 
 What we can see is that the type `79` is type-equivalent to `number`, but not
@@ -252,7 +252,7 @@ TypeScript doesn't even allow us to cast directly from `string` to `Date` becaus
 
 ```ts twoslash
 // @errors: 2352
-let date3 = "oops" as Date
+let date4 = "oops" as Date
 ```
 
 ## Function arguments and return values
