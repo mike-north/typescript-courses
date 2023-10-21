@@ -25,7 +25,7 @@ describe('course list page', () => {
     );
   });
   it('clicking TS-intermediate v2 course link visits the course page', () => {
-    cy.contains('Intermediate TypeScript').click();
+    cy.contains('Intermediate TypeScript v2').click();
     cy.location('href').should(
       'include',
       'course/intermediate-v2',
@@ -72,6 +72,6 @@ describe('course list page', () => {
   it('course top nav has the correct courses', () => {
     cy.get('.course-summary:nth-child(2) header h3 a').click();
     cy.get('li.course-tab a').should("have.length", 4);
-    cy.get('li.course-tab a').should("contain.text", "TypeScript Fundamentals v4Intermediate TypeScript v1Making TypeScript StickFull Stack TypeScript");
+    cy.get('li.course-tab a').should("contain.text", "TypeScript Fundamentals v4Intermediate TypeScript v2Making TypeScript StickFull Stack TypeScript");
   });
 });
