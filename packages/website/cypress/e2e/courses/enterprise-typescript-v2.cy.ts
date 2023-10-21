@@ -17,7 +17,7 @@ describe('enterprise TS v2 course page', () => {
   it('title is present', () => {
     cy.get('h1').should(
       'contain.text',
-      'Enterprise TypeScript v2',
+      'Enterprise-Scale TypeScript v2',
     );
   });
   it('summary is present', () => {
@@ -26,7 +26,7 @@ describe('enterprise TS v2 course page', () => {
   it('logo is present', () => {
     cy.get('main > header > img')
       .should('exist')
-      .should('have.attr', 'src', '/full-stack-ts.png');
+      .should('have.attr', 'src', '/enterprise-ts-v2.png');
   });
   it('clicking on a section works', () => {
     cy.get('.course-article__title')

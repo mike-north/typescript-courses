@@ -68,7 +68,7 @@ courses:
     summary: |
       Tackle a series of challenges designed to reinforce your knowledge and make
       the important concepts truly "stick" in your mind.
-  - name: Enterprise TypeScript v2
+  - name: Enterprise-Scale TypeScript v2
     id: enterprise-v2
     squareImage: /enterprise-ts-v2.png
     facebookImage: /fb-enterprise-ts-v2.png
