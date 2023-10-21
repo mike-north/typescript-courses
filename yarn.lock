@@ -5131,9 +5131,9 @@ __metadata:
   linkType: hard
 
 "@types/typography@npm:^0.16.5":
-  version: 0.16.5
-  resolution: "@types/typography@npm:0.16.5"
-  checksum: 54f538ee350538ea3bff5a002d53261bedd2e720b3850143e1af2a7ea07c374932289724e8d70bacef8eb98ea9437c4617937afd1ab47dd4802ca26807a38a61
+  version: 0.16.6
+  resolution: "@types/typography@npm:0.16.6"
+  checksum: 5d0fc71afc497ea80d070650716cd9ad70268a6b56f24f951e46ffbd4f108d0900bc308686af4b692e338d8c61430d09c5d3b332fe20669746b8217f2f16a816
   languageName: node
   linkType: hard
 
