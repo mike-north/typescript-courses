@@ -4892,17 +4892,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.0.0":
-  version: 18.18.5
-  resolution: "@types/node@npm:18.18.5"
-  checksum: fc8c9b2bf226270cf9085a7dac76ce09dd7c3519ec9b687ee2b50385954ab3709c45ca82d002d1536e24286803cd194d7ab7008acebdcd6681b8b19d4277fa5c
-  languageName: node
-  linkType: hard
-
 "@types/node@npm:^18.17.5":
   version: 18.18.1
   resolution: "@types/node@npm:18.18.1"
   checksum: 079085afc8615b91727900628410a2077f7fff51c5c3e20c4ab2d9caae4010b035aac13dae1221155e9d6ca46084aebf68121642140527b4009eee17b716d339
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.8.7":
+  version: 20.8.7
+  resolution: "@types/node@npm:20.8.7"
+  dependencies:
+    undici-types: ~5.25.1
+  checksum: 2173c0c03daefcb60c03a61b1371b28c8fe412e7a40dc6646458b809d14a85fbc7aeb369d957d57f0aaaafd99964e77436f29b3b579232d8f2b20c58abbd1d25
   languageName: node
   linkType: hard
 
@@ -24643,7 +24645,7 @@ __metadata:
     "@testing-library/cypress": ^10.0.1
     "@types/jest": ^27.5.2
     "@types/lodash": ^4.14.199
-    "@types/node": ^18.0.0
+    "@types/node": ^20.8.7
     "@types/pkg-up": ^3.1.0
     "@types/react": 18.2.28
     "@types/react-dom": 18.2.14
