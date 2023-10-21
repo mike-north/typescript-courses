@@ -7,5 +7,7 @@
         "moduleResolution": "Node",
         "noUnusedParameters": false,
         "noUnusedLocals": false,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
     }
 }
