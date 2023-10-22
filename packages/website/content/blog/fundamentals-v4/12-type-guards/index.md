@@ -279,22 +279,29 @@ console.log(inv.equals(inv)) // ✅
 
 This is quite convenient from a type guard standpoint. We can use this technique in a static method, and use our `is` flavor of guard return type to make an interesting type guard
 
-```ts twoslash
-class Invoice {
-  static #nextInvoiceId = 1
-  #invoice_id = Invoice.#nextInvoiceId++
+```ts{7-16,21-23} twoslash
+class Car {
+  static #nextSerialNumber: number = 100
+  static #generateSerialNumber() { return this.#nextSerialNumber++ }
 
-  static isInvoice(other: any): other is Invoice {
-    return other && // is it truthy
+  #serialNumber = Car.#generateSerialNumber()
+
+  static isCar(other: any): other is Car {
+    if (other && // is it truthy
       typeof other === "object" && // and an object
-      #invoice_id in other // and we can find a private field that we can access from here
-      // then it *must* be an invoice
+      #serialNumber in other) { // and we can find a private field that we can access from here
+      // then it *must* be a car
+      other
+      // ^?
+      return true
+    }
+    return false
   }
 }
 
 let val: any
 
-if (Invoice.isInvoice(val)) {
+if (Car.isCar(val)) {
   val
 // ^?
 }
@@ -307,14 +314,23 @@ A type guard like this is not always the right decision. Remember, TypeScript us
 Sometimes a bunch of type guards in a big cascade of `if`/`else` blocks can feel a little verbose, particularly if the action to be taken in each branch of the conditional is just a couple lines of code. TypeScript 5.3 introduced the ability to use `switch(true)` for narrowing
 
 ```ts twoslash
-function isNumberArray(val: any): val is number[] {
-  switch (true) {
-    case Array.isArray(val):
-      val
-//     ^?
-      return val.every((x :any) => typeof x === 'number');
-  }
-  return false;
+class Fish {
+  swim(): void {}
+}
+class Bird {
+  fly(): void {}
+}
+
+let val = {} as any
+switch (true) {
+  case val instanceof Bird:
+    val.fly()
+//   ^?
+    break
+  case val instanceof Fish:
+    val.swim()
+//   ^?
+    break
 }
 ```
 

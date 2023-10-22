@@ -8,6 +8,7 @@
         "noUnusedParameters": false,
         "noUnusedLocals": false,
         "noImplicitAny": true,
-        "noImplicitThis": true
+        "noImplicitThis": true,
+        "strictNullChecks": true
     }
 }

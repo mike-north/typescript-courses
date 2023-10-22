@@ -246,7 +246,7 @@ function myClickHandler(event: Event) {
 }
 ```
 
-Oh no! `this` is an `any` type. We sure don't want to depend on `disabled` being a defined property without some degree of type safety. If we enable the `compilerOptions.noImplicitThis` flag in `tsconfig.json`, you'll see a type checking error here 
+Oh no! `this` is an `any` type. We sure don't want to depend on `disabled` being a defined property without some degree of type safety. If we enable the `compilerOptions.noImplicitThis` flag in `tsconfig.json`, you'll see a type checking error here
 
 ```ts twoslash
 // @errors: 2683
