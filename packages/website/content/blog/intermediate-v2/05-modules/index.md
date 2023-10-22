@@ -151,7 +151,7 @@ export class Strawberry {}
 // @filename: index.ts
 import type { Strawberry } from './berries/strawberry'
 //             ^?
-let z: Strawberry = {}
+let z: Strawberry = { color: 'red' }
 new Strawberry()
 ```
 
