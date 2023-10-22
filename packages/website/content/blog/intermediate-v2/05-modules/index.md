@@ -34,16 +34,15 @@ Here are some of the basics:
 
 ```ts
 // named imports
-import { strawberry, raspberry } from "./berries"
-
-import kiwi from "./kiwi" // default import
+import { Blueberry, Raspberry } from './berries'
+import Kiwi from './kiwi' // default import
 
 export function makeFruitSalad() {} // named export
 
 export default class FruitBasket {} // default export
 
-export { lemon, lime } from "./citrus" // re-export
-export * as berries from "./berries" // re-export entire module as a single namespace
+export { lemon, lime } from './citrus' // re-export
+export * as berries from './berries' // re-export entire module as a single namespace
 ```
 
 Although fairly uncommon in the JS world, [it's possible to import an entire module as a namespace](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_an_entire_modules_contents). TypeScript supports this as well
@@ -51,9 +50,9 @@ Although fairly uncommon in the JS world, [it's possible to import an entire mod
 ```ts
 import * as allBerries from "./berries" // namespace import
 
-allBerries.strawberry // using the namespace
-allBerries.blueberry
-allBerries.raspberry
+allBerries.Strawberry // using the namespace
+allBerries.Blueberry
+allBerries.Raspberry
 
 export * from "./berries" // namespace re-export
 ```
@@ -64,61 +63,71 @@ export * from "./berries" // namespace re-export
 
 If you actually use the TypeScript compiler's output as the beginning of your build pipeline, you don't really have to worry about this, because the compiler operates on your whole project holistically, understands exactly what you're importing and how you're using it, and can fully "erase" imports that are exclusively for types from your code
 
-Here's an example of TypeScript doing this, even with _declaration merging_ in play. The compiler knows that in `b.ts` we're importing `Foo` as a class, but we only end up using it as a type.
+Here's an example of TypeScript doing this, even with _declaration merging_ in play. The compiler knows that in `berries/raspberry.ts` we're importing `Raspberry` as a class, but we only end up using it as a type.
 
 ```ts twoslash
-// @filename: a.ts
-export class Foo {}
-export function bar() {
-  console.log("bar");
+////////////////////////////////////////////////////////
+// @filename: berries/raspberry.ts
+export class Raspberry {
+    constructor(public color: 'red' | 'black') {}
 }
+export function pickRaspberries(time: number): Raspberry[] {
+  console.log('picking raspberries')
+  return []
+}
+////////////////////////////////////////////////////////
+// @filename: index.ts
+import { Raspberry } from './berries/raspberry'
 
-// @filename: b.ts
-import { Foo } from './a'
-
-let x: Foo = {};
+let x: Raspberry = { color: 'red' };
 ```
 
-Here's the `b.js` file, the compiled output of `b.ts`
+Here's the `index.js` file, and the compiled output of `index.ts`
 
 ```ts twoslash
 // @showEmit
 // @module: CommonJS
 // @target: ES5
-// @showEmittedFile: b.js
-// @filename: a.ts
-export class Foo {}
-export function bar() {
-  console.log("bar")
+////////////////////////////////////////////////////////
+// @filename: berries/raspberry.ts
+export class Raspberry {
+  constructor(public color: 'red' | 'black') {}
 }
+export function pickRaspberries(time: number): Raspberry[] {
+  console.log('picking raspberries')
+  return []
+}
+////////////////////////////////////////////////////////
+// @filename: index.ts
+import { Raspberry } from './berries/raspberry'
 
-// @filename: b.ts
-import { Foo } from './a'
-
-let x: Foo = {}
+let x: Raspberry = { color: 'red' };
 ```
 
-And the compiled output after I add one more line `const y = new Foo()` to the bottom of `b.ts`
+And the compiled output after I add one more line `const y = new Raspberry()` to the bottom of `b.ts`
 
 ```ts{3,5} twoslash
 // @showEmit
 // @module: CommonJS
 // @target: ES5
-// @showEmittedFile: b.js
-// @filename: a.ts
-export class Foo {}
-export function bar() {
-  console.log("bar")
+////////////////////////////////////////////////////////
+// @filename: berries/raspberry.ts
+export class Raspberry {
+  constructor(public color: 'red' | 'black') {}
 }
+export function pickRaspberries(time: number): Raspberry[] {
+  console.log('picking raspberries')
+  return []
+}
+////////////////////////////////////////////////////////
+// @filename: index.ts
+import { Raspberry } from './berries/raspberry'
 
-// @filename: b.ts
-import { Foo } from './a'
-
-let x: Foo = {}
-const y = new Foo()
+let x: Raspberry = { color: 'red' };
+const y = new Raspberry('red')
 ```
 
-As we can see, using that constructor caused us to cross a threshold, where we now have to actually import `./a` at runtime, and invoke that `Foo()` constructor.
+As we can see, using that constructor caused us to cross a threshold, where we now have to actually import `./berries/raspberry` at runtime, and invoke that `Raspberry()` constructor.
 
 ### Using other tools like Babel, Webpack, Parcel and more
 
@@ -134,14 +143,16 @@ TypeScript provides an unambiguous way of importing _only types_. Please pardon 
 
 ```ts{5} twoslash
 // @errors: 1361
-// @filename: a.ts
-export class Foo {}
+////////////////////////////////////////////////////////
+// @filename: berries/strawberry.ts
+export class Strawberry {}
 
-// @filename: b.ts
-import type { Foo } from './a'
+////////////////////////////////////////////////////////
+// @filename: index.ts
+import type { Strawberry } from './berries/strawberry'
 //             ^?
-let x: Foo = {}
-new Foo()
+let z: Strawberry = {}
+new Strawberry()
 ```
 
 You can use `import type` and `export type` fairly broadly, in the same ways you'd use `import` and `export` to pass values across module boundaries.
@@ -150,17 +161,70 @@ You can use `import type` and `export type` fairly broadly, in the same ways you
 
 Things can sometimes get a bit tricky when consuming CommonJS modules that do things that are incompatible with the way ES Modules typically work.
 
-Most of the time, you can just convert something like
+Most of the time, CommonJS modules look kind of like this
 
-```js
-const fs = require("fs")
+```js twoslash
+// @types: node
+////////////////////////////////////////////////////////
+// @filename: banana.js
+class Banana {
+  peel() {}
+}
+module.exports = { Banana }
+////////////////////////////////////////////////////////
+// @filename: index.js
+const Banana = require('./banana') // CJS style import
+const banana = new Banana()
+banana.peel()
 ```
 
-into
+In this scenario, if we converted the `index.js` file to TypeScript, we could continue to use the `banana.js` module as-is by using a namespace import
 
-```ts
+```ts{7} twoslash
+// @checkJs
+// @types: node
+////////////////////////////////////////////////////////
+// @filename: banana.js
+class Banana {
+  peel() {}
+}
+module.exports = { Banana }
+////////////////////////////////////////////////////////
+// @filename: index.ts
+import { Banana } from './banana'
+
+const banana = new Banana()
+banana.peel()
+//      ^?
+```
+
+If you've used Node.js before, this is a common pattern you may see around the system modules. the following JavaScript
+
+```js twoslash
+// @noErrors
+// @types: node
+const fs = require("fs")
+fs.readFileSync('example.txt')
+```
+
+Into this TypeScript
+
+```ts twoslash
+// @noErrors
+// @types: node
 // namespace import
 import * as fs from "fs"
+fs.readFileSync('example.txt')
+```
+
+or even this
+
+```ts twoslash
+// @noErrors
+// @types: node
+// namespace import
+import { readFileSync } from "fs"
+readFileSync('example.txt')
 ```
 
 Occasionally, you'll run into a rare situation where the CJS module you're importing from, exports a single thing that's _incompatible_ with this _namespace import_ technique.
@@ -168,20 +232,21 @@ Occasionally, you'll run into a rare situation where the CJS module you're impor
 Here's a small example of where the _namespace import_ fails:
 
 ```ts twoslash
+// @types: node
 // @errors: 2497
-// @module: CommonJS
 ////////////////////////////////////////////////////////
-// @filename: fruits.ts
-function createBanana() {
-  return { name: "banana", color: "yellow", mass: 183 }
+// @filename: melon.js
+class Melon {
+    cutIntoSlices() { }
 }
 
-// equivalent to CJS `module.exports = createBanana`
-export = createBanana
+module.exports = Melon
 ////////////////////////////////////////////////////////
-// @filename: smoothie.ts
+// @filename: index.ts
+import * as Melon from "./melon"
 
-import * as createBanana from "./fruits"
+const melon = new Melon()
+melon.cutIntoSlices()
 ```
 
 While this error message is accurate, you may not want to follow the
@@ -203,20 +268,22 @@ Thankfully we have another option here -- the use of an older module loading API
 
 ```ts twoslash
 // @module: CommonJS
+// @types: node
+// @errors: 2497
 ////////////////////////////////////////////////////////
-// @filename: fruits.ts
-function createBanana() {
-  return { name: "banana", color: "yellow", mass: 183 }
+// @filename: melon.js
+class Melon {
+    cutIntoSlices() { }
 }
 
-// equivalent to CJS `module.exports = createBanana`
-export = createBanana
+module.exports = Melon
 ////////////////////////////////////////////////////////
-// @filename: smoothie.ts
+// @filename: index.ts
+import Melon = require("./melon")
 
-import createBanana = require("./fruits")
-const banana = createBanana()
-//     ^?
+const melon = new Melon()
+melon.cutIntoSlices()
+//       ^?
 ```
 
 Recall that the error message said
@@ -225,49 +292,97 @@ Recall that the error message said
 
 We have solved this by avoiding the use of an ECMAScript import/export entirely. After all, the code we're referring to here is not following the ES module spec.
 
-The compiled output of this file will still be what we're looking for in the CJS world
+The compiled output of this `index.ts` file will still be what we're looking for in the CJS world
 
 ```ts twoslash
 // @showEmit
 // @module: CommonJS
-// @target: ES2015
-// @showEmittedFile: fruits.js
+// @types: node
 ////////////////////////////////////////////////////////
-// @filename: fruits.ts
-function createBanana() {
-  return { name: "banana", color: "yellow", mass: 183 }
+// @filename: melon.js
+class Melon {
+    cutIntoSlices() { }
 }
 
-// equivalent to CJS `module.exports = createBanana`
-export = createBanana
+module.exports = Melon
 ////////////////////////////////////////////////////////
-// @filename: smoothie.ts
+// @filename: index.ts
+import Melon = require("./melon")
 
-import createBanana = require("./fruits")
-const banana = createBanana()
-//     ^?
+const melon = new Melon()
+melon.cutIntoSlices()
+//       ^?
 ```
+
+Let's say you want to convert the `melon.js` file, without disrupting anything that imports it. This is a common concern for library authors, who want to incrementally convert to TypeScript without having to declare each release containing a few more TypeScript conversions a _major version_.
+
+```ts{2,7} twoslash
+// @module: CommonJS
+// @types: node
+////////////////////////////////////////////////////////
+// @filename: melon.ts
+class Melon {
+    cutIntoSlices() { }
+}
+
+export = Melon
+////////////////////////////////////////////////////////
+// @filename: index.ts
+import Melon = require("./melon")
+
+const melon = new Melon()
+melon.cutIntoSlices()
+//       ^?
+```
+
+This `export =` syntax is definitely a little odd. It certainly doesn't conform to ES module syntax in any way, in part becasue this has been part of TypeScript longer than ES modules have existed as a standardized concept.
+
+Let's look at the compiled output and make sure we're not really changing anything. Here's `melon.js`, the compiled output of our `melon.ts` TypeScript module.
 
 ```ts twoslash
-// @showEmit
 // @module: CommonJS
-// @target: ES5
-// @showEmittedFile: smoothie.js
+// @types: node
+// @showEmit
+// @showEmittedFile: melon.js
 ////////////////////////////////////////////////////////
-// @filename: fruits.ts
-function createBanana() {
-  return { name: "banana", color: "yellow", mass: 183 }
+// @filename: melon.ts
+class Melon {
+    cutIntoSlices() { }
 }
 
-// equivalent to CJS `module.exports = createBanana`
-export = createBanana
+export = Melon
 ////////////////////////////////////////////////////////
-// @filename: smoothie.ts
+// @filename: index.ts
+import Melon = require("./melon")
 
-import createBanana = require("./fruits")
-const banana = createBanana()
-//     ^?
+const melon = new Melon()
+melon.cutIntoSlices()
 ```
+
+and `index.js`, the compiled output of `index.ts`.
+
+
+```ts twoslash
+// @module: CommonJS
+// @types: node
+// @showEmit
+// @showEmittedFile: index.js
+////////////////////////////////////////////////////////
+// @filename: melon.ts
+class Melon {
+    cutIntoSlices() { }
+}
+
+export = Melon
+////////////////////////////////////////////////////////
+// @filename: index.ts
+import Melon = require("./melon")
+
+const melon = new Melon()
+melon.cutIntoSlices()
+```
+
+It's worth noting that some of these approaches _do not work_ if you're trying to emit some of the most module formats (e.g. `.mjs`) files, but given that support for CJS has been around, and will continue to be around for a long time, these remain very useful techniques.
 
 ## Native ES module support
 
