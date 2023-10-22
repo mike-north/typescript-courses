@@ -2,18 +2,18 @@
 
 //? Field types
 class Car {
-    make: string
-    model: string
-    year: number
-    constructor(make: string, model: string, year: number) {
-        this.make = make
-        this.model = model
-        //     ^?
-        this.year = year
-    }
+  make: string
+  model: string
+  year: number
+  constructor(make: string, model: string, year: number) {
+    this.make = make
+    this.model = model
+    //     ^?
+    this.year = year
+  }
 }
 
-let sedan = new Car("Honda", "Accord", 2017)
+let sedan = new Car('Honda', 'Accord', 2017)
 // sedan.activateTurnSignal("left") //! not safe!
 // new Car(2017, "Honda", "Accord") //! not safe!
 

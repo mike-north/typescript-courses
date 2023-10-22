@@ -1,44 +1,44 @@
 //* Built-in type guards
 let value:
-    | Date
-    | null
-    | undefined
-    | "pineapple"
-    | [number]
-    | { dateRange: [Date, Date] }
+  | Date
+  | null
+  | undefined
+  | 'pineapple'
+  | [number]
+  | { dateRange: [Date, Date] }
 
 // instanceof
 if (value instanceof Date) {
-    value
-    // ^?
+  value
+  // ^?
 }
 // typeof
-else if (typeof value === "string") {
-    value
-    // ^?
+else if (typeof value === 'string') {
+  value
+  // ^?
 }
 // Specific value check
 else if (value === null) {
-    value
-    // ^?
+  value
+  // ^?
 }
 // Truthy/falsy check
 else if (!value) {
-    value
-    // ^?
+  value
+  // ^?
 }
 // Some built-in functions
 else if (Array.isArray(value)) {
-    value
-    // ^?
+  value
+  // ^?
 }
 // Property presence check
-else if ("dateRange" in value) {
-    value
-    // ^?
+else if ('dateRange' in value) {
+  value
+  // ^?
 } else {
-    value
-    // ^?
+  value
+  // ^?
 }
 //* User-defined type guards
 /*

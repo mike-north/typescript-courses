@@ -73,7 +73,7 @@ We will need one thing first -- a way to produce the "key" for each object we en
 
 Maybe our function signature would look something like this:
 
-```ts twoslash
+```ts{7-10} twoslash
 // @errors: 2355
 interface PhoneInfo {
   customerId: string
@@ -93,7 +93,7 @@ Of course, we will see an error message as things stand right now, because we ha
 
 This isn't too difficult to implement. Let's make a very specific solution right now with a `forEach` function - which we can refactor and generalize as a next step.
 
-```ts twoslash
+```ts{5-15} twoslash
 interface PhoneInfo {
   customerId: string
   areaCode: string
@@ -126,22 +126,21 @@ function listToDict(
   return dict
 }
 
-console.log(
-  listToDict(phoneList, (item) => item.customerId)
-)
+const result = listToDict(phoneList, (item) => item.customerId)
+//     ^?
+console.log(result)
 ```
 
 Click the `Try` button for the code snippet above, click "Run" in the TypeScript playground, and you should see that this solution works for our specific example.
 
 Now, let's attempt to generalize this, and make it so that it works for lists and dictionaries of our `PhoneInfo` type, but lots of other types as well. How about if we replace every `PhoneInfo` type with `any`...
 
-```ts twoslash
+```ts{4, 15-20} twoslash
 function listToDict(
   list: any[],
   idGen: (arg: any) => string
 ): { [k: string]: any } {
-  ///   ⬆️ focus here  ⬆️
-
+ 
   // nothing changed in the code below
   const dict: { [k: string]: any } = {}
   list.forEach((element) => {
@@ -229,9 +228,10 @@ function listToDict<T>(
 }
 ```
 
-- **`idGen: (arg: T) => string`** is a callback that _also_ uses `T` as an argument. This means that...
-  - we will get the benefits of type-checking, within `idGen` function
-  - we will get some type-checking alignment between the array and the `idGen` function
+**`idGen: (arg: T) => string`** is a callback that _also_ uses `T` as an argument. This means that...
+
+- we will get the benefits of type*checking, within `idGen` function
+- we will get some type-checking alignment between the array and the `idGen` function
 
 ```ts twoslash
 function listToDict<T>(
@@ -252,7 +252,7 @@ listToDict(
     new Date("05-21-2021"),
   ],
   (arg) => arg.toISOString()
-  //                 ^?
+  //        ^?
 )
 ```
 

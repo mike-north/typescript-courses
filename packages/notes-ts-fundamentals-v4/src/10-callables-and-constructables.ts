@@ -1,7 +1,7 @@
 //* Callables
 
 interface TwoNumberCalculation {
-    (x: number, y: number): number
+  (x: number, y: number): number
 }
 
 type TwoNumberCalc = (x: number, y: number) => number
