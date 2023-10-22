@@ -34,28 +34,54 @@ function listToDict<T>(
 
   return dict // result
 }
-//
-interface HasId {
-  id: string
-}
-interface Dict<T> {
-  [k: string]: T
-}
+/*
+// interface HasId {
+//   id: string
+// }
+// interface Dict<T> {
+//   [k: string]: T
+// }
 
-function listToDict(list: HasId[]): Dict<HasId> {
-  const dict: Dict<HasId> = {}
+// function listToDict(list: HasId[]): Dict<HasId> {
+//   const dict: Dict<HasId> = {}
 
-  list.forEach((item) => {
-    dict[item.id] = item
-  })
+//   list.forEach((item) => {
+//     dict[item.id] = item
+//   })
 
-  return dict
-}
-//
-//? Let's make it 
+//   return dict
+// }
+
+/*
+//? Let's make it
 // function listToDict<T>(list: T[]): Dict<T> {
 
 //* Describing the constraint
+/*
+// function listToDict<T extends HasId>(list: T[]): Dict<T> {
+
+//* Scopes and Type Parameters
+/*
+// function eatApple(bowl: any, eater: (arg: any) => void) {}
+
+// function receiveFruitBasket(bowl: any) {
+//   console.log('Thanks for the fruit basket!')
+//   // only `bowl` can be accessed here
+//   eatApple(bowl, (apple: any) => {
+//     // both `bowl` and `apple` can be accessed here
+//   })
+// }
+
+// // outer function
+// function tupleCreator<T>(first: T) {
+//   // inner function
+//   return function finish<S>(last: S): [T, S] {
+//     return [first, last]
+//   }
+// }
+// const finishTuple = tupleCreator(3 as const)
+// const t1 = finishTuple(null)
+// const t2 = finishTuple([4, 8, 15, 16, 23, 42])
 
 /**/
 export default {}
