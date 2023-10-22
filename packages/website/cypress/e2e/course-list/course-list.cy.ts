@@ -9,15 +9,15 @@ describe('course list page', () => {
     cy.get('.course-summary').should('have.length', 4);
   });
 
-  it('clicking TS-fundamentals v3 course link visits the course page', () => {
-    cy.contains('TypeScript Fundamentals v3').click();
+  it('clicking TS-fundamentals v4 course link visits the course page', () => {
+    cy.contains('TypeScript Fundamentals v4').click();
     cy.location('href').should(
       'include',
-      'course/fundamentals-v3',
+      'course/fundamentals-v4',
     );
     cy.get('h1').should(
       'have.text',
-      'TypeScript Fundamentals v3',
+      'TypeScript Fundamentals v4',
     );
     cy.get('.course-article__title').should(
       'have.length.at.least',
@@ -72,6 +72,6 @@ describe('course list page', () => {
   it('course top nav has the correct courses', () => {
     cy.get('.course-summary:nth-child(2) header h3 a').click();
     cy.get('li.course-tab a').should("have.length", 4);
-    cy.get('li.course-tab a').should("contain.text", "TypeScript Fundamentals v3Intermediate TypeScript v1Making TypeScript StickFull Stack TypeScript");
+    cy.get('li.course-tab a').should("contain.text", "TypeScript Fundamentals v4Intermediate TypeScript v1Making TypeScript StickFull Stack TypeScript");
   });
 });
