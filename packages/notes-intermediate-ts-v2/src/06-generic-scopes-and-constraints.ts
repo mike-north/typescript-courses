@@ -83,5 +83,45 @@ function listToDict<T>(
 // const t1 = finishTuple(null)
 // const t2 = finishTuple([4, 8, 15, 16, 23, 42])
 
+//* Best practices
+// interface HasId {
+//   id: string
+// }
+// interface Dict<T> {
+//   [k: string]: T
+// }
+
+// function example1<T extends HasId[]>(list: T) {
+//   return list.pop()
+//   //      ^?
+// }
+// function example2<T extends HasId>(list: T[]) {
+//   return list.pop()
+//   //      ^?
+// }
+
+// class Payment implements HasId {
+//   static #next_id_counter = 1;
+//   id = `pmnt_${Payment.#next_id_counter++}`
+// }
+// class Invoice implements HasId {
+//   static #next_id_counter = 1;
+//   id = `invc_${Invoice.#next_id_counter++}`
+// }
+
+// const result1 = example1([
+//   //   ^?
+//   new Payment(),
+//   new Invoice(),
+//   new Payment()
+// ])
+
+// const result2 = example2([
+//   //   ^?
+//   new Payment(),
+//   new Invoice(),
+//   new Payment()
+// ])
+
 /**/
 export default {}
