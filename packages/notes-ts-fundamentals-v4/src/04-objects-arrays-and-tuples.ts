@@ -1,12 +1,10 @@
 //* Objects
 
 let car: {
-    make: string
-    model: string
-    year: number
+  make: string
+  model: string
+  year: number
 }
-
-
 
 /*
 //? A function that prints info about a car to stdout

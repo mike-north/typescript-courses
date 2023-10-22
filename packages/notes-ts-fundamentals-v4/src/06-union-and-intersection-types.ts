@@ -9,10 +9,9 @@ type OneThroughFive = 1 | 2 | 3 | 4 | 5
 let lowNumber: OneThroughFive = 3 //✔️ Valid
 // lowNumber = 8 //! 8 is not in the set
 
-
 //? A set of even numbers from 1 to 9
 type Evens = 2 | 4 | 6 | 8
-let evenNumber: Evens = 2; //✔️ Valid
+let evenNumber: Evens = 2 //✔️ Valid
 // evenNumber = 5; //! 5 is not in the set
 
 /*

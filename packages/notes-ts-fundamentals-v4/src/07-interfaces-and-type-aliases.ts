@@ -1,7 +1,7 @@
 //* Type Aliases
 type Amount = {
-    currency: string
-    value: number
+  currency: string
+  value: number
 }
 /*
 // function printAmount(amt: Amount) {

@@ -36,15 +36,14 @@ sedan.activateTurnSignal("left") // not safe!
 new Car(2017, "Honda", "Accord") // not safe!
 ```
 
-If we stop and think for a moment, this makes sense in a world (the JS world) where
-every value, including the class fields and instances of the class itself, is
+If we stop and think for a moment, this is allowed in the JS world because every value, including the class fields and instances of the class itself, is
 effectively of type `any`.
 
 In the TypeScript world, we want some assurance that we will be stopped at compile time
 from invoking the non-existent `activateTurnSignal` method on our car. In order to get this
 we have to provide a little more information up front:
 
-```ts twoslash
+```ts{2-5,13-14} twoslash
 // @errors: 2339 2345
 // @noImplicitAny: true
 class Car {
@@ -73,14 +72,22 @@ This syntax is getting a bit verbose now -- for example, the words "make", "mode
 
 Expressing types for class methods works using largely the same pattern used for function arguments and return types
 
-```ts twoslash
+```ts{10-12,16} twoslash
 class Car {
+  make: string
+  model: string
+  year: number
+  constructor(make: string, model: string, year: number) {
+    this.make = make
+    this.model = model
+    this.year = year
+  }
   honk(duration: number): string {
      return `h${'o'.repeat(duration)}nk`;
   }
 }
 
-const c = new Car();
+const c = new Car("Honda", "Accord", 2017);
 c.honk(5); // "hooooonk"
 
 ```
@@ -93,59 +100,58 @@ The way to denote that a field or method should be treated this way is via the `
 
 Here's an example of a case where we want to have a counter that increments each time there's a new instance.
 
-```ts twoslash
-class Invoice {
-  ////////// Static stuff //////////
-  static nextInvoiceId = 1;
-  static getNextInvoiceId() {
-//          ^?
-    // note that `this` is the `Invoice` class, in a static context
-    return this.nextInvoiceId++
+```ts{2-4,10,19-21,23-27} twoslash
+class Car {
+  // Static stuff
+  static nextSerialNumber = 100
+  static generateSerialNumber() { return this.nextSerialNumber++ }
+
+  // Instance stuff
+  make: string
+  model: string
+  year: number
+  serialNumber = Car.generateSerialNumber()
+  constructor(make: string, model: string, year: number) {
+    this.make = make
+    this.model = model
+    this.year = year
   }
-
-  ////////// Instance stuff //////////
-  id = Invoice.getNextInvoiceId();
-
-  getTitle() {
-    return `Invoice #${this.id}`
+  getLabel() {
+    return `${this.make} ${this.model} ${this.year} - #${this.serialNumber}`
   }
 }
-
-console.log(new Invoice().getTitle()) // "Invoice #1"
-//                          ^?
-console.log(new Invoice().getTitle()) // "Invoice #2"
-console.log(new Invoice().getTitle()) // "Invoice #3"
-
-console.log(Invoice.nextInvoiceId) // 4
+console.log( new Car("Honda", "Accord", 2017))
+// > "Honda Accord 2017 - #100
+console.log( new Car("Toyota", "Camry", 2022))
+// > "Toyota Camry 2022 - #101
 ```
 
 Unless you state otherwise, static fields are accessible from anywhere the `Invoice` class is accessible (both from inside and outside the class). If this is undesirable, TypeScript provides us with **access modifier keywords** and truly private `#fields`, both of which we'll discuss below
 
 There's one more place where the `static` world appears: next to a code block. Let's imagine that we don't want to start with that invoice counter at `1`, but instead we want to load it from an API somewhere.
 
-```ts{9-16} twoslash
-class Invoice {
-  ////////// Static stuff //////////
-  static nextInvoiceId: null | number = null;
-  static getNextInvoiceId() {
-    if (this.nextInvoiceId === null)
-      throw new Error("Invoice creation is not ready yet!")
-    return this.nextInvoiceId++
-  }
+```ts{5-12} twoslash
+class Car {
+  // Static stuff
+  static nextSerialNumber: number
+  static generateSerialNumber() { return this.nextSerialNumber++ }
   static {
-    // `this` is the static scope
-    fetch("https://api.example.com/session_data")
-      .then(response => response.json())
-      .then(data => {
-        this.nextInvoiceId = data.mostRecentInvoiceId + 1;
-      })
+      // `this` is the static scope
+      fetch("https://api.example.com/vin_number_data")
+          .then(response => response.json())
+          .then(data => {
+              this.nextSerialNumber = data.mostRecentInvoiceId + 1;
+          })
   }
-
-  ////////// Instance stuff //////////
-  id = Invoice.getNextInvoiceId();
-
-  getTitle() {
-    return `Invoice #${this.id}`
+  // Instance stuff
+  make: string
+  model: string
+  year: number
+  serialNumber = Car.generateSerialNumber()
+  constructor(make: string, model: string, year: number) {
+    this.make = make
+    this.model = model
+    this.year = year
   }
 }
 ```
@@ -161,98 +167,111 @@ This language feature even allows you to create something similar to what the [`
 TypeScript provides three **access modifier keywords**, which can be used
 with class fields and methods, to describe **who should be able to see and use them**.
 
-| keyword     | who can access                      |
-| ----------- | ----------------------------------- |
-| `public`    | everyone (this is the default)      |
-| `protected` | the instance itself, and subclasses |
-| `private`   | only the instance itself            |
+| keyword     | who can access (instance field/method)                          |
+| ----------- | --------------------------------------------------------------- |
+| `public`    | Anyone who has access to the scope in which the instance exists |
+| `protected` | the instance itself, and subclasses                             |
+| `private`   | only the instance itself                                        |
 
 Let's see how this works in the context of an example:
 
-```ts twoslash
+```ts{17-20,34-40, 43} twoslash
 // @errors: 2341 2445
-// @noImplicitAny: true
-function generateDoorLockCode() {
-  return Math.random()
-}
-function generateVinNumber() {
-  return Math.random()
-}
-function unlockCar(c: Car, code: number) {
-  /**/
-}
-/// ---cut---
 class Car {
-  public make: string
-  public model: string
-  public year: number
-  protected vinNumber = generateVinNumber()
-  private doorLockCode = generateDoorLockCode()
-
+  // Static stuff
+  static nextSerialNumber: number
+  static generateSerialNumber() { return this.nextSerialNumber++ }
+  static {
+      // `this` is the static scope
+      fetch("https://api.example.com/vin_number_data")
+          .then(response => response.json())
+          .then(data => {
+              this.nextSerialNumber = data.mostRecentInvoiceId + 1;
+          })
+  }
+  // Instance stuff
+  make: string
+  model: string
+  year: number
+  private _serialNumber = Car.generateSerialNumber()
+  protected get serialNumber() {
+    return this._serialNumber
+  } 
   constructor(make: string, model: string, year: number) {
     this.make = make
     this.model = model
     this.year = year
   }
-
-  protected unlockAllDoors() {
-    unlockCar(this, this.doorLockCode)
-  }
 }
 
 class Sedan extends Car {
-  constructor(make: string, model: string, year: number) {
-    super(make, model, year)
-    this.vinNumber
-    //    ^?
-    this.doorLockCode
-    //    ^?
-  }
-  public unlock() {
-    console.log("Unlocking at " + new Date().toISOString())
-    this.unlockAllDoors()
+  getSedanInformation () {
+    this._serialNumber
+    const { make, model, year, serialNumber } = this;
+    return { make, model, year, serialNumber }
   }
 }
 
-let s = new Sedan("Honda", "Accord", 2017)
-s.make
-// ^?
-s.vinNumber
-// ^?
-s.doorLockCode
-// ^?
-s.unlock()
+const s = new Sedan("Nissan", "Altima", 2020)
+s.serialNumber
+
 ```
 
 A couple of things to note in the example above:
 
-- The top-level scope doesn't seem to have access to `vinNumber` or `doorLockCode`
-- `Sedan` doesn't have direct access to the `doorLockCode`, but it can access `vinNumber` and `unlockAllDoors()`
-- We see two examples of "limited exposure"
-  - `Car` can expose `private` functionality through defining its own `protected` functionality
-  - `Sedan` can expose `protected` functionality through defining its own `public` functionality
+- The top-level scope doesn't have the ability to read `serialNumber` anymore
+- `Sedan` doesn't have direct access to write `_serialNumber`, but it read it through the protected getter `serialNumber`
+- `Car` can expose `private` functionality by defining its own `protected` functionality (the `serialNumber` getter)
+- `Sedan` can expose `protected` functionality by defining its own `public` functionality (the `getSedanInformation()` return value)
 
 these access modifier keywords can be used with `static` fields and methods as well
 
-```ts twoslash
+```ts{3-4,36} twoslash
 // @errors: 2341
-class Invoice {
-  private static nextInvoiceId = 1
-  static getNextInvoiceId() {
-    // note that `this` is the `Invoice` class, in a static context
-    return this.nextInvoiceId
+class Car {
+  // Static stuff
+  private static nextSerialNumber: number
+  private static generateSerialNumber() { return this.nextSerialNumber++ }
+  static {
+      // `this` is the static scope
+      fetch("https://api.example.com/vin_number_data")
+          .then(response => response.json())
+          .then(data => {
+              this.nextSerialNumber = data.mostRecentInvoiceId + 1;
+          })
   }
-  id = Invoice.nextInvoiceId++
+  // Instance stuff
+  make: string
+  model: string
+  year: number
+  private _serialNumber = Car.generateSerialNumber()
+  protected get serialNumber() {
+    return this._serialNumber
+  } 
+  constructor(make: string, model: string, year: number) {
+    this.make = make
+    this.model = model
+    this.year = year
+  }
 }
 
-console.log(new Invoice().id) // 1
-console.log(new Invoice().id) // 2
-console.log(new Invoice().id) // 3
+class Sedan extends Car {
+  getSedanInformation () {
+    Car.generateSerialNumber()
+    const { make, model, year, serialNumber } = this;
+    return { make, model, year, serialNumber }
+  }
+}
 
-console.log(Invoice.nextInvoiceId) // ❌
 ```
 
-What you may notice here is that `private` essentially means that static scopes _and_ instance scopes have visibility. `protected` static fields are accessible in the class' static and instance scopes -- as well as static and instance scopes of any subclasses.
+What you may notice here is that static scopes _and_ instance scopes have some degree of visibility. `protected` static fields are accessible in the class' static and instance scopes -- as well as static and instance scopes of any subclasses.
+
+| keyword     | who can access (static field/method)                            |
+| ----------- | --------------------------------------------------------------- |
+| `public`    | Anyone who has access to the scope in which the class exists    |
+| `protected` | static and instance scopes of the class and its subclasses      |
+| `private`   | static scope instance scopes of the class only                  |
 
 [[warning | :warning: Not for secret-keeping or security]]
 | It is important to understand that, just like any other aspect of type information, access modifier keywords
@@ -262,80 +281,106 @@ What you may notice here is that `private` essentially means that static scopes 
 
 ### JS private `#fields`
 
-[As of TypeScript 3.8](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#ecmascript-private-fields), TypeScript supports
-use of [ECMAScript private class fields](https://github.com/tc39/proposal-class-fields/). If you have
-trouble getting this to work in your codebase, make sure to double-check your Babel settings
+[As of TypeScript 3.8](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#ecmascript-private-fields), TypeScript supports use of [ECMAScript private class fields](https://github.com/tc39/proposal-class-fields/). If you have trouble getting this to work in your codebase, make sure to double-check your Babel settings
 
-```ts twoslash
-// @errors: 18013
+```ts{8,17} twoslash
+// @errors: 18013 2564
 class Car {
-  public make: string
-  public model: string
-  #year: number
+  private static nextSerialNumber: number
+  private static generateSerialNumber() { return this.nextSerialNumber++ }
+
+  make: string
+  model: string
+  year: number
+  #serialNumber = Car.generateSerialNumber()
 
   constructor(make: string, model: string, year: number) {
     this.make = make
     this.model = model
-    this.#year = year
+    this.year = year
   }
 }
 const c = new Car("Honda", "Accord", 2017)
-c.#year
+c.#serialNumber
 ```
+
+Unlike TypeScript's `private` keyword, these are _truly_ private fields, which cannot be easily accessed at runtime. It's important to remember, particularly if you're writing client side code, that there are still [ways of accessing private field data](https://chromedevtools.github.io/devtools-protocol/v8/Runtime/#method-getProperties) through things like the Chrome Dev Tools protocol. Use this as an encapsulation tool, not as a security construct. The implementation of JS private fields is also [mutually exclusive with properly-behaving ES proxies](https://lea.verou.me/blog/2023/04/private-fields-considered-harmful/), which you may not care about directly, but it's possible that libraries you rely on use them.
 
 TypeScript 5 supports static private `#fields`
 
-```ts twoslash
-class Invoice {
-  static #nextInvoiceId = 1
-  #id = Invoice.#nextInvoiceId++
-  get id() {
-    return this.#id
+```ts{2-3,8} twoslash
+// @errors: 18013 2564
+class Car {
+  static #nextSerialNumber: number
+  static #generateSerialNumber() { return this.#nextSerialNumber++ }
+
+  make: string
+  model: string
+  year: number
+  #serialNumber = Car.#generateSerialNumber()
+
+  constructor(make: string, model: string, year: number) {
+    this.make = make
+    this.model = model
+    this.year = year
   }
 }
-
-console.log(new Invoice().id) // 1
-console.log(new Invoice().id) // 2
 ```
 
-This example is starting to make more sense now -- the class-level counter is now not observable in any way from outside the class.
+This example is starting to make more sense now -- the class-level counter is now not observable in any way from outside the class, either at build time or runtime.
 
 ### Private field presence checks
 
-Although the data held by a private field is truly private in a properly implemented JS runtime, we can still detect whether a private field _exists_ without attempting to read it
+Although the data held by a private field is private in a properly implemented JS runtime, we can still detect whether a private field _exists_ without attempting to read it
 
-```ts twoslash
-class Invoice {
-  static #nextInvoiceId = 1
-  #invoice_id = Invoice.#nextInvoiceId++
+```ts{15-23} twoslash
+class Car {
+  static #nextSerialNumber: number
+  static #generateSerialNumber() { return this.#nextSerialNumber++ }
 
-  equals(other: any): boolean {
-    return other && // is it truthy
-      typeof other === "object" && // and an object
-      #invoice_id in other && // and "branded" with the #invoice_id property
-//                     ^?
-      other.#invoice_id === this.#invoice_id // and the values of #invoice_id are equal
-//     ^?
+  make: string
+  model: string
+  year: number
+  #serialNumber = Car.#generateSerialNumber()
+
+  constructor(make: string, model: string, year: number) {
+    this.make = make
+    this.model = model
+    this.year = year
+  }
+  equals(other: unknown) {
+    if (other &&
+      typeof other === 'object' &&
+      #serialNumber in other) {
+        other
+//       ^?
+        return other.#serialNumber = this.#serialNumber
+      }
+      return false
   }
 }
+const c1 = new Car("Toyota", "Hilux", 1987)
+const c2 = c1
+c2.equals(c1)
 
-const inv = new Invoice();
-console.log(inv.equals(inv)) // ✅
 ```
 
 Part of understanding what's happening here is remembering the rules about JS private `#fields` and `#methods`. It may be true that another class has a private `#invoice_id` field, but instances of `Invoice` would not be able to read it. Thus, if `#invoice_id in other` evaluates to `true`, `other` _must_ be an instance of `Invoice`. This is why we see the type of `other` change from `any` to `Invoice` after this check is performed.
 
 ### `readonly`
 
-While not strictly an access modifier keyword (because it has nothing to do with visibility),
-TypeScript provides a [`readonly`](https://www.typescriptlang.org/docs/handbook/2/classes.html#readonly) keyword that can be used with class fields.
+While not strictly an access modifier keyword (because it has nothing to do with visibility), TypeScript provides a [`readonly`](https://www.typescriptlang.org/docs/handbook/2/classes.html#readonly) keyword that can be used with class fields.
 
-```ts twoslash
+```ts{8,16-18} twoslash
 // @errors: 2540
 class Car {
+  static #nextSerialNumber: number
+  static #generateSerialNumber() { return this.#nextSerialNumber++ }
+
   public make: string
   public model: string
-  public readonly year: number
+  public year: number
+  readonly #serialNumber = Car.#generateSerialNumber()
 
   constructor(make: string, model: string, year: number) {
     this.make = make
@@ -343,16 +388,15 @@ class Car {
     this.year = year
   }
 
-  updateYear() {
-    this.year++
+  changeSerialNumber(num: number) {
+    this.#serialNumber = num
   }
 }
 ```
 
 ## Param properties
 
-Ok, let's pop a stack frame. Now that we know about access modifier keywords, let's
-return to an earlier code snippet from our discussion around class fields:
+Ok, let's pop a stack frame. Now that we know about access modifier keywords, let's return to an earlier code snippet from our discussion around class fields:
 
 ```ts twoslash
 // @noImplicitAny: true
@@ -368,8 +412,7 @@ class Car {
 }
 ```
 
-TypeScript provides a more concise syntax for code like this, through the
-use of _param properties_:
+TypeScript provides a more concise syntax for code like this, through the use of _param properties_:
 
 ```ts twoslash
 // @noImplicitAny: true
@@ -386,9 +429,7 @@ myCar.make
 //     ^|
 ```
 
-This is the only time you will see an access modifier keyword
-next to something other than a class member. Here's what this
-syntax means, conceptually:
+This is the only time you will see an access modifier keyword next to something other than a class member. Here's what this syntax means, conceptually:
 
 ```ts
 class Car {
@@ -396,10 +437,7 @@ class Car {
 }
 ```
 
-> The first argument passed to the constructor should be a
-> `string`, and should be available within the scope of the constructor
-> as `make`. This also creates a `public` class field on `Car` called `make` and
-> pass it the value that was given to the constructor
+> The first argument passed to the constructor should be a `string`, and should be available within the scope of the constructor as `make`. This also creates a `public` class field on `Car` called `make` and pass it the value that was given to the constructor
 
 It is important to understand the order in which "constructor-stuff" runs.
 
@@ -433,8 +471,6 @@ class Car extends Base {
     console.log("custom constructor stuff")
   }
 }
-
-const c = new Car("honda")
 ```
 
 Note the following order of what ends up in the class constructor:
@@ -444,12 +480,15 @@ Note the following order of what ends up in the class constructor:
 1. other class field initialization
 1. anything else that was in your constructor after `super()`
 
-Also note that, while it is possible in JS to put stuff before `super()`,
-the use of class field initializers or param properties disallows this:
+Also note that, while it is possible in JS to put stuff before `super()`, the use of class field initializers or param properties disallows this:
 
 ```ts twoslash
 // @errors: 2376
-class Base {}
+class Base {
+  constructor(){
+    console.log('base constructor')
+  }
+}
 
 class Car extends Base {
   foo = console.log("class field initializer")
@@ -459,8 +498,6 @@ class Car extends Base {
     console.log("custom constructor stuff")
   }
 }
-
-const c = new Car("honda")
 ```
 
 ## Overrides
