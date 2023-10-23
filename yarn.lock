@@ -11720,24 +11720,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-remark-images@npm:^5.12.0":
-  version: 5.12.0
-  resolution: "gatsby-remark-images@npm:5.12.0"
+"gatsby-remark-images@npm:^7.12.2":
+  version: 7.12.2
+  resolution: "gatsby-remark-images@npm:7.12.2"
   dependencies:
-    "@babel/runtime": ^7.15.4
+    "@babel/runtime": ^7.20.13
     chalk: ^4.1.2
     cheerio: ^1.0.0-rc.10
-    gatsby-core-utils: ^2.15.0
+    gatsby-core-utils: ^4.12.0
     is-relative-url: ^3.0.0
     lodash: ^4.17.21
     mdast-util-definitions: ^4.0.0
-    query-string: ^6.13.3
+    query-string: ^6.14.1
     unist-util-select: ^3.0.4
     unist-util-visit-parents: ^3.1.1
   peerDependencies:
-    gatsby: ^3.0.0-next.0
-    gatsby-plugin-sharp: ^3.0.0-next.0
-  checksum: e33e5eab023f5db7139cb69575c921613b5ce34cbb453b95777d5580f42105c96832fe108c8cb3d4e1f0c9d3f075d6c30b5b03bee59b451c41a49748b94a1ade
+    gatsby: ^5.0.0-next
+    gatsby-plugin-sharp: ^5.0.0-next
+  checksum: 44d59828fe14f18d38b1050402d32410c952db3b627e12c709ee31b0486f5f069d3e434c60ac18b991f41381010522e7b7455be3e517ff9b46bdec83dee8d541
   languageName: node
   linkType: hard
 
@@ -19972,7 +19972,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"query-string@npm:^6.13.1, query-string@npm:^6.13.3, query-string@npm:^6.13.8":
+"query-string@npm:^6.13.1, query-string@npm:^6.13.8, query-string@npm:^6.14.1":
   version: 6.14.1
   resolution: "query-string@npm:6.14.1"
   dependencies:
@@ -24556,7 +24556,7 @@ __metadata:
     gatsby-remark-copy-linked-files: ^4.12.0
     gatsby-remark-custom-blocks: ^3.15.0
     gatsby-remark-emojis: ^0.4.3
-    gatsby-remark-images: ^5.12.0
+    gatsby-remark-images: ^7.12.2
     gatsby-remark-responsive-iframe: ^4.12.0
     gatsby-remark-shiki-twoslash: ^3.0.38
     gatsby-remark-smartypants: ^4.12.0
