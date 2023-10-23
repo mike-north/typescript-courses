@@ -2,7 +2,8 @@
 
 This repo contains the code for
 
-* TypeScript Fundamentals v3
+* TypeScript Fundamentals v4
+  * TypeScript Fundamentals v3
 * Intermediate TypeScript v1
 * Making TypeScript Stick v1
 * Full stack TypeScript v1
