@@ -10,6 +10,7 @@
         "noImplicitAny": true,
         "noImplicitThis": true,
         "strictBindCallApply": true,
-        "strictNullChecks": true
+        "strictNullChecks": true,
+        "noImplicitOverride": true
     }
 }
