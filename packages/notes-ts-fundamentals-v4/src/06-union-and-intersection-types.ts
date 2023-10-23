@@ -33,7 +33,10 @@ const success = ["success", { name: "Mike North", email: "mike@example.com" }] a
 const fail = ["success", new Error("Something went wrong!")] as const
 
 
-function maybeGetUserInfo() {
+function maybeGetUserInfo(): readonly ["success", {
+    readonly name: "Mike North";
+    readonly email: "mike@example.com";
+}] | readonly ["success", Error] {
     if (flipCoin() === "heads") {
         return success
     } else {
