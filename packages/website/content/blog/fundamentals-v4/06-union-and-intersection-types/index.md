@@ -44,7 +44,7 @@ Using the example again, if we wanted to find `OneThroughFive & Evens` we'd find
 `OneThroughFive` and `Evens` sets have in common
 
 ```py
-OneThroughFive & Odds => { 2, 4 }
+OneThroughFive & Evens => { 2, 4 }
 ```
 
 ![allowed values in union and intersection types](./union-intersection-preview.png)
