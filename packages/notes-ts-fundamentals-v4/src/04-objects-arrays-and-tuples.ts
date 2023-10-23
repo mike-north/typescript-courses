@@ -148,7 +148,7 @@ const roNumPair: readonly [number, number] = [4, 5]
 roNumPair.length
 roNumPair.push(6) // [4, 5, 6] //! Not allowed
 roNumPair.pop() // [4, 5] //! Not allowed
-
+ 
 /**/
 
 export default {}
