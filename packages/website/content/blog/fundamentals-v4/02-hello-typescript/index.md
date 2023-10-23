@@ -26,6 +26,12 @@ tsconfig.json  # TypeScript compiler settings
 src/index.ts   # "the program"
 ```
 
+This project can be found in the `packages/welcome-to-ts` folder, within the workshop repo
+
+```sh
+cd packages/welcome-to-ts
+```
+
 `package.json`
 [(view source)](https://github.com/mike-north/typescript-courses/blob/main/packages/welcome-to-ts/package.json) <br />
 
