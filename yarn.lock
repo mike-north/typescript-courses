@@ -6364,6 +6364,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"b4a@npm:^1.6.4":
+  version: 1.6.4
+  resolution: "b4a@npm:1.6.4"
+  checksum: 81b086f9af1f8845fbef4476307236bda3d660c158c201db976f19cdce05f41f93110ab6b12fd7a2696602a490cc43d5410ee36a56d6eef93afb0d6ca69ac3b2
+  languageName: node
+  linkType: hard
+
 "babel-code-frame@npm:^6.22.0":
   version: 6.26.0
   resolution: "babel-code-frame@npm:6.26.0"
@@ -7757,7 +7764,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"color@npm:^4.0.1":
+"color@npm:^4.0.1, color@npm:^4.2.3":
   version: 4.2.3
   resolution: "color@npm:4.2.3"
   dependencies:
@@ -7853,7 +7860,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"common-tags@npm:^1.8.0":
+"common-tags@npm:^1.8.0, common-tags@npm:^1.8.2":
   version: 1.8.2
   resolution: "common-tags@npm:1.8.2"
   checksum: 767a6255a84bbc47df49a60ab583053bb29a7d9687066a18500a516188a062c4e4cd52de341f22de0b07062e699b1b8fe3cfa1cb55b241cb9301aeb4f45b4dff
@@ -8993,7 +9000,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"detect-libc@npm:^2.0.0, detect-libc@npm:^2.0.1":
+"detect-libc@npm:^2.0.0, detect-libc@npm:^2.0.1, detect-libc@npm:^2.0.2":
   version: 2.0.2
   resolution: "detect-libc@npm:2.0.2"
   checksum: 2b2cd3649b83d576f4be7cc37eb3b1815c79969c8b1a03a40a4d55d83bc74d010753485753448eacb98784abf22f7dbd3911fd3b60e29fda28fed2d1a997944d
@@ -10698,6 +10705,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-fifo@npm:^1.1.0, fast-fifo@npm:^1.2.0":
+  version: 1.3.2
+  resolution: "fast-fifo@npm:1.3.2"
+  checksum: 6bfcba3e4df5af7be3332703b69a7898a8ed7020837ec4395bb341bd96cc3a6d86c3f6071dd98da289618cf2234c70d84b2a6f09a33dd6f988b1ff60d8e54275
+  languageName: node
+  linkType: hard
+
 "fast-glob@npm:^3.0.3, fast-glob@npm:^3.1.1, fast-glob@npm:^3.2.12, fast-glob@npm:^3.2.9, fast-glob@npm:^3.3.0":
   version: 3.3.1
   resolution: "fast-glob@npm:3.3.1"
@@ -11586,6 +11600,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gatsby-plugin-utils@npm:^4.12.2":
+  version: 4.12.2
+  resolution: "gatsby-plugin-utils@npm:4.12.2"
+  dependencies:
+    "@babel/runtime": ^7.20.13
+    fastq: ^1.15.0
+    fs-extra: ^11.1.1
+    gatsby-core-utils: ^4.12.0
+    gatsby-sharp: ^1.12.1
+    graphql-compose: ^9.0.10
+    import-from: ^4.0.0
+    joi: ^17.9.2
+    mime: ^3.0.0
+  peerDependencies:
+    gatsby: ^5.0.0-next
+    graphql: ^16.0.0
+  checksum: 8eb4a9d081898a04d9c920a65d263fbac38de0e571329de05e37610df8cc3a97ad90fc3da3158b72f57106120d3667a8fdf265bc806ab6a830b5b9e011369f31
+  languageName: node
+  linkType: hard
+
 "gatsby-react-router-scroll@npm:^4.15.0":
   version: 4.15.0
   resolution: "gatsby-react-router-scroll@npm:4.15.0"
@@ -11781,6 +11815,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gatsby-sharp@npm:^1.12.1":
+  version: 1.12.1
+  resolution: "gatsby-sharp@npm:1.12.1"
+  dependencies:
+    sharp: ^0.32.6
+  checksum: 8e535b030c431e1e831cbac678faf33b749624bd4559410b6a67c1d42c1eacbc7b95ab2dfe9b9fe6619e22fc78adc6c4337d7df122b26f7b56e5845671c3c96d
+  languageName: node
+  linkType: hard
+
 "gatsby-source-filesystem@npm:^3.15.0":
   version: 3.15.0
   resolution: "gatsby-source-filesystem@npm:3.15.0"
@@ -11856,21 +11899,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-transformer-sharp@npm:^3.15.0":
-  version: 3.15.0
-  resolution: "gatsby-transformer-sharp@npm:3.15.0"
+"gatsby-transformer-sharp@npm:^5.12.2":
+  version: 5.12.2
+  resolution: "gatsby-transformer-sharp@npm:5.12.2"
   dependencies:
-    "@babel/runtime": ^7.15.4
+    "@babel/runtime": ^7.20.13
     bluebird: ^3.7.2
-    common-tags: ^1.8.0
-    fs-extra: ^10.0.0
-    probe-image-size: ^6.0.0
-    semver: ^7.3.5
-    sharp: ^0.29.0
+    common-tags: ^1.8.2
+    fs-extra: ^11.1.1
+    gatsby-plugin-utils: ^4.12.2
+    probe-image-size: ^7.2.3
+    semver: ^7.5.3
+    sharp: ^0.32.6
   peerDependencies:
-    gatsby: ^3.0.0-next.0
-    gatsby-plugin-sharp: ^3.0.0-next.0
-  checksum: ac029b6266c7b9c31b03ad30c8a06110e9e4617da6f406d64c01b6e6ec33d9aa2c554d05088101f658b2a7631db51b11bffded91e1e358c4eb1da3096b6c8514
+    gatsby: ^5.0.0-next
+    gatsby-plugin-sharp: ^5.0.0-next
+  checksum: 4fe4e30c724574d44bc800bfcbe66597dc0719e0566388e101868e9e8a20b7a5bf6eda6b410c02e96c4e3abe622cfbad9691f3d2e6879d7e21412d00b129b263
   languageName: node
   linkType: hard
 
@@ -12488,6 +12532,15 @@ __metadata:
   version: 1.4.0
   resolution: "graphemer@npm:1.4.0"
   checksum: bab8f0be9b568857c7bec9fda95a89f87b783546d02951c40c33f84d05bb7da3fd10f863a9beb901463669b6583173a8c8cc6d6b306ea2b9b9d5d3d943c3a673
+  languageName: node
+  linkType: hard
+
+"graphql-compose@npm:^9.0.10":
+  version: 9.0.10
+  resolution: "graphql-compose@npm:9.0.10"
+  dependencies:
+    graphql-type-json: 0.3.2
+  checksum: 46c566470a41d9ed5065b2ac2c50c870d34e5d03fff7eaa71cf10212a6492d1eef8a6ed9df012fbbfc85fa587eddbf498ce115015b075630f2c4168fcd447810
   languageName: node
   linkType: hard
 
@@ -15014,6 +15067,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"joi@npm:^17.9.2":
+  version: 17.11.0
+  resolution: "joi@npm:17.11.0"
+  dependencies:
+    "@hapi/hoek": ^9.0.0
+    "@hapi/topo": ^5.0.0
+    "@sideway/address": ^4.1.3
+    "@sideway/formula": ^3.0.1
+    "@sideway/pinpoint": ^2.0.0
+  checksum: 3a4e9ecba345cdafe585e7ed8270a44b39718e11dff3749aa27e0001a63d578b75100c062be28e6f48f960b594864034e7a13833f33fbd7ad56d5ce6b617f9bf
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -16988,6 +17054,15 @@ __metadata:
   bin:
     mime: cli.js
   checksum: 1497ba7b9f6960694268a557eae24b743fd2923da46ec392b042469f4b901721ba0adcf8b0d3c2677839d0e243b209d76e5edcbd09cfdeffa2dfb6bb4df4b862
+  languageName: node
+  linkType: hard
+
+"mime@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "mime@npm:3.0.0"
+  bin:
+    mime: cli.js
+  checksum: f43f9b7bfa64534e6b05bd6062961681aeb406a5b53673b53b683f27fcc4e739989941836a355eef831f4478923651ecc739f4a5f6e20a76487b432bfd4db928
   languageName: node
   linkType: hard
 
@@ -19616,7 +19691,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prebuild-install@npm:^7.0.0":
+"prebuild-install@npm:^7.0.0, prebuild-install@npm:^7.1.1":
   version: 7.1.1
   resolution: "prebuild-install@npm:7.1.1"
   dependencies:
@@ -19757,6 +19832,17 @@ __metadata:
     needle: ^2.5.2
     stream-parser: ~0.3.1
   checksum: 5fb44cf831b0b925b6eae58144761c6118b76c62e5daf33a35721fe140ca1a4f659e8f7195e13261b4c97ad827f1f765a3dd805d424ddfdef00d8c7737834f6e
+  languageName: node
+  linkType: hard
+
+"probe-image-size@npm:^7.2.3":
+  version: 7.2.3
+  resolution: "probe-image-size@npm:7.2.3"
+  dependencies:
+    lodash.merge: ^4.6.2
+    needle: ^2.5.2
+    stream-parser: ~0.3.1
+  checksum: 1a5eeb8f5cb979172144a5d7a017c70fcd664ccc8af9ad3a803903ee81864abea4036adae4fc6e66e9ae21bd3ce0febefaf1f32e65a77ff226b2eb61e9e4978c
   languageName: node
   linkType: hard
 
@@ -20002,6 +20088,13 @@ __metadata:
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
   checksum: b676f8c040cdc5b12723ad2f91414d267605b26419d5c821ff03befa817ddd10e238d22b25d604920340fd73efd8ba795465a0377c4adf45a4a41e4234e42dc4
+  languageName: node
+  linkType: hard
+
+"queue-tick@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "queue-tick@npm:1.0.1"
+  checksum: 57c3292814b297f87f792fbeb99ce982813e4e54d7a8bdff65cf53d5c084113913289d4a48ec8bbc964927a74b847554f9f4579df43c969a6c8e0f026457ad01
   languageName: node
   linkType: hard
 
@@ -21519,6 +21612,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sharp@npm:^0.32.6":
+  version: 0.32.6
+  resolution: "sharp@npm:0.32.6"
+  dependencies:
+    color: ^4.2.3
+    detect-libc: ^2.0.2
+    node-addon-api: ^6.1.0
+    node-gyp: latest
+    prebuild-install: ^7.1.1
+    semver: ^7.5.4
+    simple-get: ^4.0.1
+    tar-fs: ^3.0.4
+    tunnel-agent: ^0.6.0
+  checksum: 0cca1d16b1920800c0e22d27bc6305f4c67c9ebe44f67daceb30bf645ae39e7fb7dfbd7f5d6cd9f9eebfddd87ac3f7e2695f4eb906d19b7a775286238e6a29fc
+  languageName: node
+  linkType: hard
+
 "shebang-command@npm:^1.2.0":
   version: 1.2.0
   resolution: "shebang-command@npm:1.2.0"
@@ -21622,7 +21732,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"simple-get@npm:^4.0.0":
+"simple-get@npm:^4.0.0, simple-get@npm:^4.0.1":
   version: 4.0.1
   resolution: "simple-get@npm:4.0.1"
   dependencies:
@@ -22153,6 +22263,16 @@ __metadata:
   version: 0.1.2
   resolution: "streamsearch@npm:0.1.2"
   checksum: d2db57cbfbf7947ab9c75a7b4c80a8ef8d24850cf0a1a24258bb6956c97317ce1eab7dbcbf9c5aba3e6198611af1053b02411057bbedb99bf9c64b8275248997
+  languageName: node
+  linkType: hard
+
+"streamx@npm:^2.15.0":
+  version: 2.15.1
+  resolution: "streamx@npm:2.15.1"
+  dependencies:
+    fast-fifo: ^1.1.0
+    queue-tick: ^1.0.1
+  checksum: 6f2b4fed68caacd28efbd44d4264f5d3c2b81b0a5de14419333dac57f2075c49ae648df8d03db632a33587a6c8ab7cb9cdb4f9a2f8305be0c2cd79af35742b15
   languageName: node
   linkType: hard
 
@@ -22735,6 +22855,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tar-fs@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "tar-fs@npm:3.0.4"
+  dependencies:
+    mkdirp-classic: ^0.5.2
+    pump: ^3.0.0
+    tar-stream: ^3.1.5
+  checksum: dcf4054f9e92ca0efe61c2b3f612914fb259a47900aa908a63106513a6d006c899b426ada53eb88d9dbbf089b5724c8e90b96a2c4ca6171845fa14203d734e30
+  languageName: node
+  linkType: hard
+
 "tar-stream@npm:^2.1.4":
   version: 2.2.0
   resolution: "tar-stream@npm:2.2.0"
@@ -22745,6 +22876,17 @@ __metadata:
     inherits: ^2.0.3
     readable-stream: ^3.1.1
   checksum: 699831a8b97666ef50021c767f84924cfee21c142c2eb0e79c63254e140e6408d6d55a065a2992548e72b06de39237ef2b802b99e3ece93ca3904a37622a66f3
+  languageName: node
+  linkType: hard
+
+"tar-stream@npm:^3.1.5":
+  version: 3.1.6
+  resolution: "tar-stream@npm:3.1.6"
+  dependencies:
+    b4a: ^1.6.4
+    fast-fifo: ^1.2.0
+    streamx: ^2.15.0
+  checksum: f3627f918581976e954ff03cb8d370551053796b82564f8c7ca8fac84c48e4d042026d0854fc222171a34ff9c682b72fae91be9c9b0a112d4c54f9e4f443e9c5
   languageName: node
   linkType: hard
 
@@ -24562,7 +24704,7 @@ __metadata:
     gatsby-remark-smartypants: ^4.12.0
     gatsby-source-filesystem: ^3.15.0
     gatsby-transformer-remark: ^3.2.0
-    gatsby-transformer-sharp: ^3.15.0
+    gatsby-transformer-sharp: ^5.12.2
     identity-obj-proxy: ^3.0.0
     jest: ^26.6.3
     js-yaml: ^4.1.0
