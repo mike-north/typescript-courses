@@ -361,7 +361,6 @@ melon.cutIntoSlices()
 
 and `index.js`, the compiled output of `index.ts`.
 
-
 ```ts twoslash
 // @module: CommonJS
 // @types: node
