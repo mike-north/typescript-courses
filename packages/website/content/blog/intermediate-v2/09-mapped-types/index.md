@@ -216,13 +216,17 @@ type Readonly<T> = {
 }
 ```
 
-There is no built-in TypeScript "utility type" for `readonly` removal, but it's possible to implement one. Given this kind of utility type introduces mutability to values that someone intended to be immutable, there's probably a good reason that TypeScript doesn't include this one.
+There is no built-in TypeScript "utility type" for `readonly` removal, but it's possible to implement one.
 
 ```ts twoslash
 type NotReadonly<T> = {
   -readonly [P in keyof T]: T[P]
 }
 ```
+
+Given this kind of utility type introduces mutability to values that someone intended to be immutable, and the `readonly` keyword is a compile-time-only concept that in no way prevents writing to the value at runtime, there's a good reason that TypeScript doesn't include this one.
+
+![male plug to male plug electrical warning](./male-to-male.jpg)
 
 ## Template literal types
 
@@ -292,14 +296,13 @@ interface DataState {
 
 type DataSDK = {
   // The mapped type
-  // prettier-ignore
   [K in keyof DataState as `set${Capitalize<K>}`]:
     (arg: DataState[K]) => void
 }
 
 function load(dataSDK: DataSDK) {
   dataSDK.setDigits([14])
-  dataSDK.setFlags({ darkMode: true, mobil: false })
+  dataSDK.setFlags({ darkMode: true, mobile: false })
 }
 ```
 
@@ -369,10 +372,7 @@ type FilteredKeys<T, U> = {
 }[keyof T] &
   keyof T
 
-type RelevantDocumentKeys = FilteredKeys<
-  Document,
-  (...args: any[]) => Element | Element[]
->
+type RelevantDocumentKeys = FilteredKeys<Document, (...args: any[]) =>(Element | Element[]) >
 
 type ValueFilteredDoc = Pick<Document, RelevantDocumentKeys>
 //    ^?
