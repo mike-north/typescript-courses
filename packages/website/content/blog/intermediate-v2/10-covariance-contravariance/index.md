@@ -1,5 +1,5 @@
 ---
-title: Covariance, Contravariance and Bivariance
+title: Variance over type params
 date: "2023-10-25T09:00:00.000Z"
 description: |
   Unlock the mysteries of type relationships with a deep dive into covariance, contravariance, and invariance. Learn how these concepts shape type systems, enhance code safety, and influence design decisions in TypeScript projects.
@@ -9,13 +9,23 @@ order: 10
 
 Let's imagine the following situation
 
-We're writing software that controls machinery at a snack-making company's warehouse. Let's start with a base class and a subclass
+We're writing software that controls machinery at a snack-making factory. Let's start with a base class and two subclasses
+<br />
+<br />
+<br />
 
 ```ts twoslash
 class Snack {
-  constructor(
+  protected constructor(
     public readonly petFriendly: boolean) {}
 }
+
+class Pretzel extends Snack {
+  constructor(public readonly salted = true) {
+    super(!salted)
+  }
+}
+
 class Cookie extends Snack {
   public readonly petFriendly: false = false
   constructor(
@@ -31,12 +41,28 @@ The object oriented inheritance at play makes it pretty easy to understand which
 
 ## Covariance
 
-Our warehouse needs to model things that _produce_ these items. We plan for there to be many types of snacks and cookies, so we should build a generalized abstraction for a `Producer<T>`
+Our factory needs to model machines that _produce_ these items. We plan for there to be many types of snacks, so we should build a generalized abstraction for a `Producer<T>`
+
+```ts twoslash
+interface Producer<T> {
+  produce: () => T;
+}
+```
+
+We start out with two kinds of machines
+
+- `snackProducer` - which makes `Pretzel`s and `Cookies`s at random
+- `cookieProducer` - which makes only `Cookies`
 
 ```ts twoslash
 class Snack {
-  constructor(
+  protected constructor(
     public readonly petFriendly: boolean) {}
+}
+class Pretzel extends Snack {
+  constructor(public readonly salted = true) {
+    super(!salted)
+  }
 }
 class Cookie extends Snack {
   public readonly petFriendly: false = false
@@ -45,13 +71,20 @@ class Cookie extends Snack {
     super(false)
   }
 }
-/// ---cut---
 interface Producer<T> {
   produce: () => T;
 }
-
+/// ---cut---
 let cookieProducer: Producer<Cookie> = {
   produce: () => new Cookie('dark')
+};
+
+const COOKIE_TO_PRETZEL_RATIO = 0.5
+
+let snackProducer: Producer<Snack> = {
+  produce: () => Math.random() > COOKIE_TO_PRETZEL_RATIO
+    ? new Cookie("milk")
+    : new Pretzel(true)
 };
 ```
 
@@ -60,8 +93,13 @@ Great! Let's try assignments in both directions of `snackProducer` and `cookiePr
 ```ts twoslash
 // @errors: 2322
 class Snack {
-  constructor(
+  protected constructor(
     public readonly petFriendly: boolean) {}
+}
+class Pretzel extends Snack {
+  constructor(public readonly salted = true) {
+    super(!salted)
+  }
 }
 class Cookie extends Snack {
   public readonly petFriendly: false = false
@@ -70,7 +108,6 @@ class Cookie extends Snack {
     super(false)
   }
 }
-
 interface Producer<T> {
   produce: () => T;
 }
@@ -78,9 +115,12 @@ interface Producer<T> {
 let cookieProducer: Producer<Cookie> = {
   produce: () => new Cookie('dark')
 };
+let snackProducer: Producer<Snack> = {
+  produce: () => Math.random() > 0.5 ? new Cookie("milk") : new Pretzel(true)
+};
 /// ---cut---
-let snackProducer: Producer<Snack> = cookieProducer;
-cookieProducer = snackProducer
+snackProducer = cookieProducer // ✅
+cookieProducer = snackProducer // ❌
 ```
 
 Interesting! We can see that if we need a `snackProducer`, a `cookieProducer` will certainly meet our need, but if we must have a `cookieProducer` we can't be sure that any `snackProducer` will suffice.
@@ -88,7 +128,7 @@ Interesting! We can see that if we need a `snackProducer`, a `cookieProducer` wi
 | Cookie                | direction     | Snack                 |
 |-----------------------|---------------|-----------------------|
 | `Cookie`              | --- is a ---> | `Snack`               |
-| `Producer<T = Cookie>`| --- is a ---> | `Producer<T = Snack>` |
+| `Producer<Cookie>`| --- is a ---> | `Producer<Snack>` |
 
 > **Because both of these arrows flow in the same direction, we would say `Producer<T>` is _covariant_ on `T`**
 
@@ -102,21 +142,29 @@ interface Producer<out T> {
 
 ## Contravariance
 
-Now we need to model things that _consume_ our snacks. Let's make a `Consumer<T>` interface that describes consumers.
+Now we need to model things that _package_ our snacks. Let's make a `Packager<T>` interface that describes packagers.
 
 ```ts twoslash
-interface Consumer<T> {
-  consume: (item: T) => void;
+interface Packager<T> {
+  package: (item: T) => void;
 }
 ```
 
-And apply it to our code
+Let's imagine we have two kinds of machines
+
+- `cookiePackager` - a cheaper machine that only is suitable for packaging cookies
+- `snackPackager` - a more expensive machine that not only packages cookies properly, but it can package pretzels and other snacks too!
 
 ```ts twoslash
 // @errors: 2322
 class Snack {
-  constructor(
+  protected constructor(
     public readonly petFriendly: boolean) {}
+}
+class Pretzel extends Snack {
+  constructor(public readonly salted = true) {
+    super(!salted)
+  }
 }
 class Cookie extends Snack {
   public readonly petFriendly: false = false
@@ -125,47 +173,168 @@ class Cookie extends Snack {
     super(false)
   }
 }
-
-interface Consumer<T> {
-  consume: (item: T) => void;
+interface Packager<T> {
+  package: (item: T) => void;
 }
 /// ---cut---
-let snackConsumer: Consumer<Snack> = {
-  consume(item: Snack) {}
+let cookiePackager: Packager<Cookie> = {
+  package(item: Cookie) {}
 };
 
-let cookieConsumer: Consumer<Cookie> = snackConsumer;
-snackConsumer = cookieConsumer
+let snackPackager: Packager<Snack> = {
+  package(item: Snack) {
+    if (item instanceof Cookie ) {
+      /* Package cookie */
+    } else if (item instanceof Pretzel) {
+      /* Package pretzel */
+    } else {
+      /* Package other snacks? */
+    }
+  }
+};
+
+cookiePackager = snackPackager;
+snackPackager = cookiePackager
 ```
 
-So, if we need to get rid of a bunch of `Cookie`s, a `Consumer<Snack>` (which is presumably ok with consuming a wide range of `Snack`s) will meet our needs. However, if we need to get rid of a wide range of `Snack`s and only have a `Consumer<Cookie>` available, we only have a solution for the `Cookie`s and not `Snack`s in general. This is why the last line does not type-check.
+If we need to package a bunch of `Cookie`s, our fancy `snackPackager` will certainly do the job. However, if we have a mix of `Pretzel`s, `Cookie`s and other `Snack`s, the `cookiePackager` machine, which only knows how to handle cookies, will not meet our needs.
 
 Let's build a table like we did for covariance
 
 | Cookie                | direction     | Snack                 |
 |-----------------------|---------------|-----------------------|
 | `Cookie`              | --- is a ---> | `Snack`               |
-| `Consumer<T = Cookie>`| <--- is a --- | `Consumer<T = Snack>` |
+| `Packager<Cookie>`| <--- is a --- | `Packager<Snack>` |
 
-> **Because these arrows flow in opposite directions, we would say `Consumer<T>` is _contravariant_ on `T`**
+> **Because these arrows flow in opposite directions, we would say `Packager<T>` is _contravariant_ on `T`**
 
-TypeScript 5 gives us the ability to _state_ that we intend `Consumer<T>` to be (and remain) _covariant on `T`_ using the `in` keyword before the typeParam.
+TypeScript 5 gives us the ability to _state_ that we intend `Packager<T>` to be (and remain) _covariant on `T`_ using the `in` keyword before the typeParam.
 
 ```ts twoslash
-interface Consumer<in T> {
-  consume: (item: T) => void;
+interface Packager<in T> {
+  package: (item: T) => void;
 }
 ```
 
 ## Invariance
 
-What happens if we merge these `Producer<T>` and `Consumer<T>` interfaces together?
+What happens if we merge these `Producer<T>` and `Packager<T>` interfaces together?
 
 ```ts twoslash
+class Snack {
+  protected constructor(
+    public readonly petFriendly: boolean) {}
+}
+class Pretzel extends Snack {
+  constructor(public readonly salted = true) {
+    super(!salted)
+  }
+}
+class Cookie extends Snack {
+  public readonly petFriendly: false = false
+  constructor(
+    public readonly chocolateType: 'dark' | 'milk' | 'white') {
+    super(false)
+  }
+}
+/// ---cut---
+interface ProducerPackager<T> {
+  package: (item: T) => void;
+  produce: () => T;
+}
+```
+
+These machines have _independent features_ that allow them to produce _and_ package food items.
+
+- `cookieProducerPackager` - makes only cookies, and packages only cookies
+- `snackProducerPackager` - makes a variety of different snacks, and has the ability to package any snack
+
+```ts twoslash
+// @strictFunctionTypes: true
 // @errors: 2322
 class Snack {
-  constructor(
+  protected constructor(
     public readonly petFriendly: boolean) {}
+}
+class Pretzel extends Snack {
+  constructor(public readonly salted = true) {
+    super(!salted)
+  }
+}
+class Cookie extends Snack {
+  public readonly petFriendly: false = false
+  constructor(
+    public readonly chocolateType: 'dark' | 'milk' | 'white') {
+    super(false)
+  }
+}
+interface ProducerPackager<T> {
+  produce: () => T
+  package: (item: T) => void
+}
+/// ---cut---
+let cookieProducerPackager: ProducerPackager<Cookie> = {
+  produce() {
+    return new Cookie('dark')
+  },
+  package(arg: Cookie) {}
+}
+
+let snackProducerPackager: ProducerPackager<Snack> = {
+  produce() {
+    return Math.random() > 0.5
+      ? new Cookie("milk")
+      : new Pretzel(true)
+  },
+  package(item: Snack) {
+    if (item instanceof Cookie ) {
+      /* Package cookie */
+    } else if (item instanceof Pretzel) {
+      /* Package pretzel */
+    } else {
+      /* Package other snacks? */
+    }
+  }
+}
+
+snackProducerPackager= cookieProducerPackager
+cookieProducerPackager = snackProducerPackager
+
+```
+
+Looks like assignment fails in _both_ directions.
+
+- The first one fails because the `package` types are not type equivalent
+- The second one fails because of `produce`.
+
+Where this leaves us is that `ProducerPackager<T>` for `T = Snack` and `T = Cookie` are not reusable in either direction -- it's as if these types (`ProducerPackager<Cooke>` and `ProducerPackager<Snack>`) are totally unrelated.
+
+Let's make our table one more time
+
+| Cookie                | direction     | Snack                 |
+|-----------------------|---------------|-----------------------|
+| `Cookie`              | --- is a ---> | `Snack`               |
+| `ProducerPackager<Cookie>`|  x x x x x x  | `ProducerPackager<Snack>` |
+
+> This means that `ProducerPackager<T>` is _invariant_ on `T`. **Invariance means _neither_ covariance nor contravariance.**
+
+## Bivariance
+
+For completeness, let's explore one more example. Imagine we have two employees who are assigned to quality control.
+
+One employee, represented by `cookieQualityCheck` is relatively new to the company. They only know how to inspect cookies.
+
+Another employee, represented by `snackQualityCheck` has been with the company for a long time, and can effectively inspect any food product that the company produces.
+
+```ts twoslash
+class Snack {
+  protected constructor(
+    public readonly petFriendly: boolean) {}
+}
+class Pretzel extends Snack {
+  constructor(public readonly salted = true) {
+    super(!salted)
+  }
 }
 class Cookie extends Snack {
   public readonly petFriendly: false = false
@@ -175,32 +344,205 @@ class Cookie extends Snack {
   }
 }
 
-interface ProducerAndConsumer<T> {
-  consume: (item: T) => void;
-  produce: () => T;
+/// ---cut---
+function cookieQualityCheck(cookie: Cookie): boolean {
+  return Math.random() > 0.1
 }
 
-let cookiePC: ProducerAndConsumer<Cookie> = {
-  produce() {return new Cookie('dark') },
-  consume(arg: Cookie) {}
-};
-let snackPC!: ProducerAndConsumer<Snack>
+function snackQualityCheck(snack: Snack): boolean {
+  if (snack instanceof Cookie) return cookieQualityCheck(snack)
+  else return Math.random() > 0.16 // pretzel case
+}
+```
 
-snackPC= cookiePC
-cookiePC = snackPC
+We can see that the `snackQualityCheck` even calls `cookieQualityCheck`. It can do everything `cookieQualityCheck` can do _and more_.
+
+Our quality control employees go through a process where they check some quantity of food products, and then put them into the appropriate packaging machines we discussed above.
+
+Let's represent this part of our process as a function which takes a bunch of `uncheckedItems` and a `qualityCheck` callback as arguments. This function returns a bunch of inspected food products (with those that didn't pass inspection removed).
+
+We'll call this function `PrepareFoodPackage<T>`
+
+```ts twoslash
+// A function type for preparing a bunch of food items
+// for shipment. The function must be passed a callback
+// that will be used to check the quality of each item.
+type PrepareFoodPackage<T> = (
+  uncheckedItems: T[],
+  qualityCheck: (arg: T) => boolean
+) => T[]
+```
+
+Let's create two of these `PrepareFoodPackage` functions
+
+- `prepareSnacks` - Can prepare a bunch of different snacks for shipment
+- `prepareCookies` - Can prepare _only_ a bunch of cookies for shipment
+
+```ts twoslash
+class Snack {
+  protected constructor(
+    public readonly petFriendly: boolean) {}
+}
+class Pretzel extends Snack {
+  constructor(public readonly salted = true) {
+    super(!salted)
+  }
+}
+class Cookie extends Snack {
+  public readonly petFriendly: false = false
+  constructor(
+    public readonly chocolateType: 'dark' | 'milk' | 'white') {
+    super(false)
+  }
+}
+type PrepareFoodPackage<T> = (
+  uncheckedItems: T[],
+  qualityCheck: (arg: T) => boolean
+) => T[]
+
+function cookieQualityCheck(cookie: Cookie): boolean {
+  return Math.random() > 0.1
+}
+
+function snackQualityCheck(snack: Snack): boolean {
+  if (snack instanceof Cookie) return cookieQualityCheck(snack)
+  else return Math.random() > 0.16 // pretzel case
+}
+
+
+/// ---cut---
+// Prepare a bunch of snacks for shipment
+let prepareSnacks: PrepareFoodPackage<Snack> = 
+  (uncheckedItems, callback) => uncheckedItems.filter(callback)
+
+// Prepare a bunch of cookies for shipment
+let prepareCookies: PrepareFoodPackage<Cookie> = 
+  (uncheckedItems, callback) => uncheckedItems.filter(callback)
 
 ```
 
-Looks like assignment fails in _both_ directions. The first one fails because the `consume` types are not type equivalent, and the second one fails because of `produce`. Where this leaves us is that `ProducerAndConsumer<T>` for `T = Snack` and `T = Cookie` are not reusable in either direction -- it's as if these types (`ProducerAndConsumer<Cooke>` and `ProducerAndConsumer<Snack>`) are totally unrelated.
+Finally, let's examine type-equivalence in both directions
 
-Let's make our table one more time
+```ts twoslash
+// @strictFunctionTypes: false
+class Snack {
+  protected constructor(
+    public readonly petFriendly: boolean) {}
+}
+class Pretzel extends Snack {
+  constructor(public readonly salted = true) {
+    super(!salted)
+  }
+}
+class Cookie extends Snack {
+  public readonly petFriendly: false = false
+  constructor(
+    public readonly chocolateType: 'dark' | 'milk' | 'white') {
+    super(false)
+  }
+}
+type PrepareFoodPackage<T> = (
+  uncheckedItems: T[],
+  qualityCheck: (arg: T) => boolean
+) => T[]
 
-| Cookie                | direction     | Snack                 |
-|-----------------------|---------------|-----------------------|
-| `Cookie`              | --- is a ---> | `Snack`               |
-| `Consumer<T = Cookie>`|  x x x x x x  | `Consumer<T = Snack>` |
+function cookieQualityCheck(cookie: Cookie): boolean {
+  return Math.random() > 0.1
+}
 
-> This means that `ProducerAndConsumer<T>` is _invariant_ on `T`. **Invariance means _neither_ covariance nor contravariance.**
+function snackQualityCheck(snack: Snack): boolean {
+  if (snack instanceof Cookie) return cookieQualityCheck(snack)
+  else return Math.random() > 0.16 // pretzel case
+}
+
+
+// Prepare a bunch of snacks for shipment
+let prepareSnacks: PrepareFoodPackage<Snack> = 
+  (uncheckedItems, callback) => uncheckedItems.filter(callback)
+
+// Prepare a bunch of cookies for shipment
+let prepareCookies: PrepareFoodPackage<Cookie> = 
+  (uncheckedItems, callback) => uncheckedItems.filter(callback)
+
+/// ---cut---
+// NOTE: strictFunctionTypes = false
+
+const cookies = [
+  new Cookie('dark'),
+  new Cookie('milk'),
+  new Cookie('white')
+]
+const snacks = [
+  new Pretzel(true),
+  new Cookie('milk'),
+  new Cookie('white')
+]
+prepareSnacks (cookies, cookieQualityCheck)
+prepareSnacks (snacks,  cookieQualityCheck)
+prepareCookies(cookies, snackQualityCheck )
+```
+
+In this example, we can see that `cookieCallback` and `snackCallback` seem to be interchangeable. This is because, in the code snippet above, we had the `strictFunctionTypes` option in our `tsconfig.json` turned off.
+
+Let's look at what we'd see if we left this option turned on (recommended).
+
+```ts twoslash
+// @strictFunctionTypes: true
+// @errors: 2345
+class Snack {
+  protected constructor(
+    public readonly petFriendly: boolean) {}
+}
+class Pretzel extends Snack {
+  constructor(public readonly salted = true) {
+    super(!salted)
+  }
+}
+class Cookie extends Snack {
+  public readonly petFriendly: false = false
+  constructor(
+    public readonly chocolateType: 'dark' | 'milk' | 'white') {
+    super(false)
+  }
+}
+type PrepareFoodPackage<T> = (
+  uncheckedItems: T[],
+  qualityCheck: (arg: T) => boolean
+) => T[]
+
+function cookieQualityCheck(cookie: Cookie): boolean {
+  return Math.random() > 0.1
+}
+
+function snackQualityCheck(snack: Snack): boolean {
+  if (snack instanceof Cookie) return cookieQualityCheck(snack)
+  else return Math.random() > 0.16 // pretzel case
+}
+
+
+// Prepare a bunch of snacks for shipment
+let prepareSnacks: PrepareFoodPackage<Snack> = (uncheckedItems, callback) => uncheckedItems.filter(callback)
+
+// Prepare a bunch of cookies for shipment
+let prepareCookies: PrepareFoodPackage<Cookie> = (uncheckedItems, callback) => uncheckedItems.filter(callback)
+const cookies = [
+  new Cookie('dark'),
+  new Cookie('milk'),
+  new Cookie('white')
+]
+const snacks = [
+  new Pretzel(true),
+  new Cookie('milk'),
+  new Cookie('white')
+]
+/// ---cut---
+// NOTE: strictFunctionTypes = true
+
+prepareSnacks (cookies, cookieQualityCheck)
+prepareSnacks (snacks,  cookieQualityCheck)
+prepareCookies(cookies, snackQualityCheck )
+
+```
 
 ## What variance helpers do for you
 
@@ -211,12 +553,12 @@ There are two reasons to use variance helpers in your code
 
 Here's a comparison of the error experiences, with and without the variance helpers.
 
-Here's our working state for `Consumer<T>` again
+Here's our working state for `Packager<T>` again
 
 ```ts twoslash
 // @errors: 2322
 class Snack {
-  constructor(
+  protected constructor(
     public readonly petFriendly: boolean) {}
 }
 class Cookie extends Snack {
@@ -228,20 +570,20 @@ class Cookie extends Snack {
 }
 /// ---cut---
 
-interface Consumer<T> {
-  consume: (item: T) => void;
+interface Packager<T> {
+  package: (item: T) => void;
 }
 
-let snackConsumer!: Consumer<Snack>
-let cookieConsumer: Consumer<Cookie> = snackConsumer
+let snackPackager!: Packager<Snack>
+let cookiePackager: Packager<Cookie> = snackPackager
 ```
 
-And let's change `Consumer<T>` so that it becomes invariant on `T`
+And let's change `Packager<T>` so that it becomes invariant on `T`
 
 ```ts twoslash
 // @errors: 2322
 class Snack {
-  constructor(
+  protected constructor(
     public readonly petFriendly: boolean) {}
 }
 class Cookie extends Snack {
@@ -253,13 +595,13 @@ class Cookie extends Snack {
 }
 /// ---cut---
 
-interface Consumer<T> {
-  consume: (item: T) => void;
+interface Packager<T> {
+  package: (item: T) => void;
   produce: () => T;
 }
 
-let snackConsumer!: Consumer<Snack>
-let cookieConsumer: Consumer<Cookie> = snackConsumer
+let snackPackager!: Packager<Snack>
+let cookiePackager: Packager<Cookie> = snackPackager
 ```
 
 Finally, we'll add that `in` keyword
@@ -267,7 +609,7 @@ Finally, we'll add that `in` keyword
 ```ts{1} twoslash
 // @errors: 2636
 class Snack {
-  constructor(
+  protected constructor(
     public readonly petFriendly: boolean) {}
 }
 class Cookie extends Snack {
@@ -278,13 +620,13 @@ class Cookie extends Snack {
   }
 }
 /// ---cut---
-interface Consumer<in T> {
-  consume: (item: T) => void;
+interface Packager<in T> {
+  package: (item: T) => void;
   produce: () => T;
 }
 
-let snackConsumer!: Consumer<Snack>
-let cookieConsumer: Consumer<Cookie> = snackConsumer
+let snackPackager!: Packager<Snack>
+let cookiePackager: Packager<Cookie> = snackPackager
 ```
 
-The error is surfaced at `Consumer<T>`'s declaration site, and is articulated in terms of violating a variance constraint, not the resultant type-checking error that arises from the call site which _requires covariance in order to compile_.
+The error is surfaced at `Packager<T>`'s declaration site, and is articulated in terms of violating a variance constraint, not the resultant type-checking error that arises from the call site which _requires covariance in order to compile_.
