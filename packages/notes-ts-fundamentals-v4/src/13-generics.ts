@@ -20,33 +20,35 @@ const phoneDict = {
   },
   /*... and so on */
 }
-/*
-// interface PhoneInfo {
-//   customerId: string
-//   areaCode: string
-//   num: string
-// }
 
-// function listToDict(
-//   list: PhoneInfo[], // take the list as an argument
-//   idGen: (arg: PhoneInfo) => string, // a callback to get Ids
-// ): { [k: string]: PhoneInfo } {}
+interface PhoneInfo {
+  customerId: string
+  areaCode: string
+  num: string
+}
 
-/*
+function listToDict<T>(
+  list: T[], // take the list as an argument
+  idGen: (arg: T) => string, // a callback to get Ids
+): { [k: string]: T } {
+  const dict: { [k: string]: T } = {}
+  list.forEach((element) => {
+    const dictKey = idGen(element)
+    dict[dictKey] = element // store element under key
+  })
+  return dict
+}
+
 //? function body
 // // create an empty dictionary
-// const dict: { [k: string]: PhoneInfo } = {}
 
 // // Loop through the array
-// list.forEach((element) => {
-//   const dictKey = idGen(element)
-//   dict[dictKey] = element // store element under key
-// })
+
 
 // // return the dictionary
-// const result = listToDict(phoneList, (item) => item.customerId)
+const result = listToDict(phoneList, (item) => item.customerId)
 // console.log(result)
-/*
+
 //? An attempt to generalize the above function to work with any type of list
 
 // function listToDict(
@@ -56,7 +58,7 @@ const phoneDict = {
 
 //* Defining a type parameter
 
-/*
+
 // function listToDict<T>(
 //   list: T[],
 //   idGen: (arg: T) => string,
@@ -65,16 +67,16 @@ const phoneDict = {
 //   return dict
 // }
 
-// function wrapInArray<T>(arg: T): [T] {
-//   return [arg]
-// }
-// wrapInArray(3)
+function wrapInArray<T>(arg: T): [T] {
+  return [arg]
+}
+wrapInArray(3)
 // //   ^?
-// wrapInArray(new Date())
+wrapInArray(new Date())
 // //   ^?
-// wrapInArray(new RegExp("/s/"))
+wrapInArray(new RegExp("/s/"))
 
-/*
+
 //? Let's try it!
 // listToDict(
 //   [
@@ -89,10 +91,20 @@ const phoneDict = {
 // )
 
 //* Best practices
-/*
-// function returnAs<T>(arg: any): T {
-//     return arg //! an `any` that will _seem_ like a `T`
-// } // may as well just cast
 
+function returnAs<T>(arg: any): T {
+    return arg //! an `any` that will _seem_ like a `T`
+} // may as well just cast
+const foo = returnAs<string>(41)
+
+function makeTuple<T, U>(arg: T, arg2: U): [T, U] {
+  return [arg, arg2]
+}
+
+const zz = makeTuple(1, 2)
+const zzz = makeTuple('foo', window)
+
+
+/*
 /**/
 export default {}
