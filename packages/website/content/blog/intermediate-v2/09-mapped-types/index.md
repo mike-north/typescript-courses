@@ -1,6 +1,6 @@
 ---
 title: Mapped Types
-date: "2021-06-10T09:00:00.000Z"
+date: "2023-10-25T09:00:00.000Z"
 description: |
   Mapped types are a powerful feature in TypeScript that allows you to create new types based on existing ones by transforming properties in a controlled manner. 
 

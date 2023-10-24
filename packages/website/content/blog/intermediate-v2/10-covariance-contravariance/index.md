@@ -1,6 +1,6 @@
 ---
 title: Covariance, Contravariance and Bivariance
-date: "2021-06-10T09:00:00.000Z"
+date: "2023-10-25T09:00:00.000Z"
 description: |
   Unlock the mysteries of type relationships with a deep dive into covariance, contravariance, and invariance. Learn how these concepts shape type systems, enhance code safety, and influence design decisions in TypeScript projects.
 course: intermediate-v2
