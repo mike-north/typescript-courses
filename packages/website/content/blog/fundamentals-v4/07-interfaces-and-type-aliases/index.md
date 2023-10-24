@@ -104,38 +104,42 @@ type Amount = {
 
 A type alias can hold _any type_, as it's literally an alias (name) for a type of some sort.
 
-Here's an example of how we can "clean up" the code from our [Union and Intersection Types](../06-union-and-intersection-types/) section (previous chapter) through the use of type aliases:
+Here's an example of how we can apply explicit function return types, and then "clean up" some code from our [Union and Intersection Types](../06-union-and-intersection-types/) section (previous chapter) through the use of type aliases:
 
-<!-- TODO! Update this example to be payment-based -->
 ```ts twoslash
+// @filename: common.ts
+export function flipCoin() {
+  if (Math.random() > 0.5) return "heads"
+  return "tails"
+}
+export const success = ["success", { name: "Mike North", email: "mike@example.com"} ] as const
+export const fail = ["error", new Error("Something went wrong!") ] as const
+/// ---cut---
 ///////////////////////////////////////////////////////////
 // @filename: original.ts
+import { flipCoin, success, fail } from './common'
 /**
  * ORIGINAL version
  */
 export function maybeGetUserInfo():
-  | ["error", Error]
-  | ["success", { name: string; email: string }] {
+  | readonly ["error", Error]
+  | readonly ["success", { name: string; email: string }] {
   // implementation is the same in both examples
-  if (Math.random() > 0.5) {
-    return [
-      "success",
-      { name: "Mike North", email: "mike@example.com" },
-    ]
+  if (flipCoin() === 'heads') {
+    return success
   } else {
-    return [
-      "error",
-      new Error("The coin landed on TAILS :("),
-    ]
+    return fail
   }
 }
 
 ///////////////////////////////////////////////////////////
 // @filename: with-aliases.ts
-type UserInfoOutcomeError = ["error", Error]
-type UserInfoOutcomeSuccess = [
+import { flipCoin, success, fail } from './common'
+
+type UserInfoOutcomeError = readonly ["error", Error]
+type UserInfoOutcomeSuccess = readonly [
   "success",
-  { name: string; email: string },
+  { readonly name: string; readonly email: string },
 ]
 type UserInfoOutcome =
   | UserInfoOutcomeError
@@ -146,16 +150,10 @@ type UserInfoOutcome =
  */
 export function maybeGetUserInfo(): UserInfoOutcome {
   // implementation is the same in both examples
-  if (Math.random() > 0.5) {
-    return [
-      "success",
-      { name: "Mike North", email: "mike@example.com" },
-    ]
+  if (flipCoin() === 'heads') {
+    return success
   } else {
-    return [
-      "error",
-      new Error("The coin landed on TAILS :("),
-    ]
+    return fail
   }
 }
 ```
@@ -169,10 +167,10 @@ by using Intersection (`&`) types.
 // @noErrors
 type SpecialDate = Date & { getDescription(): string }
 
-const newYearsEve: SpecialDate = {
-  ...new Date(),
-  getDescription: () => "Last day of the year",
-}
+const newYearsEve: SpecialDate = Object.assign(
+    new Date(),
+    { getDescription: () => "Last day of the year" }
+  )
 newYearsEve.getD
 //              ^|
 ```
@@ -219,7 +217,7 @@ interface Amount {
   currency: string
   value: number
 }
-function printAmount(amt: Amount) {
+function printAmounts(amt: Amount) {
    amt.c
 //      ^|
 }
@@ -235,21 +233,21 @@ you've seen an example of what TypeScript calls a **heritage clause**: [`extends
 ```js twoslash
 function consumeFood(arg) {}
 /// ---cut---
-class Animal {
+class AnimalThatEats {
   eat(food) {
     consumeFood(food)
   }
 }
-class Dog extends Animal {
-  bark() {
-    return "woof"
-  }
+class Cat extends AnimalThatEats {
+    meow() {
+        return "meow"
+    }
 }
 
-const d = new Dog()
-d.eat
+const c = new Cat()
+c.eat
 // ^?
-d.bark
+c.meow()
 //  ^?
 ```
 
@@ -263,12 +261,14 @@ interface Animal {
 interface Mammal extends Animal {
   getFurOrHairColor(): string
 }
-interface Dog extends Mammal {
-  getBreed(): string
+interface Hamster extends Mammal {
+  squeak(): string
 }
-function careForDog(dog: Dog) {
-  dog.getBreed
-  //   ^|
+function careForHamster(h: Hamster) {
+  h.getFurOrHairColor()
+  //   ^?
+  h.squeak()
+  //   ^?
 }
 ```
 
@@ -332,7 +332,7 @@ interface CanBark {
   bark(): string
 }
 
-class Dog
+class Dog2
   extends LivingOrganism
   implements AnimalLike, CanBark
 {
@@ -351,13 +351,13 @@ While it's possible to use `implements` with a type alias...
 // @noImplicitAny: false
 function consumeFood(arg) {}
 /// ---cut---
-type CanBark = {
-  bark(): string
+type CanJump = {
+    jumpToHeight(): number
 }
 
-class Dog implements CanBark {
-  bark() {
-    return "woof"
+class Dog3 implements CanJump {
+  jumpToHeight() {
+    return 1.7
   }
   eat(food) {
     consumeFood(food)
@@ -368,18 +368,17 @@ class Dog implements CanBark {
 if the type ever breaks the "object type" rules there's some
 potential for problems...
 
-```ts{2} twoslash
+```ts{3} twoslash
 // @noImplicitAny: false
 // @errors: 2422 2304
 function consumeFood(arg) {}
 /// ---cut---
-type CanBark =
-  | number
-  | {
-      bark(): string
-    }
+type CanJump = {
+    jumpToHeight(): number
+} | string
 
-class Dog implements CanBark {
+
+class Dog3 implements CanJump {
   bark() {
     return "woof"
   }
@@ -399,8 +398,8 @@ TypeScript interfaces are "open", meaning that unlike in type aliases, you can h
 
 ```ts twoslash
 // @noImplicitAny: false
-interface AnimalLike {
-  isAlive(): boolean
+interface AnimalLike { // From before
+  eat(food): void
 }
 function feed(animal: AnimalLike) {
   animal.eat
@@ -411,8 +410,9 @@ function feed(animal: AnimalLike) {
 
 // SECOND DECLARATION OF THE SAME NAME
 interface AnimalLike {
-  eat(food): void
+  isAlive(): boolean
 }
+
 ```
 
 These declarations are merged together to create a result identical to what you would see if both the `isAlive` and `eat` methods were on a single interface declaration.

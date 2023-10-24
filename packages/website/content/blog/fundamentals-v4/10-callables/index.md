@@ -1,5 +1,5 @@
 ---
-title: Functions
+title: Callables and Constructables
 date: "2023-10-23T09:00:00.000Z"
 description: |
   So far, we have dealt with function argument and return types. There
@@ -87,7 +87,7 @@ interface DateConstructor {
 }
 
 let MyDateConstructor: DateConstructor = Date
-const d = new MyDateConstructor()
+const d = new MyDateConstructor(1697923072611)
 //    ^?
 ```
 
@@ -228,8 +228,7 @@ handleMainEvent
 
 ## `this` types
 
-Sometimes we have a free-standing function that has a strong opinion around
-what `this` will end up being, at the time it is invoked.
+Sometimes we have a free-standing function that has a strong opinion around what `this` will end up being, at the time it is invoked.
 
 For example, if we had a DOM event listener for a button:
 
@@ -240,12 +239,24 @@ For example, if we had a DOM event listener for a button:
 We could define `myClickHandler` as follows
 
 ```ts twoslash
+// @noImplicitThis: false
+function myClickHandler(event: Event) {
+  this.disabled = true
+//  ^?
+}
+```
+
+Oh no! `this` is an `any` type. We sure don't want to depend on `disabled` being a defined property without some degree of type safety. If we enable the `compilerOptions.noImplicitThis` flag in `tsconfig.json`, you'll see a type checking error here
+
+```ts twoslash
 // @errors: 2683
+// @noImplicitAny: true
+// @noImplicitThis: true
 function myClickHandler(event: Event) {
   this.disabled = true
 }
 
-myClickHandler(new Event("click")) // seems ok
+myClickHandler(new Event("click")) // maybe ok?
 ```
 
 Oops! TypeScript isn't happy with us. Despite the fact that [we know that `this` will be element that fired the event](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#the_value_of_this_within_the_handler), the compiler doesn't seem to be happy with us using it in this way.

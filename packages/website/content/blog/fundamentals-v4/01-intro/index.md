@@ -91,29 +91,25 @@ As long as you can access the following websites, you should require no further 
 - [The course website you're reading right now](https://fun-v3.typescript-training.com)
 - [The official TypeScript website](https://www.typescriptlang.org)
 
-<!-- TODO: UPDATE AGENDA -->
-[[danger | :warning: TODO]]
-| Update the agenda
+If you'd like to follow along with interactive examples, please install [Volta](https://volta.sh)
 
-## Agenda
+```sh
+curl https://get.volta.sh | bash # Linux / macOS only
+volta install node@lts yarn@^3
+```
 
-- Using `tsc` and **compiling** TS code into JavaScript
-- **Variables** and simple values
-- **Objects** and arrays
-  <br/>`--- BREAK ---`
-- Categorizing **type systems**
-- Set theory, **Union and Intersection types**
-- **Interfaces and Type Aliases**
-  <br/>`--- LUNCH ---`
-- **Hack**: Writing types for JSON values
-- **Functions**
-- **Classes** in TypeScript
-- **Top and bottom types**
-- User-defined **Type guards**
-  <br/>`--- BREAK ---`
-- Handling **nullish values**
-- **Generics**
-- **Hack**: higher-order functions for dictionaries
-- Wrap up
+Make sure to follow the installation instructions for `volta` -- both what you see on the website and what you see in the CLI console. Next, clone the git repo for this course [github.com/mike-north/typescript-courses](https://github.com/mike-north/typescript-courses), enter the directory, and run `yarn` to install all dependencies
+
+```sh
+git clone https://github.com/mike-north/typescript-courses
+cd typescript-courses
+yarn
+```
+
+most of our work today will be in the `packages/notes-ts-fundamentals-v4` folder
+
+```sh
+cd packages/notes-ts-fundamentals-v4
+```
 
 [^1]: TypeScript by itself is not going to reduce the occurrence of errors in your projects. It does, however, provide several tools that _greatly_ improve visibility of some kinds of defects.

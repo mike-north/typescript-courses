@@ -1,6 +1,6 @@
 ---
 title: Declaration Merging
-date: "2021-06-10T09:00:00.000Z"
+date: "2023-10-25T09:00:00.000Z"
 description: |
   In order to truly understand how types and values "stack" on
   each other, we'll first tackle the concept of declaration merging.

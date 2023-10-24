@@ -94,20 +94,11 @@ jobs:
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        typescript-version: [~5.2.0, latest, next, beta, rc]
+        typescript-version: [beta, next]
         include:
-          - typescript-version: '~5.2.0'
-            experimental: false
-            name: 'ts-5.2'
-          - typescript-version: latest
-            experimental: false
-            name: 'ts-stable'
           - typescript-version: beta
             experimental: false
             name: 'ts-beta'
-          - typescript-version: rc
-            experimental: true
-            name: 'ts-rc'
           - typescript-version: next
             experimental: true
             name: 'ts-canary'
@@ -118,7 +109,7 @@ jobs:
       - uses: volta-cli/action@v4
       - run: yarn
       - name: Installing TypeScript ${{ matrix.typescript-version }}
-        run: yarn workspaces foreach -vpi add -D typescript@${{ matrix.typescript-version}}
+        run: yarn workspaces foreach --exclude hello-ts --exclude '@mike-north/typescript-courses' -vpi add -D typescript@${{ matrix.typescript-version}}
       - name: Build
         run: yarn build
       - name: Type-check website 

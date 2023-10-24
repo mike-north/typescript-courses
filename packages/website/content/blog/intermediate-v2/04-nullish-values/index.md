@@ -42,12 +42,15 @@ but there's a period of time when we haven't yet set it. `undefined`
 is an unambiguous indication that there _may be something different there in the future_:
 
 ```ts
-const formInProgress = {
+interface FormInProgress {
+  createdAt: Date
+  data: FormData
+  completedAt?: Date
+}
+const formInProgress: FormInProgress = {
   createdAt: new Date(),
   data: new FormData(),
-  completedAt: undefined, //
 }
-
 function submitForm() {
   formInProgress.completedAt = new Date()
 }
@@ -95,9 +98,9 @@ this is a _great_ type guard to use in your test suite.
 In the above situation, if `fruits` was expected to be present and it's not,
 that's a very reasonable test failure :tada:
 
-## Definite assignment operator
+## Definite assignment assertion
 
-The definite assignment `!:` operator is used to suppress TypeScript's
+The definite assignment `!:` assertion is used to suppress TypeScript's
 objections about a class field being used, when it can't be proven[^1]
 that it was initialized.
 
@@ -107,7 +110,7 @@ Let's look at the following example:
 // @errors: 2564
 // @noImplicitAny: false
 class ThingWithAsyncSetup {
-  setupPromise: Promise<any> // ignore the <any> for now
+  setupPromise: Promise<any> 
   isSetup: boolean
 
   constructor() {
@@ -158,6 +161,24 @@ What I know (that the compiler doesn't) is that the function passed into the
 `Promise` constructor is invoked _synchronously_, meaning by the time we
 receive our instance of `ThingWithAsyncSetup`, the `isSetup` property will
 most certainly have a value of `false`.
+
+```ts{3} twoslash
+class ThingWithAsyncSetup {
+  setupPromise: Promise<any> // ignore the <any> for now
+  isSetup!: boolean
+
+  constructor() {
+    this.setupPromise = new Promise((resolve) => {
+      this.isSetup = false
+      return this.doSetup()
+    }).then(() => {
+      this.isSetup = true
+    })
+  }
+
+  private async doSetup() { }
+}
+```
 
 This is a good example of a totally appropriate use of the definite assignment
 operator, where **I as the code author have some extra context that the compiler does not**.
