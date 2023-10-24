@@ -51,17 +51,38 @@ type ValueFilteredDoc = Pick<
 - The basics of function, object and array types
 - Basic generics (e.g., [TypeScript Fundamentals v4 - Generics](../../fundamentals-v4/14-generics/))
 - Index signatures
-- Top (`any`, `unknown`) and bottom (`never`) types
 
-Also... some practical experience is important
+Also... some practical experience always helps!
 
 ## Workshop Setup
 
 As long as you can access the following websites, you should require no further setup :tada:
 
-- [The course website you're reading right now](https://www.typescript-training.com/course/fundamentals-v4)
+- [The course website you're reading right now](https://fun-v3.typescript-training.com)
 - [The official TypeScript website](https://www.typescriptlang.org)
 
+If you'd like to follow along with interactive examples, please install [Volta](https://volta.sh)
+
+```sh
+curl https://get.volta.sh | bash # Linux / macOS only
+volta install node@lts yarn@^3
+```
+
+Make sure to follow the installation instructions for `volta` -- both what you see on the website and what you see in the CLI console. Next, clone the git repo for this course [github.com/mike-north/typescript-courses](https://github.com/mike-north/typescript-courses), enter the directory, and run `yarn` to install all dependencies
+
+```sh
+git clone https://github.com/mike-north/typescript-courses
+cd typescript-courses
+yarn
+```
+
+most of our work today will be in the `packages/notes-intermediate-ts-v2` folder
+
+```sh
+cd packages/notes-intermediate-ts-v2
+```
+
+<!--
 ## Which of your TypeScript courses is right for me?
 
 I've made six TypeScript courses for Frontend Masters so far:
@@ -91,3 +112,4 @@ Most of the "class time" is spent _building apps together_.
   This course focuses on **hands-on practice defining advanced type information**.
 - [Full Stack TypeScript, with Node.js and GraphQL (v1)](../../full-stack-typescript/) <br />
   This course focuses on **building a full stack, fully-typed medium sized web application**.
+-->
