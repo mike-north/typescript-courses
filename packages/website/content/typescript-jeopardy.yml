@@ -1,0 +1,81 @@
+TypeScript Jeopardy:
+  TypeScript as Set Theory:
+    100:
+      answer: The mathematical concept representing a collection of distinct elements.
+      question: What is a set?
+    200:
+      answer: A binary relation expressing that every element of one set is also an element of another set.
+      question: What is a subset?
+    300:
+      answer: The set that contains all possible elements.
+      question: What is a universal set?
+    400:
+      answer: An operation that combines all elements of two sets, without duplication.
+      question: What is a union?
+    500:
+      answer: An operation that yields the elements shared between two sets.
+      question: What is an intersection?
+  Utility Types:
+    100:
+      answer: This utility type constructs a type by picking selected properties from another type.
+      question: What is Pick<T, K>?
+    200:
+      answer: A utility type that constructs a type by omitting selected properties from another type.
+      question: What is Omit<T, K>?
+    300:
+      answer: This utility type extracts the type of an element from an array type.
+      question: What is ArrayType[number] or ElementType<T>?
+    400:
+      answer: It constructs a type by setting all properties to required, effectively the opposite of Partial.
+      question: What is Required<T>?
+    500:
+      answer: This utility type takes a type and creates a mapped type of its keys to boolean.
+      question: What is Record<keyof T, boolean>?
+  Extreme Types:
+    100:
+      answer: The most liberal type in TypeScript, allowing any value.
+      question: What is any?
+    200:
+      answer: This type can take any shape and is not directly type-equivalent to null or undefined.
+      question: What is {}?
+    300:
+      answer: This type is used as the return type for functions whose return value should be ignored.
+      question: What is void?
+    400:
+      answer: This special type is used in situations where a value will never be observed.
+      question: What is never?
+    500:
+      answer: This type represents non-primitive types.
+      question: What is object?
+  Type Parameters:
+    100:
+      answer: This is a mechanism in TypeScript that allows you to write generic classes, interfaces, or functions that can work with a variety of types rather than a single one.
+      question: What are Generics?
+    200:
+      answer: When defining a generic function, you can provide this to specify an upper limit for the type parameter, ensuring that the passed type has certain properties or extends a particular class or interface.
+      question: What is a "constraint"?
+    300:
+      answer: This feature in TypeScript allows you to create new types based on old ones, using a type parameter that represents property keys and can also be used in the type expression for the property values.
+      question: What are Mapped Types?
+    400:
+      answer: Introduced in TypeScript 2.8, this keyword is used within the context of extends in type conditions to introduce a type variable that can be used in the true branch.
+      question: What is infer?
+    500:
+      answer: In scenarios where a generic type should operate on a minimum set of properties, but could potentially have more, this TypeScript keyword is used to specify the minimum shape of the type.
+      question: What is "extends" (in the context of type parameters)?
+  Built-in Type Guards:
+    100:
+      answer: This basic type guard checks if a value is a member of a specific primitive type and can be used to differentiate between string, number, and boolean.
+      question: What is typeof?
+    200:
+      answer: This type guard is used to determine whether an object is an instance of a particular constructor function or class.
+      question: What is instanceof?
+    300:
+      answer: TypeScript narrows types using this type of operator, which can check if a property or method exists on a given object.
+      question: What is the in operator?
+    400:
+      answer: This feature, introduced in TypeScript 4.1, allows type checking of indexed access operations ensuring you're accessing a property that exists on a particular type.
+      question: What is the keyof type operator combined with indexed access types?
+    500:
+      answer: This TypeScript feature helps ensure that each member of a union type is assigned a unique value, aiding in runtime type differentiation without an explicit type guard.
+      question: What are Discriminated Unions (or Tagged Unions)?

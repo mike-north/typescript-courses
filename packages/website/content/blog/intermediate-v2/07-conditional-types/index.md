@@ -1,6 +1,6 @@
 ---
 title: Conditional Types
-date: "2021-06-10T09:00:00.000Z"
+date: "2023-10-25T09:00:00.000Z"
 description: |
   Conditional types can be thought of as "a ternary operator, for types".
   While there is no "control flow" in a world where we're describing constraints with types
@@ -132,7 +132,6 @@ Extract is useful for obtaining some sub-part of a type that
 is assignable to some other type.
 
 ```ts twoslash
-// a set of four specific things
 type FavoriteColors =
   | "dark sienna"
   | "van dyke brown"
@@ -149,7 +148,6 @@ type StringColors = Extract<FavoriteColors, string>
 //    ^?
 type ObjectColors = Extract<FavoriteColors, { red: number }>
 //    ^?
-// prettier-ignore
 type TupleColors
 //     ^?
   = Extract<FavoriteColors, [number, number, number]>
@@ -202,9 +200,9 @@ type Extract<T, U> = T extends U ? T : never
 They're just conditional types, and the only difference
 between them is the reversal of the "if true" and "if false" expressions (`never : T` vs `T : never`).
 
-You may be wondering how the `T` that's returned by this expression isn't the same `T` that we passed in. Remember that each element of the union type is evaluated independently, and then all of the resultant types are unioned back together again.
+You may be wondering how the `T` that's returned by this expression isn't the same `T` that we passed in. Remember that each element of the union type is evaluated independently, and then all of the resultant types are union-ed back together again.
 
-What these utility types take advantage of, is that unioning a type with `never` is essentially a no-op
+What these utility types take advantage of, is that union-ing a type with `never` is essentially a no-op
 
 ```ts twoslash
 type OneNever = 1 | never
@@ -246,12 +244,10 @@ type answer_5 = never extends any ? true : false
 //     ^?
 type answer_6 = any extends any ? true : false
 //     ^?
-// prettier-ignore
 type answer_7 = Date extends { new (...args: any[]): any }
 //     ^?
   ?  true
   : false
-// prettier-ignore
 type answer_8 = typeof Date extends { new (...args: any[]): any }
 //     ^?
   ?  true

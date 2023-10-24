@@ -1,6 +1,6 @@
 ---
 title: Inference with conditional types
-date: "2021-06-10T09:00:00.000Z"
+date: "2023-10-25T09:00:00.000Z"
 description: |
   Conditional types are not just for switching behavior based
   on comparison -- they can be used with an 'infer' keyword
@@ -22,7 +22,7 @@ In [the same release where conditional types were added to TypeScript](https://w
 Let's imagine that there's a `fruit-market` npm package, which only exports a `createOrder` function.
 
 ```ts twoslash
-// @filename: node_modules/fruit-market.ts
+// @filename: fruit-market.ts
 
 //////////////////////////////////////////////////////////////
 //////////////////////// NOT EXPORTED ////////////////////////
@@ -90,7 +90,7 @@ Look at all that great type information -- it's a shame that none of it is expor
 Our goal is to **create a well-typed variable to hold a value of type `FruitOrderPreferences`**, so we can assemble the right data together, log it, and then pass it to the `createOrder` to create that `FruitOrder`. A starting point for this code is below. All we need to do is replace `GetFirstArg<T> = any` with a more meaningful type expression.
 
 ```ts twoslash
-// @filename: node_modules/fruit-market.ts
+// @filename: fruit-market.ts
 type AppleVarieties = 'fuji' | 'gala' | 'honeycrisp' | 'granny smith';
 type OrangeVarieties = 'navel' | 'valencia' | 'blood orange' | 'cara cara';
 type Allergies = 'peach' | 'kiwi' | 'strawberry' | 'pineapple';
@@ -146,7 +146,7 @@ export function createOrder(prefs: FruitOrderPreferences): FruitOrder {
 }
 /// ---cut---
 // @filename: index.ts
-import { createOrder } from 'fruit-market';
+import { createOrder } from './fruit-market';
 //        ^?
 
 type GetFirstArg<T> = any;
@@ -248,7 +248,6 @@ type GetFirstArg<T>
 
 // Test case
 function foo(x: string, y: number) {return null}
-function bar(): void {}
 //        ^?
 type t1 = GetFirstArg<typeof foo>
 //    ^?
@@ -371,14 +370,41 @@ type GetFirstStringIshElement<T> = T extends readonly [
 ] ? S : never
 
 const t1 = ["success", 2, 1, 4] as const
-//     ^?
 const t2 = [4, 54, 5] as const
-//     ^?
+
 let firstT1: GetFirstStringIshElement<typeof t1>
 //   ^?
 let firstT2: GetFirstStringIshElement<typeof t2>
 //   ^?
 ```
+
+Ok, we're only extracting the type of the first element of the tuple in the event that the first element (`S`) is some subtype of `string`, but it's not great that we see that `never`. Really this should be an error, and we can make it an error via the use of a type param constraint.
+
+```diff
+- type GetFirstStringIshElement<T>
++ type GetFirstStringIshElement<T extends readonly [string, ...any[]]>
+```
+
+And now we'll get a compile error
+
+```ts twoslash
+// @errors: 2344
+type GetFirstStringIshElement<T extends readonly [string, ...any[]]> = T extends readonly [
+  infer S extends string,
+  ..._:any[]
+] ? S : never
+
+const t1 = ["success", 2, 1, 4] as const
+const t2 = [4, 54, 5] as const
+
+let firstT1: GetFirstStringIshElement<typeof t1>
+let firstT2: GetFirstStringIshElement<typeof t2>
+```
+
+This may feel a little redundant, but it's important to realize that the condition on the conditional type, and the constraint on the type param serve two different purposes.
+
+- The type param constraint describes what is allowed for `T`. Anything that doesn't align with the constraint will cause a compiler error
+- The condition in the conditional type is sort of an equivalent to control flow for types. It will _never_ generate a compile error, because it's essentially just an `if`/`else`
 
 ## Utility types that use `infer`
 

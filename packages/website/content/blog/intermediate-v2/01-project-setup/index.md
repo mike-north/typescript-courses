@@ -1,6 +1,6 @@
 ---
 title: Intro
-date: "2021-06-10T09:00:00.000Z"
+date: "2023-10-25T09:00:00.000Z"
 description: |
   We'll discuss the goals and agenda of this course, and how to get up and
   running with the workshop project in 2 minutes or less.
@@ -59,7 +59,7 @@ Also... some practical experience is important
 
 As long as you can access the following websites, you should require no further setup :tada:
 
-- [The course website you're reading right now](https://fun-v3.typescript-training.com)
+- [The course website you're reading right now](https://www.typescript-training.com/course/fundamentals-v4)
 - [The official TypeScript website](https://www.typescriptlang.org)
 
 ## Which of your TypeScript courses is right for me?

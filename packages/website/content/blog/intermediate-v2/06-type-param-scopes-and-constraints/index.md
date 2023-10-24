@@ -1,6 +1,6 @@
 ---
 title: Generics Scopes and Constraints
-date: "2021-06-10T09:00:00.000Z"
+date: "2023-10-25T09:00:00.000Z"
 description: |
   In this chapter, we'll learn about scopes and constraints, as they pertain to
   type params, and what the language would look like if we didn't have these
@@ -17,7 +17,37 @@ Generic constraints allow us to describe the "minimum requirement" for a type pa
 
 ### Motivating use case
 
-Let's recall the example we used in our Generics chapter:
+Let's recall the example we used in our Generics chapter, where we arrived at a generic function that could convert a data structure like this
+
+```ts twoslash
+const phoneList = [
+  { customerId: '0001', areaCode: '321', num: '123-4566' },
+  { customerId: '0002', areaCode: '174', num: '142-3626' },
+  { customerId: '0003', areaCode: '192', num: '012-7190' },
+  { customerId: '0005', areaCode: '402', num: '652-5782' },
+  { customerId: '0004', areaCode: '301', num: '184-8501' },
+]
+```
+
+into this
+
+```ts twoslash
+const phoneDict = {
+  '0001': {
+    customerId: '0001',
+    areaCode: '321',
+    num: '123-4566',
+  },
+  '0002': {
+    customerId: '0002',
+    areaCode: '174',
+    num: '142-3626',
+  },
+  /*... and so on */
+}
+```
+
+Here's the working code we ended up with:
 
 ```ts twoslash
 function listToDict<T>(
@@ -72,7 +102,7 @@ function listToDict(list: HasId[]): Dict<HasId> {
 
 Great, now let's implement this with generics:
 
-```ts twoslash
+```ts{8} twoslash
 // @errors: 2339
 interface HasId {
   id: string

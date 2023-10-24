@@ -179,7 +179,6 @@ printCar({
   make: "Tesla",
   model: "Model 3",
   year: 2020,
-  chargeVoltage: 220,
   color: "RED", // <0------ EXTRA PROPERTY
 })
 ```
@@ -395,9 +394,9 @@ around mutation.
 
 ```ts twoslash
 // @errors: 2339
-const numPair: readonly [number, number] = [4, 5]
-numPair.length
-//       ^?
-numPair.push(6) // [4, 5, 6]
-numPair.pop() // [4, 5]
+const roNumPair: readonly [number, number] = [4, 5]
+roNumPair.length
+//          ^?
+roNumPair.push(6) // [4, 5, 6]
+roNumPair.pop() // [4, 5]
 ```
