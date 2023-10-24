@@ -1,6 +1,6 @@
 ---
 title: Conditional Types
-date: "2021-06-10T09:00:00.000Z"
+date: "2023-10-25T09:00:00.000Z"
 description: |
   Conditional types can be thought of as "a ternary operator, for types".
   While there is no "control flow" in a world where we're describing constraints with types

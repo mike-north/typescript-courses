@@ -1,6 +1,6 @@
 ---
 title: Modules & CJS interop
-date: "2021-06-10T09:00:00.000Z"
+date: "2023-10-25T09:00:00.000Z"
 description: |
   Although most of the code we write today is in the form of
   ES modules, plenty of dependencies are packaged in the

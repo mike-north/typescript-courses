@@ -1,6 +1,6 @@
 ---
 title: Generics Scopes and Constraints
-date: "2021-06-10T09:00:00.000Z"
+date: "2023-10-25T09:00:00.000Z"
 description: |
   In this chapter, we'll learn about scopes and constraints, as they pertain to
   type params, and what the language would look like if we didn't have these
