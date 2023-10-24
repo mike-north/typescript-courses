@@ -12,6 +12,7 @@
         "strictFunctionTypes": true,
         "strictNullChecks": true,
         "checkJs": true,
-        "esModuleInterop": false
+        "esModuleInterop": false,
+        "allowSyntheticDefaultImports": false
     }
 }
