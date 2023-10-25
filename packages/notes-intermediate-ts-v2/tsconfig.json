@@ -9,6 +9,7 @@
         "noUnusedLocals": false,
         "noImplicitAny": true,
         "noImplicitThis": true,
+        "useUnknownInCatchVariables": true,
         "strictFunctionTypes": true,
         "strictNullChecks": true,
         "checkJs": true,
