@@ -179,7 +179,7 @@ val = response
 
 ### Almost top type: `{}`
 
-The empty object typ `{}` represents the set `{ all possible values, except for null and undefined }`
+The empty object type `{}` represents the set `{ all possible values, except for null and undefined }`
 
 ```ts twoslash
 // @errors: 2322
