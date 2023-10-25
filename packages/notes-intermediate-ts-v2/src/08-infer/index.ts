@@ -2,67 +2,73 @@
 import { createOrder } from './fruit-market'
 //        ^?
 
-type GetFirstArg<T> = any;
+// type GetFirstArg<T> = any;
 
 const prefs: GetFirstArg<typeof createOrder> = {}
 
 createOrder(prefs)
 
 //* Example: extracting the type that a promise resolves to
-/*
-//// 
-//// If the type `P` passed in is some kind of `PromiseLike<T>`
-//// (where `T` is a new type param), extract `T` and return it.
-//// If `P` is not some subtype of `PromiseLike<any>`, pass the
-//// type `P` straight through and return it
-//// 
-// type UnwrapPromise<P> = P extends PromiseLike<infer T> ? T : P
 
-// type test1 = UnwrapPromise<Promise<string>>
-// type test2 = UnwrapPromise<Promise<[string[], number[]]>>
-// type test3 = UnwrapPromise<number>
+// 
+// If the type `P` passed in is some kind of `PromiseLike<T>`
+// (where `T` is a new type param), extract `T` and return it.
+// If `P` is not some subtype of `PromiseLike<any>`, pass the
+// type `P` straight through and return it
+// 
+const eventuallyNumber = Promise.resolve(123)
+
+type UnwrapPromise<P> = 
+    P extends PromiseLike<infer T>
+    ? T
+    : P
+
+type test1 = UnwrapPromise<Promise<string>>
+type test2 = UnwrapPromise<Promise<[string[], number[]]>>
+type test3 = UnwrapPromise<number>
 
 //* Back to our motivating use case - A need for the first arg of a function
-/*
-// type OneArgFn<A = any> = (firstArg: A, ..._args: any[]) => void
 
-// type GetFirstArg<T extends OneArgFn>
-//     = T extends OneArgFn
-//         ? string[]
-//         : never;
+type OneArgFn<A = any> = (firstArg: A, ..._args: any[]) => void
 
-// // Test case
-// function foo(x: string, y: number) {
-//   return null
-// }
-// type t1 = GetFirstArg<typeof foo> //✔️
+type GetFirstArg<T extends OneArgFn>
+    = T extends OneArgFn<infer R>
+        ? R
+        : never;
 
-/*
+// Test case
+function foo(x: string, y: number) {
+  return null
+}
+function bar() {}
+type t1 = GetFirstArg<typeof bar> //✔️
+
+
 // type GetFirstArg<T>
 //     = T extends OneArgFn<infer R>
 //         ? R
 //         : never;
 
 //* Constraints to infer
-/*
-// type GetFirstStringIshElement<T> = T extends readonly [
-//   infer S,
-//   ..._: any[],
-// ]
-//   ? S
-//   : never
 
-// const t1 = ['success', 2, 1, 4] as const
-// const t2 = [4, 54, 5] as const
-// let firstT1: GetFirstStringIshElement<typeof t1>
-// let firstT2: GetFirstStringIshElement<typeof t2>
+type GetFirstStringIshElement<T> = T extends readonly [
+  infer S extends string,
+  ..._: any[],
+]
+  ? string
+  : never
 
-/*
+const t1 = ['success', 2, 1, 4] as const
+const t2 = [4, 54, 5] as const
+let firstT1: GetFirstStringIshElement<typeof t1>
+let firstT2: GetFirstStringIshElement<typeof t2>
+
+
 //? axd infer
 // infer S extends string,
 
 
-/*
+
 //? add type param constraint
 // T extends string
 
