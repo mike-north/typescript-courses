@@ -185,48 +185,67 @@ and in your top-level tsconfig add a `paths` and a `baseUrl` property
 
 In this folder we can place our type overrides for dependencies. We'll talk more about this in our discussion of ambient type information later. For now, let's convince ourselves that it works.
 
+in `chat/src/utils/networking.ts` make the following change near the top of the file
+
+```diff
+- import { HTTPError } from './http-error.cjs'
+- import { HTTPError } from 'http-error'
+```
+
+and delete `chat/src/utils/http-error.cjs`.
+
+You should see that TypeScript is not happy about the `'http-error'` module.
+
+```pre
+Could not find a declaration file for module 'http-error'
+```
+
+We're now depending on a library for the `HTTPError` class, but it doesn't provide any type information! This library is located within the workshop repo (we'll learn more about how to do this later) at `packages/http-error/index.js`.
+
+Let's use this opportunity to "patch" the type information within our `chat` project
+
 Create a new file
 
 ```sh
-touch types/date-fns.d.ts
+touch types/http-error.d.ts
 ```
 
 put the following code snippet in it, and save
 
 ```ts twoslash
-declare module 'date-fns' {
-    export function format(): void;
+export class HTTPError {}
+```
+
+Look back at `networking.ts` and you should see that the import resolves, but instantiation of `HTTPError`s are now lighting up with errors like
+
+```pre
+Expected 0 arguments, but got 2
+```
+
+Look at the source code for the library in `packages/http-error/index.js` and consider what the constructor wants to accept as arguments.
+
+Add this constructor declaration within the class declaration, and the errors should go away
+
+```ts
+constructor(resp: Response, message: string): HTTPError
+```
+
+Note that this isn't a construct signature, it's something a bit different. This is how we would denote the right shape of object in a declaration file using `class` syntax. We could also express this same type a different way
+
+```ts
+interface HTTPErrorInstance extends Error {
+}
+export const HTTPError: {
+    new(resp: Response, message: string): HTTPErrorInstance
 }
 ```
 
-Run
+But this has a couple of disadvantages (e.g. it doesn't result in the interface name being the same as the class name)
+
+With either of these type declarations in place, you should be able to run
 
 ```sh
 yarn typecheck
 ```
 
-and you should see a bunch of type errors around `src/utils/date.ts`. Effectively what's happened is
-
-```ts twoslash
-// @types: date-fns
-import { format } from 'date-fns'
-/// ---cut---
-function formatTimestamp(date: Date) {
-  return format(date, 'MMM dd, yyyy HH:MM:SS a')
-//         ^?
-}
-```
-
-has now become
-
-```ts twoslash
-// @errors: 2554
-declare function format(): void;
-/// ---cut---
-function formatTimestamp(date: Date) {
-  return format(date, 'MMM dd, yyyy HH:MM:SS a')
-//         ^?
-}
-```
-
-Go ahead and remove the `types/date-fns.d.ts` file, now that we've confirmed that everything works properly.
+and see no type-checking errors

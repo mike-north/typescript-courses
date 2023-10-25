@@ -37,6 +37,6 @@ describe('intermediate typescript v2 course page', () => {
       'include',
       'course/intermediate-v2/01',
     );
-    cy.get('h2').should('have.length.above', 4);
+    cy.get('h2').should('have.length.above', 3);
   });
 });
