@@ -22,6 +22,7 @@ type UnwrapPromise<P> =
     P extends PromiseLike<infer T>
     ? T
     : P
+// const x: Awaited;
 
 type test1 = UnwrapPromise<Promise<string>>
 type test2 = UnwrapPromise<Promise<[string[], number[]]>>
