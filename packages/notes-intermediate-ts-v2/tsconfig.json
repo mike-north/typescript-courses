@@ -4,6 +4,7 @@
         "module": "CommonJS",
         "outDir": "dist",
         "target": "ES2018",
+        "strictPropertyInitialization": true,
         "moduleResolution": "Node",
         "noUnusedParameters": false,
         "noUnusedLocals": false,
