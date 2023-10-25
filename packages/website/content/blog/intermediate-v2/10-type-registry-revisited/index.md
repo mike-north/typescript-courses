@@ -122,7 +122,7 @@ type Foo = keyof DataTypeRegistry & string
 //    ^?
 ```
 
-Now our task is to use a mapped type, to make `fetchRecord` return a `Promise` that resolves to the correct type. While we're at it, let's 
+Now our task is to use a mapped type, to make `fetchRecord` return a `Promise` that resolves to the correct type. While we're at it, let's
 
 - make a `fetchRecords` function that fetches an array of records (of a single type)
 - ensure that when records of type `book` are fetched, their IDs begin with `"book_"` (and `"magazine_"` for records of type `magazine`)
