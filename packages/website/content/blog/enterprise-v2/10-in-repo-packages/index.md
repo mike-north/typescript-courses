@@ -82,3 +82,9 @@ yarn workspaces focus chat-stdlib
 ```
 
 Check out the root `node_modules` folder now. You should see a very small number of dependencies. You have just enough in there to build, test and run the one package.
+
+If you want to go back to installing all of the dependencies needed by the whole repo, just run
+
+```sh
+yarn
+```
