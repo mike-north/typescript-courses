@@ -7425,7 +7425,7 @@ __metadata:
     react-router-dom: ^5.3.4
     tailwindcss: ^3.3.3
     tsd: ^0.29.0
-    typescript: 5.3.0-beta
+    typescript: 5.3.0-dev.20231025
   languageName: unknown
   linkType: soft
 
@@ -12889,7 +12889,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "hello-ts@workspace:packages/hello-ts"
   dependencies:
-    typescript: ^4.9.0
+    typescript: ^5.3.0-dev.20231025
   languageName: unknown
   linkType: soft
 
@@ -17705,7 +17705,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "notes-enterprise-ts-v2@workspace:packages/notes-enterprise-ts-v2"
   dependencies:
-    typescript: 5.3.0-beta
+    typescript: 5.3.0-dev.20231025
   languageName: unknown
   linkType: soft
 
@@ -17713,7 +17713,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "notes-intermediate-ts-v2@workspace:packages/notes-intermediate-ts-v2"
   dependencies:
-    typescript: 5.3.0-beta
+    typescript: 5.3.0-dev.20231025
   languageName: unknown
   linkType: soft
 
@@ -17721,7 +17721,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "notes-ts-fundamentals-v4@workspace:packages/notes-ts-fundamentals-v4"
   dependencies:
-    typescript: 5.3.0-beta
+    typescript: 5.3.0-dev.20231025
   languageName: unknown
   linkType: soft
 
@@ -23428,13 +23428,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.3.0-beta":
-  version: 5.3.0-beta
-  resolution: "typescript@npm:5.3.0-beta"
+"typescript@npm:5.3.0-dev.20231025, typescript@npm:^5.3.0-dev.20231025":
+  version: 5.3.0-dev.20231025
+  resolution: "typescript@npm:5.3.0-dev.20231025"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 12c5b05df8be536c3f5789323ca2e2f21ab6b7571bd21407b152c080be1dc8628c3cd9fb5fa342a304a266f5ad22827f3a27b7961da1600d27890be93f3e2d73
+  checksum: d2a6a1f66cd463ed75fd0ba9e47f92d45e21c16391d87384c636392419b90e86bd0d2071eb12f96465aa60e46e03414ae9853c151fa94efd0b40e53b358cdee8
   languageName: node
   linkType: hard
 
@@ -23448,23 +23448,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.9.0":
-  version: 4.9.5
-  resolution: "typescript@npm:4.9.5"
+"typescript@patch:typescript@5.3.0-dev.20231025#~builtin<compat/typescript>, typescript@patch:typescript@^5.3.0-dev.20231025#~builtin<compat/typescript>":
+  version: 5.3.0-dev.20231025
+  resolution: "typescript@patch:typescript@npm%3A5.3.0-dev.20231025#~builtin<compat/typescript>::version=5.3.0-dev.20231025&hash=29ae49"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: ee000bc26848147ad423b581bd250075662a354d84f0e06eb76d3b892328d8d4440b7487b5a83e851b12b255f55d71835b008a66cbf8f255a11e4400159237db
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@5.3.0-beta#~builtin<compat/typescript>":
-  version: 5.3.0-beta
-  resolution: "typescript@patch:typescript@npm%3A5.3.0-beta#~builtin<compat/typescript>::version=5.3.0-beta&hash=29ae49"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 3e33f8107e631daab43016e7ddc1a8f2e2d9334a076ddeb6ee746394bb22639c93dda9b379bd75b073337659645d026024bad3169c828b824f985103dd826a65
+  checksum: 99f68269d1844162b05fec96c590ebc41d36175a3d33527b7ec38792809ba73282fc950a02d2bb5560d6d467a7945e4367f5d65c878b6dd2029b04030feaa960
   languageName: node
   linkType: hard
 
@@ -23475,16 +23465,6 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 0f4da2f15e6f1245e49db15801dbee52f2bbfb267e1c39225afdab5afee1a72839cd86000e65ee9d7e4dfaff12239d28beaf5ee431357fcced15fb08583d72ca
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@^4.9.0#~builtin<compat/typescript>":
-  version: 4.9.5
-  resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=289587"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 1f8f3b6aaea19f0f67cba79057674ba580438a7db55057eb89cc06950483c5d632115c14077f6663ea76fd09fce3c190e6414bb98582ec80aa5a4eaf345d5b68
   languageName: node
   linkType: hard
 
@@ -24571,7 +24551,7 @@ __metadata:
     start-server-and-test: ^2.0.1
     typeface-merriweather: 1.1.13
     typeface-montserrat: 1.1.13
-    typescript: 5.3.0-beta
+    typescript: 5.3.0-dev.20231025
     typography: ^0.16.24
     typography-theme-wordpress-2016: ^0.16.19
   languageName: unknown
@@ -24581,7 +24561,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "welcome-to-ts@workspace:packages/welcome-to-ts"
   dependencies:
-    typescript: 5.3.0-beta
+    typescript: 5.3.0-dev.20231025
   languageName: unknown
   linkType: soft
 
