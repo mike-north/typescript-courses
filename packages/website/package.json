@@ -97,7 +97,7 @@
     "lint": "yarn lint:ts && yarn lint:md",
     "lint:md": "yarn markdownlint -c ../../.markdownlint.jsonc content",
     "lint:ts": "yarn eslint . --ext ts,js,tsx,jsx",
-    "test": "yarn test:jest && yarn test:cypress",
+    "test": "yarn test-jest && yarn test-cypress",
     "test-jest": "yarn jest",
     "test-cypress": "CYPRESS_SUPPORT=y yarn start-server-and-test dev http://localhost:8000 cy:open",
     "typecheck": "yarn tsc -P . --noEmit"
