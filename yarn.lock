@@ -3799,11 +3799,11 @@ __metadata:
   linkType: hard
 
 "@parcel/packager-ts@npm:^2.10.0":
-  version: 2.10.0
-  resolution: "@parcel/packager-ts@npm:2.10.0"
+  version: 2.10.1
+  resolution: "@parcel/packager-ts@npm:2.10.1"
   dependencies:
-    "@parcel/plugin": 2.10.0
-  checksum: 9fe0ce83d999bef9021410a0b41e49282b9d9cb23a1a6c4047e6a1f8c55aa76059d367c67e74859c085ff3c2ca623564751e2b4ebf7ac81535332805b9128fa2
+    "@parcel/plugin": 2.10.1
+  checksum: 32a2996f4f7c6b1837f746ca3fc854fbbcccade0ad705909de109835ba2d2ff755204425dfd4ead61add3dd6c133efce7c6cf432f9825c6df23b0c97df753355
   languageName: node
   linkType: hard
 
