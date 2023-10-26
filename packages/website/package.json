@@ -11,7 +11,7 @@
     "gatsby": "^3.15.0",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-feed": "^3.15.0",
-    "gatsby-plugin-manifest": "^3.15.0",
+    "gatsby-plugin-manifest": "^5.12.3",
     "gatsby-plugin-react-helmet": "^4.15.0",
     "gatsby-plugin-sass": "^4.15.0",
     "gatsby-plugin-sharp": "^3.15.0",
