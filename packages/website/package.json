@@ -61,7 +61,7 @@
     "eslint-plugin-cypress": "^2.15.1",
     "eslint-plugin-react": "^7.33.2",
     "gatsby-cypress": "^3.12.0",
-    "gatsby-plugin-google-gtag": "^3.15.0",
+    "gatsby-plugin-google-gtag": "^5.12.3",
     "gatsby-plugin-google-tagmanager": "^3.15.0",
     "gatsby-remark-custom-blocks": "^3.15.0",
     "gatsby-remark-emojis": "^0.4.3",
