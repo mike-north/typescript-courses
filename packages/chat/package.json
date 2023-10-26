@@ -65,10 +65,14 @@
     "typecheck": "yarn tsc -P ."
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "volta": {
     "node": "18.18.2",
     "yarn": "3.6.4"
+  },
+  "resolutions": {
+    "@parcel/reporter-cli": "2.10.1",
+    "@parcel/config-default": "2.10.1"
   }
 }
