@@ -4168,11 +4168,11 @@ __metadata:
   linkType: hard
 
 "@parcel/transformer-inline-string@npm:^2.10.0":
-  version: 2.10.0
-  resolution: "@parcel/transformer-inline-string@npm:2.10.0"
+  version: 2.10.1
+  resolution: "@parcel/transformer-inline-string@npm:2.10.1"
   dependencies:
-    "@parcel/plugin": 2.10.0
-  checksum: 618c919108256488d17afd2155faf83989fdba8c7061be2dfa8895721670c9192e16a63b0b98a3660b931c5077bc0518265372a973ecc0f757e9139949962cec
+    "@parcel/plugin": 2.10.1
+  checksum: e0fc30dd51d38154c9eae790bcd3c1ad3e30ae289bddcc7a3d811ed410e09d711d1a205a226707853e33bf0d603543870d96b22b974d7bafc83ae141b90fbfe6
   languageName: node
   linkType: hard
 
