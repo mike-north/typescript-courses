@@ -3385,14 +3385,14 @@ __metadata:
   linkType: hard
 
 "@parcel/optimizer-data-url@npm:^2.10.0":
-  version: 2.10.0
-  resolution: "@parcel/optimizer-data-url@npm:2.10.0"
+  version: 2.10.1
+  resolution: "@parcel/optimizer-data-url@npm:2.10.1"
   dependencies:
-    "@parcel/plugin": 2.10.0
-    "@parcel/utils": 2.10.0
+    "@parcel/plugin": 2.10.1
+    "@parcel/utils": 2.10.1
     isbinaryfile: ^4.0.2
     mime: ^2.4.4
-  checksum: ec9530be83335cc921ee41a2b15529d304cd16dea9373ac5e515ef247643672ad4155fab199ac003b6fb05fb0ec138a335c49bdc824f3cabcb6e49fcc8795a85
+  checksum: 9c514bb70da4fae9d53f2af463bbe4f544114d29342f2998cc11a8629a8dd9093562c8f36f4293e4f4aa601ce381f7d4966d975585779f3fdb0c4fe77ba67402
   languageName: node
   linkType: hard
 
