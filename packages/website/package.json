@@ -16,7 +16,7 @@
     "gatsby-plugin-sass": "^4.15.0",
     "gatsby-plugin-sharp": "^3.15.0",
     "gatsby-plugin-typography": "^3.15.0",
-    "gatsby-remark-autolink-headers": "^4.12.0",
+    "gatsby-remark-autolink-headers": "^6.12.3",
     "gatsby-remark-copy-linked-files": "^4.12.0",
     "gatsby-remark-images": "^5.12.0",
     "gatsby-remark-responsive-iframe": "^4.12.0",
