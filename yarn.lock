@@ -3184,7 +3184,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@parcel/core@npm:2.10.0, @parcel/core@npm:^2.10.0":
+"@parcel/core@npm:2.10.0":
   version: 2.10.0
   resolution: "@parcel/core@npm:2.10.0"
   dependencies:
@@ -3214,6 +3214,39 @@ __metadata:
     nullthrows: ^1.1.1
     semver: ^7.5.2
   checksum: c59c2971ea6edc379fc166fefe60a6cbbbea0ee1c84120b7396c5b1a6bcfac2e0409647a007b38d6da27285b43d6582144f136a4b8f1652d01df589f16ffa6f0
+  languageName: node
+  linkType: hard
+
+"@parcel/core@npm:^2.10.0":
+  version: 2.10.1
+  resolution: "@parcel/core@npm:2.10.1"
+  dependencies:
+    "@mischnic/json-sourcemap": ^0.1.0
+    "@parcel/cache": 2.10.1
+    "@parcel/diagnostic": 2.10.1
+    "@parcel/events": 2.10.1
+    "@parcel/fs": 2.10.1
+    "@parcel/graph": 3.0.1
+    "@parcel/logger": 2.10.1
+    "@parcel/package-manager": 2.10.1
+    "@parcel/plugin": 2.10.1
+    "@parcel/profiler": 2.10.1
+    "@parcel/rust": 2.10.1
+    "@parcel/source-map": ^2.1.1
+    "@parcel/types": 2.10.1
+    "@parcel/utils": 2.10.1
+    "@parcel/workers": 2.10.1
+    abortcontroller-polyfill: ^1.1.9
+    base-x: ^3.0.8
+    browserslist: ^4.6.6
+    clone: ^2.1.1
+    dotenv: ^7.0.0
+    dotenv-expand: ^5.1.0
+    json5: ^2.2.0
+    msgpackr: ^1.5.4
+    nullthrows: ^1.1.1
+    semver: ^7.5.2
+  checksum: d5c3155f8515973ee307d23a10ae5664eac6cc9017b630e93d221c5cbaf1bc332f9904b098f312107c26f5df611ba12ef3a2fd69217082b62373465bf3aa76f5
   languageName: node
   linkType: hard
 
@@ -3287,6 +3320,15 @@ __metadata:
   dependencies:
     nullthrows: ^1.1.1
   checksum: 0a9d5017f6179d3a35a9f97060d24486efe045277e831550e2885b8afc05288a2a898da3ec1f920cb89c02cce8941642b4522e67194a773d50062dadb36f4567
+  languageName: node
+  linkType: hard
+
+"@parcel/graph@npm:3.0.1":
+  version: 3.0.1
+  resolution: "@parcel/graph@npm:3.0.1"
+  dependencies:
+    nullthrows: ^1.1.1
+  checksum: 24469b16beeaab13b14fc9f7df8f897dce908dbf5b44791d1f7a438b212fd70caf6a57bb45f2bb8b981632249948304df1381cf9954b6167d7204401ff561290
   languageName: node
   linkType: hard
 
