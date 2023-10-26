@@ -11490,6 +11490,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gatsby-core-utils@npm:^4.12.1":
+  version: 4.12.1
+  resolution: "gatsby-core-utils@npm:4.12.1"
+  dependencies:
+    "@babel/runtime": ^7.20.13
+    ci-info: 2.0.0
+    configstore: ^5.0.1
+    fastq: ^1.15.0
+    file-type: ^16.5.4
+    fs-extra: ^11.1.1
+    got: ^11.8.6
+    hash-wasm: ^4.9.0
+    import-from: ^4.0.0
+    lmdb: 2.5.3
+    lock: ^1.1.0
+    node-object-hash: ^2.3.10
+    proper-lockfile: ^4.1.2
+    resolve-from: ^5.0.0
+    tmp: ^0.2.1
+    xdg-basedir: ^4.0.0
+  checksum: 97caf27b9ab0f5fe249b45c7c039474b220a2cc2a004cf21883b311be35d1600f4c633e443af99ac2becd2efe75c91b7e38c2595f7147cf696971e9bcb20ce14
+  languageName: node
+  linkType: hard
+
 "gatsby-cypress@npm:^3.12.0":
   version: 3.12.0
   resolution: "gatsby-cypress@npm:3.12.0"
@@ -11885,24 +11909,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-remark-images@npm:^5.12.0":
-  version: 5.12.0
-  resolution: "gatsby-remark-images@npm:5.12.0"
+"gatsby-remark-images@npm:^7.12.3":
+  version: 7.12.3
+  resolution: "gatsby-remark-images@npm:7.12.3"
   dependencies:
-    "@babel/runtime": ^7.15.4
+    "@babel/runtime": ^7.20.13
     chalk: ^4.1.2
     cheerio: ^1.0.0-rc.10
-    gatsby-core-utils: ^2.15.0
+    gatsby-core-utils: ^4.12.1
     is-relative-url: ^3.0.0
     lodash: ^4.17.21
     mdast-util-definitions: ^4.0.0
-    query-string: ^6.13.3
+    query-string: ^6.14.1
     unist-util-select: ^3.0.4
     unist-util-visit-parents: ^3.1.1
   peerDependencies:
-    gatsby: ^3.0.0-next.0
-    gatsby-plugin-sharp: ^3.0.0-next.0
-  checksum: e33e5eab023f5db7139cb69575c921613b5ce34cbb453b95777d5580f42105c96832fe108c8cb3d4e1f0c9d3f075d6c30b5b03bee59b451c41a49748b94a1ade
+    gatsby: ^5.0.0-next
+    gatsby-plugin-sharp: ^5.0.0-next
+  checksum: f17d3433b831887042eddf2dfc283dca839ec382874fabc1542ff0e56f9437a7944230959ecd912eb2e57aaf70d6297873c639b1815b73e66369f1a5a356d764
   languageName: node
   linkType: hard
 
@@ -20143,7 +20167,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"query-string@npm:^6.13.1, query-string@npm:^6.13.3, query-string@npm:^6.13.8":
+"query-string@npm:^6.13.1, query-string@npm:^6.13.8, query-string@npm:^6.14.1":
   version: 6.14.1
   resolution: "query-string@npm:6.14.1"
   dependencies:
@@ -24727,7 +24751,7 @@ __metadata:
     gatsby-remark-copy-linked-files: ^4.12.0
     gatsby-remark-custom-blocks: ^3.15.0
     gatsby-remark-emojis: ^0.4.3
-    gatsby-remark-images: ^5.12.0
+    gatsby-remark-images: ^7.12.3
     gatsby-remark-responsive-iframe: ^4.12.0
     gatsby-remark-shiki-twoslash: ^3.0.38
     gatsby-remark-smartypants: ^4.12.0
