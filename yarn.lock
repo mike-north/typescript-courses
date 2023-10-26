@@ -3903,18 +3903,18 @@ __metadata:
   linkType: hard
 
 "@parcel/transformer-typescript-types@npm:^2.10.0":
-  version: 2.10.0
-  resolution: "@parcel/transformer-typescript-types@npm:2.10.0"
+  version: 2.10.1
+  resolution: "@parcel/transformer-typescript-types@npm:2.10.1"
   dependencies:
-    "@parcel/diagnostic": 2.10.0
-    "@parcel/plugin": 2.10.0
+    "@parcel/diagnostic": 2.10.1
+    "@parcel/plugin": 2.10.1
     "@parcel/source-map": ^2.1.1
-    "@parcel/ts-utils": 2.10.0
-    "@parcel/utils": 2.10.0
+    "@parcel/ts-utils": 2.10.1
+    "@parcel/utils": 2.10.1
     nullthrows: ^1.1.1
   peerDependencies:
     typescript: ">=3.0.0"
-  checksum: 83fd3a174ffb90b3c53325a669c4e0e8c262a0507267fd9e10a6cf62a4e92b616ea402b4f5dd79c0c01b2c451f1903616c2f00610dcbabf50a175e37a53ee879
+  checksum: 2daebf7f47638da70a69e80c9b1401965a2e98092378c528df410d78aba839a2741413cca23ecb758a699620c9d7d1605a75db2d4ebdf6a43a00a3770a537370
   languageName: node
   linkType: hard
 
