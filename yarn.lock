@@ -6781,8 +6781,8 @@ __metadata:
   linkType: hard
 
 "babel-preset-gatsby@npm:^3.12.0":
-  version: 3.12.0
-  resolution: "babel-preset-gatsby@npm:3.12.0"
+  version: 3.12.1
+  resolution: "babel-preset-gatsby@npm:3.12.1"
   dependencies:
     "@babel/plugin-proposal-class-properties": ^7.18.6
     "@babel/plugin-proposal-nullish-coalescing-operator": ^7.18.6
@@ -6797,12 +6797,12 @@ __metadata:
     babel-plugin-dynamic-import-node: ^2.3.3
     babel-plugin-macros: ^3.1.0
     babel-plugin-transform-react-remove-prop-types: ^0.4.24
-    gatsby-core-utils: ^4.12.0
+    gatsby-core-utils: ^4.12.1
     gatsby-legacy-polyfills: ^3.12.0
   peerDependencies:
     "@babel/core": ^7.11.6
     core-js: ^3.0.0
-  checksum: 68fffcd5b116bf06651e06f964ef0d83b04f4a8b37e01b7e33c67d8ceb4144fb68f00cd9383e2f1e86801c110d29c2551659ebc17c80344ab16fb0d1503aac3e
+  checksum: 66b6368122bcc18e946bb62ce95d750dfabb89de5815f078e7cae43d0a17804e1d317e6e4ebf1ccc5f07af4e4b066a593878c1d149e941f4fc781a6d79bc9433
   languageName: node
   linkType: hard
 
@@ -11466,9 +11466,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-core-utils@npm:^4.12.0":
-  version: 4.12.0
-  resolution: "gatsby-core-utils@npm:4.12.0"
+"gatsby-core-utils@npm:^4.12.1":
+  version: 4.12.1
+  resolution: "gatsby-core-utils@npm:4.12.1"
   dependencies:
     "@babel/runtime": ^7.20.13
     ci-info: 2.0.0
@@ -11486,7 +11486,7 @@ __metadata:
     resolve-from: ^5.0.0
     tmp: ^0.2.1
     xdg-basedir: ^4.0.0
-  checksum: e21f44e7d8fab43abc14c6c207f18e499048f354b9833ba81be0d1d10187711b8e9f1a5e2d5a636d8d39121dc8f540b1b80dd9d9930502c3304444e6ae8185d6
+  checksum: 97caf27b9ab0f5fe249b45c7c039474b220a2cc2a004cf21883b311be35d1600f4c633e443af99ac2becd2efe75c91b7e38c2595f7147cf696971e9bcb20ce14
   languageName: node
   linkType: hard
 
