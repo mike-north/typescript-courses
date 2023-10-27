@@ -18,9 +18,9 @@ export class Deferred {
   /**
    * Creates a new instance of the Deferred class.
    * @constructor
-   * @param {string} [description] - A description of the deferred operation.
+   * @param description - A description of the deferred operation.
    */
-  constructor(description) {
+  constructor(description?: any) {
     /**
      * The promise object associated with the deferred operation.
      * @type {Promise}
