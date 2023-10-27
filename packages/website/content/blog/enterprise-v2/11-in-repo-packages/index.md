@@ -62,7 +62,7 @@ in `packages/chat/src/ui/components/api.ts`
 
 ### Using "beta" types
 
-You may notice that `stringifyError` types don't seem to be available. 
+You may notice that `stringifyError` types don't seem to be available.
 
 Earlier, when we wrote `chat-stdlib`, we added a `@beta` JSDoc comment tag to `stringifyError`
 
