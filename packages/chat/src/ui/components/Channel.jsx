@@ -7,7 +7,11 @@ import ChannelMessage from './Channel/Message'
 import Loading from './Loading'
 
 const Channel = ({ channel }) => {
-  const [messages, setMessages] = React.useState()
+  /**
+   * @type {any[] | null}
+   */
+  const initialMessages = null
+  const [messages, setMessages] = React.useState(initialMessages)
   useAsyncDataEffect(
     () => getChannelMessages(channel.teamId, channel.id),
     {
