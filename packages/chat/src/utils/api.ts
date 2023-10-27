@@ -4,15 +4,16 @@ import { Deferred } from './deferred'
 
 /**
  * A custom React hook that fetches data asynchronously and updates the state with the result.
- * @param {() => Promise} getData - A function that returns a Promise that resolves to the data to be fetched.
- * @param {{
- *   stateName: string;
- *   otherStatesToMonitor?: unknown[];
- *   setter: (arg: any) => void;
- * }} options - An object containing the state name, an optional array of other states to monitor, and a setter function to update the state.
+ * @param getData - A function that returns a Promise that resolves to the data to be fetched.
+ * @param options - An object containing the state name, an optional array of other states to monitor, and a setter function to update the state.
  * @return {void}
  */
-export function useAsyncDataEffect(getData, options) {
+export function useAsyncDataEffect(getData: () => Promise<unknown>, options: {
+     stateName: string;
+     otherStatesToMonitor?: unknown[];
+     setter: (arg: any) => void;
+   }
+) {
   let cancelled = false
   const { setter, stateName } = options
   useEffect(() => {

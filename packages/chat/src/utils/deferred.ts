@@ -7,14 +7,12 @@ export class Deferred {
   #_promise
   /**
    * The function to call to resolve the deferred operation.
-   * @type {(reason: any) => void}
    */
-  #_resolve
+  #_resolve: (reason: any) => void
   /**
    * The function to call to reject the deferred operation.
-   * @type {(reason: any) => void}
    */
-  #_reject
+  #_reject: (reason: any) => void
   /**
    * Creates a new instance of the Deferred class.
    * @constructor
