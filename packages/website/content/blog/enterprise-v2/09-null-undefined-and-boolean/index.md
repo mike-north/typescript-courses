@@ -2,8 +2,7 @@
 title: Step 5 - Null, undefined and boolean operators
 date: "2023-10-27T09:00:00.000Z"
 description: |
-  We'll discuss the goals and agenda of this course, and how to get up and
-  running with the workshop project in 2 minutes or less.
+  We'll take on Step 5 to add safety to nullish value and boolean expression handling
 course: enterprise-v2
 order: 9
 ---

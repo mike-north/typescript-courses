@@ -2,8 +2,9 @@
 title: Steps 1, 2 and 3 - Adding our first types
 date: "2023-10-27T09:00:00.000Z"
 description: |
-  We'll discuss the goals and agenda of this course, and how to get up and
-  running with the workshop project in 2 minutes or less.
+  We'll tackle steps 1, 2 and 3 in the TypeScript conversion process, by integrating
+  TypeScript into our build tools, renaming our files to .ts, and getting rid of any
+  implicit any types. We'll use this as an opportunity to learn how this kind of change can be made in many small PRs over a long period of time, as is common in large projects.
 course: enterprise-v2
 order: 6
 ---

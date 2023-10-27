@@ -2,8 +2,7 @@
 title: Types At Runtime
 date: "2023-10-27T09:00:00.000Z"
 description: |
-  We'll discuss the goals and agenda of this course, and how to get up and
-  running with the workshop project in 2 minutes or less.
+  We'll add some type guards to our project, and use them as the all-important "glue" joining compile-time type-checking and runtime behavior
 course: enterprise-v2
 order: 10
 ---

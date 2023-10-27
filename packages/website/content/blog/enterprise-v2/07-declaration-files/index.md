@@ -2,8 +2,7 @@
 title: Declaration Files
 date: "2023-10-27T09:00:00.000Z"
 description: |
-  We'll discuss the goals and agenda of this course, and how to get up and
-  running with the workshop project in 2 minutes or less.
+   TypeScript's .d.ts declaration files, overlay type info on JS files. DefinitelyTyped, a community-driven repository, hosts over 6,000 type declarations. Challenges arise with versioning, but tools like Yarn's TypeScript Plugin ease the process.
 course: enterprise-v2
 order: 7
 ---

@@ -81,8 +81,10 @@ courses:
     visibleInCourseIndex: true
     visibleInCoursePage: true
     summary: |
-      Combine TypeScript and GraphQL's type systems to create full-stack, fully
-      type-checked code bases that are shockingly easy to refactor and maintain.
+      Learn how to manage large TypeScript code bases with confidence and ease.
+      In this course, Mike shares his knowledge from years of experience working
+      with teams who maintain TypeScript projects with hundreds of regular full-time
+      contributors and 100K+ lines of code.
   - name: Full Stack TypeScript
     id: full-stack-typescript
     squareImage: /full-stack-ts.png

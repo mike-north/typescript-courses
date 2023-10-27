@@ -2,8 +2,7 @@
 title: Tests for Types
 date: "2023-10-27T09:00:00.000Z"
 description: |
-  We'll discuss the goals and agenda of this course, and how to get up and
-  running with the workshop project in 2 minutes or less.
+  We'll look closely at how we can write tests for type information, including negative test cases for things we want to ensure do not compile.
 course: enterprise-v2
 order: 12
 ---

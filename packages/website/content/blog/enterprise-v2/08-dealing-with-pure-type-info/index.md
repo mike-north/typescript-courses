@@ -2,8 +2,7 @@
 title: Step 4 - Dealing with Pure Type Information
 date: "2023-10-27T09:00:00.000Z"
 description: |
-  We'll discuss the goals and agenda of this course, and how to get up and
-  running with the workshop project in 2 minutes or less.
+  We'll tackle step 4, and begin doing some domain modelling, and defining type information for things that are important to a slack app: user, team, channel and message
 course: enterprise-v2
 order: 8
 ---

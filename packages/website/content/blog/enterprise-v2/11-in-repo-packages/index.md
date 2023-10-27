@@ -2,8 +2,7 @@
 title: Local Packages
 date: "2023-10-27T09:00:00.000Z"
 description: |
-  We'll discuss the goals and agenda of this course, and how to get up and
-  running with the workshop project in 2 minutes or less.
+  We'll learn about yarn workspaces, and how they provide an opportunity for simple but effective modular architecture in a large TypeScript projects.
 course: enterprise-v2
 order: 11
 ---
