@@ -2,10 +2,9 @@
 title: Declaration Files
 date: "2023-10-27T09:00:00.000Z"
 description: |
-  We'll discuss the goals and agenda of this course, and how to get up and
-  running with the workshop project in 2 minutes or less.
+   TypeScript's .d.ts declaration files, overlay type info on JS files. DefinitelyTyped, a community-driven repository, hosts over 6,000 type declarations. Challenges arise with versioning, but tools like Yarn's TypeScript Plugin ease the process.
 course: enterprise-v2
-order: 94
+order: 7
 ---
 
 ## Declaration Files & DefinitelyTyped
@@ -108,3 +107,7 @@ We can make other tough compromises (i.e., “we always track latest minor”) a
 ### Prioritization based on location
 
 Same as Node’s require.resolve algorithm, as long as moduleResolution: “Node”
+
+## Yarn's TypeScript Plugin
+
+Yarn's [typescript plugin](https://github.com/yarnpkg/berry/tree/master/packages/plugin-typescript) automatically installs the `@types/*` packages when appropriate. For example, if we ran `yarn add -D react-dom@1.2.3`, it would also implicity install `@types/react-dom@1.2.3`

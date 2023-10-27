@@ -2,8 +2,9 @@
 title: Steps 1, 2 and 3 - Adding our first types
 date: "2023-10-27T09:00:00.000Z"
 description: |
-  We'll discuss the goals and agenda of this course, and how to get up and
-  running with the workshop project in 2 minutes or less.
+  We'll tackle steps 1, 2 and 3 in the TypeScript conversion process, by integrating
+  TypeScript into our build tools, renaming our files to .ts, and getting rid of any
+  implicit any types. We'll use this as an opportunity to learn how this kind of change can be made in many small PRs over a long period of time, as is common in large projects.
 course: enterprise-v2
 order: 6
 ---
@@ -136,4 +137,52 @@ yarn typecheck && yarn test
 
 and fixing small things until both commands pass
 
-## Forbididng implicit `any`s
+## Forbidding implicit `any`s
+
+Lets go to `packages/chat/tsconfig.json` and add the following option
+
+```json
+"noImplicitAny": true
+```
+
+Run
+
+```sh
+yarn typecheck
+```
+
+You might see
+
+```pre
+Found 51 errors in 18 files.
+```
+
+That's a lot of errors. This is a great opportunity to demonstrate how we can refine a sub-part of our project at a time. Create a new file `packages/chat/src/utils/tsconfig.json`.
+
+```json
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "noImplicitAny": true
+    },
+    "include": ["."]
+}
+```
+
+and typecheck again, but _just_ for the `src/utils` folder
+
+```sh
+yarn tsc -P src/utils
+```
+
+This should be much more approachable! Please fix all the type errors. Keep in mind that in a `.ts` file, the type information provided by JSDoc comments is ignored
+
+Repeat the same procedure for the `src/data` and `src/ui` folders (in that order). You can move the inner `tsconfig.json` from folder to folder, safely.
+
+Finally, delete this `tsconfig.json` and set the `"noImplicitAny": true` in `../chat/tsconfig.json`. Run
+
+```sh
+yarn typecheck
+```
+
+Fix any remaining errors in the `./tests` folder, and consider yourself done with step 3

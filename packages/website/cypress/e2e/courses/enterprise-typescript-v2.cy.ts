@@ -21,7 +21,7 @@ describe('enterprise TS v2 course page', () => {
     );
   });
   it('summary is present', () => {
-    cy.contains('Combine TypeScript').should('exist');
+    cy.contains('manage large TypeScript code bases').should('exist');
   });
   it('logo is present', () => {
     cy.get('main > header > img')

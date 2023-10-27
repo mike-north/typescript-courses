@@ -2,8 +2,7 @@
 title: Converting to TypeScript
 date: "2023-10-27T09:00:00.000Z"
 description: |
-  We'll discuss the goals and agenda of this course, and how to get up and
-  running with the workshop project in 2 minutes or less.
+  Converting to TypeScript: Integrate TypeScript into your build, rename files to .ts, and incrementally enforce stricter types. Progressively refine type information, enhance function and class types, and reduce usage of any. Aim for methodical, incremental changes, backed by tests.
 course: enterprise-v2
 order: 5
 ---

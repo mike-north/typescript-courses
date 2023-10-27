@@ -2,10 +2,9 @@
 title: Step 4 - Dealing with Pure Type Information
 date: "2023-10-27T09:00:00.000Z"
 description: |
-  We'll discuss the goals and agenda of this course, and how to get up and
-  running with the workshop project in 2 minutes or less.
+  We'll tackle step 4, and begin doing some domain modelling, and defining type information for things that are important to a slack app: user, team, channel and message
 course: enterprise-v2
-order: 7
+order: 8
 ---
 
 > (4) **Start formalizing type information relating to your codebase**. Make some `interface`s and `type` aliases.
@@ -227,7 +226,7 @@ Look at the source code for the library in `packages/http-error/index.js` and co
 Add this constructor declaration within the class declaration, and the errors should go away
 
 ```ts
-constructor(resp: Response, message: string): HTTPError
+constructor(resp: Response, message: string)
 ```
 
 Note that this isn't a construct signature, it's something a bit different. This is how we would denote the right shape of object in a declaration file using `class` syntax. We could also express this same type a different way

@@ -2,10 +2,9 @@
 title: Local Packages
 date: "2023-10-27T09:00:00.000Z"
 description: |
-  We'll discuss the goals and agenda of this course, and how to get up and
-  running with the workshop project in 2 minutes or less.
+  We'll learn about yarn workspaces, and how they provide an opportunity for simple but effective modular architecture in a large TypeScript projects.
 course: enterprise-v2
-order: 10
+order: 11
 ---
 
 ## A need for modular architecture
@@ -59,6 +58,18 @@ in `packages/chat/src/ui/components/api.ts`
 ```diff
 - import { Deferred } from './deferred'
 + import { Deferred } from 'chat-stdlib'
+```
+
+### Using "beta" types
+
+You may notice that `stringifyError` types don't seem to be available.
+
+Earlier, when we wrote `chat-stdlib`, we added a `@beta` JSDoc comment tag to `stringifyError`
+
+You'll need to add this entry to the top of your `tsconf.json` `compilerOptions.paths` property
+
+```json
+"chat-stdlib": ["../../node_modules/chat-stdlib/dist/chat-stdlib-beta.d.ts"],
 ```
 
 You should now be able to run
