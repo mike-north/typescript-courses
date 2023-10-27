@@ -13,6 +13,6 @@ export class Deferred<T> {
 }
 
 // @beta
-export function stringifyError(err: unknown, errorDescription?: string): string;
+export function stringifyError(err: unknown, errorDescription: string): string;
 
 ```
