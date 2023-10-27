@@ -6,6 +6,7 @@ This repo contains the code for
   * _[TypeScript Fundamentals v3](https://www.typescript-training.com/course/fundamentals-v3) - Legacy course_
 * [Intermediate TypeScript v2](https://www.typescript-training.com/course/intermediate-v2)
   * _[Intermediate TypeScript v1](https://www.typescript-training.com/course/intermediate-v1) - Legacy course_
+* [Enterprise-Scale TypeScript v2](https://www.typescript-training.com/course/enterprise-v2)
 * [Making TypeScript Stick v1](https://www.typescript-training.com/course/making-typescript-stick)
 * [Full stack TypeScript v1](https://www.typescript-training.com/course/full-stack-typescript)
 
