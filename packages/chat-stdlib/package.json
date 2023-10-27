@@ -14,10 +14,14 @@
     "yarn": "3.6.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "@babel/preset-typescript": "^7.23.2",
     "@types/eslint": "^8.0.0",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "eslint": "^8.0.0",
+    "jest": "^29.7.0",
     "typescript": "5.3.0-beta"
   }
 }
