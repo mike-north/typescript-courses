@@ -3,7 +3,10 @@
     "references": [{ "name": "chat-stdlib", "path": ".." }],
     "compilerOptions": {
         "types": ["jest"],
-        "rootDir": ".."
+        "rootDir": "..",
+        "paths": {
+            "chat-stdlib": ["../dist/chat-stdlib-beta.d.ts"],
+        }
     },
     "include": ["."]
 }
