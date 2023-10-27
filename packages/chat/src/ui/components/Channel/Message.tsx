@@ -1,7 +1,10 @@
 import * as React from 'react'
 import { formatTimestamp } from '../../../utils/date.cjs'
+import { IMessage } from '../../../types'
 
-const Message = ({ user, date, body }) => (
+const Message: React.FC<Pick<IMessage, 'user' | 'createdAt' | 'body'>> = ({ user, createdAt, body }) => {
+  const date = new Date(createdAt)
+  return (
   <div
     className="flex items-start px-6 py-2 text-sm hover-target hover:bg-gray-100 message"
     role="listitem"
@@ -41,5 +44,6 @@ const Message = ({ user, date, body }) => (
     </button>
   </div>
 )
+  }
 
 export default Message

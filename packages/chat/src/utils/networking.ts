@@ -1,5 +1,5 @@
 import { stringifyError } from './error'
-import { HTTPError } from './http-error.cjs'
+import { HTTPError } from 'http-error'
 
 /**
  *

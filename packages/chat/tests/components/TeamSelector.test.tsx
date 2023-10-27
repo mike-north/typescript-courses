@@ -14,6 +14,7 @@ test('Link changes the class when hovered', () => {
             iconUrl: '',
             channels: [
               {
+                messages: [],
                 name: 'general',
                 id: 'g',
                 teamId: 'linkedin',

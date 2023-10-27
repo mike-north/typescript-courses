@@ -2,8 +2,9 @@ import * as React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import TeamSidebar from './TeamSidebar'
 import Channel from './Channel'
+import { ITeam } from '../../types'
 
-const Team = ({ team }) => {
+const Team = ({ team }: { team: ITeam}) => {
   console.log(
     `%c TEAM render: ${team.name}`,
     'background-color: blue; color: white',

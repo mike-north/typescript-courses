@@ -6,6 +6,7 @@ test.skip('Link changes the class when hovered', () => {
   const component = renderer.create(
     <Channel
       channel={{
+        messages: [],
         name: 'recruiting',
         description: 'find a job here',
         id: 'recruit',

@@ -1,6 +1,16 @@
 /**
  * @packageDocumentation A small library for common chat app functions
  */
+
+// declare global {
+ 
+//     interface Window {
+//         mySpecialProperty: [number, string]
+//     }
+// }
+// window.mySpecialProperty
+
+
 /**
  * A class that represents a deferred operation.
  * @public
