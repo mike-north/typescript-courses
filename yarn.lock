@@ -7352,6 +7352,14 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chat-stdlib@workspace:packages/chat-stdlib":
+  version: 0.0.0-use.local
+  resolution: "chat-stdlib@workspace:packages/chat-stdlib"
+  dependencies:
+    typescript: 5.3.0-beta
+  languageName: unknown
+  linkType: soft
+
 "chat@workspace:packages/chat":
   version: 0.0.0-use.local
   resolution: "chat@workspace:packages/chat"
