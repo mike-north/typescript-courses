@@ -1,6 +1,6 @@
 /* eslint-disable promise/always-return */
 import { useEffect } from 'react'
-import { Deferred } from './deferred'
+import { Deferred } from 'chat-stdlib'
 
 /**
  * A custom React hook that fetches data asynchronously and updates the state with the result.

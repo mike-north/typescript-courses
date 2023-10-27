@@ -7916,7 +7916,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chat-stdlib@workspace:packages/chat-stdlib":
+"chat-stdlib@workspace:^, chat-stdlib@workspace:packages/chat-stdlib":
   version: 0.0.0-use.local
   resolution: "chat-stdlib@workspace:packages/chat-stdlib"
   dependencies:
@@ -7953,6 +7953,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^6.7.5
     "@typescript-eslint/parser": ^6.7.5
     babel-jest: ^29.7.0
+    chat-stdlib: "workspace:^"
     date-fns: ^2.30.0
     dtslint: ^4.2.1
     eslint: ^7.0.0

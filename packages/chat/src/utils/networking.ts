@@ -1,4 +1,4 @@
-import { stringifyError } from './error'
+import { stringifyError } from 'chat-stdlib'
 import { HTTPError } from 'http-error'
 
 /**
