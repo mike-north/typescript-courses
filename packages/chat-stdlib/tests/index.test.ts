@@ -6,7 +6,7 @@ describe('Utils - Deferred', () => {
   beforeEach(() => {
     deferred = new Deferred()
   })
- 
+  
   it('should create a new instance with a promise', () => {
     expect(deferred.promise).toBeInstanceOf(Promise)
   })

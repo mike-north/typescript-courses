@@ -11,11 +11,15 @@ export class Deferred<T> {
     /**
      * The function to call to resolve the deferred operation.
      */
-    #_resolve!: Parameters<ConstructorParameters<typeof Promise<T>>[0]>[0]
+    #_resolve!: Parameters<
+        ConstructorParameters<typeof Promise<T>>[0]
+    >[0]
     /**
      * The function to call to reject the deferred operation.
      */
-    #_reject!: Parameters<ConstructorParameters<typeof Promise<T>>[0]>[1]
+    #_reject!: Parameters<
+        ConstructorParameters<typeof Promise<T>>[0]
+    >[1]
     /**
      * Creates a new instance of the Deferred class.
      */
@@ -60,8 +64,11 @@ ${err.stack || '(no stack trace information)'}`
  * @param err - The thrown value
  * @beta
  */
-export function stringifyError(err: unknown, errorDescription?: string) {
-    return `${errorDescription ?? "( no error description )"}\n${err instanceof Error
+export function stringifyError(
+    err: unknown,
+    errorDescription?: string,
+) {
+    return `${errorDescription ?? '( no error description )'}\n${err instanceof Error
             ? stringifyErrorValue(err)
             : err
                 ? '' + String(err)
