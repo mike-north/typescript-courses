@@ -59,6 +59,30 @@ Beyond TypeScript, should be familiar with most of the topics below
 - Basic use of [React.js](https://react.dev/)
 - Working with basic shell scripts (or equivalent powershell commands)
 
+## Workshop Setup
+
+As long as you can access the following websites, you should require no further setup :tada:
+
+- [The course website you're reading right now](https://fun-v3.typescript-training.com)
+- [The official TypeScript website](https://www.typescriptlang.org)
+
+If you'd like to follow along with interactive examples, please install [Volta](https://volta.sh)
+
+```sh
+curl https://get.volta.sh | bash # Linux / macOS only
+volta install node@lts yarn@^3
+```
+
+Make sure to follow the installation instructions for `volta` -- both what you see on the website and what you see in the CLI console. Next, clone the git repo for this course [github.com/mike-north/typescript-courses](https://github.com/mike-north/typescript-courses), enter the directory, and run `yarn` to install all dependencies
+
+```sh
+git clone https://github.com/mike-north/typescript-courses
+cd typescript-courses
+yarn
+```
+
+most of our work today will be in the `packages/chat` folder, but we'll also create a **new package**.
+
 ## Project tour and getting started
 
 In this workshop we'll be working in the context of a simplified Slack app
