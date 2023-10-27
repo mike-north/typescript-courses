@@ -32,14 +32,14 @@ Follow the installation instructions you may see as part of the installation pro
 Have volta download versions of node and yarn
 
 ```sh
-volta install node yarn
+volta install node@lts yarn@^3.0.0
 ```
 
-You should see it download the latest versions of `node` and `yarn`.
+You should see it download the appropriate versions of `node` and `yarn`.
 
 ```sh
 success: installed and set node@18.18.2 as default
-success: installed and set yarn@4.0.0-rc.53 as default
+success: installed and set yarn@3.6.4 as default
 ```
 
 It's not important what specific versions these are, as part of what volta does for us is ensure you obtain and use the right versions for each project.
@@ -135,7 +135,7 @@ Install typescript as a `devDependency`, which establishes two important things
 - Consumers of this library do not need to use the same version of TypeScript being used to build this library. They don't necessarily need to use TypeScript at all.
 
 ```sh
-yarn add -D typescript
+yarn add -D typescript@5.3.0-beta
 ```
 
 ## Setting up your tsconfig
@@ -229,7 +229,7 @@ Finally we need to define an area for our source code. Add one more line to your
     ... 
 - }
 + },
-+ "include": ["src"]
++ "include": ["src", ".eslintrc.js"]
 }
 ```
 
@@ -340,7 +340,7 @@ index.d.ts index.js
 Make a commit! We have working build script.
 
 ```sh
-git add -A .
+git add -A ../..
 git commit -m "Build is working"
 ```
 
@@ -364,7 +364,7 @@ When asked, please answer as follows for the choices presented to you:
     <dt>How would you like to use ESLint?</dt>
     <dd>To check syntax and find problems</dd>
     <dt>What type of modules does your project use</dt>
-    <dd>None of these</dd>
+    <dd>JavaScript modules (import/export)</dd>
     <dt>Which framework does your project use?</dt>
     <dd>None of these</dd>
     <dt>Does your project use TypeScript?</dt>
@@ -372,11 +372,11 @@ When asked, please answer as follows for the choices presented to you:
     <dt>Where does your code run?</dt>
     <dd>
 
-**Neither** (uncheck both options)
+**Both** (check both options)
 
 </dd>
     <dt>What format do you want your config file to be in?</dt>
-    <dd>JSON</dd>
+    <dd>JavaScript</dd>
     <dt>Would you like to install them now?</dt>
     <dd>Yes</dd>
     <dt>Which package manager are you using?</dt>
@@ -417,7 +417,7 @@ compiler is responsible for telling us about those
  }
 ```
 
-Going back to our `/.eslintrc.json`, we need to tell ESLint about this new TS config -- rules that require type-checking need to know about where it is
+Going back to our `/.eslintrc.js`, we need to tell ESLint about this new TS config -- rules that require type-checking need to know about where it is
 
 ```diff
 --- a/packages/chat-stdlib/.eslintrc.js
@@ -434,18 +434,20 @@ Going back to our `/.eslintrc.json`, we need to tell ESLint about this new TS co
 
 While we're in here, let's set up some different rules for our test files compared to our source files, by adding a new object to the `overrides` array
 
-```diff
---- a/packages/chat-stdlib/.eslintrc.js
-+++ b/packages/chat-stdlib/.eslintrc.js
-@@ -18,6 +18,10 @@ module.exports = {
-             "parserOptions": {
-                 "sourceType": "script"
-             }
-+        },
-+        {
-+            "files": "tests/**/*.ts",
-+            "env": { "node": true, "jest": true }
-         }
+```json
+ {
+     "files": "tests/**/*.ts",
+     "env": { "node": true, "jest": true }
+ }
+```
+
+And one more modification to the override for the `.eslintrc.js` file itself
+
+```json
+  extends: ["plugin:@typescript-eslint/disable-type-checked"],
+  rules: {
+    "@typescript-eslint/no-unsafe-assignment": "off",
+  }
 ```
 
 Let's make sure this works by running
@@ -852,20 +854,6 @@ index c5b47c8..51da632 100644
       * Specifies the output path for a .d.ts rollup file to be generated with trimming for a "public" release.
       * This file will include only declarations that are marked as "@public".
       *
-@@ -291,11 +291,11 @@
-      * prepend a folder token such as "<projectFolder>".
-      *
-      * SUPPORTED TOKENS: <projectFolder>, <packageName>, <unscopedPackageName>
-      * DEFAULT VALUE: ""
-      */
--    // "publicTrimmedFilePath": "<projectFolder>/dist/<unscopedPackageName>-public.d.ts",
-+    "publicTrimmedFilePath": "<projectFolder>/dist/<unscopedPackageName>.d.ts"
- 
-     /**
-      * When a declaration is trimmed, by default it will be replaced by a code comment such as
-      * "Excluded from this release type: exampleMember".  Set "omitTrimmingComments" to true to remove the
-      * declaration completely.
-
 ```
 
 Make an empty `/etc` folder
@@ -898,6 +886,13 @@ should add this to your `.gitignore`.
 
 you may also notice that some new `.d.ts` files are in your `/dist` folder.
 Take a look at the contents. Do you see anything interesting?
+
+The last step we need to handle here is making `dist/chat-stdlib.d.ts` the types that should be used by consumers of our module. Make this change to `packages/chat-stdlib/package.json`
+
+```json
+- "types": "dist/index.d.ts"
++ "types": "dist/chat-stdlib.d.ts"
+```
 
 ## API Docs
 

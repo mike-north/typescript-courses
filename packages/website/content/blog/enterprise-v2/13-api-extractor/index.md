@@ -5,7 +5,7 @@ description: |
   We'll discuss the goals and agenda of this course, and how to get up and
   running with the workshop project in 2 minutes or less.
 course: enterprise-v2
-order: 95
+order: 13
 ---
 
 ## API Extractor
