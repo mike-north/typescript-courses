@@ -64,7 +64,7 @@ export function stringifyError(err: unknown, errorDescription?: string) {
     return `${errorDescription ?? "( no error description )"}\n${err instanceof Error
             ? stringifyErrorValue(err)
             : err
-                ? '' + err
+                ? '' + String(err)
                 : '(missing error information)'
         }`
 }
