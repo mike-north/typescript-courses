@@ -275,7 +275,7 @@ function careForHamster(h: Hamster) {
 #### `implements`
 
 TypeScript adds a second heritage clause that can be used to
-state that **a given class should produce instances that confirm
+state that **a given class should produce instances that conform
 to a given interface**: [`implements`](https://www.typescriptlang.org/docs/handbook/2/classes.html#implements-clauses).
 
 ```ts twoslash
