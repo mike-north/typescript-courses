@@ -97,8 +97,8 @@ let temperature = 19
 temperature = 23
 ```
 
-The `79` type of `humidity` represents the set `{ 6 }`, meaning
-"any value, as long as it's a `6`".
+The `79` type of `humidity` represents the set `{ 79 }`, meaning
+"any value, as long as it's a `79`".
 
 We can create an interesting situation by forcing a `let` variable declaration
 to have its type inferred as if it's a `const`
