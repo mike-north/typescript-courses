@@ -3184,7 +3184,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@parcel/core@npm:2.10.1, @parcel/core@npm:^2.10.1":
+"@parcel/core@npm:2.10.1":
   version: 2.10.1
   resolution: "@parcel/core@npm:2.10.1"
   dependencies:
@@ -3214,6 +3214,39 @@ __metadata:
     nullthrows: ^1.1.1
     semver: ^7.5.2
   checksum: d5c3155f8515973ee307d23a10ae5664eac6cc9017b630e93d221c5cbaf1bc332f9904b098f312107c26f5df611ba12ef3a2fd69217082b62373465bf3aa76f5
+  languageName: node
+  linkType: hard
+
+"@parcel/core@npm:^2.10.1":
+  version: 2.10.3
+  resolution: "@parcel/core@npm:2.10.3"
+  dependencies:
+    "@mischnic/json-sourcemap": ^0.1.0
+    "@parcel/cache": 2.10.3
+    "@parcel/diagnostic": 2.10.3
+    "@parcel/events": 2.10.3
+    "@parcel/fs": 2.10.3
+    "@parcel/graph": 3.0.3
+    "@parcel/logger": 2.10.3
+    "@parcel/package-manager": 2.10.3
+    "@parcel/plugin": 2.10.3
+    "@parcel/profiler": 2.10.3
+    "@parcel/rust": 2.10.3
+    "@parcel/source-map": ^2.1.1
+    "@parcel/types": 2.10.3
+    "@parcel/utils": 2.10.3
+    "@parcel/workers": 2.10.3
+    abortcontroller-polyfill: ^1.1.9
+    base-x: ^3.0.8
+    browserslist: ^4.6.6
+    clone: ^2.1.1
+    dotenv: ^7.0.0
+    dotenv-expand: ^5.1.0
+    json5: ^2.2.0
+    msgpackr: ^1.9.9
+    nullthrows: ^1.1.1
+    semver: ^7.5.2
+  checksum: 9d9def613a19b893c56a6fbf09df07a5abd483a545c4643d8584337c828d2da2e32e56b3a1962b81719da7f384160f1383b911383860755951475a59369efa24
   languageName: node
   linkType: hard
 
@@ -3287,6 +3320,15 @@ __metadata:
   dependencies:
     nullthrows: ^1.1.1
   checksum: 24469b16beeaab13b14fc9f7df8f897dce908dbf5b44791d1f7a438b212fd70caf6a57bb45f2bb8b981632249948304df1381cf9954b6167d7204401ff561290
+  languageName: node
+  linkType: hard
+
+"@parcel/graph@npm:3.0.3":
+  version: 3.0.3
+  resolution: "@parcel/graph@npm:3.0.3"
+  dependencies:
+    nullthrows: ^1.1.1
+  checksum: f906c7709b37abb5e8fb47919de2a1b763a0ee2851fe42f924d16a27f98435a92f0520c1c9990d31d9c835cbd25e9eeb57447ee4b9e8b56556857ad1fb28495a
   languageName: node
   linkType: hard
 
@@ -17467,6 +17509,18 @@ __metadata:
     msgpackr-extract:
       optional: true
   checksum: b63182d99f479d79f0d082fd2688ce7cf699b1aee71e20f28591c30b48743bb57868fdd72656759a892891072d186d864702c756434520709e8fe7e0d350a119
+  languageName: node
+  linkType: hard
+
+"msgpackr@npm:^1.9.9":
+  version: 1.10.0
+  resolution: "msgpackr@npm:1.10.0"
+  dependencies:
+    msgpackr-extract: ^3.0.2
+  dependenciesMeta:
+    msgpackr-extract:
+      optional: true
+  checksum: 7637ca153096970743f6b16a567022aede5396a43743f1ab35a1e4794a4bb21e55e9d79f8db33db952d6542e15c43cb566cf6ecce874d976c7fb1b76479306fa
   languageName: node
   linkType: hard
 
