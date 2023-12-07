@@ -21,7 +21,7 @@ courses:
     facebookImage: /fb-ts-fundamentals-v4.png
     twitterImage: /tw-ts-fundamentals-v4.png
     femCourseUrl: https://frontendmasters.com/courses/typescript-v4/
-    femCoursePublished: false
+    femCoursePublished: true
     femWorkshopUrl: https://frontendmasters.com/workshops/typescript-v4/
     femWorkshopPublished: true
     summary:
@@ -46,7 +46,7 @@ courses:
     facebookImage: /fb-intermediate-ts-v2.png
     twitterImage: /tw-intermediate-ts-v2.png
     femCourseUrl: https://frontendmasters.com/courses/intermediate-typescript-v2/
-    femCoursePublished: false
+    femCoursePublished: true
     femWorkshopUrl: https://frontendmasters.com/workshops/intermediate-typescript-v2/
     femWorkshopPublished: true
     visibleInTopNav: true
@@ -74,8 +74,8 @@ courses:
     facebookImage: /fb-enterprise-ts-v2.png
     twitterImage: /tw-enterprise-ts-v2.png
     femCourseUrl: https://frontendmasters.com/courses/enterprise-typescript-v2/
-    femCoursePublished: false
-    femWorkshopUrl: https://frontendmasters.com/workshops/enterprise-typescript-v2/
+    femCoursePublished: true
+    femWorkshopUrl: https://frontendmasters.com/workshops/enterprise-typescript/
     femWorkshopPublished: true
     visibleInTopNav: true
     visibleInCourseIndex: true
