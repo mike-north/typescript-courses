@@ -12300,21 +12300,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^13.2.0":
+"globals@npm:^13.2.0, globals@npm:^13.20.0, globals@npm:^13.6.0, globals@npm:^13.9.0":
   version: 13.23.0
   resolution: "globals@npm:13.23.0"
   dependencies:
     type-fest: ^0.20.2
   checksum: 194c97cf8d1ef6ba59417234c2386549c4103b6e5f24b1ff1952de61a4753e5d2069435ba629de711a6480b1b1d114a98e2ab27f85e966d5a10c319c3bbd3dc3
-  languageName: node
-  linkType: hard
-
-"globals@npm:^13.20.0, globals@npm:^13.6.0, globals@npm:^13.9.0":
-  version: 13.22.0
-  resolution: "globals@npm:13.22.0"
-  dependencies:
-    type-fest: ^0.20.2
-  checksum: 64af5a09565341432770444085f7aa98b54331c3b69732e0de411003921fa2dd060222ae7b50bec0b98f29c4d00b4f49bf434049ba9f7c36ca4ee1773f60458c
   languageName: node
   linkType: hard
 
