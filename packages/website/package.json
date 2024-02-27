@@ -51,7 +51,7 @@
     "@types/react-test-renderer": "^18.0.3",
     "@types/sharp": "^0.30.5",
     "@types/typography": "^0.16.5",
-    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
     "@typescript-eslint/parser": "^6.7.5",
     "babel-jest": "^26.6.3",
     "babel-preset-gatsby": "^3.12.0",
