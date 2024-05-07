@@ -33,7 +33,7 @@ OneThroughFive | Evens => { 1, 2, 3, 4, 5, 6, 8 }
 ```
 
 If you think about the assumptions we could make about a member of this set at random, we couldn't
-be sure whether it's between 1 and 5, and we couldn't be sure whether it's odd.
+be sure whether it's between 1 and 5, and we couldn't be sure whether it's even.
 
 ### Intersection types `&`
 
