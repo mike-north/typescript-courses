@@ -95,7 +95,7 @@ let evenOrLowNumber = 5 as Evens | OneThroughFive;
 Union types often appear where control flow can produce a different value for different code paths.
 
 For example, the `flipCoin()` function will return `"heads"` if a number selected
-from `(0, 1)` is >= 0.5, or `"tails"` if <=0.5.
+from `(0, 1)` is > 0.5, or `"tails"` if <=0.5.
 
 ```ts twoslash
 function flipCoin() {
