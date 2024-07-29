@@ -354,7 +354,8 @@ class Car {
       #serialNumber in other) {
         other
 //       ^?
-        return other.#serialNumber = this.#serialNumber
+        // Shouldn't this have a `==` or `===`? Seems like we want to return True if they're the same or False if not
+        return other.#serialNumber === this.#serialNumber
       }
       return false
   }
