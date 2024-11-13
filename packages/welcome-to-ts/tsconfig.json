@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "target": "ES2015",
-    "moduleResolution": "node",
+    "declaration": true,
+    "target": "ES2022",
+    "module": "CommonJS",
+    "moduleResolution": "node"
   },
   "include": ["src"]
 }
