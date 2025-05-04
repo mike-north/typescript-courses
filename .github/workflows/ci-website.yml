@@ -1,4 +1,4 @@
-name: Website
+name: Website Build
 
 on:
   pull_request:
@@ -46,8 +46,8 @@ jobs:
     strategy:
       matrix:
         os:
-        # - macos-latest
-        - windows-latest
+          # - macos-latest
+          - windows-latest
     steps:
       - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
@@ -103,7 +103,6 @@ jobs:
             experimental: true
             name: 'ts-canary'
 
-
     steps:
       - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
@@ -112,7 +111,7 @@ jobs:
         run: yarn workspaces foreach --exclude hello-ts --exclude '@mike-north/typescript-courses' -vpi add -D typescript@${{ matrix.typescript-version}}
       - name: Build
         run: yarn build
-      - name: Type-check website 
+      - name: Type-check website
         run: yarn postinstall && yarn typecheck
       - name: Test
         run: yarn test
@@ -130,7 +129,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   publish:
-    needs: [build, os-compatibility, node-compatibility, ts-compatibility]
+    needs:
+      [build, os-compatibility, node-compatibility, ts-compatibility]
     runs-on: ubuntu-latest
     if: success() && github.ref == 'refs/heads/main'
     steps:
@@ -144,4 +144,3 @@ jobs:
           github_token: ${{ secrets.ACCESS_TOKEN }}
           publish_dir: ./packages/website/public
           cname: www.typescript-training.com
-
