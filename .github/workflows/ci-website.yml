@@ -15,103 +15,17 @@ on:
       - '.github/**'
       - 'package.json'
       - 'yarn.lock'
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
       - uses: volta-cli/action@v4
-      
-      # Add yarn cache
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
-        
-      - name: Restore yarn cache
-        uses: actions/cache@v3
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ matrix.node-version }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-${{ matrix.node-version }}-yarn-
-            ${{ runner.os }}-node-${{ matrix.node-version }}-
-            ${{ runner.os }}-
-            
-      # Add build cache
-      - name: Cache build output
-        uses: actions/cache@v3
-        with:
-          path: |
-            **/dist
-            **/build
-            **/.cache
-            **/public
-          key: ${{ runner.os }}-node-${{ matrix.node-version }}-build-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-node-${{ matrix.node-version }}-build-
-            ${{ runner.os }}-node-${{ matrix.node-version }}-
-            ${{ runner.os }}-
-            
       - run: yarn
-      
       - name: Build
         run: yarn build
-        
       - name: Lint
         run: yarn lint
-        
-      - name: Test
-        run: yarn test
-        
-      - name: Cypress
-        uses: cypress-io/github-action@v6
-        with:
-          working-directory: packages/website
-          start: yarn test-cypress
-          install-command: yarn install
-          browser: chrome
-          wait-on: 'http://localhost:8000'
-          wait-on-timeout: 120
-          cache-key: cypress-${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  node-compatibility:
-    needs: build
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        node-version: [16.x, 18.x, 20.x]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: volta-cli/action@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          yarn-version: 3.6.4
-      
-      # Add yarn cache
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
-        
-      - name: Restore yarn cache
-        uses: actions/cache@v3
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ matrix.node-version }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-${{ matrix.node-version }}-yarn-
-            ${{ runner.os }}-node-${{ matrix.node-version }}-
-            ${{ runner.os }}-
-      
-      - run: yarn
-      - name: Build
-        run: yarn build
       - name: Test
         run: yarn test
       - name: Cypress
@@ -119,56 +33,67 @@ jobs:
         with:
           working-directory: packages/website
           start: yarn test-cypress
+          key: cypress-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
           install-command: yarn install
           browser: chrome
           wait-on: 'http://localhost:8000'
           wait-on-timeout: 120
-          cache-key: cypress-${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   os-compatibility:
     needs: build
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
       matrix:
-        include:
-          - os: windows-latest
-            node-version: 20
-          - os: ubuntu-latest
-            node-version: 20
+        os:
+          # - macos-latest
+          - windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: volta-cli/action@v4
+      - run: yarn
+      - name: Build
+        run: yarn build
+      - name: Test
+        run: yarn test
+
+  node-compatibility:
+    needs: build
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20]
+        # node-version: [16.x, 18.x, 20.x]
     steps:
       - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
         with:
           node-version: ${{ matrix.node-version }}
           yarn-version: 3.6.4
-      
-      # Add yarn cache
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
-        
-      - name: Restore yarn cache
-        uses: actions/cache@v3
-        id: yarn-cache
+      - run: yarn
+      - name: Build
+        run: yarn build
+      - name: Test
+        run: yarn test
+      - name: Cypress
+        uses: cypress-io/github-action@v6
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ matrix.os }}-node-${{ matrix.node-version }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ matrix.os }}-node-${{ matrix.node-version }}-yarn-
-            ${{ matrix.os }}-node-${{ matrix.node-version }}-
-            ${{ matrix.os }}-
-
+          working-directory: packages/website
+          start: yarn test-cypress
+          key: cypress-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+          install-command: yarn install
+          browser: chrome
+          wait-on: 'http://localhost:8000'
+          wait-on-timeout: 120
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   ts-compatibility:
     needs: build
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental }}
     strategy:
-      fail-fast: false
       matrix:
-        node-version: [20.x]
         typescript-version: [beta, next]
         include:
           - typescript-version: beta
@@ -177,62 +102,43 @@ jobs:
           - typescript-version: next
             experimental: true
             name: 'ts-canary'
+
     steps:
       - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
+      - run: yarn
+      - name: Installing TypeScript ${{ matrix.typescript-version }}
+        run: yarn workspaces foreach --exclude hello-ts --exclude '@mike-north/typescript-courses' -vpi add -D typescript@${{ matrix.typescript-version}}
+      - name: Build
+        run: yarn build
+      - name: Type-check website
+        run: yarn postinstall && yarn typecheck
+      - name: Test
+        run: yarn test
+      - name: Cypress
+        uses: cypress-io/github-action@v6
         with:
-          node-version: ${{ matrix.node-version }}
-          yarn-version: 3.6.4
-      
-      # Add yarn cache
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
-        
-      - name: Restore yarn cache
-        uses: actions/cache@v3
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ matrix.node-version }}-ts-${{ matrix.typescript-version }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-${{ matrix.node-version }}-ts-${{ matrix.typescript-version }}-yarn-
-            ${{ runner.os }}-node-${{ matrix.node-version }}-ts-${{ matrix.typescript-version }}-
-            ${{ runner.os }}-node-${{ matrix.node-version }}-
-            ${{ runner.os }}-
+          working-directory: packages/website
+          start: yarn test-cypress
+          key: cypress-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+          install-command: yarn install
+          browser: chrome
+          wait-on: 'http://localhost:8000'
+          wait-on-timeout: 120
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   publish:
-    needs: [build, os-compatibility, node-compatibility, ts-compatibility]
+    needs:
+      [build, os-compatibility, node-compatibility, ts-compatibility]
     runs-on: ubuntu-latest
     if: success() && github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
-        with:
-          node-version: 20.x
-          yarn-version: 3.6.4
-      
-      # Add yarn cache
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
-        
-      - name: Restore yarn cache
-        uses: actions/cache@v3
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-node-20-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-20-yarn-
-            ${{ runner.os }}-node-20-
-            ${{ runner.os }}-
-      
       - run: yarn
-      
       - name: Build
         run: yarn workspace website run build-prod
-        
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.ACCESS_TOKEN }}
