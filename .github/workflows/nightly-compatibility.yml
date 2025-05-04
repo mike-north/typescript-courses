@@ -1,0 +1,115 @@
+name: Nightly Compatibility Tests
+
+on:
+  schedule:
+    - cron: '0 3 * * *'  # Run at 3am every day
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  check-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.check.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for all branches and tags
+      
+      - name: Check for code changes
+        id: check
+        run: |
+          LAST_RUN=$(gh api repos/${{ github.repository }}/actions/workflows/nightly-compatibility.yml/runs --jq 'first(.workflow_runs[] | select(.conclusion != null and .status == "completed")).created_at')
+          if [ -z "$LAST_RUN" ]; then
+            echo "No previous successful run found, running tests"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            git diff --quiet $LAST_RUN..HEAD 'packages/**/*' '.github/**' 'package.json' 'yarn.lock'
+            if [ $? -eq 1 ]; then
+              echo "Changes detected since last run"
+              echo "changed=true" >> $GITHUB_OUTPUT
+            else
+              echo "No changes detected"
+              echo "changed=false" >> $GITHUB_OUTPUT
+            fi
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  windows-compatibility:
+    needs: check-changes
+    if: needs.check-changes.outputs.should_run == 'true'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: volta-cli/action@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          yarn-version: 3.6.4
+      
+      # Add yarn cache
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+        
+      - name: Restore yarn cache
+        uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: windows-node-lts-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            windows-node-lts-yarn-
+            windows-node-lts-
+            windows-
+      
+      - run: yarn
+      - name: Build
+        run: yarn build
+      - name: Test
+        run: yarn test
+
+  node-compatibility:
+    needs: check-changes
+    if: needs.check-changes.outputs.should_run == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [21.x, 22.x] # Current and Next
+        include:
+          - node-version: 21.x
+            name: 'node-current'
+          - node-version: 22.x
+            name: 'node-next'
+            experimental: true
+    continue-on-error: ${{ matrix.experimental || false }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: volta-cli/action@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          yarn-version: 3.6.4
+      
+      # Add yarn cache
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+        
+      - name: Restore yarn cache
+        uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-${{ matrix.name }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.name }}-yarn-
+            ${{ runner.os }}-${{ matrix.name }}-
+            ${{ runner.os }}-
+      
+      - run: yarn
+      - name: Build
+        run: yarn build
+      - name: Test
+        run: yarn test 
