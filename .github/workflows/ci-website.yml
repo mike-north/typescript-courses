@@ -33,11 +33,11 @@ jobs:
         with:
           working-directory: packages/website
           start: yarn test-cypress
-          key: cypress-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
           install-command: yarn install
           browser: chrome
           wait-on: 'http://localhost:8000'
           wait-on-timeout: 120
+          cache-key: cypress-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   os-compatibility:
@@ -81,7 +81,7 @@ jobs:
         with:
           working-directory: packages/website
           start: yarn test-cypress
-          key: cypress-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+          cache-key: cypress-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
           install-command: yarn install
           browser: chrome
           wait-on: 'http://localhost:8000'
@@ -120,7 +120,7 @@ jobs:
         with:
           working-directory: packages/website
           start: yarn test-cypress
-          key: cypress-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+          cache-key: cypress-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
           install-command: yarn install
           browser: chrome
           wait-on: 'http://localhost:8000'
