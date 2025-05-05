@@ -88,7 +88,7 @@ window.se
 
 As long as you can access the following websites, you should require no further setup :tada:
 
-- [The course website you're reading right now](https://fun-v3.typescript-training.com)
+- [The course website you're reading right now](https://www.typescript-training.com/course/fundamentals-v4)
 - [The official TypeScript website](https://www.typescriptlang.org)
 
 If you'd like to follow along with interactive examples, please install [Volta](https://volta.sh)
