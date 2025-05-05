@@ -2970,7 +2970,7 @@ __metadata:
   dependencies:
     "@babel/core": ^7.23.2
     "@babel/preset-typescript": ^7.23.2
-    "@types/node": latest
+    "@types/node": ^22.15.8
     core-js: ^3.33.0
     markdownlint-cli: ^0.37.0
     replace-in-file: ^7.0.1
@@ -5027,19 +5027,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:^22.15.8":
+  version: 22.15.8
+  resolution: "@types/node@npm:22.15.8"
+  dependencies:
+    undici-types: ~6.21.0
+  checksum: f3bd1e9819b91b813b247eccac7c40b754df89a49cc48cc7fd69e9013b3bec84a0c071da97ea82addd138459686ff1b8fab690b956021897b69b4a490105e321
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:^8.5.7":
   version: 8.10.66
   resolution: "@types/node@npm:8.10.66"
   checksum: c52039de862654a139abdc6a51de532a69dd80516ac35a959c3b3a2831ecbaaf065b0df5f9db943f5e28b544ebb9a891730d52b52f7a169b86a82bc060210000
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:latest":
-  version: 22.15.3
-  resolution: "@types/node@npm:22.15.3"
-  dependencies:
-    undici-types: ~6.21.0
-  checksum: 26618a9fdfb84de3841e898b7c5fd372e1c0bdb9adc3ec71c12c38dd07d4e73da14681924919d27ff509ebf3714b8de941a21f51c26146cc8aaae31561ca7a5c
   languageName: node
   linkType: hard
 
