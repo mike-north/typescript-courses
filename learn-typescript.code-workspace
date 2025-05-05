@@ -1,6 +1,5 @@
 {
   "folders": [
-    { "name": "flights", "path": "packages/flights" },
     { "name": "website", "path": "packages/website" },
     { "name": "hello-ts", "path": "packages/hello-ts" }
   ],

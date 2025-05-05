@@ -57,6 +57,7 @@ jobs:
         with:
           working-directory: packages/website
           start: yarn test-cypress
+          key: cypress-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
           install-command: yarn install
           browser: chrome
           wait-on: 'http://localhost:8000'
@@ -70,7 +71,6 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental }}
     strategy:
-      fail-fast: false
       matrix:
         typescript-version: [beta, next]
         include:
@@ -80,9 +80,21 @@ jobs:
           - typescript-version: next
             experimental: true
             name: 'ts-canary'
+
     steps:
       - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
+      - run: yarn
+      - name: Installing TypeScript ${{ matrix.typescript-version }}
+        run: yarn workspaces foreach --exclude hello-ts --exclude '@mike-north/typescript-courses' -vpi add -D typescript@${{ matrix.typescript-version}}
+      - name: Build
+        run: yarn build
+      - name: Type-check website
+        run: yarn postinstall && yarn typecheck
+      - name: Test
+        run: yarn test
+      - name: Cypress
+        uses: cypress-io/github-action@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
           yarn-version: 3.6.4
@@ -132,7 +144,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   publish:
-    needs: [build, ts-compatibility]
+    needs: [build]
     runs-on: ubuntu-latest
     if: success() && github.ref == 'refs/heads/main'
     steps:
