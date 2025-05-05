@@ -165,7 +165,7 @@ module.exports = {
         trackingIds: ['G-NPMJTDV8W2'],
       },
     },
-    `gatsby-plugin-feed`,
+
     `gatsby-plugin-sass`,
     {
       resolve: `gatsby-plugin-manifest`,

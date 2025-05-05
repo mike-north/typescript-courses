@@ -5110,12 +5110,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:18.2.14":
-  version: 18.2.14
-  resolution: "@types/react-dom@npm:18.2.14"
+"@types/react-dom@npm:17.0.22":
+  version: 17.0.22
+  resolution: "@types/react-dom@npm:17.0.22"
   dependencies:
-    "@types/react": "*"
-  checksum: 890289c70d1966c168037637c09cacefe6205bdd27a33252144a6b432595a2943775ac1a1accac0beddaeb67f8fdf721e076acb1adc990b08e51c3d9fd4e780c
+    "@types/react": ^17
+  checksum: 3c24331c0a2211370968befaad107598ee4f796c08e9b0de0b0126ee598a7c51f7bf4e0e7d9a76522a3b60d91f091d46131d136bcbe49aeb6ec3b8480dff03f9
   languageName: node
   linkType: hard
 
@@ -11554,25 +11554,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-feed@npm:^3.15.0":
-  version: 3.15.0
-  resolution: "gatsby-plugin-feed@npm:3.15.0"
-  dependencies:
-    "@babel/runtime": ^7.15.4
-    "@hapi/joi": ^15.1.1
-    common-tags: ^1.8.0
-    fs-extra: ^10.0.0
-    gatsby-plugin-utils: ^1.15.0
-    lodash.merge: ^4.6.2
-    rss: ^1.2.2
-  peerDependencies:
-    gatsby: ^3.0.0-next.0
-    react: ^16.9.0 || ^17.0.0
-    react-dom: ^16.9.0 || ^17.0.0
-  checksum: 69e91fdb028b753f5f68fe1cc17392f044a9b51b4357022f605531a1a8e006250a6e0b8dd61b439195bed4cb5b8ce6f05c25336a3abe5155aac1ae2f69d59566
-  languageName: node
-  linkType: hard
-
 "gatsby-plugin-google-gtag@npm:^3.15.0":
   version: 3.15.0
   resolution: "gatsby-plugin-google-gtag@npm:3.15.0"
@@ -17100,22 +17081,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mime-db@npm:~1.25.0":
-  version: 1.25.0
-  resolution: "mime-db@npm:1.25.0"
-  checksum: bf1c56d50cb5752c5495ddf2a1dd938015c58b3bc0c8d19c4cacb198322267d6fc1b944e70efec0d5215584cf1c57d58e2d4f609094ebe3e88bdf34028ca102d
-  languageName: node
-  linkType: hard
-
-"mime-types@npm:2.1.13":
-  version: 2.1.13
-  resolution: "mime-types@npm:2.1.13"
-  dependencies:
-    mime-db: ~1.25.0
-  checksum: 661db5db5900dcf8bc345d2aea9cc2bd38d53374c000e0d8d7b592230ff37ea173b9514f15bfd89efe46476f57f1785866d13060c71d12ca98c5b5a8f662ae04
-  languageName: node
-  linkType: hard
-
 "mime-types@npm:^2.1.12, mime-types@npm:^2.1.27, mime-types@npm:^2.1.30, mime-types@npm:~2.1.19, mime-types@npm:~2.1.24, mime-types@npm:~2.1.34":
   version: 2.1.35
   resolution: "mime-types@npm:2.1.35"
@@ -20269,6 +20234,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-dom@npm:^17.0.2":
+  version: 17.0.2
+  resolution: "react-dom@npm:17.0.2"
+  dependencies:
+    loose-envify: ^1.1.0
+    object-assign: ^4.1.1
+    scheduler: ^0.20.2
+  peerDependencies:
+    react: 17.0.2
+  checksum: 1c1eaa3bca7c7228d24b70932e3d7c99e70d1d04e13bb0843bbf321582bc25d7961d6b8a6978a58a598af2af496d1cedcfb1bf65f6b0960a0a8161cb8dab743c
+  languageName: node
+  linkType: hard
+
 "react-dom@npm:^18.2.0":
   version: 18.2.0
   resolution: "react-dom@npm:18.2.0"
@@ -20427,6 +20405,16 @@ __metadata:
   peerDependencies:
     react: ^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
   checksum: f60480565a9ce3077744da0e5c017a44e68f978d86f0d9fa7e38f25905444bc74429a0bfe6302b2ca90d4e40b75d23fda389665a7c6635abe6e3f1bc63f43a97
+  languageName: node
+  linkType: hard
+
+"react@npm:^17.0.2":
+  version: 17.0.2
+  resolution: "react@npm:17.0.2"
+  dependencies:
+    loose-envify: ^1.1.0
+    object-assign: ^4.1.1
+  checksum: b254cc17ce3011788330f7bbf383ab653c6848902d7936a87b09d835d091e3f295f7e9dd1597c6daac5dc80f90e778c8230218ba8ad599f74adcc11e33b9d61b
   languageName: node
   linkType: hard
 
@@ -21227,16 +21215,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rss@npm:^1.2.2":
-  version: 1.2.2
-  resolution: "rss@npm:1.2.2"
-  dependencies:
-    mime-types: 2.1.13
-    xml: 1.0.1
-  checksum: 9f823a6c1c807b4d9a800f74063d03eb188751c2e7fab36a50d5bdc33577a03562d5a610d8c809729f5a3721805a5495119c105237a87a6bb5a8a146df8b887a
-  languageName: node
-  linkType: hard
-
 "rsvp@npm:^4.8.4":
   version: 4.8.5
   resolution: "rsvp@npm:4.8.5"
@@ -21445,6 +21423,16 @@ __metadata:
   dependencies:
     xmlchars: ^2.2.0
   checksum: 5636b55cf15f7cf0baa73f2797bf992bdcf75d1b39d82c0aa4608555c774368f6ac321cb641fd5f3d3ceb87805122cd47540da6a7b5960fe0dbdb8f8c263f000
+  languageName: node
+  linkType: hard
+
+"scheduler@npm:^0.20.2":
+  version: 0.20.2
+  resolution: "scheduler@npm:0.20.2"
+  dependencies:
+    loose-envify: ^1.1.0
+    object-assign: ^4.1.1
+  checksum: c4b35cf967c8f0d3e65753252d0f260271f81a81e427241295c5a7b783abf4ea9e905f22f815ab66676f5313be0a25f47be582254db8f9241b259213e999b8fc
   languageName: node
   linkType: hard
 
@@ -24685,8 +24673,8 @@ __metadata:
     "@types/lodash": ^4.14.199
     "@types/node": ^20.8.7
     "@types/pkg-up": ^3.1.0
-    "@types/react": 18.2.28
-    "@types/react-dom": 18.2.14
+    "@types/react": 17.0.68
+    "@types/react-dom": 17.0.22
     "@types/react-helmet": ^6.1.7
     "@types/react-test-renderer": ^18.0.3
     "@types/sharp": ^0.30.5
@@ -24703,7 +24691,6 @@ __metadata:
     gatsby: ^3.15.0
     gatsby-cypress: ^3.12.0
     gatsby-image: ^3.11.0
-    gatsby-plugin-feed: ^3.15.0
     gatsby-plugin-google-gtag: ^3.15.0
     gatsby-plugin-google-tagmanager: ^3.15.0
     gatsby-plugin-manifest: ^3.15.0
@@ -24731,8 +24718,8 @@ __metadata:
     pkg-up: ^3.1.0
     prettier: ^3.0.3
     prismjs: ^1.29.0
-    react: ^18.2.0
-    react-dom: ^18.2.0
+    react: ^17.0.2
+    react-dom: ^17.0.2
     react-helmet: ^6.1.0
     react-test-renderer: ^18.2.0
     react-typography: ^0.16.23
@@ -25038,13 +25025,6 @@ __metadata:
   version: 3.0.0
   resolution: "xml-name-validator@npm:3.0.0"
   checksum: b3ac459afed783c285bb98e4960bd1f3ba12754fd4f2320efa0f9181ca28928c53cc75ca660d15d205e81f92304419afe94c531c7cfb3e0649aa6d140d53ecb0
-  languageName: node
-  linkType: hard
-
-"xml@npm:1.0.1":
-  version: 1.0.1
-  resolution: "xml@npm:1.0.1"
-  checksum: 11b5545ef3f8fec3fa29ce251f50ad7b6c97c103ed4d851306ec23366f5fa4699dd6a942262df52313a0cd1840ab26256da253c023bad3309d8ce46fe6020ca0
   languageName: node
   linkType: hard
 
