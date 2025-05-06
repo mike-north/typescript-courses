@@ -75,9 +75,9 @@ jobs:
           - typescript-version: beta
             experimental: false
             name: 'ts-beta'
-          # - typescript-version: next
-          #   experimental: true
-          #   name: 'ts-canary'
+          - typescript-version: next
+            experimental: true
+            name: 'ts-canary'
 
     steps:
       - uses: actions/checkout@v4
@@ -93,6 +93,15 @@ jobs:
         run: yarn test
       - name: Cypress
         uses: cypress-io/github-action@v6
+        with:
+          working-directory: packages/website
+          start: yarn test-cypress
+          install-command: yarn install
+          browser: chrome
+          wait-on: 'http://localhost:8000'
+          wait-on-timeout: 120
+          cache-key: cypress-${{ runner.os }}-ts-${{  matrix.typescript-version }}-${{ hashFiles('**/yarn.lock') }}
+
       
       # Add yarn cache
       - name: Get yarn cache directory path
