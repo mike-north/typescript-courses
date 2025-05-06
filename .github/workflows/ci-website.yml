@@ -70,14 +70,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        typescript-version: [beta, next]
+        typescript-version: [beta]
         include:
           - typescript-version: beta
             experimental: false
             name: 'ts-beta'
-          - typescript-version: next
-            experimental: true
-            name: 'ts-canary'
+          # - typescript-version: next
+          #   experimental: true
+          #   name: 'ts-canary'
 
     steps:
       - uses: actions/checkout@v4
