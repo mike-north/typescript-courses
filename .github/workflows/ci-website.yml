@@ -82,6 +82,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+      - name: Restore yarn cache
+        uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-node-lts-ts-${{ matrix.typescript-version }}-yarn-${{ hashFiles('**/yarn.lock', '.yarn/patches/**') }}
+          restore-keys: |
+            ${{ runner.os }}-node-lts-ts-${{ matrix.typescript-version }}-yarn-
+            ${{ runner.os }}-node-lts-ts-${{ matrix.typescript-version }}-
+            ${{ runner.os }}-node-lts-
+            ${{ runner.os }}-
       - run: yarn
       - name: Installing TypeScript ${{ matrix.typescript-version }}
         run: yarn workspaces foreach --exclude hello-ts --exclude '@mike-north/typescript-courses' -vpi add -D typescript@${{ matrix.typescript-version}}
@@ -102,38 +116,30 @@ jobs:
           wait-on-timeout: 120
           cache-key: cypress-${{ runner.os }}-ts-${{  matrix.typescript-version }}-${{ hashFiles('**/yarn.lock') }}
 
-      
       # Add yarn cache
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
+      - name: Get yarn cache directory path (2)
+        id: yarn-cache-dir-path-2
         run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
-        
-      - name: Restore yarn cache
+      - name: Restore yarn cache (2)
         uses: actions/cache@v3
-        id: yarn-cache
+        id: yarn-cache-2
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-node-lts-ts-${{ matrix.typescript-version }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          path: ${{ steps.yarn-cache-dir-path-2.outputs.dir }}
+          key: ${{ runner.os }}-node-lts-ts-${{ matrix.typescript-version }}-yarn-${{ hashFiles('**/yarn.lock', '.yarn/patches/**') }}
           restore-keys: |
             ${{ runner.os }}-node-lts-ts-${{ matrix.typescript-version }}-yarn-
             ${{ runner.os }}-node-lts-ts-${{ matrix.typescript-version }}-
             ${{ runner.os }}-node-lts-
             ${{ runner.os }}-
-      
       - run: yarn
-      
       - name: Installing TypeScript ${{ matrix.typescript-version }}
         run: yarn workspaces foreach --exclude hello-ts --exclude '@mike-north/typescript-courses' -vpi add -D typescript@${{ matrix.typescript-version }}
-      
       - name: Build
         run: yarn build
-      
       - name: Type-check website
         run: yarn postinstall && yarn typecheck
-      
       - name: Test
         run: yarn test
-      
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
