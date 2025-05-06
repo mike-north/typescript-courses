@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { MemoryRouter as Router } from 'react-router-dom'
 import * as renderer from 'react-test-renderer'
 import TeamSelector from '../../src/ui/components/TeamSelector'
 

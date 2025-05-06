@@ -69,7 +69,6 @@ jobs:
   ts-compatibility:
     needs: build
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
         typescript-version: [beta, next]
@@ -95,9 +94,6 @@ jobs:
         run: yarn test
       - name: Cypress
         uses: cypress-io/github-action@v6
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          yarn-version: 3.6.4
       
       # Add yarn cache
       - name: Get yarn cache directory path
@@ -175,6 +171,7 @@ jobs:
         run: yarn workspace website run build-prod
       - uses: peaceiris/actions-gh-pages@v3
         with:
+          commit_message: "Publish to GitHub Pages: ${{ github.sha }}"
           github_token: ${{ secrets.ACCESS_TOKEN }}
           publish_dir: ./packages/website/public
           cname: www.typescript-training.com
