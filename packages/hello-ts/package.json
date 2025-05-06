@@ -3,7 +3,7 @@
     "license": "NOLICENSE",
     "version": "0.0.1",
     "devDependencies": {
-        "typescript": "^4.9.0"
+        "typescript": "~5.8.0"
     },
     "scripts": {
         "build": "yarn tsc",
