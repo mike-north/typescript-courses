@@ -19,7 +19,7 @@ const TeamLink = ({ team }) => {
         <img
           className="team-selector__team-logo"
           src={team.iconUrl}
-          alt={`Join the ${name} chat`}
+          alt={`Join the ${team.name} chat`}
         />
       </div>
     </Link>

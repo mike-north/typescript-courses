@@ -88,7 +88,7 @@ const BlogPostTemplate: React.FunctionComponent<
       />
     </div>
   ) : (
-    ''
+    null
   );
 
   return (
