@@ -26,6 +26,7 @@ exports[`Bio renders correctly 1`] = `
     }
   >
     <picture>
+      
       <img
         alt="Mike"
         height={40}

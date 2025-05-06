@@ -5779,21 +5779,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-test-renderer@npm:^17.0.2":
+  version: 17.0.9
+  resolution: "@types/react-test-renderer@npm:17.0.9"
+  dependencies:
+    "@types/react": ^17
+  checksum: 4d78a7c98cdfedc0d706df873a55534b70deab143b0403d0db1ca91d580a246322a4da4460862dd80d2a3452882cb40f4188efa358bd3468a93699a65ce5b089
+  languageName: node
+  linkType: hard
+
 "@types/react-test-renderer@npm:^18":
   version: 18.3.1
   resolution: "@types/react-test-renderer@npm:18.3.1"
   dependencies:
     "@types/react": ^18
   checksum: f8cc23cc8decdb6068cdc8f8c306e189eab8e569443ce97b216e757ee42eb20b18d2280ef41e2955668413f14be92765a3ba86cfcfeeae6b20c965acd9674786
-  languageName: node
-  linkType: hard
-
-"@types/react-test-renderer@npm:^18.0.3":
-  version: 18.0.5
-  resolution: "@types/react-test-renderer@npm:18.0.5"
-  dependencies:
-    "@types/react": "*"
-  checksum: c0932fa6c99dc84df3f8132f728f4fad7aeb05ea667f1524384c083e62b90e3a91107d89d2e91b03bd0ca02cc6bbec8cfe9669c29a8394ae990af549ca16c0a3
   languageName: node
   linkType: hard
 
@@ -21503,7 +21503,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:^17.0.1":
+"react-is@npm:^17.0.1, react-is@npm:^17.0.2":
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
   checksum: 9d6d111d8990dc98bc5402c1266a808b0459b5d54830bbea24c12d908b536df7883f268a7868cfaedde3dd9d4e0d574db456f84d2e6df9c4526f99bb4b5344d8
@@ -21560,7 +21560,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-shallow-renderer@npm:^16.15.0":
+"react-shallow-renderer@npm:^16.13.1, react-shallow-renderer@npm:^16.15.0":
   version: 16.15.0
   resolution: "react-shallow-renderer@npm:16.15.0"
   dependencies:
@@ -21581,7 +21581,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-test-renderer@npm:18.2.0, react-test-renderer@npm:^18.2.0":
+"react-test-renderer@npm:18.2.0":
   version: 18.2.0
   resolution: "react-test-renderer@npm:18.2.0"
   dependencies:
@@ -21591,6 +21591,20 @@ __metadata:
   peerDependencies:
     react: ^18.2.0
   checksum: 6b6980ced93fa2b72662d5e4ab3b4896833586940047ce52ca9aca801e5432adf05fcbe28289b0af3ce6a2a7c590974e25dcc8aa43d0de658bfe8bbcd686f958
+  languageName: node
+  linkType: hard
+
+"react-test-renderer@npm:^17.0.2":
+  version: 17.0.2
+  resolution: "react-test-renderer@npm:17.0.2"
+  dependencies:
+    object-assign: ^4.1.1
+    react-is: ^17.0.2
+    react-shallow-renderer: ^16.13.1
+    scheduler: ^0.20.2
+  peerDependencies:
+    react: 17.0.2
+  checksum: e6b5c6ed2a0bde2c34f1ab9523ff9bc4c141a271daf730d6b852374e83acc0155d58ab71a318251e953ebfa65b8bebb9c5dce3eba1ccfcbef7cc4e1e8261c401
   languageName: node
   linkType: hard
 
@@ -25959,7 +25973,7 @@ __metadata:
     "@types/react": 17.0.68
     "@types/react-dom": 17.0.22
     "@types/react-helmet": ^6.1.7
-    "@types/react-test-renderer": ^18.0.3
+    "@types/react-test-renderer": ^17.0.2
     "@types/sharp": ^0.30.5
     "@types/typography": ^0.16.5
     "@typescript-eslint/eslint-plugin": ^6.7.5
@@ -26004,7 +26018,7 @@ __metadata:
     react: ^17.0.2
     react-dom: ^17.0.2
     react-helmet: ^6.1.0
-    react-test-renderer: ^18.2.0
+    react-test-renderer: ^17.0.2
     react-typography: ^0.16.23
     replace-in-file: ^7.0.1
     sass: ^1.69.3

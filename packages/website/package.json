@@ -47,7 +47,7 @@
     "@types/react": "17.0.68",
     "@types/react-dom": "17.0.22",
     "@types/react-helmet": "^6.1.7",
-    "@types/react-test-renderer": "^18.0.3",
+    "@types/react-test-renderer": "^17.0.2",
     "@types/sharp": "^0.30.5",
     "@types/typography": "^0.16.5",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
@@ -72,7 +72,7 @@
     "markdownlint-cli": "^0.37.0",
     "pkg-up": "^3.1.0",
     "prettier": "^3.0.3",
-    "react-test-renderer": "^18.2.0",
+    "react-test-renderer": "^17.0.2",
     "start-server-and-test": "^2.0.1",
     "typescript": "latest"
   },
