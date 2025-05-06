@@ -5678,12 +5678,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^22.15.10":
-  version: 22.15.10
-  resolution: "@types/node@npm:22.15.10"
+"@types/node@npm:^20.8.7":
+  version: 20.17.40
+  resolution: "@types/node@npm:20.17.40"
   dependencies:
-    undici-types: ~6.21.0
-  checksum: 56843a750b4eb3e855d3ade133eff8e08271bb133949217f030af15b467cda4c2e4abb39f9f1d69ae2b0b0ec061c6c9dc4bb42061894c618d53d858d2db26298
+    undici-types: ~6.19.2
+  checksum: 513484917aa87c84ec77d08941ad368aa59c69377f68c8998c83c7c33fcea72210229ef96dab2d8aae42d4e4a700089af6a078308dc0e4fb6c9fb418aee4fc52
   languageName: node
   linkType: hard
 
@@ -19023,7 +19023,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "notes-enterprise-ts-v2@workspace:packages/notes-enterprise-ts-v2"
   dependencies:
-    typescript: 5.3.0-beta
+    typescript: ~5.8.0
   languageName: unknown
   linkType: soft
 
@@ -24870,16 +24870,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:next":
-  version: 5.9.0-dev.20250505
-  resolution: "typescript@npm:5.9.0-dev.20250505"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 595046509f5aa089f5f41ccb46fdf576727706c8e4d2522e37b21a15bb83dae4670abd04157401878aefaf3070a29b611c12dd19c457670fbffb834b62313a23
-  languageName: node
-  linkType: hard
-
 "typescript@npm:~5.8.0":
   version: 5.8.3
   resolution: "typescript@npm:5.8.3"
@@ -24917,16 +24907,6 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 1f8f3b6aaea19f0f67cba79057674ba580438a7db55057eb89cc06950483c5d632115c14077f6663ea76fd09fce3c190e6414bb98582ec80aa5a4eaf345d5b68
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@next#~builtin<compat/typescript>":
-  version: 5.9.0-dev.20250505
-  resolution: "typescript@patch:typescript@npm%3A5.9.0-dev.20250505#~builtin<compat/typescript>::version=5.9.0-dev.20250505&hash=29ae49"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 4c81e59881ade849291ee4d7c209be963c8234873d5ebe9a49beea95da2bedcf892794a8cc96924bca8a53358b87b9f0d577c1a7efea1e4b6790766f06b50acb
   languageName: node
   linkType: hard
 
@@ -25019,6 +24999,13 @@ __metadata:
   version: 5.26.5
   resolution: "undici-types@npm:5.26.5"
   checksum: 3192ef6f3fd5df652f2dc1cd782b49d6ff14dc98e5dced492aa8a8c65425227da5da6aafe22523c67f035a272c599bb89cfe803c1db6311e44bed3042fc25487
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~6.19.2":
+  version: 6.19.8
+  resolution: "undici-types@npm:6.19.8"
+  checksum: de51f1b447d22571cf155dfe14ff6d12c5bdaec237c765085b439c38ca8518fc360e88c70f99469162bf2e14188a7b0bcb06e1ed2dc031042b984b0bb9544017
   languageName: node
   linkType: hard
 
@@ -25997,7 +25984,7 @@ __metadata:
     "@testing-library/cypress": ^10.0.1
     "@types/jest": ^27.5.2
     "@types/lodash": ^4.14.199
-    "@types/node": ^22.15.10
+    "@types/node": ^20.8.7
     "@types/pkg-up": ^3.1.0
     "@types/react": 17.0.68
     "@types/react-dom": 17.0.22
@@ -26054,7 +26041,7 @@ __metadata:
     start-server-and-test: ^2.0.1
     typeface-merriweather: 1.1.13
     typeface-montserrat: 1.1.13
-    typescript: next
+    typescript: ~5.8.0
     typography: ^0.16.24
     typography-theme-wordpress-2016: ^0.16.19
   languageName: unknown

@@ -42,7 +42,7 @@
     "@testing-library/cypress": "^10.0.1",
     "@types/jest": "^27.5.2",
     "@types/lodash": "^4.14.199",
-    "@types/node": "^22.15.10",
+    "@types/node": "^20.8.7",
     "@types/pkg-up": "^3.1.0",
     "@types/react": "17.0.68",
     "@types/react-dom": "17.0.22",
@@ -74,7 +74,7 @@
     "prettier": "^3.0.3",
     "react-test-renderer": "^17.0.2",
     "start-server-and-test": "^2.0.1",
-    "typescript": "next"
+    "typescript": "~5.8.0"
   },
   "homepage": "https://github.com/mike-north/typescript-courses#readme",
   "keywords": [
