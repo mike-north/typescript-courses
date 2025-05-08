@@ -34,7 +34,7 @@
     "@types/json-server": "^0.14.5",
     "@types/react-test-renderer": "^18",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
-    "@typescript-eslint/parser": "^6.7.5",
+    "@typescript-eslint/parser": "^8.32.0",
     "babel-jest": "^29.7.0",
     "dtslint": "^4.2.1",
     "eslint": "^7.0.0",
