@@ -29,7 +29,7 @@
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-typography": "^0.16.23",
-    "replace-in-file": "^7.0.1",
+    "replace-in-file": "^8.3.0",
     "sass": "^1.69.3",
     "typeface-merriweather": "1.1.13",
     "typeface-montserrat": "1.1.13",
