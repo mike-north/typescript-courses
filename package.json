@@ -20,7 +20,7 @@
     "@types/node": "^22.15.8",
     "core-js": "^3.33.0",
     "markdownlint-cli": "^0.37.0",
-    "replace-in-file": "^7.0.1"
+    "replace-in-file": "^8.3.0"
   },
   "scripts": {
     "postinstall": "replace-in-file 'import chalk' 'import * as chalk' node_modules/gatsby-cli/lib/reporter/reporter.d.ts",
