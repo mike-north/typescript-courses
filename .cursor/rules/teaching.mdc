@@ -1,0 +1,201 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# TypeScript Course Style Guide
+
+## Teaching Approach and Structure
+
+1. **Progressive Complexity**
+   - Courses follow a logical progression from fundamental concepts to advanced topics
+   - Content is organized numerically (01-intro, 02-hello-typescript, etc.) creating a clear learning path
+   - Each concept builds on previous knowledge while introducing new material
+
+2. **Hands-on Learning**
+   - Practical examples are emphasized over theoretical discussion
+   - Code snippets are interactive and demonstrate real-world use cases
+   - Students are encouraged to follow along with provided code repositories
+
+3. **Mental Model Development**
+   - Focus on building strong foundational understanding rather than just syntax
+   - Clear articulation of the "why" behind TypeScript features and behaviors
+   - Emphasis on developing intuition for type systems
+   - Consistent use of types-as-sets metaphor to explain type relationships
+
+4. **Theme-Based Learning**
+   - Use of recurring themes (like "Inferring with non-intrusive specificity") to connect concepts
+   - Highlighting patterns that appear throughout the TypeScript ecosystem
+   - Building mental frameworks that can be applied to new TypeScript challenges
+
+5. **Challenge-Driven Learning**
+   - Game-like challenges that test comprehension at various levels of complexity
+   - Real-world coding challenges based on authentic scenarios
+   - Interactive exercises that require active application of concepts
+   - Structured challenges with clear requirements and incremental difficulty
+
+## Content Organization
+
+1. **Chapter Structure**
+   - Clear frontmatter with title, date, description, course name, and order
+   - Concise chapter goals outlined at the beginning
+   - Chapters focused on a single core concept with related sub-topics
+   - Gradual building from basic to advanced applications of each concept
+
+2. **Content Progression**
+   - Introduction to core concepts
+   - Progressive examples showing increasing complexity
+   - Practical applications and exercises
+   - Edge cases and common pitfalls
+   - Advanced usage patterns (when appropriate)
+   - Best practices and recommendations at the end of complex topics
+
+3. **Course Levels**
+   - Fundamentals: Core TypeScript concepts for beginners
+   - Intermediate: More complex type operations and patterns
+   - Enterprise: Production-grade TypeScript for real-world applications
+   - Applied: Challenge-driven courses to cement understanding
+
+## Presentation Style
+
+1. **Code Examples**
+   - Well-commented code with clear annotations
+   - Use of the "twoslash" directive for enhanced code display
+   - Hover-effect tooltips to demonstrate type inference
+   - Before/after examples to show evolution of code
+   - Use of line highlighting to draw attention to important code changes
+
+2. **Visual Learning**
+   - Strategic use of images, GIFs, and diagrams to illustrate complex concepts
+   - Code highlighting to draw attention to important changes or concepts
+   - Collapsible sections for additional details or large code examples
+   - Callout boxes for important information, warnings, and tips
+
+3. **Explanation Techniques**
+   - Clear, concise explanations avoiding unnecessary jargon
+   - Use of metaphors and analogies to explain abstract concepts
+   - Breaking down complex types step-by-step
+   - Comparisons between TypeScript and plain JavaScript behavior
+   - Error message analysis to help students understand compiler feedback
+
+4. **Conceptual Frameworks**
+   - Presenting type systems in terms of sets and subsets
+   - Explaining type compatibility through clear rules and principles
+   - Consistent terminology throughout explanations
+   - Contrasting different type system approaches (structural vs. nominal)
+
+5. **Gamification Elements**
+   - "Does it compile?" quizzes with hidden answers
+   - "Guess that type" exercises to practice type inference
+   - Interactive games like "Typepardy" that use familiar formats
+   - Competitive elements that encourage engagement
+   - Use of "challenges" with clear success criteria
+
+## Pedagogical Elements
+
+1. **Interactive Learning**
+   - Exercises integrated into course material
+   - Challenges that encourage applying concepts in new ways
+   - Clear project setup instructions to minimize environment issues
+   - Progressive code examples that build on previous knowledge
+
+2. **Conceptual Reinforcement**
+   - Frequent recapping of key concepts
+   - Real-world examples showing practical applications
+   - Highlighting edge cases and potential pitfalls
+   - Connecting new concepts to previously learned material
+
+3. **Addressing Different Learning Styles**
+   - Visual learners: Diagrams, code highlights, GIFs
+   - Hands-on learners: Interactive examples, exercises
+   - Conceptual learners: Thorough explanations of "why"
+   - Practical learners: Real-world use cases and implications
+
+4. **Motivating Examples**
+   - Beginning complex topics with real-world use cases that demonstrate value
+   - Showing problems that arise without the concept before introducing it
+   - Building solutions step-by-step to demonstrate thought process
+
+5. **Retention Strategies**
+   - Spacing practice over time rather than concentrated learning
+   - Incorporating "desirable difficulty" in exercises
+   - Encouraging journaling and self-assessment
+   - Varied presentation of similar concepts to reinforce understanding
+   - Balancing rule-driven and example-driven approaches
+
+## Technical Setup and Tools
+
+1. **Environment Setup**
+   - Quick setup guides using tools like Volta for consistent environments
+   - Minimal dependencies to reduce setup friction
+   - Clear instructions for running examples locally
+
+2. **Code Repository Organization**
+   - Well-structured monorepo approach
+   - Consistent package organization across courses
+   - Progressive example complexity within each module
+   - Separate challenge directories with starter code and tests
+
+3. **Tool Integration**
+   - Use of TypeScript compiler features to demonstrate concepts
+   - Integration with modern development tools and practices
+   - Demonstrations of real-world configuration patterns
+   - Showing compiler output and behavior in different scenarios
+
+## Best Practices Approach
+
+1. **Actionable Guidelines**
+   - Clear best practices included with complex topics
+   - Explanation of why best practices matter, not just what they are
+   - Examples of both good and problematic code patterns
+   - Focus on maintainable, team-friendly approaches
+
+2. **Contextual Recommendations**
+   - Acknowledging tradeoffs in different approaches
+   - Providing guidance for when to use different techniques
+   - Highlighting common pitfalls and how to avoid them
+
+## Advanced Teaching Techniques
+
+1. **Comparative Learning**
+   - Using comparison tables to highlight differences (e.g., covariance vs. contravariance)
+   - Demonstrating subtle distinctions between similar concepts
+   - Visual organization of complex type relationships
+   - Consistent table formatting to aid pattern recognition
+
+2. **Interactive Quizzes**
+   - Embedding quizzes with spoiler-protected answers
+   - Challenge questions that test understanding of core concepts
+   - Opportunities for self-assessment throughout the material
+   - Carefully constructed examples that reveal common misconceptions
+
+3. **Concept Building Through Refinement**
+   - Starting with flawed approaches and iteratively improving them
+   - Clearly marking anti-patterns with explicit warnings
+   - Showing the evolution of a solution through progressive refinement
+   - Demonstrating debugging thought processes
+
+4. **Cross-Module References**
+   - Linking to related concepts across different courses
+   - Building on previously established knowledge
+   - Revisiting earlier concepts with more advanced understanding
+   - Creating a cohesive learning journey across course boundaries
+
+5. **Utility Type Deconstruction**
+   - Breaking down complex utility types into understandable components
+   - Explaining built-in TypeScript utilities by rebuilding them
+   - Using type helpers to illustrate advanced type manipulation
+   - Progressive complexity in type transformations
+
+6. **Visual Type Modeling**
+   - Using directional arrows to represent type relationships
+   - Creating visual metaphors for complex type concepts
+   - Consistent visual language across advanced topics
+   - Diagrams to represent abstract type concepts
+
+7. **Deliberate Practice Design**
+   - Challenges that require combining multiple type system concepts
+   - Problems drawn from real-world TypeScript usage
+   - Exercises that mimic actual development scenarios
+   - Scaffolded challenges with hints and solution guidance
+   - Test-driven approach to validate understanding

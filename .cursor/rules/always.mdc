@@ -1,0 +1,11 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Testing commands that are expected to stay running until cancelled
+* Use the unix `timeout` (`gtimeout` on macos) command, so that they don't stay running forever 
+* Choose a wait time that makes it very likely a success or failure will surface before the `timeout` command cancels it
+```sh
+timeout 10s <command>
+```

@@ -1,0 +1,25 @@
+---
+description: 
+globs: packages/website/content/blog/**/*.md
+alwaysApply: false
+---
+## TypeScript Code snippets
+* MUST be in fenced markdown blocks like
+```ts twoslash
+// TypeScript code goes here
+```
+* SHOULD include [twoslash notations](mdc:https:/twoslash.netlify.app/refs/notations) and [options](mdc:https:/twoslash.netlify.app/refs/options) where appropriate
+* MAY include snippets with errors, as long as the "// @error <error-code>" option is used
+
+
+## Example project
+* A central project that threads concepts throughout the course together is conducive to learning DDD -- particularly as "managing complexity" is a key DDD benefit
+* As we teach students a concept in a chapter, we should consider applying that knowledge to the example project as we go.
+* It's great to lead students right into a problem or shortcoming (e.g. we make a change that makes an architectural limitation very clear and visceral) and then proceed to teaching a concept and applying it to the example project to alleviate/fix the problem.
+* The project should start out very simple, and piece by piece, new DDD concepts should be introduced, and we then should be given a "customer ask" or a business challenge that involves applying the DDD concepts
+* It's ok for this project to be "backend only" in the interest of maximizing focus on teaching the DDD concepts and interaction model, rather than focusing on wiring up a bunch of different full-stack software components
+  wing plants from seed in a hydroponic system, there's no concept of full vs partial sun, no concept of periodic watering, no concept of "plant spacing" -- but this all becomes very important once the plants go into raised beds
+
+* The theme of the example project should start out as a simple Gardening App. DDD concepts should be introduced, and then 
+
+

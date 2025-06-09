@@ -1,5 +1,14 @@
 const fs = require(`fs`);
 const path = require(`path`);
+// const { bundledLanguages, bundledThemes } = require('shiki')
+const cmlGrammar = require('./cml.tmLanguage.json'); // make sure this is imported correctly
+const cmlLanguage = {
+  id: 'cml',
+  scopeName: 'source.cml',
+  grammar: cmlGrammar,
+  aliases: ['context-mapper', 'cml'],
+};
+
 
 const PACKAGE_JSON_PATH = require('pkg-up').sync();
 const PROJECT_ROOT_PATH = path.join(
@@ -8,6 +17,7 @@ const PROJECT_ROOT_PATH = path.join(
 );
 
 const yaml = require('js-yaml');
+// const { languages } = require('prismjs');
 
 const { courses, course_groups: courseGroups } = yaml.load(
   fs.readFileSync(
@@ -95,7 +105,8 @@ module.exports = {
             resolve: 'gatsby-remark-shiki-twoslash',
             options: {
               theme: 'github-light',
-              addTryButton: true
+              addTryButton: true,
+              languages: [cmlLanguage]
             },
           },
           `gatsby-remark-copy-linked-files`,

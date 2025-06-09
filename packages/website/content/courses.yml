@@ -1,4 +1,12 @@
 courses:
+  - name: "Domain Modeling with TypeScript"
+    id: domain-modeling-with-ts
+    visibleInTopNav: false
+    visibleInCourseIndex: false
+    visibleInCoursePage: true
+    squareImage: /domain-modeling-with-ts.png
+    facebookImage: /fb-domain-modeling-with-ts.png
+    twitterImage: /tw-domain-modeling-with-ts.png
   - name: "TypeScript Fundamentals v3"
     id: fundamentals-v3
     visibleInTopNav: false

@@ -1,0 +1,106 @@
+{
+    "name": "Context Mapper DSL",
+    "scopeName": "source.cml",
+    "fileTypes": [
+        "cml"
+    ],
+    "repository": {
+        "general": {
+            "patterns": [
+                {
+                    "include": "#linecomment"
+                },
+                {
+                    "include": "#blockcomment"
+                },
+                {
+                    "include": "#contextMapKeywords"
+                },
+                {
+                    "include": "#boundedContextKeywords"
+                },
+                {
+                    "include": "#domainKeywords"
+                },
+                {
+                    "include": "#applicationLayerKeywords"
+                },
+                {
+                    "include": "#userRequirementKeywords"
+                },
+                {
+                    "include": "#tacticDDDKeywords"
+                },
+                {
+                    "include": "#stakeholderKeyWords"
+                },
+                {
+                    "include": "#valueRegisterKeyWords"
+                },
+                {
+                    "include": "#stringsSingle"
+                },
+                {
+                    "include": "#stringsDouble"
+                }
+            ]
+        },
+        "linecomment": {
+            "name": "comment.line.double-dash.cml",
+            "begin": "(^[ \\t]+)?(?=//)",
+            "end": "(?=$)"
+        },
+        "blockcomment": {
+            "name": "comment.block.cml",
+            "begin": "/\\*(\\*)?(?!/)",
+            "end": "\\*/"
+        },
+        "contextMapKeywords": {
+            "name": "keyword.control.cml",
+            "match": "\\b(import|ContextMap|type|state|contains|P|Partnership|SK|Shared-Kernel|implementationTechnology|U|D|C|S|OHS|PL|ACL|CF|Upstream-Downstream|Downstream-Upstream|Customer-Supplier|Supplier-Customer|exposedAggregates|downstreamRights|UNDEFINED|SYSTEM_LANDSCAPE|ORGANIZATIONAL|AS_IS|TO_BE|INFLUENCER|OPINION_LEADER|VETO_RIGHT|DECISION_MAKER|MONOPOLIST)\\b"
+        },
+        "boundedContextKeywords": {
+            "name": "keyword.control.cml",
+            "match": "\\b(BoundedContext|implements|realizes|refines|domainVisionStatement|type|responsibilities|implementationTechnology|knowledgeLevel|UNDEFINED|FEATURE|APPLICATION|SYSTEM|TEAM|META|CONCRETE)\\b"
+        },
+        "domainKeywords": {
+            "name": "keyword.control.cml",
+            "match": "\\b(Domain|domainVisionStatement|Subdomain|type|domainVisionStatement|CORE_DOMAIN|SUPPORTING_DOMAIN|GENERIC_SUBDOMAIN)\\b"
+        },
+        "userRequirementKeywords": {
+            "name": "keyword.control.cml",
+            "match": "\\b(UseCase|UserStory|actor|secondaryActors|interactions|benefit|scope|level|As a|As an|I want to|so that|true|a|an|the|with its|with their|in|for|to|create|read|update|delete|supports|split by|and that|is|are|promoted|accepting that|reduced|harmed)\\b"
+        },
+        "applicationLayerKeywords": {
+            "name": "keyword.control.cml",
+            "match": "\\b(Application|Flow|delegates to|emits event|event|triggers|command|operation|X|x|O|o|initiated|by|Coordination)\\b"
+        },
+        "tacticDDDKeywords": {
+            "name": "keyword.control.cml",
+            "match": "\\b(Module|external|basePackage|hint|Aggregate|responsibilities|useCases|userRequirements|userStories|features|owner|knowledgeLevel|likelihoodForChange|structuralVolatility|contentVolatility|availabilityCriticality|consistencyCriticality|storageSimilarity|securityCriticality|securityZone|securityAccessGroup|Service|gap|nogap|webservice|Resource|scaffold|path|Consumer|unmarshall to|queueName|topicName|subscribe to|eventBus|publish|to|void|throws|hint|path|return|GET|POST|PUT|DELETE|abstract|Entity|extends|with|optimisticLocking|optimisticLocking|auditable|cache|databaseTable|discriminatorValue|discriminatorColumn|discriminatorType|discriminatorLength|inheritanceType|validate|aggregateRoot|belongsTo|ValueObject|DomainEvent|Event|CommandEvent|Command|Trait|package|def|DataTransferObject|BasicType|immutable|key|unique|changeable|required|nullable|index|digits|email|future|past|max|min|decimalMax|decimalMin|notEmpty|notBlank|pattern|range|size|length|scriptAssert|url|validate|transient|databaseColumn|databaseType|cascade|fetch|orderby|orderColumn|Repository|enum|ordinal|JOINED|SINGLE_TABLE|STRING|CHAR|INTEGER|String|int|Integer|long|Long|boolean|Boolean|Date|DateTime|Timestamp|BigDecimal|BigInteger|double|Double|float|Float|Key|PagingParameter|PagedResult|Blob|Clob|Object|Set|List|Bag|Collection|Map|public|protected|private|package|not|delegates|to|opposite|reference|aggregateLifecycle|read|-only|write)\\b"
+        },
+        "stakeholderKeyWords": {
+            "name": "keyword.control.cml",
+            "match": "\\b(Stakeholders|of|StakeholderGroup|Stakeholder|influence|interest|description|UNDEFINED|HIGH|MEDIUM|LOW)\\b"
+        },
+        "valueRegisterKeyWords": {
+            "name": "keyword.control.cml",
+            "match": "\\b(ValueRegister|for|ValueCluster|core|demonstrator|relatedValue|opposingValue|Value|isCore|Stakeholder|Stakeholders|priority|impact|consequences|ValueEpic|As a|I value|as demonstrated in|realization of|reduction of|ValueNarrative|When the SOI executes|stakeholders expect it to promote|protect or create|possibly degrading or prohibiting|with the following externally observable and|or internally auditable behavior|ValueWeigthing|In the context of the SOI|stakeholder|values|more than|expecting benefits such as|running the risk of harms such as|good|bad|neutral|action|ACT|MONITOR|UNDEFINED|HIGH|MEDIUM|LOW|AUTONOMY|CARE|CONTROL|FAIRNESS|INCLUSIVENESS|INNOVATION|PERFECTION|PRIVACY|RESPECT|SUSTAINABILITY|TRANSPARENCY|TRUST)\\b"
+        },
+        "stringsSingle": {
+            "name": "string.quoted.single.cml",
+            "begin": "'",
+            "end": "'"
+        },
+        "stringsDouble": {
+            "name": "string.quoted.double.cml",
+            "begin": "\"",
+            "end": "\""
+        }
+    },
+    "patterns": [
+        {
+            "include": "#general"
+        }
+    ]
+}

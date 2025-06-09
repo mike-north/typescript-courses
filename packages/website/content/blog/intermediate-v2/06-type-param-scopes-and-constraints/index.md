@@ -19,6 +19,19 @@ Generic constraints allow us to describe the "minimum requirement" for a type pa
 
 Let's recall the example we used in our Generics chapter, where we arrived at a generic function that could convert a data structure like this
 
+```cml
+ContextMap {
+  type = SYSTEM_LANDSCAPE
+  state = AS_IS
+
+  contains CargoBookingContext
+  contains VoyagePlanningContext
+  contains LocationContext
+	
+  CargoBookingContext [SK]<->[SK] VoyagePlanningContext
+}
+```
+
 ```ts twoslash
 const phoneList = [
   { customerId: '0001', areaCode: '321', num: '123-4566' },
