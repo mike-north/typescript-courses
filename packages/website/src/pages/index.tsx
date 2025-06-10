@@ -44,6 +44,14 @@ interface IBlogIndexProps {
     site: {
       siteMetadata: {
         title: string;
+        author: {
+          name: string;
+          summary: string;
+        };
+        social: {
+          twitter: string;
+          linkedin: string;
+        };
         courseGroups: IAbbrevCourseGroup[];
         courses: IAbbrevCourse[];
       };
@@ -58,7 +66,12 @@ const BlogIndex: React.FunctionComponent<
   IBlogIndexProps
 > = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title;
-  const { courseGroups, courses } = data.site.siteMetadata;
+  const {
+    courseGroups,
+    courses,
+    author,
+    social,
+  } = data.site.siteMetadata;
   const courseGroupMap: {
     [key: string]: {
       courses: IAbbrevCourse[];
@@ -84,7 +97,7 @@ const BlogIndex: React.FunctionComponent<
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="Courses" />
-      <Bio />
+      <Bio author={author} social={social} />
       {courseGroups
         .filter(
           (c) => courseGroupMap[c.id].courses.length > 0,
@@ -133,6 +146,14 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        author {
+          name
+          summary
+        }
+        social {
+          twitter
+          linkedin
+        }
         courseGroups {
           id
           name

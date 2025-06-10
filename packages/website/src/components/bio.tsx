@@ -20,6 +20,11 @@ interface IPureBioProps {
   };
 }
 
+interface BioProps {
+  author?: IPureBioProps['author'];
+  social?: IPureBioProps['social'];
+}
+
 const PureBio: React.FunctionComponent<IPureBioProps> = ({
   author,
   social,
@@ -34,7 +39,6 @@ const PureBio: React.FunctionComponent<IPureBioProps> = ({
     >
       <Image
         fixed={avatar.childImageSharp.fixed}
-        alt={author.name}
         style={{
           marginRight: rhythm(1 / 2),
           marginBottom: 0,
@@ -67,7 +71,10 @@ const PureBio: React.FunctionComponent<IPureBioProps> = ({
   );
 };
 
-const Bio = (): JSX.Element => {
+const Bio = ({
+  author: authorProp,
+  social: socialProp,
+}: BioProps): JSX.Element => {
   const data = useStaticQuery(graphql`
     query BioQuery {
       avatar: file(
@@ -97,8 +104,8 @@ const Bio = (): JSX.Element => {
   const { author, social } = data.site.siteMetadata;
   return (
     <PureBio
-      author={author}
-      social={social}
+      author={authorProp || author}
+      social={socialProp || social}
       avatar={data.avatar}
     />
   );

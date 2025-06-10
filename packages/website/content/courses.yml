@@ -1,12 +1,18 @@
 courses:
-  - name: "Domain Modeling with TypeScript"
+  - name: "Domain modeling for humans and AI"
     id: domain-modeling-with-ts
-    visibleInTopNav: false
-    visibleInCourseIndex: false
+    visibleInTopNav: true
+    visibleInCourseIndex: true
     visibleInCoursePage: true
-    squareImage: /domain-modeling-with-ts.png
+    squareImage: /ddd-typescript.png
     facebookImage: /fb-domain-modeling-with-ts.png
     twitterImage: /tw-domain-modeling-with-ts.png
+    femCourseUrl: https://frontendmasters.com/courses/domain-modeling-typescript/
+    femCoursePublished: false
+    femWorkshopUrl: https://frontendmasters.com/workshops/domain-modeling-typescript/
+    femWorkshopPublished: true
+    summary: |
+      Learn how to model a domain in TypeScript, and how to collaborate with domain experts and agentic AI coding tools to build a software system that solves real problems.
   - name: "TypeScript Fundamentals v3"
     id: fundamentals-v3
     visibleInTopNav: false
@@ -108,6 +114,12 @@ courses:
       type-checked code bases that are shockingly easy to refactor and maintain.
 
 course_groups:
+  - name: "Domain Modeling with TypeScript"
+    id: domain-modeling-typescript
+    topNavOrder: 0
+    courseIndexOrder: 0
+    currentCourse: domain-modeling-with-ts
+    courses: [domain-modeling-with-ts]
   - name: "TypeScript Fundamentals"
     id: typescript-fundamentals
     topNavOrder: 1
