@@ -6,7 +6,7 @@ description: "Let's think about transactionality and how it may lead us to desig
 course: domain-modeling-with-ts
 ---
 
-In `packages/client/src/lib/repositories/workspace.repository.ts` there's a `moveItemWithinZone` to move a plant from one place to another within the same zone, and a `moveItemBetweenZones` to move _across_ beds. 
+In `packages/client/src/lib/repositories/workspace.repository.ts` there's a `moveItemWithinZone` to move a plant from one place to another within the same zone, and a `moveItemBetweenZones` to move _across_ beds.
 
 Let's say that we've scaled this sytem way up, and moving plants is mainly something that happens to a `Zone`, not a `Workspace`. This might be a choice that we could embrace, and it works out fine for moving plants within a single zone.
 

@@ -60,10 +60,10 @@ And then when the time is right, I transplant them outside into the raised beds.
 
 We'll build a seed collection so we can keep track of what we have in the collection
 
-![](./img/seed-catalog-ui.png)
+![seed catalog](./img/seed-catalog-ui.png)
 
 And build an amazing drag and drop UI so that we can plan what we want to grow each year!
 
-![](./img/garden-ui.png)
+![garden ui](./img/garden-ui.png)
 
 I'm going to be both your instructor and your Gardening Expert as we work on this app together. At the end of the course, you'll also be able to take your learning further as a "final project". This is a real app that will actually get used!

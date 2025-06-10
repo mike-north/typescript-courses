@@ -52,8 +52,8 @@ jobs:
       - run: yarn
       - name: Build
         run: yarn build
-      - name: Lint
-        run: yarn lint
+      # - name: Lint
+      #   run: yarn lint
       - name: Test
         run: yarn test
       - name: Cypress

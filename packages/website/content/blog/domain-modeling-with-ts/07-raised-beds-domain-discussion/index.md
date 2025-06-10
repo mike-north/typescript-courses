@@ -5,6 +5,7 @@ date: "2025-06-10T09:00:00.000Z"
 description: "We'll develop our domain model for a raised bed garden"
 course: domain-modeling-with-ts
 ---
+
 Time to dig into our garden bed domain model. Let's start with the following user needs to anchor on to
 
 > I need to be able to plan out where I want things to go in my raised beds, well in advance of the plants actually going into the ground

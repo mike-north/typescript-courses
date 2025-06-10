@@ -7,6 +7,7 @@ course: domain-modeling-with-ts
 ---
 
 ## Your task
+
 I'll serve as your the "domain expert" in _maintaining a seed collection_ as we work toward a solution for keeping a large one organized.
 
 Take a few minutes to learn, and come up with some good questions
@@ -170,14 +171,14 @@ id: burpee-big-boy-tomato
       green: 32
       blue: 39
     iconPath: tomatoes-burpee-big-boy-tomato.png
- 
+
 
 ```
 
 </details>
 
-
 ## If you're watching the recorded course, how can you practice collaboration?
+
 If you have access to an LLM, here's a prompt to seed a conversation with
 
 <details>
