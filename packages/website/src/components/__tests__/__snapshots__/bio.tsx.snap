@@ -28,7 +28,7 @@ exports[`Bio renders correctly 1`] = `
     <picture>
       
       <img
-        alt="Mike"
+        alt=""
         height={40}
         loading="lazy"
         onLoad={[Function]}
@@ -54,7 +54,7 @@ exports[`Bio renders correctly 1`] = `
     <noscript
       dangerouslySetInnerHTML={
         Object {
-          "__html": "<picture><source srcset=\\"\\" /><img loading=\\"lazy\\" width=\\"80\\" height=\\"40\\" src=\\"http://localhost:8080\\" alt=\\"Mike\\" style=\\"position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center\\"/></picture>",
+          "__html": "<picture><source srcset=\\"\\" /><img loading=\\"lazy\\" width=\\"80\\" height=\\"40\\" src=\\"http://localhost:8080\\" alt=\\"\\" style=\\"position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center\\"/></picture>",
         }
       }
     />
