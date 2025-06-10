@@ -67,7 +67,7 @@ exports.createPages = async ({ graphql, actions }) => {
     `
       {
         allMarkdownRemark(
-          sort: { fields: [frontmatter___order], order: ASC }
+          sort: { fields: [frontmatter___date], order: DESC }
           limit: 1000
         ) {
           edges {
@@ -77,7 +77,7 @@ exports.createPages = async ({ graphql, actions }) => {
               }
               frontmatter {
                 title
-                order
+                date
                 course
                 isExercise
               }
@@ -104,10 +104,10 @@ exports.createPages = async ({ graphql, actions }) => {
         slug: post.node.fields.slug,
         title: post.node.frontmatter.title,
         course: post.node.frontmatter.course,
-        order: post.node.frontmatter.order,
+        date: post.node.frontmatter.date,
       },
     })
-  ), ['context.course', 'context.order']),
+  ), ['context.course', 'context.date']),
     'context.course',
   )
 

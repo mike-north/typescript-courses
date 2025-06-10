@@ -175,7 +175,7 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(
-      sort: { fields: [frontmatter___order], order: ASC }
+      sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
         node {
@@ -187,7 +187,6 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             description
-            order
           }
         }
       }

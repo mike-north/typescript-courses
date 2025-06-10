@@ -1,6 +1,6 @@
 ---
 title: "Aggregates"
-order: 09
+order: 10
 date: "2025-06-10T09:00:00.000Z"
 description: "Let's think about transactionality and how it may lead us to design our semantic actions and data models"
 course: domain-modeling-with-ts
