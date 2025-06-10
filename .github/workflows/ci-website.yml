@@ -24,6 +24,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Install Git LFS
+        run: git lfs install
+      - name: Pull LFS files
+        run: git lfs pull
       - uses: volta-cli/action@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
@@ -81,6 +85,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Install Git LFS
+        run: git lfs install
+      - name: Pull LFS files
+        run: git lfs pull
       - uses: volta-cli/action@v4
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -159,6 +167,10 @@ jobs:
     if: success() && github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
+      - name: Install Git LFS
+        run: git lfs install
+      - name: Pull LFS files
+        run: git lfs pull
       - uses: volta-cli/action@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
