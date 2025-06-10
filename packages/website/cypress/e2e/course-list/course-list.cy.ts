@@ -6,7 +6,7 @@ describe('course list page', () => {
   });
 
   it('displays multiple courses', () => {
-    cy.get('.course-summary').should('have.length', 5);
+    cy.get('.course-summary').should('have.length', 6);
   });
 
   it('clicking TS-fundamentals v4 course link visits the course page', () => {
@@ -87,6 +87,6 @@ describe('course list page', () => {
   it('course top nav has the correct courses', () => {
     cy.get('.course-summary:nth-child(2) header h3 a').click();
     cy.get('li.course-tab a').should("contain.text", "TypeScript Fundamentals v4Intermediate TypeScript v2Making TypeScript StickEnterprise-Scale TypeScript v2Full Stack TypeScript");
-    cy.get('li.course-tab a').should("have.length", 5);
+    cy.get('li.course-tab a').should("have.length", 6);
   });
 });
