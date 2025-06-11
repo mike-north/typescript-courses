@@ -2,8 +2,8 @@ courses:
   - name: "TypeScript Monorepos v2"
     id: monorepos-v2
     visibleInTopNav: false
-    visibleInCourseIndex: true
-    visibleInCoursePage: true
+    visibleInCourseIndex: false
+    visibleInCoursePage: false
     squareImage: /monorepos-v2.png
     facebookImage: /fb-monorepos-v2.png
     twitterImage: /tw-monorepos-v2.png
