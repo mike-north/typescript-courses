@@ -7,6 +7,10 @@ courses:
     squareImage: /monorepos-v2.png
     facebookImage: /fb-monorepos-v2.png
     twitterImage: /tw-monorepos-v2.png
+    femWorkshopUrl: https://frontendmasters.com/workshops/typescript-monorepos-v2/
+    femWorkshopPublished: true
+    femCourseUrl: https://frontendmasters.com/courses/typescript-monorepos-v2/
+    femCoursePublished: false
   - name: "Domain modeling for humans and AI"
     id: domain-modeling-with-ts
     visibleInTopNav: true

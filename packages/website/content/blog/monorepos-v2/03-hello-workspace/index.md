@@ -84,10 +84,16 @@ In your root `package.json` add the following
 ```json
 {
   "scripts": {
-    "build": "pnpm run -r build",
-    "lint": "pnpm run -r lint",
-    "test": "pnpm run -r test",
-  }
+    "build": "pnpm --color run -r build",
+    "lint": "pnpm --color run -r lint",
+    "check": "pnpm --color run -r check",
+    "test": "pnpm --color run -r test",
+    "format": "pnpm --color run -r format",
+    "dev": "pnpm --color run -r dev"
+  },
+	"volta": {
+		"node": "22.16.0"
+	}
 }
 ```
 Ok, let's stage all the files we have changed
@@ -132,5 +138,16 @@ index a499dd8..9b6f4be 100644
 ```
 
 This should give you confidence that we're not releasing all of our locked versions as part of this process. 
+
+At this point you should be able to run 
+```sh
+pnpm build && \
+pnpm test && \
+pnpm lint && \
+pnpm check && \
+pnpm format
+```
+and see that everything works.
+
 
 Make a git commit, and let's move on!
