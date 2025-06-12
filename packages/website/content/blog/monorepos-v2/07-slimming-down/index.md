@@ -82,7 +82,7 @@ Install it
 pnpm i -D knip
 ```
 
-We need a small config file to tell Knip about entry points
+We need a small config file to tell Knip about entry points - `knip.json`
 ```json
 {
 	"workspaces": {
