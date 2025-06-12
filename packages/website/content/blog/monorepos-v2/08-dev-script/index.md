@@ -2,7 +2,7 @@
 title: Dev mode
 date: "2025-06-12T09:00:00.000Z"
 description: |
-	We've done a lot of refactoring and rearranging. Let's explore our options for restoring a project-wide `dev` script
+	We've done a lot of refactoring and rearranging. Let's explore our options for restoring a project-wide dev script
 course: monorepos-v2
 order: 8
 ---
