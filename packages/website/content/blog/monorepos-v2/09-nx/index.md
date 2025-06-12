@@ -2,7 +2,7 @@
 title: Nx
 date: "2025-06-12T09:00:00.000Z"
 description: |
-	We'll learn to use the nx monorepo tool for dependency-aware builds and distributed caching
+  We'll learn to use the nx monorepo tool for dependency-aware builds and distributed caching
 course: monorepos-v2
 order: 9
 ---
