@@ -1,8 +1,7 @@
 ---
 title: API Extractor
 date: "2025-06-12T09:00:00.000Z"
-description: |
-  We'll learn to use API Extractor to generate a unified API surface for our monorepo
+description: "We'll learn to use API Extractor to generate a unified API surface for our monorepo"
 course: monorepos-v2
 order: 10
 ---
