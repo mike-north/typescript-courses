@@ -22,6 +22,7 @@ Move the contents of
 - `packages/ui/tests/server` into our new `tests` subfolder
 
 ```sh
+mv packages/ui/src/data packages/server
 mv packages/ui/src/server/* packages/server/src
 mv packages/ui/tests/server/* packages/server/tests
 ```
@@ -88,7 +89,7 @@ Ok we're not quite done. We need still need external dependencies for this packa
     "eslint": "^9.28.0",
     "prettier": "^3.5.3",
     "tsx": "^4.20.0",
-    "typescript": "~5.8.3",
+    "typescript": "5.7.0",
     "typescript-eslint": "^8.34.0",
     "vitest": "^3.2.3",
     "@seeds/models": "workspace:*"
@@ -126,7 +127,7 @@ And our ui package won't need some of these server-related things now, so let's 
     "svelte": "^5.28.1",
     "svelte-check": "^4.1.6",
     "tailwindcss": "^4.1.8",
-    "typescript": "~5.8.3",
+    "typescript": "5.8.1",
     "typescript-eslint": "^8.34.0",
     "vite": "^6.3.5",
     "vitest": "^3.2.3"

@@ -49,6 +49,7 @@ You'll need to create a _very thin_ top-level `package.json` file
 ```json
 {
   "name": "seeds",
+	"repository": "https://github.com/mike-north/ts-monorepos-v2",
   "private": true,
   "volta": {
     "node": "22.16.0"

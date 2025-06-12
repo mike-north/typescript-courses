@@ -12,6 +12,7 @@ We're missing some developer experience niceties due to our rearrangement of pac
 - Linting only works in the `@seeds/ui` package, and now we've moved code out of it that's not being linted
 - Prettier used to work in this project, but it's now failing
 - When you alt/command + click (or whatever your "jump to definition" shortcut is) on an import symbol that crosses monorepo package boundaries (e.g. something from `@seeds/models`), you're brought to the compiled declaration file, not the source `.ts` file
+- We're not yet taking advantage of TypeScript project references, which allows for faster and better incremental builds
 
 We'll fix all of these issues in this section.
 
@@ -136,7 +137,7 @@ Finally we need to solve the jump to definition issue. What's missing is somethi
 
 Now run `pnpm build`, try to jump to definition and you should see that it takes you to a `src/**/*.ts` file, not a `dist/**/*.d.ts` file.
 
-Now run 
+Now run
 
 ```sh
  pnpm build && \
@@ -145,5 +146,43 @@ Now run
   pnpm format && \
   pnpm lint
 ```
+
+## TS Project references
+
+We may be sharing a `dist` folder between packages, but we can go further in terms of leveraging incremental builds. **We want to get to a place where TypeScript only has to build _the files that have changed_ -- not _the packages that have changed files within them_**.
+
+First, we need to add something to each package's `tsconfig.build.json` file (`tsconfig.json` for the UI package)
+
+```json
+{
+  "compilerOptions": {
+    "composite": true
+  }
+}
+```
+
+Then, for every edge in our dependency graph, we need to add a `references` array to the `tsconfig.json` file. In this case we have two edges:
+
+- `@seeds/models` -> `@seeds/ui`
+- `@seeds/models` -> `@seeds/server`
+
+Update `@seeds/server`'s `tsconfig.build.json` and `@seeds/ui`'s `tsconfig.json` files to include this
+
+```json
+"references": [
+    {
+      "path": "../models/tsconfig.build.json"
+    }
+]
+```
+
+Add this line to your root `.gitignore` file
+```diff
++ **/tsconfig.build.tsbuildinfo
+```
+
+and run `pnpm build` again. You should see a `tsconfig.build.tsbuildinfo` file in the root of each package. This is a file that TypeScript uses to track the state of the build.
+
+---
 
 Give yourself a pat on the back! We now have the "core" concept of a TypeScript monorepo, but we're not stopping there.
