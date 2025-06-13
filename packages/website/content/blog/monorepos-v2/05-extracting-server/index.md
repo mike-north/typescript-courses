@@ -40,7 +40,7 @@ Now we need a very basic `packages/server/package.json`. Let's start with this
 ```
 You touched `dependencies`, so run `pnpm i`.
 
-Now, our ui pakcage has a `dev-server` script that seems useful. Let's bring that over (this time as a `dev` script, since this package _is_ the server). Bring the lint and test scripts as well.
+Now, our ui package has a `dev-server` script that seems useful. Let's bring that over (this time as a `dev` script, since this package _is_ the server). Bring the lint and test scripts as well.
 
 ```json
   "scripts": {
@@ -55,13 +55,12 @@ Now, our ui pakcage has a `dev-server` script that seems useful. Let's bring tha
 
 Remember to change that path in the `dev` script -- it should point to `src/index.ts`
 
-Let's also add `build` and `dev` scripts -- copy these straight from the `@seeds/models` package.
+Let's also add the `build` script -- copy this straight from the `@seeds/models` package.
 
 ```json
 {
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "dev": "tsc -p tsconfig.build.json --watch --preserveWatchOutput"
+    "build": "tsc -p tsconfig.build.json"
   }
 }
 ```
