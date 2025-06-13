@@ -6,9 +6,9 @@ description: "Let's attempt our first discussion with a domain expert and an AI 
 course: domain-modeling-with-ts
 ---
 
-## Let's implement it!
+## Let's implement it
 
-![](./img/seed-collection-ui.png)
+![seed collection](./img/seed-collection-ui.png)
 
 Once you've decided on your domain model, implement it in the workshop project!
 

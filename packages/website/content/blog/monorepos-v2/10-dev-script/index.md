@@ -1,9 +1,9 @@
 ---
-title: Dev mode
+title: Dev script
 date: "2025-06-12T09:00:00.000Z"
 description: "We've done a lot of refactoring and rearranging. Let's explore our options for restoring a project-wide dev script"
 course: monorepos-v2
-order: 8
+order: 10
 ---
 
 When we started, we could run `pnpm dev` and start both the client and server at the same time. Sure, sometimes there was a race condition, but it was easy to fire up and get productive.
@@ -21,7 +21,7 @@ pnpm -r dev
 
 You might see something like
 
-```
+```raw
 packages/models dev$ tsc -p tsconfig.build.json --watch --preserveWatchOutput
 │ 9:00:42 PM - Starting compilation in watch mode...
 │ 9:00:43 PM - Found 0 errors. Watching for file changes.

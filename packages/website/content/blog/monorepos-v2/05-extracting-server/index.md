@@ -38,6 +38,7 @@ Now we need a very basic `packages/server/package.json`. Let's start with this
     "@seeds/models": "workspace:*"
   }
 ```
+
 You touched `dependencies`, so run `pnpm i`.
 
 Now, our ui pakcage has a `dev-server` script that seems useful. Let's bring that over (this time as a `dev` script, since this package _is_ the server). Bring the lint and test scripts as well.
@@ -65,6 +66,7 @@ Let's also add `build` and `dev` scripts -- copy these straight from the `@seeds
   }
 }
 ```
+
 Copy the `tsconfig.json` and `tsconfig.build.json` files from the `@seeds/models` package into the `@seeds/server` package.
 
 ```sh
@@ -73,7 +75,6 @@ cp packages/models/tsconfig.build.json packages/server/tsconfig.build.json
 ```
 
 Ok we're not quite done. We need still need external dependencies for this package -- it uses express, a logger, etc. Let's grab anything that doesn't seem obviously UI-related from `@seeds/ui`'s `package.json`
-
 
 `packages/server/package.json`
 
@@ -105,6 +106,7 @@ Ok we're not quite done. We need still need external dependencies for this packa
 And our ui package won't need some of these server-related things now, so let's slim that down (`dependencies` has been removed entirely)
 
 `packages/ui/package.json`
+
 ```json
  "devDependencies": {
     "@eslint/js": "^9.28.0",
@@ -133,12 +135,15 @@ And our ui package won't need some of these server-related things now, so let's 
     "vitest": "^3.2.3"
   }
 ```
+
 You can also get rid of the `volta` object in the ui's `package.json` at this time. You touched `dependencies`, so run `pnpm i`.
 
 Now run
+
 ```sh
 pnpm check
 ```
+
 so that you can find any module import paths that need to be fixed. Once you get it passing, you should now be able to build and test everything across the repo now.
 
 ```sh

@@ -3,7 +3,7 @@ title: API Extractor
 date: "2025-06-12T09:00:00.000Z"
 description: "We'll learn to use API Extractor to generate a unified API surface for our monorepo"
 course: monorepos-v2
-order: 10
+order: 12
 ---
 
 API Extractor is a tool that operates purely on _declaration files_. It can generate rollups for different levels of maturity of a given package, and produce a markdown "api report" that make detecting changes to the API surface of a package easy to detect and review
@@ -66,7 +66,7 @@ pnpm api-extractor run --local --verbose
 
 This will create a `api-report.md` file in the `/etc` folder. Look in the `./dist` folder and you should see the generated declaration files.
 
-```
+```raw
 packages/models/dist/models-alpha.d.ts
 packages/models/dist/models-beta.d.ts
 packages/models/dist/models-public.d.ts
@@ -97,7 +97,7 @@ pnpm api-extractor run --local --verbose
 
 You should now see
 
-```
+```raw
 packages/models/temp/models.api.json
 ```
 

@@ -68,18 +68,18 @@ import { PeashootEntity } from './peashoot-entity'
 
 @Entity()
 export class Location extends PeashootEntity<'loc'> {
-	constructor() {
-		super('loc')
-	}
+ constructor() {
+  super('loc')
+ }
 
-	@Column('text')
-	name!: string
+ @Column('text')
+ name!: string
 
-	@Column('text')
-	region!: string
+ @Column('text')
+ region!: string
 
-	@Column('text')
-	country!: string
+ @Column('text')
+ country!: string
 ```
 
 the base class `PeashootEntity<'loc'>` takes care of the id field for us, and prefixes it with `loc_` so that they're easy to identify if we ever see them logged.
@@ -89,7 +89,7 @@ The `@Entity` decorator is really important here. This is what means these are p
 ## Our task
 
 Our app contains a calculator UI
-![](./img/calculator.png)
+![Calculator UI](./img/calculator.png)
 where a gardener can enter a location and temperature, and they need to be able to get an estimate of the _date_ when the weather will be _no colder_ than that temperature.
 
 Here's how the data flow works

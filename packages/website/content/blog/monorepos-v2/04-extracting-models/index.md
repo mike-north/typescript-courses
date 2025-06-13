@@ -32,8 +32,8 @@ You'll need to fix an import in the test file
 
 ```diff
 import type {
-	USDAHardinessZoneRangeMap,
-	Distance,
+ USDAHardinessZoneRangeMap,
+ Distance,
 - } from '../../src/models/seed-packet.model.js'
 + } from '../src/seed-packet.model.js'
 ```
@@ -56,7 +56,7 @@ Now we need a very basic `packages/models/package.json`. Let's start with this
 }
 ```
 
-We should add some basic dependencies. Some of you who are aware of spoilers may know I don't need all of these, but it's fine for now. 
+We should add some basic dependencies. Some of you who are aware of spoilers may know I don't need all of these, but it's fine for now.
 
 ```json
 {
@@ -73,6 +73,7 @@ We should add some basic dependencies. Some of you who are aware of spoilers may
   }
 }
 ```
+
 Run `pnpm i` in the root to set up these dependencies for this package, and then you should be able to run the tests and see that they work
 
 ```sh
@@ -220,15 +221,18 @@ Now we can add a `check` script to our server package's `package.json`
   }
 }
 ```
+
 Now try running
+
 ```sh
 pnpm --filter=@seeds/models build
 ```
+
 and it should succeed. We now have a library in our monorepo!
 
 ## Integrating `@seeds/models` into `@seeds/ui`
 
-Now we need to integrate this new `@seeds/models` package into our `@seeds/ui` package -- after all, our svelte components need this code in order to compile. 
+Now we need to integrate this new `@seeds/models` package into our `@seeds/ui` package -- after all, our svelte components need this code in order to compile.
 
 Go to `packages/ui/package.json` and add `@seeds/models` to the `dependencies` object using the `workspace:*` syntax.
 
@@ -237,7 +241,9 @@ Go to `packages/ui/package.json` and add `@seeds/models` to the `dependencies` o
     "@seeds/models": "workspace:*"
   }
 ```
+
 We're saying two things with this syntax:
+
 - The `@seeds/models` package is a _workspace dependency_
 - We're happy to use _any version of it_.
 
@@ -253,12 +259,14 @@ Now, from the workspace root, run `pnpm check` and you should see some import pa
 ```
 
 Once you fix all the import paths, you should be able to run
+
 ```sh
 pnpm build && \
 pnpm test && \
 pnpm check && \
 pnpm format
 ```
+
 and it should complete successfully! Note that we haven't included linting here -- we'll fix that later.
 
 Next, let's disentangle the server from the UI part of the project, and factor it out into a new `@seeds/server` package.

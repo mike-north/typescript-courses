@@ -6,7 +6,7 @@ description: "We'll implement our raised bed entities, value objects and relatio
 course: domain-modeling-with-ts
 ---
 
-Now let's implement our domain model! Our goal is to get some sort of diagram showing up on the http://localhost:5173/garden page.
+Now let's implement our domain model! Our goal is to get some sort of diagram showing up on the <http://localhost:5173/garden> page.
 
 - The plants must show up as the appropriate size (e.g. tomatoes must be 2x2 tiles)
 - The plant tiles (`ItemPlacement` in the UI domain model) should have a working icon (it's ok if a few don't work). Icons are in `packages/client/public/plant-icons/*` and if you just provide an `Item.iconPath` that's set to a filename in that folder, it should show up on the tile

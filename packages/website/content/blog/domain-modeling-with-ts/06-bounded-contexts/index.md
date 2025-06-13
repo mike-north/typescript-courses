@@ -14,7 +14,7 @@ We have a need for this in our workshop project! There's a fancy UI for dragging
 ![Drag and drop raised bed planning UI](./img/dnd-ui.png)
 
 We have an existing domain model that lives in our UI
-![](./img/ui-bounded-context.png)
+![bounded context diagram](./img/ui-bounded-context.png)
 
 This has nothing to do with gardening! Our UI entirely deals in a world of
 

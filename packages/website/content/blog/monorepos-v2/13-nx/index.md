@@ -4,7 +4,7 @@ date: "2025-06-12T09:00:00.000Z"
 description: |
   We'll learn to use the nx monorepo tool for dependency-aware builds and distributed caching
 course: monorepos-v2
-order: 9
+order: 13
 ---
 
 Lerna is a monorepo tool that's been around for a while. There was a period of time where it was basically abandoned, and [it has since been maintained by the Nx team](https://dev.to/nrwl/lerna-is-dead-long-live-lerna-3jal). We'll look at what Lerna can do for us, and then we'll see when it's appropriate to use Nx directly instead.
@@ -56,28 +56,32 @@ pnpm lerna run build,lint,test,check --parallel
 
 ## --since
 
-A lot of the task running can be accomplished with pnpm (although it's a bit more convoluted),  however lerna is much more sophisticated. It can run tasks based on changes relative to a given git ref (e.g. a branch). 
+A lot of the task running can be accomplished with pnpm (although it's a bit more convoluted),  however lerna is much more sophisticated. It can run tasks based on changes relative to a given git ref (e.g. a branch).
 
-Change the logging message in 
+Change the logging message in
 `packages/server/src/index.ts`
+
 ```diff
--		console.log(`Server listening on port http://localhost:${cfg.port}`)
-+		console.log(`Listening on port http://localhost:${cfg.port}`)
+-  console.log(`Server listening on port http://localhost:${cfg.port}`)
++  console.log(`Listening on port http://localhost:${cfg.port}`)
 ```
 
 Now run
+
 ```sh
 pnpm lerna run test --since=origin/steps-2
 ```
+
 and you should see that only tests in the `@seeds/server` package are run. If you make a change within the `@seeds/model` package, you should see that tests in _all three packages_ are run because of the dependency graph.
 
 Particularly if you're thinking about git pre-commit hooks (e.g. if you're using [husky](https://github.com/typicode/husky)), this is a great foundational feature that lets you operate on the _increment of code change_ while taking the dependency graph within the monorepo into account.
 
-
 ## Nx
+
 Let's go deeper and explore using `Nx` directly.
 
 Install nx globally
+
 ```sh
 npm add --global nx
 # OR
@@ -85,6 +89,7 @@ volta install nx
 ```
 
 And install it in the root of the repo
+
 ```sh
 pnpm dlx nx init
 ```
