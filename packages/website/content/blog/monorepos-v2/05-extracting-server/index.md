@@ -22,7 +22,7 @@ Move the contents of
 - `packages/ui/tests/server` into our new `tests` subfolder
 
 ```sh
-mv packages/ui/src/data packages/server
+mv packages/ui/data packages/server
 mv packages/ui/src/server/* packages/server/src
 mv packages/ui/tests/server/* packages/server/tests
 ```
