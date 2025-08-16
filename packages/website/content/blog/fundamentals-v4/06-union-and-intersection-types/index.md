@@ -33,7 +33,7 @@ OneThroughFive | Evens => { 1, 2, 3, 4, 5, 6, 8 }
 ```
 
 If you think about the assumptions we could make about a member of this set at random, we couldn't
-be sure whether it's between 1 and 5, and we couldn't be sure whether it's odd.
+be sure whether it's between 1 and 5, and we couldn't be sure whether it's even.
 
 ### Intersection types `&`
 
@@ -95,7 +95,7 @@ let evenOrLowNumber = 5 as Evens | OneThroughFive;
 Union types often appear where control flow can produce a different value for different code paths.
 
 For example, the `flipCoin()` function will return `"heads"` if a number selected
-from `(0, 1)` is >= 0.5, or `"tails"` if <=0.5.
+from `(0, 1)` is > 0.5, or `"tails"` if <=0.5.
 
 ```ts twoslash
 function flipCoin() {
@@ -207,11 +207,11 @@ second.n
 ```
 
 We can see that the autocomplete information for the first value suggests that it's
-a string. This is because, regardles of whether this happens to be the specific `"success"`
+a string. This is because, regardless of whether this happens to be the specific `"success"`
 or `"error"` string, it's definitely going to be a string.
 
 The second value is a bit more complicated -- only the `name` property is available to us.
-This is because, both our "user info object, and instances of the `Error` class have a `name`
+This is because, both our user info object, and instances of the `Error` class have a `name`
 property whose value is a string.
 
 Let's also look at our previous example involving `{1,2,3,4,5} | {2,4,6,8}` and consider how these `AND` and `OR` type operators describe the set of possible values, and the assumptions we can make about any given value in the set
@@ -244,7 +244,7 @@ printNumber(x)
 
 There's some interesting asymmetry at play here. A `Evens | OneThroughFive` can accept a wide range of values, but because allows for this flexibility, it doesn't meet the type-checking requirements for most of the `print*` functions.
 
-> *Essentially, **`|` means "anything in either set" in terms of the allowed values**, and because of this **only the behavior that's definitely present on every member of both sets is available to us**
+> Essentially, **`|` means "anything in either set" in terms of the allowed values**, and because of this **only the behavior that's definitely present on every member of both sets is available to us**
 
 ### Narrowing with type guards
 
