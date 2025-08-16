@@ -62,8 +62,8 @@ Beyond TypeScript, should be familiar with most of the topics below
 ## Workshop Setup
 
 As long as you can access the following websites, you should require no further setup :tada:
-
-- [The course website you're reading right now](https://fun-v3.typescript-training.com)
+ 
+- [The course website you're reading right now](https://www.typescript-training.com/course/enterprise-v2)
 - [The official TypeScript website](https://www.typescriptlang.org)
 
 If you'd like to follow along with interactive examples, please install [Volta](https://volta.sh)
