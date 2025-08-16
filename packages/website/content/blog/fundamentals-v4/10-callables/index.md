@@ -78,7 +78,7 @@ and our `invokeInFourSeconds` function above is unhappy about this being returne
 
 ### Construct signatures
 
-[Construct signatures](https://www.typescriptlang.org/docs/handbook/2/functions.html#construct-signatures) are similar to call signatures, except they describe what should happen with the `new` keyword is used in an instantiation scenario.
+[Construct signatures](https://www.typescriptlang.org/docs/handbook/2/functions.html#construct-signatures) are similar to call signatures, except they describe what should happen when the `new` keyword is used in an instantiation scenario.
 
 ```ts twoslash
 // @errors: 2454
