@@ -453,7 +453,7 @@ perfectly fine, however...
 For example, consider infinitely nestable arrays of numbers
 
 ```ts
-;[3, 4, [5, 6, [7], 59], 221]
+[3, 4, [5, 6, [7], 59], 221]
 ```
 
 You may read or see things that indicate you must use a combination of `interface` and `type`
