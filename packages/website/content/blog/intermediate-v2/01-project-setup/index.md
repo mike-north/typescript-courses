@@ -63,8 +63,24 @@ As long as you can access the following websites, you should require no further 
 
 If you'd like to follow along with interactive examples, please install [Volta](https://volta.sh)
 
+Linux/MacOs:
 ```sh
 curl https://get.volta.sh | bash # Linux / macOS only
+```
+
+Windows:
+```sh
+winget install Volta.Volta # Windows only
+```
+
+After installation, run the command below to verify it was successful.\
+Note: You may need to restart your terminal or command prompt for the changes to take effect.
+```sh
+volta -v
+```
+
+Now Install:
+```sh
 volta install node@lts yarn@^3
 ```
 
