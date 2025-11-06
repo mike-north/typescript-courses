@@ -183,7 +183,7 @@ An [interface](https://www.typescriptlang.org/docs/handbook/2/everyday-types.htm
 
 ```ts
 {
-  field: "value
+  field: value  //value or "value"
 }
 ```
 
