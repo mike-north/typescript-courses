@@ -126,7 +126,7 @@ console.log( new Car("Toyota", "Camry", 2022))
 // > "Toyota Camry 2022 - #101
 ```
 
-Unless you state otherwise, static fields are accessible from anywhere the `Invoice` class is accessible (both from inside and outside the class). If this is undesirable, TypeScript provides us with **access modifier keywords** and truly private `#fields`, both of which we'll discuss below
+Unless you state otherwise, static fields are accessible from anywhere the `Car` class is accessible (both from inside and outside the class). If this is undesirable, TypeScript provides us with **access modifier keywords** and truly private `#fields`, both of which we'll discuss below
 
 There's one more place where the `static` world appears: next to a code block. Let's imagine that we don't want to start with that invoice counter at `1`, but instead we want to load it from an API somewhere.
 
