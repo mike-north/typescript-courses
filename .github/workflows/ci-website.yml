@@ -23,7 +23,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Install Git LFS
         run: git lfs install
       - name: Pull LFS files
@@ -84,7 +84,7 @@ jobs:
             name: 'ts-canary'
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Install Git LFS
         run: git lfs install
       - name: Pull LFS files
@@ -166,7 +166,7 @@ jobs:
     runs-on: ubuntu-latest
     if: success() && github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Install Git LFS
         run: git lfs install
       - name: Pull LFS files
