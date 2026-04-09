@@ -14,6 +14,12 @@ class Truck {
   towingCapacity: number
 }
 
+const newTruck = new Truck()
+newTruck.make = 'Ford'
+newTruck.model = 'F-150'
+newTruck.year = 2020
+newTruck.towingCapacity = 13000
+
 const vehicle = {
   make: 'Honda',
   model: 'Accord',
@@ -27,10 +33,11 @@ function printCar(car: {
 }) {
   console.log(`${car.make} ${car.model} (${car.year})`)
 }
-/*
-//printCar(new Car()) //✔️ Fine
-//printCar(new Truck()) //✔️ Fine
-//printCar(vehicle) //✔️ Fine
+
+printCar(new Car()) //✔️ Fine
+printCar(new Truck()) //✔️ Fine
+printCar(vehicle) //✔️ Fine
+printCar(newTruck) //✔️ Fine
 /**/
 
 export default {}
