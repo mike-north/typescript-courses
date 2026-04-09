@@ -125,6 +125,9 @@ let myCar3: [number, string, string] = [2002, 'Toyota', 'Corolla']
 myCar3 = ['Honda', 2017, 'Accord'] //! Wrong convention
 myCar3 = [2017, 'Honda', 'Accord', 'Sedan'] //! Too many elements
 
+let studInfo: [string, number, boolean] = ['Alice', 12345, true]
+const [name, id, isEnrolled] = studInfo
+
 //*  `readonly` tuples
 
 const numPair: [number, number] = [4, 5] //✔️ Valid
