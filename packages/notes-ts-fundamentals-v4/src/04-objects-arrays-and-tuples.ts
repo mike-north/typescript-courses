@@ -128,6 +128,9 @@ myCar3 = [2017, 'Honda', 'Accord', 'Sedan'] //! Too many elements
 let studInfo: [string, number, boolean] = ['Alice', 12345, true]
 const [name, id, isEnrolled] = studInfo
 
+let studArr = ['Alice', 'Ankit', 'Anand'] //? Inference: string[]
+const [stud1, stud2, stud3, stud4] = studArr //! stud4 is undefined, but no error!
+
 //*  `readonly` tuples
 
 const numPair: [number, number] = [4, 5] //✔️ Valid
