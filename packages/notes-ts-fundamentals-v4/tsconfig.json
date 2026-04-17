@@ -1,14 +1,16 @@
 {
-    "include": ["src"],
-    "compilerOptions": {
-        "module": "CommonJS",
-        "outDir": "dist",
-        "target": "ES2018",
-        "moduleResolution": "Node",
-        "noUnusedParameters": false,
-        "noUnusedLocals": false,
-        "noImplicitAny": true,
-        "noImplicitThis": true,
-        "strictNullChecks": true
-    }
+  "include": ["src"],
+  "compilerOptions": {
+    "module": "CommonJS",
+    "outDir": "dist",
+    "target": "ES2018",
+    "moduleResolution": "Node",
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictBindCallApply": true,
+    "strictNullChecks": true,
+    "noImplicitOverride": true
+  }
 }

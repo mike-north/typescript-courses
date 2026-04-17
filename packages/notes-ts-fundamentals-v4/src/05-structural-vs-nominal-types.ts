@@ -5,6 +5,18 @@ class Car {
   model: string
   year: number
   isElectric: boolean
+
+  constructor(
+    make: string,
+    model: string,
+    year: number,
+    isElectric: boolean,
+  ) {
+    this.make = make
+    this.model = model
+    this.year = year
+    this.isElectric = isElectric
+  }
 }
 
 class Truck {
@@ -12,7 +24,22 @@ class Truck {
   model: string
   year: number
   towingCapacity: number
+
+  constructor(
+    make: string,
+    model: string,
+    year: number,
+    towingCapacity: number,
+  ) {
+    this.make = make
+    this.model = model
+    this.year = year
+    this.towingCapacity = towingCapacity
+  }
 }
+
+const newCar = new Car('Toyota', 'Camry', 2020, false)
+const newTruck = new Truck('Ford', 'F-150', 2020, 13000)
 
 const vehicle = {
   make: 'Honda',
@@ -27,10 +54,17 @@ function printCar(car: {
 }) {
   console.log(`${car.make} ${car.model} (${car.year})`)
 }
-/*
-//printCar(new Car()) //✔️ Fine
-//printCar(new Truck()) //✔️ Fine
-//printCar(vehicle) //✔️ Fine
+
+printCar(newCar) //✔️ Fine
+printCar(newTruck) //✔️ Fine
+printCar(vehicle) //✔️ Fine
 /**/
+
+function sum(a: number, b: number) {
+  return a + b
+}
+
+const add = sum
+add(2, 3) //✔️ Fine
 
 export default {}

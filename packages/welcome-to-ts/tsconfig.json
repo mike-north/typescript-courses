@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "target": "ES2015",
-    "moduleResolution": "node",
+    "rootDir": "src",
+    "target": "ES2022",
+    "module": "NodeNext"
   },
   "include": ["src"]
 }
